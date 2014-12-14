@@ -1,3 +1,5 @@
+<?php
+
 $sql = "SELECT id, upadhi, name FROM munishri";
         $result = $conn->query($sql);
 
@@ -9,3 +11,5 @@ $sql = "SELECT id, upadhi, name FROM munishri";
          } else {
         echo "0 results";
          }
+
+?>
