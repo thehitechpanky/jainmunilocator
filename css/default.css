@@ -1,0 +1,170 @@
+/* Alignment */
+
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.625em;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.625em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+sup, sub {
+	font-size: 10px;
+	height: 0;
+	line-height: 1;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+blockquote {
+    background: url("../images/blockquote.png") no-repeat scroll 0 6px transparent;
+    color: #fff;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    margin: 0 40px 20px 35px;
+    padding-left: 30px;
+	overflow: hidden;
+}
+
+blockquote cite, blockquote em, blockquote i {
+	font-style: normal;
+}
+
+blockquote p {
+	padding: 0;
+}
+
+pre {
+	background: #f4f4f4;
+	font: 13px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	line-height: 1.5;
+	margin-bottom: 1.625em;
+	overflow: auto;
+	padding: 0.75em 1.625em;
+	margin: 0 40px;
+}
+
+code, kbd {
+	font: 13px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+.gallery-wrapper ul, .portfolio-wrapper ul, .filter ul, .gallery-magic ul {
+	margin: 0!important;
+	list-style:none!important;
+}
+
+.page-content .inner-content ul, .page-content .inner-content ol, .blog-entry ul, .blog-entry ol, .container ul, .container ol {
+	margin: 0 0 1.625em 2.5em;
+}
+
+.sidebar ul, .sidebar ol {
+	list-style: none!important;
+	margin: 0!important;
+}
+
+.page-content .inner-content ul, .blog-entry .inner-content ul, .blog-entry ul, .container ul {
+	list-style: disc;
+}
+
+.sendError {
+	list-style: none!important;
+	margin:0 0 20px 0!important;
+}
+
+.page-content ol, .blog-entry ol , .container ol{
+	list-style-type: decimal;
+}
+
+.page-content ol ol, .blog-entry ol ol {
+	list-style: upper-alpha;
+}
+
+.page-content ol ol ol, .blog-entry ol ol ol {
+	list-style: lower-roman;
+}
+
+.page-content ol ol ol ol, .blog-entry ol ol ol ol {
+	list-style: lower-alpha;
+}
+
+.page-content ul ul, .blog-entry ul ul, .blog-entry ol ol, .page-content ol ol, .page-content ul ol, .blog-entry ul ol, .page-content ol ul, .blog-entry ol ul {
+	margin-bottom: 0;
+}
+
+.sticky {
+
+}
+
+.gallery-caption {
+
+}
+
+.bypostauthor {
+
+}
+
+.wp-caption p.wp-caption-text {
+	color: #888;
+	font-size: 13px;
+	margin: 5px;
+	padding:0;
+	text-align: center;
+}
+
+/* Calendar Widget */
+
+.widget_calendar {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.widget_calendar #wp-calendar {
+	color: #555;
+	width: 95%;
+	text-align: center;
+}
+
+.widget_calendar #wp-calendar caption,
+.widget_calendar #wp-calendar td,
+.widget_calendar #wp-calendar th {
+	text-align: center;
+}
+
+.widget_calendar #wp-calendar caption {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 0 8px;
+    text-transform: uppercase;
+}
+
+.widget_calendar #wp-calendar th {
+	background: #f4f4f4;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+}
+
+.widget_calendar #wp-calendar th {
+    background: none repeat scroll 0 0 #F4F4F4;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    font-weight: bold;
+}
