@@ -1,6 +1,6 @@
 <?php
-$db = new PDO('mysql:host=localhost;dbname=smilyo_jainmunilocator;charset=utf8', 'smilyo_jainmuni', '2273062@', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$link = mysqli_connect("localhost","smilyo_pankaj","4043755","smilyo_jainmunilocator"); 
+$db = new PDO('mysql:host=localhost;dbname=database name;charset=utf8', 'username', 'password', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$link = mysqli_connect("localhost","username","password","database name"); 
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
