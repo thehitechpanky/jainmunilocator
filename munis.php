@@ -137,24 +137,34 @@
 				
 				<div style="float:left;width:50%">
 				<table>
-					<tr><td>Current Location</td><td id="currentplace:$getinfo['currentplace']"><?php echo getlocation($getinfo['currentplace']) ?> <a href="locate.php?location=<?php echo getlocation($getinfo['currentplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a> | <a href="#" id="<?php echo $getinfo['id'] ?>" class="cloc">Edit</a></td></tr>
+					<tr><td>Current Location</td><td id="currentplace:$getinfo['currentplace']"><?php echo getlocation($getinfo['currentplace']);
+					if(getlocation($getinfo['curretplace']) != 'N/A')
+					{
+					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['currentplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?> | <a href="#" id="<?php echo $getinfo['id'] ?>" class="cloc">Edit</a></td></tr>
 					<tr><td>Website</td><td><a href=""><?php echo $getinfo['website'] ?></a></td></tr>
 					<tr><td>Chaturmas</td><td><?php echo $getinfo['chaturmas'] ?></td></tr>
 					<tr><td><?php if($getinfo['dos']!="0000-00-00") echo "Date Of Samadhi" ?></td><td><?php if($getinfo['dos']!="0000-00-00") echo $getinfo['dos'] ?></td></tr>
 					<tr><th colspan="2" align="left"><?php if($getinfo['upadhi']=="1") echo "Acharya Pad Details" ?></th></tr>
 					<tr><td><?php if($getinfo['upadhi']=="1") echo "Date" ?></td><td><?php if($getinfo['upadhi']=="1") echo $getinfo['acharyapaddate'] ?></td></tr>
 					<tr><td><?php if($getinfo['upadhi']=="1") echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['acharyapadguru'] ?>"><?php if($getinfo['upadhi']=="1") echo getmuni($getinfo['acharyapadguru']) ?></a></td></tr>
-					<tr><td><?php if($getinfo['upadhi']=="1") echo "Place" ?></td><td><?php if($getinfo['upadhi']=="1") echo getlocation($getinfo['acharyapadplace']) ?> <a href="locate.php?location=<?php echo getlocation($getinfo['acharyapadplace']) ?>"><?php if($getinfo['upadhi']=="1") echo'<img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20")>'; ?></a></td></tr>
+					<tr><td><?php if($getinfo['upadhi']=="1") echo "Place" ?></td><td><?php if($getinfo['upadhi']=="1") echo getlocation($getinfo['acharyapadplace']);
+					if(getlocation($getinfo['curretplace']) != 'N/A')
+					{
+					  ?> <a href="locate.php?location=<?php echo getlocation($getinfo['acharyapadplace']) ?>"><?php if($getinfo['upadhi']=="1") echo'<img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20")>'; ?></a><?php } ?></td></tr>
 					<tr><th colspan="2" align="left">Muni Diksha Details</th></tr>
 					<tr><td>Date</td><td><?php echo $getinfo['munidikshadate'] ?></td></tr>
 					<tr><td>Guru</td><td><a href ="munis.php?id=<?php echo $getinfo['munidikshaguru'] ?>"><?php echo getmuni($getinfo['munidikshaguru']) ?></a></td></tr>
-					<tr><td>Place</td><td><?php echo getlocation($getinfo['munidikshasthal']) ?> <a href="locate.php?location=<?php echo getlocation($getinfo['munidiskhasthal']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a></td></tr>
+					<tr><td>Place</td><td><?php echo getlocation($getinfo['munidikshasthal']); if(getlocation($getinfo['curretplace']) != 'N/A')
+					{
+					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['munidiskhasthal']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?></td></tr>
 					<tr><th colspan="2" align="left">History</th><th></th></tr>
 					<tr><td>Birthname</td><td><?php echo $getinfo['birthname'] ?></td></tr>
 					<tr><td>Date Of Birth</td><td><?php echo $getinfo['dob'] ?></td></tr>
 					<tr><td>Father</td><td><?php echo $getinfo['father'] ?></td></tr>
 					<tr><td>Mother</td><td><?php echo $getinfo['mother'] ?></td></tr>
-					<tr><td>Birth Place</td><td><?php echo getlocation($getinfo['birthplace']) ?> <a href="locate.php?location=<?php echo getlocation($getinfo['birthplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a></td></tr>
+					<tr><td>Birth Place</td><td><?php echo getlocation($getinfo['birthplace']); if(getlocation($getinfo['curretplace']) != 'N/A')
+					{
+					 ?>  <a href="locate.php?location=<?php echo getlocation($getinfo['birthplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?></td></tr>
 				</table>
 				</div>
 				<div style="float:right;width:40%"><img src="<?php echo $getinfo['img'] ?>" /></div>
