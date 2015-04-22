@@ -8,10 +8,17 @@ if(isset($_POST['muniid']))
 	if($q->rowCount() == 1)
 	{
 		$f = $q->fetch(PDO::FETCH_ASSOC);
-		echo '<div id="lat" style="display:none">'.$f['lat'].'</div><div id="lng" style="display:none">'.$f['lng'].'</div><table><tr><td>Address</td><td><input type="text" id="x"></td></tr>';
+		echo '<input type="hidden" id="lat" style="display:none" value="'.$f['lat'].'"><input type="hidden" id="lng" style="display:none" value="'.$f['lng'].'"><table><tr><td>Address</td><td><input type="text" id="x"></td></tr>';
+		echo '</table>
+<input type="button" id="wow" value="Submit">
+<input type="button" id="cancel" value="Cancel" onclick="history.back();">';
 	}
 }
+if(isset($_POST['mid']))
+{
+	$id = (int)$_POST['mid'];
+	$q = $db->prepare("UPDATE muni_location SET lat = ?,lng = ? WHERE mid=?");
+	$q->execute(array($_POST['lat'],$_POST['lng'],$id));
+	echo $_POST['lat'].'-'.$_POST['lng'].'-'.$id;
+}
 ?>
-</table>
-<input type="button" id="wow" value="Submit">
-<input type="button" id="cancel" value="Cancel" onclick="history.back();">

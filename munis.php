@@ -115,6 +115,7 @@
 						padding-left:59px;
 					}
 				</style>
+				<script src="js/gm.js"></script>
 				<script>
 				$(document).ready(function(){
 					$(".cloc").click(function(){	
@@ -125,11 +126,36 @@
              { "muniid": $('.cloc').attr('id') },
              function(data) {
                 $('#editcloc').html(data);
- 
-             //latlngtoadd($("#lat").val(),$("#lng").val());
+ var geozcoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng($("#lat").val(), $("#lng").val());
+   geozcoder.geocode({'latLng': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+         $("#x").val(results[0].formatted_address);
+  
+      } 
+    } 
+  }); 
              });
              $(document).on("click", "#wow", function(){
-     addtolatlng($("#x").val());
+     var geozcoder = new google.maps.Geocoder();
+geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
+       if (status == google.maps.GeocoderStatus.OK) {
+       $.post( 
+             "editmuniloc.php",
+             { "lat": results[0].geometry.location.k,"lng":results[0].geometry.location.D,"mid":$('.cloc').attr('id') },
+             function(datax) {
+             $("#editcloc").html("<center>Location Updated Successfully. Redirecting in 3 seconds</center>");
+             setTimeout(function(){
+   window.location.reload(1);
+}, 3000);
+             });
+       
+       console.log(results[0].geometry.location.k);
+             } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    }); 
 });
 					});
 				});
