@@ -161,12 +161,13 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 				});
 				</script>
 				
+				<!-- Muni Details -->
 				<div style="float:left;width:50%">
 				<table>
-					<tr><td>Current Location</td><td id="currentplace:$getinfo['currentplace']"><?php echo getlocation($getinfo['currentplace']);
+					<tr><td><?php if($getinfo['dos']=="0000-00-00") echo "Current Location" ?></td><td id="currentplace:$getinfo['currentplace']"><?php if($getinfo['dos']=="0000-00-00") echo getlocation($getinfo['currentplace']);
 					if(getlocation($getinfo['curretplace']) != 'N/A')
 					{
-					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['currentplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?> | <a href="#" id="<?php echo $getinfo['id'] ?>" class="cloc">Edit</a></td></tr>
+					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['currentplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?> <?php if($getinfo['dos']=="0000-00-00") echo "|" ?> <a href="#" id="<?php echo $getinfo['id'] ?>" class="cloc"><?php if($getinfo['dos']=="0000-00-00") echo "Edit" ?></a></td></tr>
 					<tr><td>Website</td><td><a href=""><?php echo $getinfo['website'] ?></a></td></tr>
 					<tr><td>Chaturmas</td><td><?php echo $getinfo['chaturmas'] ?></td></tr>
 					<tr><td><?php if($getinfo['dos']!="0000-00-00") echo "Date Of Samadhi" ?></td><td><?php if($getinfo['dos']!="0000-00-00") echo $getinfo['dos'] ?></td></tr>
