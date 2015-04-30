@@ -63,6 +63,7 @@
 	</script > -->	
 	
 	<!-- end background slides -->
-
+<!-- metadata starts -->
+<meta name="description" content="find out location of a the diambar jain munishri and sadhugan here. know about their vows, daily routine, lineage and everything else you would want to know about them. if you are a developer, you can contribute and improve code for this project at github.com/thehitechpanky/jainmunilocator">
 </head>
 <!-- end head -->
