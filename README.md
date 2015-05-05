@@ -10,7 +10,7 @@ Jain Muni Locator
 <p>Thus, advancing will establish oneself in moral values and will bring spiritual revolution.</p>
 <p> </p>
 
-<p><b><u>contributors:</u></b>
+<p><b><u>Contributors:</u></b>
 <ul><li>Developer - Dhruv Jain
 <li>Concept by - Pankaj Jain
 </ul></p>
