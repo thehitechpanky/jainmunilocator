@@ -1,4 +1,23 @@
 	<!-- start footer -->	
+	
+	<!-- start scripts -->
+	<script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+	<script type='text/javascript' src='js/jquery.custom.js'></script>
+	<script type='text/javascript' src='js/jquery.supersized.js'></script>
+	<script type='text/javascript' src='js/jquery.supersized.shutter.min.js'></script>
+	<script type='text/javascript' src='js/jquery-ui-1.8.18.custom.min.js'></script>
+	<script type='text/javascript' src='js/jquery.tipsy.js'></script>
+	<script type='text/javascript' src='js/jquery.form.js'></script>
+	<script type='text/javascript' src='js/jquery.isotope.min.js'></script>
+	<script type='text/javascript' src='js/jquery.easing.js'></script>
+	<script type='text/javascript' src='js/jquery.preloader.js'></script>
+	<script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
+	<script type='text/javascript' src='js/jquery.scroll.min.js'></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y"></script>
+	<script type="text/javascript" src='js/googlemaps.min.js'></script>
+	<script type="text/javascript">google.maps.event.addDomListener(window, 'load', initialize);</script>
+	<!-- end scripts -->
+	
 	<div class="space"></div>
 	<div class="sub-footer clearfix">
 		<div id="progress-back" class="load-item">
