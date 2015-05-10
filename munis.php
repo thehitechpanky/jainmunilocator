@@ -104,6 +104,8 @@
 			else
 			{
 				?>
+				
+// Styling
 				<style type="text/css">
 					tr
 					{
@@ -115,6 +117,8 @@
 						padding-left:59px;
 					}
 				</style>
+				
+// Scripts Load
 				<script src="js/gm.js"></script>
 				<script>
 				$(document).ready(function(){
