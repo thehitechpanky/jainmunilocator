@@ -14,9 +14,9 @@
  	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/default.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/isotope.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/supersized.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/layout.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/prettyPhoto.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/supersized.min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/light-style.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" />
 		
