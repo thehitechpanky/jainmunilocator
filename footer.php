@@ -86,6 +86,15 @@ var locations =  <?php echo json_encode( $array ) ?>;
 		</div>	
 		<div class="copyright">
 			&copy; 2014 Developed by <a  target='_blank' href='http://dhruvjain.org'>Dhruv Jain</a>	</div>
+	        <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-like" data-href="https://www.facebook.com/jainmunilocator"  data-layout="standard" data-align="right" data-action="like" data-show-faces="true" data-share="true"></div>
 		
 		<!-- start footer-menu -->
 		<div class="footer-menu">

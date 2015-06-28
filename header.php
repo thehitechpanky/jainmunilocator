@@ -26,6 +26,8 @@
 	
 	<!-- end styles -->
 	
+	
+	
 	<?php include('config.php'); ?>
 	<?php
 		$r = $db->query('SELECT * FROM quotes ORDER BY RAND() LIMIT 1');
