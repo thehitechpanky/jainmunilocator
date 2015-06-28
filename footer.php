@@ -5,13 +5,9 @@
 
 <!-- Google Map and Markers -->
 <?php
-$connection=mysqli_connect("localhost","username","password","database");
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
 $array = array();
 $sql = "SELECT name,id,lat,lng FROM muni_location,munishri WHERE mid=id AND lat<>0 ";
-$result=mysqli_query($connection,$sql);
+$result=mysqli_query($link,$sql);
 $i=0;
 while($row = mysqli_fetch_assoc($result)){
 if(isset($row)){
