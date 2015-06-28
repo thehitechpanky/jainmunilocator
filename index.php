@@ -1,30 +1,52 @@
-<?php include('header.php'); ?>
-<!-- start body -->
-<body class="page-template-template-homepage-php" onunload="" >
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
 
-	<!-- start dotted pattern -->
-		<div class="bg-overlay"></div>
-	<!-- end dotted pattern -->
-		
-	<!--start menu wrapper -->
-	<div class="menu-wrapper clearfix">
-		<!-- start logo -->
-		<div class="logo">
-			
-		</div>
-		<!-- end logo -->
-		
-		<!-- start navigation -->
-		<div class="main-nav">
-			<ul >
-				<?php include('menu.php'); ?>
-			</ul>		
-		</div>
-		<!-- end navigation -->
-	</div>
-	<!--end menu wrapper -->
+<!-- start head -->
+<head>
+
+	<!-- start title -->
+	<title>Jain Muni Locator</title>
+
+	<!-- start meta -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- styles -->
+ 	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/default.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/isotope.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/layout.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/prettyPhoto.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/supersized.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/light-style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" />
+
+	<!--[if lte IE 9]>
+	<link rel='stylesheet' href='css/ie9.css' type='text/css' media='all' />
+	<![endif]-->
+
+	<!-- end styles -->
+
+<!-- Load Configuration File -->
+<?php include('config.php'); ?>
+	<?php
+		$r = $db->query('SELECT * FROM quotes ORDER BY RAND() LIMIT 1');
+		$row = $r->fetch(PDO::FETCH_ASSOC);
+	?>
+	<!-- background slides -->
+	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
+	<!-- <script type = "text/javascript">
+		jQuery(function ($) {
+			jQuery.supersized({
+				slides :
+					[
+						{image:'',title:'<?php echo $row["quote"]." - ".$row["author"]; ?>'}					
+					]
+			});
+		});
+	</script > -->	
 	
-	<div id="map" style="width: 100%; height: 570px;"></div>
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	
- 	<?php include('footer.php'); ?>
+	<!-- end background slides -->
+<!-- metadata starts -->
+<meta name="description" content="Find out location of a the Digambar Jain Munishri and Sadhugan here. Know about their vows, daily routine, lineage and everything else you would want to know about them.">
+</head>
+<!-- end head -->
