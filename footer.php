@@ -1,7 +1,9 @@
 <!-- start footer -->
 
-//Analytics Included
+<!-- Analytics Included -->
+<?php include_once("analyticstracking.php") ?>
 
+<!-- Google Map and Markers -->
 <?php
 $connection=mysqli_connect("localhost","jainmuniuser","Jain123@","jainmunilocator");
 if (!$connection) {
@@ -41,40 +43,26 @@ $i++;
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y"></script>
 <script type="text/javascript">
-
 var locations =  <?php echo json_encode( $array ) ?>;
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 7,
-      center: new google.maps.LatLng(23.2836,79.2318),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-
-
-
-
-
-
-
-
-
+var map = new google.maps.Map(document.getElementById('map'), {
+	zoom: 7,
+	center: new google.maps.LatLng(23.2836,79.2318),
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+var infowindow = new google.maps.InfoWindow();
+var marker, i;
+	for (i = 0; i < locations.length; i++) {
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+			map: map
+			});
+		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			return function() {
+				infowindow.setContent(locations[i][0]);
+				infowindow.open(map, marker);
+				}
+		})(marker, i));
+	}
 </script>
 <script type="text/javascript">google.maps.event.addDomListener(window, 'load', initialize);</script>
 <!-- end scripts -->
@@ -83,10 +71,10 @@ var locations =  <?php echo json_encode( $array ) ?>;
 	<div class="sub-footer clearfix">
 		<div id="progress-back" class="load-item">
 			<div id="progress-bar"></div>
-		</div>	
+		</div>
 		<div class="copyright">
 			&copy; 2014 Developed by <a  target='_blank' href='http://dhruvjain.org'>Dhruv Jain</a>	</div>
-		
+
 		<!-- start footer-menu -->
 		<div class="footer-menu">
 			<ul class="footer_menu">
@@ -96,47 +84,47 @@ var locations =  <?php echo json_encode( $array ) ?>;
 				<li>
 					<a href="disclaimer.php">Disclaimer</a>
 				</li>
-				
+
 				<li>
 					<a href="#">Blog</a>
 				</li>
-			</ul>		
+			</ul>
 		</div>
 		<!-- end footer-menu -->
-				
+
 	</div>
 	<!-- end footer -->
-	
+
 	<div id="slidecaption"></div>
-			
+
 	<!-- srart footer social -->
 	<div class="social">
-	
+
 		<a title="Facebook" target="_blank" href="http://www.facebook.com/jainmunilocator">
 			<img width="22" height="22" title="" alt="" src="images/social/facebook.png" />
 		</a>
-		
+
 		<a title="Follow me" target="_blank" href="#">
 			<img width="22" height="22" title="" alt="" src="images/social/twitter.png" />
 		</a>
-		
+
 		<a title="Google Plus" target="_blank" href="#">
 			<img width="22" height="22" title="" alt="" src="images/social/google.png" />
 		</a>
-		
+
 		<a title="Flickr" target="_blank" href="#">
 			<img width="22" height="22" title="" alt="" src="images/social/flickr.png" />
 		</a>
 		<a title="Youtube" target="_blank" href="#">
 			<img width="22" height="22" title="" alt="" src="images/social/youtube.png" />
-		</a>	
-				
+		</a>
+
 		<a title="Linkedin" target="_blank" href="#">
 			<img width="22" height="22" title="" alt="" src="images/social/linkedin.png" />
 		</a>
-		
+
 	</div>
 	<!-- end footer social -->
-	
+
 </body>
 </html>
