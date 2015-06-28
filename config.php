@@ -1,14 +1,13 @@
 <?php
-
-//Connecting to the database
-$db = new PDO('mysql:host=localhost;dbname=database name;charset=utf8', 'username', 'password', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$link = mysqli_connect("localhost","username","password","database name"); 
+//Database Connection
+$db = new PDO('mysql:host=localhost;dbname=jainmunilocator;charset=utf8', 'jainmuniuser', 'Jain123@', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$link = mysqli_connect("localhost","jainmuniuser","Jain123@","jainmunilocator"); 
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-//Please specify the use of this function here.
+//Function to find location details
 function getlocation($id)
 {
 	global $db;
@@ -30,7 +29,7 @@ function getlocation($id)
 	}
 }
 
-//Please specify the use of this function here
+//Function to find muni details
 function getmuni($id)
 {
 	global $db;
@@ -52,4 +51,19 @@ function getmuni($id)
 		return "N/A";
 	}
 }
+
+//Code below represents code for markers
+$array = array();
+$sql = "SELECT name,id,lat,lng FROM muni_location,munishri WHERE mid=id AND lat<>0 ";
+$result=mysqli_query($link,$sql);
+$i=0;
+while($row = mysqli_fetch_assoc($result)){
+if(isset($row)){
+$array[$i][0]=$row['name'];
+$array[$i][1]=$row['lat'];
+$array[$i][2]=$row['lng'];
+$i++;
+}
+}
+//$json = json_encode($array);
 ?>
