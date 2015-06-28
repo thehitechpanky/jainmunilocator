@@ -23,4 +23,7 @@
 		<!-- end navigation -->
 	</div>
 	<!--end menu wrapper -->
+	<div id="map" style="width: 100%; height: 570px;"></div>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  
  	<?php include('footer.php'); ?>
