@@ -5,7 +5,7 @@
 
 <!-- Google Map and Markers -->
 <?php
-$connection=mysqli_connect("localhost","jainmuniuser","Jain123@","jainmunilocator");
+$connection=mysqli_connect("localhost","username","password","database");
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
