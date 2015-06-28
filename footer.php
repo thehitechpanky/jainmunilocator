@@ -1,30 +1,10 @@
 <!-- start footer -->
 
-//Analytics Included
+<!-- Analytics Included -->
 <?php include_once("analyticstracking.php") ?>
-<?php
 
-$connection = mysqli_connect("localhost","username","password","database name"); 
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-$array = array();
-$sql = "SELECT name,id,lat,lng FROM muni_location,munishri WHERE mid=id AND lat<>0";
-$result=mysqli_query($connection,$sql);
-$i=0;
-
-while($row = mysqli_fetch_assoc($result)){
-if(isset($row)){
-$array[$i][0]=$row['name'];
-$array[$i][1]=$row['lat'];
-$array[$i][2]=$row['lng'];
-$i++;
-
-}
-
-}
-
-?>
+<!-- Markers Populated -->
+<?php include('markers.php'); ?>
 
 <!-- start scripts -->
 <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
