@@ -1,3 +1,6 @@
+<!-- Config File included for connection with database -->
+<?php include('config.php'); ?>
+
 <!-- Markers Populated -->
 <?php
 	$array = array();
