@@ -18,9 +18,6 @@
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 <!-- end scripts -->
 
-<!-- Markers Populated -->
-<?php include('markers.php'); ?>
-
 	<div class="space"></div>
 	<div class="sub-footer clearfix">
 		<div id="progress-back" class="load-item">
@@ -79,6 +76,9 @@
 		
 	</div>
 	<!-- end footer social -->
+
+<!-- Markers Populated -->
+<?php include('markers.php'); ?>
 	
 </body>
 </html>
