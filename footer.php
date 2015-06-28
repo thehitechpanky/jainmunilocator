@@ -3,11 +3,8 @@
 //Analytics Included
 <?php include_once("analyticstracking.php") ?>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jainmunilocator";
-$connection=mysqli_connect($servername, $username, $password, $dbname);
+
+$connection = mysqli_connect("localhost","username","password","database name"); 
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
