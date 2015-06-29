@@ -4,6 +4,21 @@
 <?php include_once("analyticstracking.php") ?>
 
 <!-- Google Map and Markers -->
+<?php
+	$array = array();
+	$sql = "SELECT * FROM muni_location,munishri WHERE mid=id AND lat<>0 ";
+	$result=mysqli_query($link,$sql);
+	$i=0;
+	while($row = mysqli_fetch_assoc($result)){
+	if(isset($row)){
+	$array[$i][0]='<center><a href="/munis.php?id='.$row['id'].'"><img style="opacity:0.5" width="200px" src="'.$row['img'].'" /><br />'.getmuni($row['id']).'</a></center>';
+	$array[$i][1]=$row['lat'];
+	$array[$i][2]=$row['lng'];
+	$i++;
+	}
+	}
+	//$json = json_encode($array);
+?>
 
 <!-- start scripts -->
 <script type='text/javascript'>var locations =  <?php echo json_encode( $array ) ?>;</script>
@@ -20,8 +35,8 @@
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y"></script>
+<script type='text/javascript' src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
 <script type='text/javascript' src='js/googlemaps.min.js'></script>
-<script type='text/javascript'>google.maps.event.addDomListener(window, 'load', initialize);</script>
 <!-- end scripts -->
 
 	<div class="space"></div>
