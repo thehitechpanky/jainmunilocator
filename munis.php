@@ -36,7 +36,7 @@
 		if($t->rowCount() == 1)
 		{
 			$getinfo = $t->fetch(PDO::FETCH_ASSOC);
-			$title = $getinfo['uname'].' '.$getinfo["prefix"].' '.$getinfo["name"].' '.$getinfo["suffix"];
+			$title = getmuni($getinfo["id"]);
 			$showmuni = true;
 		}
 		else
@@ -78,7 +78,7 @@
 						while($row = $r->fetch(PDO::FETCH_ASSOC))
 						{
 							$i++;
-							echo $i.': <a href="?id='.$row["id"].'">'.$row["uname"].' '.$row["prefix"].' '.$row["name"].' '.$row["suffix"].'</a><br />';
+							echo $i.': <a href="?id='.$row["id"].'">'.getmuni($row["id"]).'</a><br />';
 						}
 					}
 					else
@@ -97,15 +97,13 @@
 					while($row = $r2->fetch(PDO::FETCH_ASSOC))
 					{
 						$i++;
-						echo $i.': <a href="?id='.$row["id"].'">'.$row["uname"].' '.$row["prefix"].' '.$row["name"].' '.$row["suffix"].'</a><br />';
+						echo $i.': <a href="?id='.$row["id"].'">'.getmuni($row["id"]).'</a><br />';
 					}
 				}
 			}
 			else
 			{
 				?>
-				
-// Styling
 				<style type="text/css">
 					tr
 					{
@@ -117,8 +115,6 @@
 						padding-left:59px;
 					}
 				</style>
-				
-// Scripts Load
 				<script src="js/gm.js"></script>
 				<script>
 				$(document).ready(function(){
