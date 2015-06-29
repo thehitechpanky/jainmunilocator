@@ -1,7 +1,7 @@
 <?php
 //Database Connection
-$db = new PDO('mysql:host=localhost;dbname=jainmunilocator;charset=utf8', 'jainmuniuser', 'Jain123@', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$link = mysqli_connect("localhost","jainmuniuser","Jain123@","jainmunilocator"); 
+$db = new PDO('mysql:host=localhost;dbname=database_name;charset=utf8', 'username', 'password', array(PDO::ATTR_EMULATE_PREPARES => false,PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$link = mysqli_connect("localhost","username","password","database_name"); 
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -54,12 +54,12 @@ function getmuni($id)
 
 //Code below represents code for markers
 $array = array();
-$sql = "SELECT name,id,lat,lng FROM muni_location,munishri WHERE mid=id AND lat<>0 ";
+$sql = "SELECT * FROM muni_location,munishri WHERE mid=id AND lat<>0 ";
 $result=mysqli_query($link,$sql);
 $i=0;
 while($row = mysqli_fetch_assoc($result)){
 if(isset($row)){
-$array[$i][0]=$row['name'];
+$array[$i][0]='<a href="/munis.php?id='.$row['id'].'">'.getmuni($row['id']).'<img src="'.$row['img'].'" />'.'</a>';
 $array[$i][1]=$row['lat'];
 $array[$i][2]=$row['lng'];
 $i++;
