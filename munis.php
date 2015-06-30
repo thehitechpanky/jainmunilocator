@@ -174,16 +174,16 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					<tr><th colspan="2" align="left"><?php if($getinfo['upadhi']=="1") echo "Acharya Pad Details" ?></th></tr>
 					<tr><td><?php if($getinfo['upadhi']=="1") echo "Date" ?></td><td><?php if($getinfo['upadhi']=="1") echo $getinfo['adate'] ?></td></tr>
 					<tr><td><?php if($getinfo['upadhi']=="1") echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['aguru'] ?>"><?php if($getinfo['upadhi']=="1") echo getmuni($getinfo['aguru']) ?></a></td></tr>
-					<tr><th colspan="2" align="left">Muni Diksha Details</th></tr>
+					<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>
 					<tr><td>Date</td><td><?php echo $getinfo['munidikshadate'] ?></td></tr>
 					<tr><td>Guru</td><td><a href ="munis.php?id=<?php echo $getinfo['munidikshaguru'] ?>"><?php echo getmuni($getinfo['munidikshaguru']) ?></a></td></tr>
 					<tr><td>Place</td><td><?php echo getlocation($getinfo['munidikshasthal']); if(getlocation($getinfo['curretplace']) != 'N/A')
 					{
 					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['munidiskhasthal']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?></td></tr>
-					<tr><th colspan="2" align="left"><?php if($getinfo['ailakguru']>0) echo "Ailak Pad Details" ?></th></tr>
+					<tr><th colspan="2" align="left"><?php if($getinfo['ailakguru']>0) echo "Ailak Deeksha Details" ?></th></tr>
 					<tr><td><?php if($getinfo['ailakguru']>0) echo "Date" ?></td><td><?php if($getinfo['ailakguru']>0) echo $getinfo['ailakdate'] ?></td></tr>
 					<tr><td><?php if($getinfo['ailakguru']>0) echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['ailakguru'] ?>"><?php if($getinfo['ailakguru']>0) echo getmuni($getinfo['ailakguru']) ?></a></td></tr>
-					<tr><th colspan="2" align="left"><?php if($getinfo['kguru']>0) echo "Kshullak Pad Details" ?></th></tr>
+					<tr><th colspan="2" align="left"><?php if($getinfo['kguru']>0) echo "Kshullak Deeksha Details" ?></th></tr>
 					<tr><td><?php if($getinfo['kguru']>0) echo "Name" ?></td><td><?php if($getinfo['kguru']>0) echo $getinfo['kname'] ?></td></tr>
 					<tr><td><?php if($getinfo['kguru']>0) echo "Date" ?></td><td><?php if($getinfo['kguru']>0) echo $getinfo['kdate'] ?></td></tr>
 					<tr><td><?php if($getinfo['kguru']>0) echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['kguru'] ?>"><?php if($getinfo['kguru']>0) echo getmuni($getinfo['kguru']) ?></a></td></tr>
