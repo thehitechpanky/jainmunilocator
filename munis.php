@@ -168,26 +168,40 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					if(getlocation($getinfo['curretplace']) != 'N/A')
 					{
 					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['currentplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?> <?php if($getinfo['dos']=="0000-00-00") echo "|" ?> <a href="#" id="<?php echo $getinfo['id'] ?>" class="cloc"><?php if($getinfo['dos']=="0000-00-00") echo "Edit" ?></a></td></tr>
-					<tr><td>Website</td><td><a href=""><?php echo $getinfo['website'] ?></a></td></tr>
-					<tr><td>Chaturmas</td><td><?php echo $getinfo['chaturmas'] ?></td></tr>
-					<tr><td><?php if($getinfo['dos']!="0000-00-00") echo "Date Of Samadhi" ?></td><td><?php if($getinfo['dos']!="0000-00-00") echo $getinfo['dos'] ?></td></tr>
 					
-					<!-- Acharya Pad Details -->
-					<tr><th colspan="2" align="left"><?php if($getinfo['upadhi']=="1") echo "Acharya Pad Details" ?></th></tr>
-					<tr><td><?php if($getinfo['upadhi']=="1") echo "Date" ?></td><td><?php if($getinfo['upadhi']=="1") echo $getinfo['adate'] ?></td></tr>
-					<tr><td><?php if($getinfo['upadhi']=="1") echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['aguru'] ?>"><?php if($getinfo['upadhi']=="1") echo getmuni($getinfo['aguru']) ?></a></td></tr>
+					<?php echo
+					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>
+					<tr><td>Chaturmas</td><td>'.$getinfo['chaturmas'].'</td></tr>
+					<tr><td>Shishyawali</td><td><a>__</a></td></tr>'
+					?>
 					
-					<!-- Ailacharya Pad Details -->
-					<tr><th colspan="2" align="left"><?php if($getinfo['ailacharyaguru']>0) echo "Ailacharya Pad Details" ?></th></tr>
-					<tr><td><?php if($getinfo['ailacharyaguru']>0) echo "Name" ?></td><td><?php if($getinfo['ailacharyaguru']>0) echo $getinfo['ailacharyaname'] ?></td></tr>
-					<tr><td><?php if($getinfo['ailacharyaguru']>0) echo "Date" ?></td><td><?php if($getinfo['ailacharyaguru']>0) echo $getinfo['ailacharyadate'] ?></td></tr>
-					<tr><td><?php if($getinfo['ailacharyaguru']>0) echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['ailacharyaguru'] ?>"><?php if($getinfo['ailacharyaguru']>0) echo getmuni($getinfo['ailacharyaguru']) ?></a></td></tr>
+					<?php
+					if($getinfo['dos']!="0000-00-00") echo
+					'<tr><td>Date Of Samadhi</td><td>'.$getinfo['dos'].'</td></tr>'
+					?>
 					
-					<!-- Upadhyay Pad Details -->
-					<tr><th colspan="2" align="left"><?php if($getinfo['upadhyayguru']>0) echo "Upadhyay Pad Details" ?></th></tr>
-					<tr><td><?php if($getinfo['upadhyayguru']>0) echo "Name" ?></td><td><?php if($getinfo['upadhyayguru']>0) echo $getinfo['upadhyayname'] ?></td></tr>
-					<tr><td><?php if($getinfo['upadhyayguru']>0) echo "Date" ?></td><td><?php if($getinfo['upadhyayguru']>0) echo $getinfo['upadhyaydate'] ?></td></tr>
-					<tr><td><?php if($getinfo['upadhyayguru']>0) echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['upadhyayguru'] ?>"><?php if($getinfo['upadhyayguru']>0) echo getmuni($getinfo['upadhyayguru']) ?></a></td></tr>
+					<?php
+					if($getinfo['upadhi']=="1") echo
+					'<tr><th colspan="2" align="left">Acharya Pad Details</th></tr>
+					<tr><td>Date</td><td>'.$getinfo['adate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'</td></tr>'
+					?>
+					
+					<?php
+					if($getinfo['ailacharyaguru']>0) echo
+					'<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>
+					<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>
+					<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'.getmuni($getinfo['ailacharyaguru']).'</td></tr>'
+					?>
+					
+					<?php
+					if($getinfo['upadhyayguru']>0) echo
+					'<tr><th colspan="2" align="left">Upadhyay Pad Details</th></tr>
+					<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>
+					<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'</td></tr>'
+					?>
 					
 					<!-- Muni Deeksha Details -->
 					<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>
@@ -197,28 +211,33 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					{
 					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['munidiskhasthal']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?></td></tr>
 					
-					<!-- Ailak Deeksha Details -->
-					<tr><th colspan="2" align="left"><?php if($getinfo['ailakguru']>0) echo "Ailak Deeksha Details" ?></th></tr>
-					<tr><td><?php if($getinfo['ailakguru']>0) echo "Name" ?></td><td><?php if($getinfo['ailakguru']>0) echo $getinfo['ailakname'] ?></td></tr>
-					<tr><td><?php if($getinfo['ailakguru']>0) echo "Date" ?></td><td><?php if($getinfo['ailakguru']>0) echo $getinfo['ailakdate'] ?></td></tr>
-					<tr><td><?php if($getinfo['ailakguru']>0) echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['ailakguru'] ?>"><?php if($getinfo['ailakguru']>0) echo getmuni($getinfo['ailakguru']) ?></a></td></tr>
+					<?php
+					if($getinfo['ailakguru']>0) echo
+					'<tr><th colspan="2" align="left">Ailak Deeksha Details</th></tr>
+					<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>
+					<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'</td></tr>'
+					?>
 					
-					<!-- Kshullak Deeksha Details -->
-					<tr><th colspan="2" align="left"><?php if($getinfo['kguru']>0) echo "Kshullak Deeksha Details" ?></th></tr>
-					<tr><td><?php if($getinfo['kguru']>0) echo "Name" ?></td><td><?php if($getinfo['kguru']>0) echo $getinfo['kname'] ?></td></tr>
-					<tr><td><?php if($getinfo['kguru']>0) echo "Date" ?></td><td><?php if($getinfo['kguru']>0) echo $getinfo['kdate'] ?></td></tr>
-					<tr><td><?php if($getinfo['kguru']>0) echo "Guru" ?></td><td><a href ="munis.php?id=<?php echo $getinfo['kguru'] ?>"><?php if($getinfo['kguru']>0) echo getmuni($getinfo['kguru']) ?></a></td></tr>
+					<?php
+					if($getinfo['kshullakguru']>0) echo
+					'<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>
+					<tr><td>Name</td><td>'.$getinfo['kshullakname'].'</td></tr>
+					<tr><td>Date</td><td>'.$getinfo['kshullakdate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kshullakguru'].'">'.getmuni($getinfo['kshullakguru']).'</td></tr>'
+					?>
 					
-					<!-- History Details -->
-					<tr><th colspan="2" align="left">History</th><th></th></tr>
-					<tr><td>Birthname</td><td><?php echo $getinfo['birthname'] ?></td></tr>
-					<tr><td>Date Of Birth</td><td><?php echo $getinfo['dob'] ?></td></tr>
-					<tr><td>Father</td><td><?php echo $getinfo['father'] ?></td></tr>
-					<tr><td>Mother</td><td><?php echo $getinfo['mother'] ?></td></tr>
-					<tr><td>Birth Place</td><td><?php echo getlocation($getinfo['birthplace']); if(getlocation($getinfo['curretplace']) != 'N/A')
-					{
-					 ?>  <a href="locate.php?location=<?php echo getlocation($getinfo['birthplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?></td></tr>
-				</table>
+					<?php
+					echo
+					'<tr><th colspan="2" align="left">History</th><th></th></tr>
+					<tr><td>Birthname</td><td>'.$getinfo['birthname'].'</td></tr>
+					<tr><td>Date of Birth</td><td>'.$getinfo['dob'].'</td></tr>
+					<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
+					<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
+					<tr><td>Birth Place</td><td>'.getlocation($getinfo['birthplace']).'</td></tr>'
+					?>
+				
+					</table>
 				</div>
 				<div style="float:right;width:40%"><img src="<?php echo $getinfo['img'] ?>" /></div>
 				<?php
