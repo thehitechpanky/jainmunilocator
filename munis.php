@@ -160,7 +160,6 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					});
 				});
 				</script>
-				<?php echo getguru($getinfo['id']); ?>
 				<!-- Gurudev Profile Details -->
 				<div style="float:left;width:50%">
 				<table>
@@ -169,10 +168,10 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					{
 					 ?> <a href="locate.php?location=<?php echo getlocation($getinfo['currentplace']) ?>"><img src="/images/icons/map-marker.png" alt="map-marker" height="20" width="20"></a><?php } ?> <?php if($getinfo['dos']=="0000-00-00") echo "|" ?> <a href="#" id="<?php echo $getinfo['id'] ?>" class="cloc"><?php if($getinfo['dos']=="0000-00-00") echo "Edit" ?></a></td></tr>
 					
-					<?php 
+					<?php echo
 					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>
 					<tr><td>Chaturmas</td><td>'.$getinfo['chaturmas'].'</td></tr>
-					<tr><td>Shishyawali</td><td><a>__</a></td></tr>'
+					<tr><td>Shishyawali</td><td><a href="shishyawali.php?id='.$getinfo['id'].'">Click Here</a></td></tr>'
 					;
 					
 					if($getinfo['dos']!="0000-00-00") {echo
