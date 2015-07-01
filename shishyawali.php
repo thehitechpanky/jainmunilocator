@@ -115,7 +115,7 @@
 					$i++;
 					$guruid = getguru($row["id"]);
 					if($guruid==$getinfo["id"])
-					{$j++; echo $j.': <a href="munis.php?id='.$row["id"].'">'.getmuni($row["id"]).'</a><br />';}
+					{$j++; echo $j.': '.getmuni($row["id"]).'<a href="munis.php?id='.$row["id"].'">  Profile  </a><a href="?id='.$row["id"].'">Shishyawali</a><br />';}
 				}
 			}
 				?>
