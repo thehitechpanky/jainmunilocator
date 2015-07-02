@@ -121,7 +121,7 @@
 			}
 				?>
 			</div>
-			<div style="float:right;width:40%"><a href="munis.php?id=<?php echo $getinfo['id'] ?>"><img width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><br /><h1>View Gurudev Profile</h1></a></div>
+			<div style="float:right;width:40%"><a href="munis.php?id=<?php echo $getinfo['id'] ?>"><img width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><br /><h1><center>View Gurudev Profile</center></h1></a></div>
 			</p>
 		</div>
 		
