@@ -104,7 +104,8 @@
 			else
 			{
 				?>
-			<?php
+			<div style="float:left;width:50%">
+				<?php
 				// List of Shishyas to be loaded below
 				$i = 0;
 				$j = 0;
@@ -119,6 +120,8 @@
 				}
 			}
 				?>
+			</div>
+			<div style="float:right;width:40%"><a href="munis.php?id=<?php echo $getinfo['id'] ?>"><img width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><br /><h1>View Gurudev Profile</h1></a></div>
 			</p>
 		</div>
 		
