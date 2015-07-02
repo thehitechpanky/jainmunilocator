@@ -50,9 +50,10 @@
 		<!-- start footer-menu -->
 		<div class="footer-menu">
 			<ul class="footer_menu">
+				<li><a href="team.php">Team</a></li>
+				<li><a href="references.php">References</a></li>
 				<li><a href="tos.php">Terms and Conditions</a></li>
 				<li><a href="disclaimer.php">Disclaimer</a></li>
-				<li><a href="references.php">References</a></li>
 			</ul>
 		</div>
 		<!-- end footer-menu -->
