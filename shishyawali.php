@@ -109,7 +109,7 @@
 				// List of Shishyas to be loaded below
 				$i = 0;
 				$j = 0;
-				$r2 = $db->query("SELECT * FROM munishri, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid");
+				$r2 = $db->query("SELECT * FROM munishri, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
 					
 				while($row = $r2->fetch(PDO::FETCH_ASSOC))
 				{
