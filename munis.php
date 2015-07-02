@@ -212,11 +212,11 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'</td></tr>'
 					;}
 						
-					if($getinfo['kshullakguru']>0) {echo
+					if($getinfo['kguru']>0) {echo
 					'<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>
-					<tr><td>Name</td><td>'.$getinfo['kshullakname'].'</td></tr>
-					<tr><td>Date</td><td>'.$getinfo['kshullakdate'].'</td></tr>
-					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kshullakguru'].'">'.getmuni($getinfo['kshullakguru']).'</td></tr>'
+					<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>
+					<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</td></tr>'
 					;}
 					
 					echo
