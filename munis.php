@@ -31,7 +31,7 @@
 	if(isset($_GET['id']))
 	{
 		$id = (int)$_GET['id'];
-		$t = $db->prepare("SELECT * FROM munishri, upadhis, kshullak, ailak, upadhyay, ailacharya, acharya WHERE id = ? AND approved=1 AND uid=upadhi AND kid=id AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid");
+		$t = $db->prepare("SELECT * FROM munishri, upadhis, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE id = ? AND approved=1 AND uid=upadhi AND kid=id AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid");
 		$t->execute(array($id));
 		if($t->rowCount() == 1)
 		{
@@ -199,9 +199,9 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					
 					if($getinfo['upadhi']<5) {echo
 					'<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>
-					<tr><td>Date</td><td>'.$getinfo['munidikshadate'].'</td></tr>
-					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['munidikshaguru'].'">'.getmuni($getinfo['munidikshaguru']).'</td></tr>
-					<tr><td>Place</td><td>'.getlocation($getinfo['munidikshasthal']).'</td></tr>'
+					<tr><td>Name</td><td>'.$getinfo['muniname'].'</td></tr>
+					<tr><td>Date</td><td>'.$getinfo['munidate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'</td></tr>'
 					;}
 				
 					if($getinfo['ailakguru']>0) {echo
@@ -227,7 +227,7 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					<tr><td>Birth Place</td><td>'.getlocation($getinfo['birthplace']).'</td></tr>'
 					;
 				
-					echo
+					if($getinfo['upadhi']<4) {echo
 					'<tr><th colspan="2" align="left">Shishyawali</th><th></th></tr>';
 					$i = 0;
 					$j = 0;
@@ -238,7 +238,7 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 						$guruid = getguru($row2["id"]);
 						if($guruid==$getinfo["id"])
 						{$j++; echo '<tr><td colspan="2"><a href="?id='.$row2["id"].'">'.$j.': '.getmuni($row2["id"]).'</a></td></tr>';}
-					}
+					}}
 					?>
 				
 					</table>
