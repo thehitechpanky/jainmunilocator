@@ -170,8 +170,7 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					
 					<?php echo
 					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>
-					<tr><td>Chaturmas</td><td>'.$getinfo['chaturmas'].'</td></tr>
-					<tr><td>Shishyawali</td><td><a href="shishyawali.php?id='.$getinfo['id'].'">Click Here</a></td></tr>'
+					<tr><td>Chaturmas</td><td>'.$getinfo['chaturmas'].'</td></tr>'
 					;
 					
 					if($getinfo['dos']!="0000-00-00") {echo
@@ -227,6 +226,19 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
 					<tr><td>Birth Place</td><td>'.getlocation($getinfo['birthplace']).'</td></tr>'
 					;
+				
+					echo
+					'<tr><th colspan="2" align="left">Shishyawali</th><th></th></tr>';
+					$i = 0;
+					$j = 0;
+					$r3 = $db->query("SELECT * FROM munishri, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
+					while($row2 = $r3->fetch(PDO::FETCH_ASSOC))
+					{
+						$i++;
+						$guruid = getguru($row2["id"]);
+						if($guruid==$getinfo["id"])
+						{$j++; echo '<tr><td colspan="2"><a href="?id='.$row2["id"].'">'.$j.': '.getmuni($row2["id"]).'</a></td></tr>';}
+					}
 					?>
 				
 					</table>
