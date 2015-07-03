@@ -6,7 +6,7 @@
 <!-- Google Map and Markers -->
 <?php
 	$array = array();
-	$sql = "SELECT * FROM muni_location,munishri WHERE mid=id AND lat<>0 ";
+	$sql = "SELECT * FROM muni_location, munishri WHERE mid=id AND lat<>0 AND dos='0000-00-00'";
 	$result=mysqli_query($link,$sql);
 	$i=0;
 	while($row = mysqli_fetch_assoc($result)){
@@ -52,6 +52,7 @@
 			<ul class="footer_menu">
 				<li><a href="team.php">Team</a></li>
 				<li><a href="references.php">References</a></li>
+				<li><a href="sitemap.php">Sitemap</a></li>
 				<li><a href="tos.php">Terms and Conditions</a></li>
 				<li><a href="disclaimer.php">Disclaimer</a></li>
 			</ul>
@@ -91,6 +92,9 @@
 
 	</div>
 	<!-- end footer social -->
+
+<!-- Sitemap -->
+
 
 </body>
 </html>
