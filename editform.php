@@ -81,9 +81,9 @@
 					
 					<b>History</b><br />
 					Birthname<input type="text" name="birthname" value="<?php echo $row['birthname']; ?>" /><br />
-					Date of Birth<input type="text" name="birthname" value="<?php echo $row['dob']; ?>" /><br />
-					Father<input type="text" name="birthname" value="<?php echo $row['father']; ?>" /><br />
-					Mother<input type="text" name="birthname" value="<?php echo $row['mother']; ?>" /><br /><br />
+					Date of Birth<input type="text" name="dob" value="<?php echo $row['dob']; ?>" /><br />
+					Father<input type="text" name="father" value="<?php echo $row['father']; ?>" /><br />
+					Mother<input type="text" name="mother" value="<?php echo $row['mother']; ?>" /><br /><br />
 					<input type="submit" value="Save" />
 					
 				</form>
