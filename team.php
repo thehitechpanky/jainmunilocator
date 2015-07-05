@@ -6,26 +6,12 @@
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
-		
-	<!--start menu wrapper -->
-	<div class="menu-wrapper clearfix">
-		<!-- start logo -->
-		<div class="logo">
-			
-		</div>
-		<!-- end logo -->
-		
-		<!-- start navigation -->
-		<div class="main-nav">
-			<ul class="menu">
-				<?php include('menu.php'); ?>
-			</ul>		
-		</div>
-		<!-- end navigation -->
-	</div>
-	<!-- end menu wrapper -->
 	
-	 <!-- start content wrapper -->	
+	<!-- start navigation -->
+	<?php include('menu.php'); ?>
+	<!-- end navigation -->
+	
+	<!-- start content wrapper -->
 	
 	<div class="content page-content">
 	
@@ -52,4 +38,4 @@
 	
 	<!--  end content wrapper  -->
  	
- 	<?php include('footer.php'); ?>
+<?php include('footer.php'); ?>
