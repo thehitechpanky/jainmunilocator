@@ -7,22 +7,11 @@
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
 		
-	<!--start menu wrapper -->
-	<div class="menu-wrapper clearfix">
-		<!-- start logo -->
-		<div class="logo">
-			
-		</div>
-		<!-- end logo -->
+	
 		
-		<!-- start navigation -->
-		<div class="main-nav">
-			<ul class="menu">
 				<?php include('menu.php'); ?>
-			</ul>		
-		</div>
-		<!-- end navigation -->
-	</div>
+			
+	
 	<!-- end menu wrapper -->
 	
 	 <!-- start content wrapper -->	
