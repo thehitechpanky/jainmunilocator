@@ -6,15 +6,12 @@
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
-		
 	
-		
-				<?php include('menu.php'); ?>
-			
+	<!-- start navigation -->
+	<?php include('menu.php'); ?>
+	<!-- end navigation -->
 	
-	<!-- end menu wrapper -->
-	
-	 <!-- start content wrapper -->	
+	<!-- start content wrapper -->	
 	
 	<div class="content page-content">
 	
@@ -39,4 +36,4 @@ Thus, advancing will establish oneself in moral values  and will bring spiritual
 	
 	<!--  end content wrapper  -->
  	
- 	<?php include('footer.php'); ?>
+<?php include('footer.php'); ?>
