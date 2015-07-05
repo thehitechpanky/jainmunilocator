@@ -7,25 +7,11 @@
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
 		
-	<!--start menu wrapper -->
-	<div class="menu-wrapper clearfix">
-		<!-- start logo -->
-		<div class="logo">
-			
-		</div>
-		<!-- end logo -->
-		
-		<!-- start navigation -->
-		<div class="main-nav">
-			<ul class="menu">
-				<?php include('menu.php'); ?>
-			</ul>		
-		</div>
-		<!-- end navigation -->
-	</div>
-	<!-- end menu wrapper -->
+	<!-- start navigation -->
+	<?php include('menu.php'); ?>
+	<!-- end navigation -->
 	
-	 <!-- start content wrapper -->	
+	<!-- start content wrapper -->	
 	<?php
 	$showmuni = false;
 	if(isset($_GET['id']))
@@ -254,4 +240,4 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 	
 	<!--  end content wrapper  -->
  	
- 	<?php include('footer.php'); ?>
+<?php include('footer.php'); ?>
