@@ -19,7 +19,12 @@
 	<link rel="stylesheet" href="css/supersized.min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/light-style.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/style.min.css" type="text/css" media="all" >
+	<link rel="stylesheet" href="css/style.min.css" type="text/css" media="all" />
+	
+	<!-- start script -->
+	<script type='text/javascript' src='js/slider-menu.min.js'></script>
+	<script src='js/jquery-1.11.1.min.js'></script>
+	<!-- end script -->
 	
 	<!--[if lte IE 9]>
 	<link rel='stylesheet' href='css/ie9.css' type='text/css' media='all' />
@@ -27,11 +32,7 @@
 
 	<!-- end styles -->
 	
-	<!-- start script -->
-	<script type='text/javascript' src='js/slider-menu.min.js'></script>
-	<script src='js/jquery-1.11.1.min.js'></script>
-	<!-- end script -->
-
+	
 	
 <!-- Load Configuration File -->
 <?php include('config.php'); ?>
