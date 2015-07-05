@@ -22,6 +22,7 @@
 
 <!-- start scripts -->
 <script type='text/javascript'>var locations =  <?php echo json_encode( $array ) ?>;</script>
+<script type='text/javascript' src='js/slider-menu.min.js'></script>
 <script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
 <script type='text/javascript' src='js/jquery.custom.js'></script>
 <script type='text/javascript' src='js/jquery.supersized.js'></script>
@@ -34,8 +35,9 @@
 <script type='text/javascript' src='js/jquery.preloader.js'></script>
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
-<script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y"></script>
-<script type='text/javascript' src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js"></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js'></script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y'></script>
+<script type='text/javascript' src='http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js'></script>
 <script type='text/javascript' src='js/googlemaps.min.js'></script>
 <!-- end scripts -->
 
