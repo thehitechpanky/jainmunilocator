@@ -243,7 +243,7 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 				
 					</table>
 				</div>
-				<div style="float:right;width:40%"><img width="315px" src="<?php echo $getinfo['img'] ?>" /></div>
+			<div style="float:right;width:40%"><img width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><center><a href="editform.php?id=<?php echo $getinfo['id']; ?>"> EDIT DETAILS </a></center></div>
 				<?php
 			}
 				?>
