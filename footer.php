@@ -21,6 +21,9 @@
 ?>
 
 <!-- start scripts -->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type='text/javascript' src='js/slider-menu.min.js'></script>
 <script type='text/javascript'>var locations =  <?php echo json_encode( $array ) ?>;</script>
 <script type='text/javascript' src='js/jquery.custom.js'></script>
 <script type='text/javascript' src='js/jquery.supersized.js'></script>
@@ -91,9 +94,6 @@
 
 	</div>
 	<!-- end footer social -->
-
-<!-- Sitemap -->
-
 
 </body>
 </html>
