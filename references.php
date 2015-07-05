@@ -6,26 +6,12 @@
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
-		
-	<!--start menu wrapper -->
-	<div class="menu-wrapper clearfix">
-		<!-- start logo -->
-		<div class="logo">
-			
-		</div>
-		<!-- end logo -->
-		
-		<!-- start navigation -->
-		<div class="main-nav">
-			<ul class="menu">
-				<?php include('menu.php'); ?>
-			</ul>		
-		</div>
-		<!-- end navigation -->
-	</div>
-	<!-- end menu wrapper -->
 	
-	 <!-- start content wrapper -->	
+	<!-- start navigation -->
+	<?php include('menu.php'); ?>
+	<!-- end navigation -->
+	
+	<!-- start content wrapper -->
 	
 	<div class="content page-content">
 	
@@ -38,7 +24,10 @@
 		<div class="inner-content">
 			<p>We have obtained our data from various sources including individuals, facebook pages, facebook groups and websites. Some of the websites are as listed below:</p>
 			<ul>
+				<li><a href="http://www.digambarjainonline.com">http://www.digambarjainonline.com</a></li>
+				<li><a href="http://www.jaincyclopedia.org">http://www.jaincyclopedia.org</a></li>
 				<li><a href="http://jinaagamsaar.com">http://jinaagamsaar.com</a></li>
+				
 					<?php
 					$sql = 'SELECT approved, website FROM munishri where approved=1 AND NOT(website="") AND NOT(website="N/A")';
 					$result = $link->query($sql);
@@ -62,4 +51,4 @@
 	
 	<!--  end content wrapper  -->
  	
- 	<?php include('footer.php'); ?>
+<?php include('footer.php'); ?>
