@@ -11,6 +11,7 @@ Jain Muni Locator
 <p> </p>
 
 <p><b><u>Contributors:</u></b>
-<ul><li>Developer - Dhruv Jain
-<li>Concept by - Pankaj Jain
+<ul><li>Developer - Dhruv Jain</li>
+<li>Concept by - Pankaj Jain</li>
+<li>Code Imporved by - Mohd. Harris</li>
 </ul></p>
