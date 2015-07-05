@@ -41,15 +41,14 @@
 <script type='text/javascript' src='js/googlemaps.min.js'></script>
 <!-- end scripts -->
 
-	<div class="space"></div>
-	<div class="sub-footer clearfix">
-		<div id="progress-back" class="load-item">
-			<div id="progress-bar"></div>
-		</div>
-		<div class="copyright">
-			&copy; 2014 Developed by <a  target='_blank' href='http://dhruvjain.org'>Dhruv Jain</a>	</div>
+<div class="space"></div>
+<div class="sub-footer clearfix">
+	<div id="progress-back" class="load-item">
+		<div id="progress-bar"></div>
+	</div>
+	<div class="copyright">&copy; 2014 Developed by <a  target='_blank' href='http://dhruvjain.org'>Dhruv Jain</a>	</div>
 
-		<!-- start footer-menu -->
+	<!-- start footer-menu -->
 		<div class="footer-menu">
 			<ul class="footer_menu">
 				<li><a href="team.php">Team</a></li>
@@ -59,10 +58,10 @@
 				<li><a href="disclaimer.php">Disclaimer</a></li>
 			</ul>
 		</div>
-		<!-- end footer-menu -->
+	<!-- end footer-menu -->
 
-	</div>
-	<!-- end footer -->
+</div>
+<!-- end footer -->
 
 	<div id="slidecaption"></div>
 
