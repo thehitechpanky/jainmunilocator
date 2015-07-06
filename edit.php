@@ -8,10 +8,15 @@ $website = $_POST['website'];
 $img = $_POST['img'];
 $dos = $_POST['dos'];
 $adate = $_POST['adate'];
+$ailacharyaname = $_POST['ailacharyaname'];
 $ailacharyadate = $_POST['ailacharyadate'];
+$upadhyayname = $_POST['upadhyayname'];
 $upadhyaydate = $_POST['upadhyaydate'];
+$muniname = $_POST['muniname'];
 $munidate = $_POST['munidate'];
+$ailakname = $_POST['ailakname'];
 $ailakdate = $_POST['ailakdate'];
+$kname = $_POST['kname'];
 $kdate = $_POST['kdate'];
 $birthname = $_POST['birthname'];
 $dob = $_POST['dob'];
@@ -28,25 +33,25 @@ $sqlacharya = "UPDATE acharya SET adate=? WHERE acharyaid='$id'";
 $q = $db->prepare($sqlacharya);
 $q->execute(array($adate));
 
-$sqlailacharya = "UPDATE ailacharya SET ailacharyadate=? WHERE ailacharyaid='$id'";
+$sqlailacharya = "UPDATE ailacharya SET ailacharyadate=?, ailacharyaname=? WHERE ailacharyaid='$id'";
 $q = $db->prepare($sqlailacharya);
-$q->execute(array($ailacharyadate));
+$q->execute(array($ailacharyadate,$ailacharyaname));
 
-$sqlupadhyay = "UPDATE upadhyay SET upadhyaydate=? WHERE upadhyayid='$id'";
+$sqlupadhyay = "UPDATE upadhyay SET upadhyaydate=?, upadhyayname=? WHERE upadhyayid='$id'";
 $q = $db->prepare($sqlupadhyay);
-$q->execute(array($upadhyaydate));
+$q->execute(array($upadhyaydate,$upadhyayname));
 
-$sqlmuni = "UPDATE muni SET munidate=? WHERE muniid='$id'";
+$sqlmuni = "UPDATE muni SET munidate=?, muniname=? WHERE muniid='$id'";
 $q = $db->prepare($sqlmuni);
-$q->execute(array($munidate));
+$q->execute(array($munidate,$muniname));
 
-$sqlailak = "UPDATE ailak SET ailakdate=? WHERE ailakid='$id'";
+$sqlailak = "UPDATE ailak SET ailakdate=?, ailakname=? WHERE ailakid='$id'";
 $q = $db->prepare($sqlailak);
-$q->execute(array($ailakdate));
+$q->execute(array($ailakdate,$ailakname));
 
-$sqlkshullak = "UPDATE kshullak SET kdate=? WHERE kid='$id'";
+$sqlkshullak = "UPDATE kshullak SET kdate=?, kname=? WHERE kid='$id'";
 $q = $db->prepare($sqlkshullak);
-$q->execute(array($kdate));
+$q->execute(array($kdate,$kname));
 
 header('location: munis.php?id='.$id);
  
