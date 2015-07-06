@@ -36,34 +36,39 @@
 					Upadhi	<select name="upadhi">
 							<option name="upadhi" value="<?php echo $row['upadhi']; ?>"><?php echo $row['uname']; ?></option>
 							</select><br />
-					Name<input type="text" name="name" value="<?php echo $row['name']; ?>" /><br />
-					Website<input type="text" name="website" value="<?php echo $row['website']; ?>" /><br />
-					Image Link<input type="text" name="img" value="<?php echo $row['img']; ?>" /><br />
-					Date of Samadhi (If applicable)<input type="text" name="dos" value="<?php echo $row['dos']; ?>" /><br /><br />
+					Name<input type="text" name="name" placeholder="Name" value="<?php echo $row['name']; ?>" /><br />
+					Website Link<input type="text" name="website" placeholder="Website Link" value="<?php echo $row['website']; ?>" /><br />
+					Image Link<input type="text" name="img" placeholder="Image Link" value="<?php echo $row['img']; ?>" /><br />
+					Date of Samadhi (if applicable) in YYYY-MM-DD<input type="text" name="dos" placeholder="Date of Samadhi (if applicable) in YYYY-MM-DD" value="<?php echo $row['dos']; ?>" /><br /><br />
 					
 					<b>Acharya Pad Details</b><br />
-					Date<input type="text" name="adate" value="<?php echo $row['adate']; ?>" /><br /><br />
+					Date in YYYY-MM-DD<input type="text" name="adate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['adate']; ?>" /><br /><br />
 					
 					<b>Ailacharya Pad Details</b><br />
-					Date<input type="text" name="ailacharyadate" value="<?php echo $row['ailacharyadate']; ?>" /><br /><br />
+					Name<input type="text" name="ailacharyaname" placeholder="Name" value="<?php echo $row['ailacharyaname']; ?>" /><br />
+					Date in YYYY-MM-DD<input type="text" name="ailacharyadate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['ailacharyadate']; ?>" /><br /><br />
 					
 					<b>Upadhyay Pad Details</b><br />
-					Date<input type="text" name="upadhyaydate" value="<?php echo $row['upadhyaydate']; ?>" /><br /><br />
+					Name<input type="text" name="upadhyayname" placeholder="Name" value="<?php echo $row['upadhyayname']; ?>" /><br />
+					Date in YYYY-MM-DD<input type="text" name="upadhyaydate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['upadhyaydate']; ?>" /><br /><br />
 					
 					<b>Muni Deeksha Details</b><br />
-					Date<input type="text" name="munidate" value="<?php echo $row['munidate']; ?>" /><br /><br />
+					Name<input type="text" name="muniname" placeholder="Name" value="<?php echo $row['muniname']; ?>" /><br />
+					Date in YYYY-MM-DD<input type="text" name="munidate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['munidate']; ?>" /><br /><br />
 					
-					<b>Ailak Pad Details</b><br />
-					Date<input type="text" name="ailakdate" value="<?php echo $row['ailakdate']; ?>" /><br /><br />
+					<b>Ailak Deeksha Details</b><br />
+					Name<input type="text" name="ailakname" placeholder="Name" value="<?php echo $row['ailakname']; ?>" /><br />
+					Date in YYYY-MM-DD<input type="text" name="ailakdate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['ailakdate']; ?>" /><br /><br />
 					
-					<b>Kshullak Pad Details</b><br />
-					Date<input type="text" name="kdate" value="<?php echo $row['kdate']; ?>" /><br /><br />
+					<b>Kshullak Deeksha Details</b><br />
+					Name<input type="text" name="kname" placeholder="Name" value="<?php echo $row['kname']; ?>" /><br />
+					Date in YYYY-MM-DD<input type="text" name="kdate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['kdate']; ?>" /><br /><br />
 					
 					<b>History</b><br />
-					Birthname<input type="text" name="birthname" value="<?php echo $row['birthname']; ?>" /><br />
-					Date of Birth<input type="text" name="dob" value="<?php echo $row['dob']; ?>" /><br />
-					Father<input type="text" name="father" value="<?php echo $row['father']; ?>" /><br />
-					Mother<input type="text" name="mother" value="<?php echo $row['mother']; ?>" /><br /><br />
+					Birthname<input type="text" name="birthname" placeholder="Birthname" value="<?php echo $row['birthname']; ?>" /><br />
+					Date of Birth<input type="text" name="dob" placeholder="Date of Birth in YYYY-MM-DD" value="<?php echo $row['dob']; ?>" /><br />
+					Father<input type="text" name="father" placeholder="Father" value="<?php echo $row['father']; ?>" /><br />
+					Mother<input type="text" name="mother" placeholder="Mother" value="<?php echo $row['mother']; ?>" /><br /><br />
 					
 					<div class="g-recaptcha" data-sitekey="6LcXYP8SAAAAAM8199rOJV8yoCWS4mI5FHb5Q70Q"></div><br />
 					<input type="submit" value="Save" />
