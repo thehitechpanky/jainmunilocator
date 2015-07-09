@@ -12,29 +12,7 @@
 	<!-- end navigation -->
 	
 	<!-- start content wrapper -->	
-	<?php
-	$showmuni = false;
-	if(isset($_GET['id']))
-	{
-		$id = (int)$_GET['id'];
-		$t = $db->prepare("SELECT * FROM munishri, upadhis, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE id = ? AND approved=1 AND uid=upadhi AND kid=id AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid");
-		$t->execute(array($id));
-		if($t->rowCount() == 1)
-		{
-			$getinfo = $t->fetch(PDO::FETCH_ASSOC);
-			$title = getmuni($getinfo["id"]);
-			$showmuni = true;
-		}
-		else
-		{
-			$title = "Jain Muni Locator";
-		}
-	}
-	else
-	{
-		$title = "Jain Muni Locator";
-	}
-	?>
+	
 		<div class="container">
 
 		<div class="page-title">
@@ -73,14 +51,10 @@
 					}
 				}
 				if($showshow){
-					?>
-				<strong>List of All Digambar Jain Munis is given Below. Click on the name to see more information</strong>
-					<br /><br />
-					<?php
-					$i = 0;
-					$r2 = $db->query('SELECT * FROM munishri, upadhis WHERE approved=1 AND uid=upadhi ORDER BY uid, name ASC');
-						
-					while($row = $r2->fetch(PDO::FETCH_ASSOC))
+				?>
+				<strong>List of All Digambar Jain Munis is given Below. Click on the name to see more information</strong><br /><br />
+				<?php
+				while($row = $t->fetch(PDO::FETCH_ASSOC))
 					{
 						$i++;
 						echo $i.': <a href="?id='.$row["id"].'">'.getmuni($row["id"]).'</a><br />';
@@ -203,6 +177,12 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 					<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
 					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</td></tr>'
 					;}
+				
+					if($getinfo['aryikaguru']>0) {echo
+					'<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
+					<tr><td>Date</td><td>'.$getinfo['aryikadate'].'</td></tr>
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'</td></tr>'
+					;}
 					
 					echo
 					'<tr><th colspan="2" align="left">History</th><th></th></tr>
@@ -215,21 +195,19 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 				
 					if($getinfo['upadhi']<4) {echo
 					'<tr><th colspan="2" align="left">Shishyawali</th><th></th></tr>';
-					$i = 0;
-					$j = 0;
-					$r3 = $db->query("SELECT * FROM munishri, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
-					while($row2 = $r3->fetch(PDO::FETCH_ASSOC))
+					$r2 = $db->query("SELECT * FROM munishri, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
+					while($row = $r2->fetch(PDO::FETCH_ASSOC))
 					{
 						$i++;
-						$guruid = getguru($row2["id"]);
+						$guruid = getguru($row["id"]);
 						if($guruid==$getinfo["id"])
-						{$j++; echo '<tr><td colspan="2"><a href="?id='.$row2["id"].'">'.$j.': '.getmuni($row2["id"]).'</a></td></tr>';}
+						{$j++; echo '<tr><td colspan="2"><a href="?id='.$row["id"].'">'.$j.': '.getmuni($row["id"]).'</a></td></tr>';}
 					}}
 					?>
 				
 					</table>
 				</div>
-			<div style="float:right;width:40%"><img width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><center><a href="editform.php?id=<?php echo $getinfo['id']; ?>"> EDIT DETAILS </a></center></div>
+			<div style="float:right;width:40%"><img alt="<?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><center><a href="editform.php?id=<?php echo $getinfo['id']; ?>"> EDIT DETAILS </a></center></div>
 				<?php
 			}
 				?>
