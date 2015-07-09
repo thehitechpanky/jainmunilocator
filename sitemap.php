@@ -37,19 +37,15 @@
 			<table style="width:100%">
 				<tr align="left"><th colspan="2">Guru Links</th></tr>
 					<?php
-					$sql = 'SELECT approved, id FROM munishri where approved=1';
-					$result = $link->query($sql);
-					if ($result->num_rows > 0) {
-    				while($row = $result->fetch_assoc())
-					{echo '<tr><td>&#8226;&nbsp;</td><td><a href="munis.php?id='.$row["id"].'">'.getmuni($row["id"]).'</a></td></tr>';}
+					while($row = $t->fetch(PDO::FETCH_ASSOC)){
+					echo '<tr><td>&#8226;&nbsp;</td><td><a href="munis.php?id='.$row["id"].'">'.getmuni($row["id"]).'</a></td></tr>';
 					}
-					$link->close();
 					?>
 			</table>
 					
 		</div>
 		<div class="sidebar">
-		<img src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" style="width:200px;margin-right:5px">
+		<img alt="Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" style="width:200px;margin-right:5px">
 		</div>
 		<!-- end widgets -->
 	</div>
