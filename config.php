@@ -38,11 +38,7 @@ function getmuni($id)
 	if($m->rowCount() == 1)
 	{
 		$n = $m->fetch(PDO::FETCH_ASSOC);
-		$t= "";
-		if($n['uname'] != "") $t = $t.' '.$n['uname'];
-		if($n['prefix'] != "") $t = $t.' '.$n['prefix'];
-		if($n['name'] != "") $t = $t.' '.$n['name'];
-		if($n['suffix'] != "") $t = $t.' '.$n['suffix'];
+		$t = $n['uname'].' '.$n['prefix'].' '.$n['name'].' '.$n['suffix'];
 		return $t;
 	}
 	else
@@ -66,6 +62,7 @@ function getguru($id)
 		if($n['upadhi'] == 4) $t = $n['muniguru'];
 		if($n['upadhi'] == 5) $t = $n['ailakguru'];
 		if($n['upadhi'] == 6) $t = $n['kguru'];
+		if($n['upadhi'] == 7) $t = $n['aryikaguru'];
 		return $t;
 	}
 	else
@@ -73,4 +70,29 @@ function getguru($id)
 		return "N/A";
 	}
 }
+
+//Find Muni Name and Details
+$showmuni = false;
+if(isset($_GET['id'])) {
+	$id = (int)$_GET['id'];
+	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE id = ? AND approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid');
+	$t->execute(array($id));
+	if($t->rowCount() == 1) {
+		$getinfo = $t->fetch(PDO::FETCH_ASSOC);
+		$title = getmuni($id);
+		$titletag = $title.' | Jain Muni Locator';
+		$showmuni = true;
+	}
+	else{
+		$title = "Jain Muni Locator";
+		$titletag = $title;
+	}
+}
+else{
+	$title = "Jain Muni Locator";
+	$titletag = $title;
+	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY uid, name ASC');
+	$t->execute();
+}
+
 ?>
