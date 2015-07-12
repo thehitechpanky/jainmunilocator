@@ -17,8 +17,27 @@
 	$i++;
 	}
 	}
+	function getaddress($lat,$lng)
+		{
+		$url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
+		$json = @file_get_contents($url);
+		$data=json_decode($json);
+		$status = $data->status;
+		if($status=="OK")
+		return $data->results[0]->formatted_address;
+		else
+		return false;
+       }
+	$length=sizeof($array);
+	for($i=0 ;$i< $length ; $i++)
+	{
+	$array[$i][3]=getaddress($array[$i][1],$array[$i][2]);
+	}
+	
+	
 	//$json = json_encode($array);
 ?>
+
 
 <!-- start scripts -->
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
