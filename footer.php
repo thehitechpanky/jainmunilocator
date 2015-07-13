@@ -18,7 +18,7 @@ while($row = mysqli_fetch_assoc($result)){
 	}
 }
 ?>
-<? php sleep(5) ?>
+
 
 <!-- start scripts -->
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
