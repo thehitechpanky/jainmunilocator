@@ -3,7 +3,7 @@
 <!-- Analytics Included -->
 <?php include_once("analyticstracking.php") ?>
 
-<!-- Google Map and Markers -->
+<!-- Google Map Markers -->
 <?php
 $array = array();
 $sql = "SELECT * FROM muni_location, munishri WHERE mid=id AND lat<>0 AND dos='0000-00-00'";
@@ -17,7 +17,6 @@ while($row = mysqli_fetch_assoc($result)){
 	$i++;
 	}
 }
-
 ?>
 
 <!-- start scripts -->
@@ -27,7 +26,6 @@ while($row = mysqli_fetch_assoc($result)){
 	var locations =  <?php echo json_encode( $array ) ?>;
 	var result = YAHOO.compressor.cssmin(input_css_code);
 </script>
-<script type='text/javascript' src='js/slider-menu.min.js'></script>
 <script type='text/javascript' src='js/jquery.custom.js'></script>
 <script type='text/javascript' src='js/jquery.supersized.js'></script>
 <script type='text/javascript' src='js/jquery.supersized.shutter.min.js'></script>
