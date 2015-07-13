@@ -31,6 +31,7 @@ function getaddress($lat,$lng){
 $length=sizeof($array);
 for($i = 0; $i < $length ; $i++){$array[$i][3]=getaddress($array[$i][1],$array[$i][2]);}
 ?>
+<? php sleep(5) ?>
 
 <!-- start scripts -->
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
