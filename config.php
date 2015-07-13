@@ -7,28 +7,6 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-//Function to find location details
-function getlocation($id)
-{
-	global $db;
-	$x = $db->prepare("SELECT * FROM location WHERE lid = ?");
-	$x->execute(array($id));
-	if($x->rowCount() == 1)
-	{
-		$y = $x->fetch(PDO::FETCH_ASSOC);
-		$t= "";
-		if($y['place'] != "") $t = $t.', '.$y['place'];
-		if($y['district'] != "") $t = $t.', '.$y['district'];
-		if($y['state'] != "") $t = $t.', '.$y['state'];
-		$t = ltrim($t,",");
-		return $t;
-	}
-	else
-	{
-		return "N/A";
-	}
-}
-
 //Function to find muni details
 function getmuni($id)
 {
@@ -45,6 +23,50 @@ function getmuni($id)
 	{
 		return "N/A";
 	}
+}
+
+//Function to find location address from coordinates
+function getaddress($lat,$lng){
+	$url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
+	$json = @file_get_contents($url);
+	$data=json_decode($json);
+	$status = $data->status;
+	if($status=="OK")
+	return $data->results[0]->formatted_address;
+	else
+	return false;
+}
+
+//Function to find latitude from location address
+function getlatitude($address) {
+	$address= preg_replace('/\s+/', '+', $address);
+	$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=India";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	$response_a = json_decode($response);
+	return $response_a->results[0]->geometry->location->lat;
+}
+
+//Function to find longitude from location address
+function getlongitude($address) {
+	$address= preg_replace('/\s+/', '+', $address);
+	$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=India";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	$response_a = json_decode($response);
+	return $response_a->results[0]->geometry->location->lng;
 }
 
 //Function to get the guru details
@@ -75,7 +97,7 @@ function getguru($id)
 $showmuni = false;
 if(isset($_GET['id'])) {
 	$id = (int)$_GET['id'];
-	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE id = ? AND approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid');
+	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location WHERE id = ? AND approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid AND id=mid');
 	$t->execute(array($id));
 	if($t->rowCount() == 1) {
 		$getinfo = $t->fetch(PDO::FETCH_ASSOC);
