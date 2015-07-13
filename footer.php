@@ -17,12 +17,12 @@ while($row = mysqli_fetch_assoc($result)){
 	$i++;
 	}
 }
+
 ?>
 
-
 <!-- start scripts -->
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
+<script src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
 <script type='text/javascript'>
 	var locations =  <?php echo json_encode( $array ) ?>;
 	var result = YAHOO.compressor.cssmin(input_css_code);
@@ -40,7 +40,6 @@ while($row = mysqli_fetch_assoc($result)){
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 <script type='text/javascript' src='https://www.google.com/recaptcha/api.js' async defer></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y'></script>
 <script type='text/javascript' src='js/googlemaps.min.js'></script>
 <!-- end scripts -->
