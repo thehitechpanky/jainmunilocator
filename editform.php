@@ -11,6 +11,50 @@
 	<?php include('menu.php'); ?>
 	<!-- end navigation -->
 	
+	<script>
+	$(document).ready(function(){
+		$(".cloc").click(function(){	
+			$("#editcloc").css({"z-index":"1002"});$("#editcloc").show();
+			$.post( 
+             "editmuniloc.php",
+             { "muniid": $('.cloc').attr('id') },
+             function(data) {
+                $('#editcloc').html(data);
+ var geozcoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng($("#lat").val(), $("#lng").val());
+   geozcoder.geocode({'latLng': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+         $("#x").val(results[0].formatted_address);
+  
+      } 
+    } 
+  }); 
+             });
+             $(document).on("click", "#wow", function(){
+     var geozcoder = new google.maps.Geocoder();
+geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
+       if (status == google.maps.GeocoderStatus.OK) {
+       $.post( 
+             "editmuniloc.php",
+             { "lat": results[0].geometry.location.k,"lng":results[0].geometry.location.D,"mid":$('.cloc').attr('id') },
+             function(datax) {
+             $("#editcloc").html("<center>Location Updated Successfully. Redirecting in 3 seconds</center>");
+             setTimeout(function(){
+   window.location.reload(1);
+}, 3000);
+             });
+       
+       console.log(results[0].geometry.location.k);
+             } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    }); 
+});
+					});
+				});
+				</script>
+	
 	<!-- start content wrapper -->
 
 		<div class="container">
@@ -24,13 +68,20 @@
 		<div>
 			<?php
 				$id=$_GET['id'];
-				$result = $db->prepare("SELECT * FROM munishri, upadhis, acharya, ailacharya, upadhyay, muni, ailak, kshullak WHERE id= :userid AND upadhi=uid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid");
+				$result = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika WHERE id= :userid AND upadhi=uid AND id=mid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid");
 				$result->bindParam(':userid', $id);
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
 			<div style="float:left;width:50%">				
 				<form action="edit.php" method="POST">
+					
+					Current Location<br />
+					Lat<input type="text" name="lat" value="<?php echo $row['lat']; ?>"><br />
+					Lng<input type="text" name="lng" value="<?php echo $row['lng']; ?>"><br />
+					Full Address<input type="text" name="location" placeholder="Location"><br />
+					
+					Address<input type="text" id="x"><br />
 					
 					<input type="hidden" name="ids" value="<?php echo $id; ?>" />
 					Upadhi	<select name="upadhi">
@@ -64,6 +115,9 @@
 					Name<input type="text" name="kname" placeholder="Name" value="<?php echo $row['kname']; ?>" /><br />
 					Date in YYYY-MM-DD<input type="text" name="kdate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['kdate']; ?>" /><br /><br />
 					
+					<b>Aryika Deeksha Details</b><br />
+					Date in YYYY-MM-DD<input type="text" name="aryikadate" placeholder="Date in YYYY-MM-DD" value="<?php echo $row['aryikadate']; ?>" /><br /><br />
+					
 					<b>History</b><br />
 					Birthname<input type="text" name="birthname" placeholder="Birthname" value="<?php echo $row['birthname']; ?>" /><br />
 					Date of Birth<input type="text" name="dob" placeholder="Date of Birth in YYYY-MM-DD" value="<?php echo $row['dob']; ?>" /><br />
@@ -71,11 +125,11 @@
 					Mother<input type="text" name="mother" placeholder="Mother" value="<?php echo $row['mother']; ?>" /><br /><br />
 					
 					<div class="g-recaptcha" data-sitekey="6LcXYP8SAAAAAM8199rOJV8yoCWS4mI5FHb5Q70Q"></div><br />
-					<input type="submit" value="Save" />
+					<input type="submit" value="Save" />&nbsp;&nbsp;&nbsp;<input type="reset" value="Reset" />&nbsp;&nbsp;&nbsp;<input type="button" value="Back" onclick="history.back();" />
 					
 				</form>
 			</div>
-			<div style="float:right;width:40%"><img width="315px" src="<?php echo $row['img']; ?>" /></div>
+			<div style="float:right;width:40%"><img alt="<?php echo getmuni($row['id']); ?>" width="315px" src="<?php echo $row['img']; ?>" /></div>
 			<?php } ?>
 		</div>
 		
