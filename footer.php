@@ -17,19 +17,6 @@ while($row = mysqli_fetch_assoc($result)){
 	$i++;
 	}
 }
-function getaddress($lat,$lng){
-	$url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
-	$json = @file_get_contents($url);
-	$data=json_decode($json);
-	$status = $data->status;
-	if($status=="OK")
-	return $data->results[0]->formatted_address;
-	else
-	return false;
-}
-
-$length=sizeof($array);
-for($i = 0; $i < $length ; $i++){$array[$i][3]=getaddress($array[$i][1],$array[$i][2]);}
 ?>
 
 <!-- start scripts -->
@@ -52,6 +39,7 @@ for($i = 0; $i < $length ; $i++){$array[$i][3]=getaddress($array[$i][1],$array[$
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 <script type='text/javascript' src='https://www.google.com/recaptcha/api.js' async defer></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y'></script>
 <script type='text/javascript' src='js/googlemaps.min.js'></script>
 <!-- end scripts -->
