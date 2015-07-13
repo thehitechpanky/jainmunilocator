@@ -11,50 +11,6 @@
 	<?php include('menu.php'); ?>
 	<!-- end navigation -->
 	
-	<script>
-	$(document).ready(function(){
-		$(".cloc").click(function(){	
-			$("#editcloc").css({"z-index":"1002"});$("#editcloc").show();
-			$.post( 
-             "editmuniloc.php",
-             { "muniid": $('.cloc').attr('id') },
-             function(data) {
-                $('#editcloc').html(data);
- var geozcoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng($("#lat").val(), $("#lng").val());
-   geozcoder.geocode({'latLng': latlng}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      if (results[0]) {
-         $("#x").val(results[0].formatted_address);
-  
-      } 
-    } 
-  }); 
-             });
-             $(document).on("click", "#wow", function(){
-     var geozcoder = new google.maps.Geocoder();
-geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
-       if (status == google.maps.GeocoderStatus.OK) {
-       $.post( 
-             "editmuniloc.php",
-             { "lat": results[0].geometry.location.k,"lng":results[0].geometry.location.D,"mid":$('.cloc').attr('id') },
-             function(datax) {
-             $("#editcloc").html("<center>Location Updated Successfully. Redirecting in 3 seconds</center>");
-             setTimeout(function(){
-   window.location.reload(1);
-}, 3000);
-             });
-       
-       console.log(results[0].geometry.location.k);
-             } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    }); 
-});
-					});
-				});
-				</script>
-	
 	<!-- start content wrapper -->
 
 		<div class="container">
@@ -76,12 +32,8 @@ geozcoder.geocode( { 'address': $("#x").val()}, function(results, status) {
 			<div style="float:left;width:50%">				
 				<form action="edit.php" method="POST">
 					
-					Current Location<br />
-					Lat<input type="text" name="lat" value="<?php echo $row['lat']; ?>"><br />
-					Lng<input type="text" name="lng" value="<?php echo $row['lng']; ?>"><br />
-					Full Address<input type="text" name="location" placeholder="Location"><br />
-					
-					Address<input type="text" id="x"><br />
+					Current Location
+					<input type="text" name="location" placeholder="Location" value="<?php echo getaddress($row['lat'],$row['lng']); ?>"/><br />
 					
 					<input type="hidden" name="ids" value="<?php echo $id; ?>" />
 					Upadhi	<select name="upadhi">
