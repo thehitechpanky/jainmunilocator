@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
+	
+<!-- Load Configuration File -->
+<?php include('config.php'); ?>
 
-<!-- start head -->
 <head>
 
 	<!-- start title -->
-	<title>Jain Muni Locator</title>
+	<title><?php echo $titletag ?></title>
 
 	<!-- start meta -->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
+	<meta name="keywords" content="<?php echo $titletag ?>, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, Muni Dincharya, list of all digamabar jain munis">
+	<meta name="author" content="Jain Muni Locator">
+	<meta name=viewport content="width=device-width, initial-scale=1">
 
 	<!-- styles -->
  	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
@@ -22,11 +28,7 @@
 	<link rel="stylesheet" href="css/style.min.css" type="text/css" media="all" />
 	<!-- end styles -->
 	
-	<!-- Load Configuration File -->
-	<?php include('config.php'); ?>
-	
 	<!-- Load Map -->
 	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>	
 
 </head>
-<!-- end head -->
