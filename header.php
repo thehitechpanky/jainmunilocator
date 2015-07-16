@@ -15,6 +15,7 @@
 	<meta name="keywords" content="<?php echo $titletag ?>, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, Muni Dincharya, list of all digamabar jain munis">
 	<meta name="author" content="Jain Muni Locator">
 	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="alexaVerifyID" content="GfQ7YYpZjrH6gB9GuRuLa8OXMFA"/>
 
 	<!-- styles -->
  	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
@@ -25,7 +26,6 @@
 	<link rel="stylesheet" href="css/supersized.min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/light-style.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/style.min.css" type="text/css" media="all" />
 	<!-- end styles -->
 	
 	<!-- Load Map -->
