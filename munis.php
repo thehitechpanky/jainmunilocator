@@ -129,17 +129,18 @@
 				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</a></td></tr>'
 				;}
 				
-				if($getinfo['bhramcharyadate']!="0000-00-00") {echo
-				'<tr><th colspan="2" align="left">Bhramcharya Vrat Details</th></tr>
+				if($getinfo['bhramcharyadate']!="0000-00-00" or ($getinfo['bhramcharyaguru']>0)) {echo
+				'<tr><td colspan="2"></td></tr>
+				<tr><th colspan="2" align="left">Bhramcharya Vrat Details</th></tr>
 				<tr><td>Date</td><td>'.$getinfo['bhramcharyadate'].'</td></tr>'
 					;}
 				
-				if($getinfo['bhramcharyadate']!="0000-00-00" && ($getinfo['bhramcharyaguru']>0)) {echo
+				if($getinfo['bhramcharyaguru']>0) {echo
 				'<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['bhramcharyaguru'].'">'.getmuni($getinfo['bhramcharyaguru']).'</a></td></tr>'
 					;}
 				
 				if($getinfo['bhramcharyadate']!="0000-00-00" && ($getinfo['bhramcharyaguru']==0)) {echo
-				'<tr><td>Taken By</td><td>'.$getinfo['id'].'Self</td></tr>'
+				'<tr><td>Taken By</td><td>Self</td></tr>'
 					;}
 				
 				if($getinfo['aryikaguru']>0) {echo
