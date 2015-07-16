@@ -94,6 +94,12 @@ p {
 	line-height:22px;
 }
 
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
 
 /* Global Structure ============================================================= */
 
