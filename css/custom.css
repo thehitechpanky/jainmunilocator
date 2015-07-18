@@ -1,0 +1,26 @@
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+
+.longBox {
+	width: 300px
+	}
+
+.mediumBox {
+	width: 110px
+	}
+
+.smallBox {
+	width: 80px
+}
+
+.verySmallBox {
+	width: 50px
+	}
+
+.inlineDiv {
+	display: inline-block;
+	}
