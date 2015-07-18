@@ -149,8 +149,13 @@
 				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'</td></tr>'
 				;}
 				
+				if($getinfo['vairagya']!="0000-00-00") {echo
+					'<tr><td colspan="2"></td></tr>
+					<tr><td>Vairagya</td><td>'.$getinfo['vairagya'].'</td></tr>'
+													   ;}
+				
 				echo
-				'<tr><td colspan="2"></td></tr>
+					'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">History</th></tr>
 				<tr><td>Birthname</td><td>'.$getinfo['birthname'].'</td></tr>
 				<tr><td>Date of Birth</td><td>'.$getinfo['dob'].'</td></tr>
@@ -175,7 +180,11 @@
 			
 			?>
 			
-			<div style="float:right;width:40%"><img alt="<?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><center><a href="editform.php?id=<?php echo $getinfo['id']; ?>"> EDIT DETAILS </a></center></div>
+			<div style="float:right;width:40%">
+				<img alt="<?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><br />
+				<center><input type="button" value="EDIT DETAILS" onclick="location.href='./editform.php?id=<?php echo $getinfo['id']; ?>';" /></center>
+			</div>
+			
 				<?php
 			}
 				?>
