@@ -43,8 +43,8 @@
 					<option value="5" <?php if($row['upadhi']==5) { echo "selected"; } ?> >Ailak</option>
 					<option value="6" <?php if($row['upadhi']==6) { echo "selected"; } ?> >Kshullak</option>
 					<option value="7" <?php if($row['upadhi']==7) { echo "selected"; } ?> >Aryika</option>
+					<div class="display_prefix_here"></div>
 					</select><input type="text" name="name" placeholder="Name" value="<?php echo $row['name']; ?>" class="smallBox" />
-					Ji
 					<input type="text" name="alias" placeholder="Alias" value="<?php echo $row['alias']; ?>" class="smallBox" /><br /><br />
 					
 					<b>Current Location</b><br />
