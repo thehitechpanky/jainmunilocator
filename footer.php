@@ -19,12 +19,19 @@ while($row = mysqli_fetch_assoc($result)){
 }
 ?>
 
-<!-- start scripts -->
-<script src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
-<script src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+<!-- start external scripts -->
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js' async defer></script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y'></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<!-- end external scripts -->
+
+<!-- include minified internal scripts -->
+
+<!-- start internal scripts -->
 <script type='text/javascript'>
 	var locations =  <?php echo json_encode( $array ) ?>;
-	var result = YAHOO.compressor.cssmin(input_css_code);
 </script>
 <script type='text/javascript' src='js/jquery.custom.js'></script>
 <script type='text/javascript' src='js/jquery.supersized.js'></script>
@@ -37,10 +44,8 @@ while($row = mysqli_fetch_assoc($result)){
 <script type='text/javascript' src='js/jquery.preloader.js'></script>
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
-<script type='text/javascript' src='https://www.google.com/recaptcha/api.js' async defer></script>
-<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y'></script>
 <script type='text/javascript' src='js/googlemaps.min.js'></script>
-<!-- end scripts -->
+<!-- end internal scripts -->
 
 <div class="space"></div>
 <div class="sub-footer clearfix">
@@ -100,3 +105,5 @@ while($row = mysqli_fetch_assoc($result)){
 
 </body>
 </html>
+
+<?php include('compressHTML'); ?>
