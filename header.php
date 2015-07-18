@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-	
+
 <!-- Load Configuration File -->
 <?php include('config.php'); ?>
 
@@ -18,17 +18,19 @@
 	<meta name="alexaVerifyID" content="GfQ7YYpZjrH6gB9GuRuLa8OXMFA"/>
 
 	<!-- styles -->
- 	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+	<link href="./css/minified.css.php" rel="stylesheet">
+ 	<!-- <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/default.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/isotope.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/layout.min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/prettyPhoto.min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/supersized.min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/light-style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" /> -->
 	<!-- end styles -->
 	
 	<!-- Load Map -->
-	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>	
+	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
 
 </head>
