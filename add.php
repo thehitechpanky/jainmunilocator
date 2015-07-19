@@ -55,8 +55,8 @@
 			<fieldset>
 				<form method="post" action="">
 					<div>
-						<select id="upadhi" name="upadhi" class="mediumBox" onchange="showPrefix(this.value); showSuffix(this.value);">
-							<option value="" style='display:none;' disabled selected>Upadhi</option>
+						<select id="upadhi" name="upadhi" class="mediumBox">
+							<option value="0" disabled selected>Upadhi</option>
 							<option value="1">Acharya</option>
 							<option value="2">Ailacharya</option>
 							<option value="3">Upadhyay</option>
@@ -64,20 +64,56 @@
 							<option value="5">Ailak</option>
 							<option value="6">Kshullak</option>
 							<option value="7">Aryika</option>
+							<option value="8">Kshullika</option>
 						</select>
 						<div id="prefix_here" class="inlineDiv"></div>
 						<input type="text" value="" placeholder="Name" name="name" class="smallBox" />
 						<div id="suffix_here" class="inlineDiv"></div>
 						<input type="text" value="" placeholder="Alias" name="alias" class="verySmallBox" /><br />						
 						<input type="text" value="" placeholder="Current Location" name="location" class="longBox" /><br />						
-						<input type="text" value="" placeholder="Website" name="website"><br />
-						<input type="text" value="" placeholder="Image Link" name="photo"><br />
-						<input type="hidden" value="" placeholder="Acharya Pad Date in YYYY-MM-DD" id="addacharyadate" name="adate" />
-						<input type="hidden" value="" placeholder="Acharya Pad Given by" id="addacharyaguru" name="aguru" class="longBox" />
-						<input type="hidden" value="" placeholder="Muni Deeksha Date in YYYY-MM-DD" id="addmunidate" name="munidate" />
-						<input type="hidden" value="" placeholder="Muni Deeksha Given by" id="addmuniguru" name="muniguru" class="longBox" />
-						<input type="hidden" value="" placeholder="Aryika Deeksha Date in YYYY-MM-DD" id="addaryikadate" name="aryikadate" />
-						<input type="hidden" value="" placeholder="Aryika Deeksha Given by" id="addaryikaguru" name="aryikaguru" class="longBox" />
+						<input type="text" value="" placeholder="Website" name="website" /><br />
+						<input type="text" value="" placeholder="Image Link" name="photo" /><br />
+						
+						<div id="acharya" class="hidden">
+							<input type="text" value="" placeholder="Acharya Pad Date in YYYY-MM-DD" id="adate" name="adate" />
+							<input type="text" value="" placeholder="Acharya Pad Given by" id="aguru" name="aguru" class="longBox" />
+						</div>
+						
+						<div id="ailacharya" class="hidden">
+							<input type="text" value="" placeholder="Ailacharya Pad Date in YYYY-MM-DD" id="ailacharyadate" name="ailacharyadate" />
+							<input type="text" value="" placeholder="Ailacharya Pad Given by" id="ailacharyaguru" name="ailacharyaguru" class="longBox" />
+						</div>
+						
+						<div id="upadhyay" class="hidden">
+							<input type="text" value="" placeholder="Upadhyay Pad Date in YYYY-MM-DD" id="upadhyaydate" name="upadhyaydate" />
+							<input type="text" value="" placeholder="Upadhyay Pad Given by" id="upadhyayguru" name="upadhyayguru" class="longBox" />
+						</div>
+						
+						<div id="muni" class="hidden">
+							<input type="text" value="" placeholder="Muni Deeksha Date in YYYY-MM-DD" id="munidate" name="munidate" />
+							<input type="text" value="" placeholder="Muni Deeksha Given by" id="muniguru" name="muniguru" class="longBox" />
+						</div>
+						
+						<div id="ailak" class="hidden">
+							<input type="text" value="" placeholder="Ailak Deeksha Date in YYYY-MM-DD" id="ailakdate" name="ailakdate" />
+							<input type="text" value="" placeholder="Ailak Deeksha Given by" id="ailakguru" name="ailakguru" class="longBox" />
+						</div>
+						
+						<div id="kshullak" class="hidden">
+							<input type="text" value="" placeholder="Kshullak Deeksha Date in YYYY-MM-DD" id="kdate" name="kdate" />
+							<input type="text" value="" placeholder="Kshullak Deeksha Given by" id="kguru" name="kguru" class="longBox" />
+						</div>
+						
+						<div id="aryika" class="hidden">
+							<input type="text" value="" placeholder="Aryika Deeksha Date in YYYY-MM-DD" id="aryikadate" name="aryikadate" />
+							<input type="text" value="" placeholder="Aryika Deeksha Given by" id="aryikaguru" name="aryikaguru" class="longBox" />
+						</div>
+						
+						<div id="kshullika" class="hidden">
+							<input type="text" value="" placeholder="Kshullika Deeksha Date in YYYY-MM-DD" id="kshullikadate" name="kshullikadate" />
+							<input type="text" value="" placeholder="Kshullika Deeksha Given by" id="kshullikaguru" name="kshullikaguru" class="longBox" />
+						</div>
+						
 						<input type="text" value="" placeholder="Birth Name" name="birthname"><br />
 						<input type="text" value="" placeholder="Date of Birth in YYYY-MM-DD" name="dob"><br />
 						<input type="text" value="" placeholder="Father" name="father"><br />
