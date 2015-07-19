@@ -100,10 +100,6 @@ if($kplace=="N/A") {
 	$klng = getlongitude($kplace);
 }
 
-// fields of bhramcharya
-$bhramcharyadate = $_POST['bhramcharyadate'];
-$bhramcharyaguru = $_POST['bhramcharyaguru'];
-
 // fields of aryika
 $aryikadate = $_POST['aryikadate'];
 $aryikaguru = $_POST['aryikaguru'];
@@ -127,6 +123,10 @@ if($kshullikaplace=="N/A") {
 	$kshullikalat = getlatitude($kshullikaplace);
 	$kshullikalng = getlongitude($kshullikaplace);
 }
+
+// fields of bhramcharya
+$bhramcharyadate = $_POST['bhramcharyadate'];
+$bhramcharyaguru = $_POST['bhramcharyaguru'];
 
 // fields of muni_location
 $location = $_POST['location'];
