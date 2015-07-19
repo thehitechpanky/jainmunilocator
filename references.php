@@ -24,27 +24,24 @@
 		<div class="inner-content">
 			<p>We have obtained our data from various sources including individuals, facebook pages, facebook groups and websites. Some of the websites are as listed below:</p>
 			<ul>
+				<li><a href="http://jainreligion.in">http://jainreligion.in</a></li>
+				<li><a href="http://jinaagamsaar.com">http://jinaagamsaar.com</a></li>
+				<li><a href="http://worldofjainism.com">http://worldofjainism.com</a></li>
 				<li><a href="http://www.digambarjainonline.com">http://www.digambarjainonline.com</a></li>
 				<li><a href="http://www.jaincyclopedia.org">http://www.jaincyclopedia.org</a></li>
-				<li><a href="http://jinaagamsaar.com">http://jinaagamsaar.com</a></li>
+				<li><a href="http://www.jinvaani.org">http://www.jinvaani.org</a></li>
 				
-					<?php
-					$sql = 'SELECT approved, website FROM munishri where approved=1 AND NOT(website="") AND NOT(website="N/A")';
-					$result = $link->query($sql);
-					if ($result->num_rows > 0) {
-    				// output data of each row
-    				while($row = $result->fetch_assoc()) {
-						echo '<li><a href="'.$row["website"].'">'.$row["website"].'</li>';
-    				}
-					} else {
-    				echo "0 results";
+				<?php
+				$t = $db->prepare('SELECT approved, website FROM munishri where approved=1 AND NOT(website="") AND NOT(website="N/A")');
+				$t->execute();
+				while($row = $t->fetch(PDO::FETCH_ASSOC)) {
+					echo '<li><a href="'.$row['website'].'">'.$row['website'].'</a></li>';
 					}
-					$link->close();			
-					?>
+				?>
 			</ul>
 		</div>
 		<div class="sidebar">
-		<img src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" style="width:200px;margin-right:5px">
+		<img alt="Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" style="width:200px;margin-right:5px">
 		</div>
 		<!-- end widgets -->
 	</div>
