@@ -1,6 +1,8 @@
 <?php
 // configuration
-include('config.php');
+include('functionsCreated.php');
+
+$id = $_POST['ids'];
 
 // fields of munishri
 $upadhi = $_POST['upadhi'];
@@ -22,6 +24,14 @@ if($birthplace=="N/A") {
 	$birthlat = getlatitude($birthplace);
 	$birthlng = getlongitude($birthplace);
 }
+
+// fields of chaturmas
+$chaturmasid = $_POST['chaturmasid'];
+$chaturmasyear = $_POST['chaturmasyear'];
+$chaturmasplace = $_POST['chaturmasplace'];
+$chaturmaslat = getlatitude($chaturmasplace);
+$chaturmaslng = getlongitude($chaturmasplace);
+
 
 // fields of acharya
 $adate = $_POST['adate'];
@@ -138,7 +148,6 @@ if($location=="N/A") {
 	$lng = getlongitude($location);
 }
 
-$id = $_POST['ids'];
 
 // Captcha Check
 $url = "https://www.google.com/recaptcha/api/siteverify?secret=6LcXYP8SAAAAAH7WUPMtiHoEiTnev6ofbzsuRY4U&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR'];
@@ -151,11 +160,23 @@ $text = file_get_contents($url);
 		$q = $db->prepare($sqlmunishri);
 		$q->execute(array($upadhi,$name,$alias,$website,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$birthlat,$birthlng,$id));
 		
+		if($chaturmasid>0) {
+			$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=? WHERE chaturmasid='$chaturmasid'";
+			$q = $db->prepare($sqlchaturmas);
+			$q->execute(array($chaturmaslat,$chaturmaslng));
+		} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
+			$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng) VALUES (?,?,?,?)";
+			$q = $db->prepare($sqlchaturmas);
+			$q->execute(array($id,2015,$chaturmaslat,$chaturmaslng));
+		} else {
+			//Nothing to be done here if user hasn't specified a chaturmas place
+		}
+		
 		$sqlacharya = "UPDATE acharya SET adate=?, aguru=?, alat=?, alng=? WHERE acharyaid='$id'";
 		$q = $db->prepare($sqlacharya);
 		$q->execute(array($adate,$aguru,$alat,$alng));
 		
-		$sqlailacharya = "UPDATE ailacharya SET ailacharyaname=?, ailacharyadate=?, ailacharyaguru=?, aliacharyalat=?, ailacharyalng=? WHERE ailacharyaid='$id'";
+		$sqlailacharya = "UPDATE ailacharya SET ailacharyaname=?, ailacharyadate=?, ailacharyaguru=?, ailacharyalat=?, ailacharyalng=? WHERE ailacharyaid='$id'";
 		$q = $db->prepare($sqlailacharya);
 		$q->execute(array($ailacharyaname,$ailacharyadate,$ailacharyaguru,$ailacharyalat,$ailacharyalng));
 		
