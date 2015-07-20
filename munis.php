@@ -33,16 +33,15 @@
 				$showshow = true;
 				if(isset($_POST['submitsearch']))
 				{
-					$r = $db->prepare("SELECT * FROM munishri WHERE name LIKE ?");
+					$r = $db->prepare("SELECT * FROM munishri WHERE name LIKE ? ORDER BY upadhi, name ASC");
 					$r->execute(array("%".$_POST["name"]."%"));
 					if($r->rowCount() != 0)
 					{
 					$showshow = false;
-					$i = 0;
 						while($row = $r->fetch(PDO::FETCH_ASSOC))
 						{
 							$i++;
-							echo $i.': <a href="?id='.$row["id"].'">'.getmuni($row["id"]).'</a><br />';
+							echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<span><img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></span></a></div>';
 						}
 					}
 					else
@@ -57,7 +56,7 @@
 				while($row = $t->fetch(PDO::FETCH_ASSOC))
 					{
 						$i++;
-						echo $i.': <a href="?id='.$row["id"].'">'.getmuni($row["id"]).'</a><br />';
+						echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<span><img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></span></a></div>';
 					}
 				}
 			}
@@ -69,32 +68,57 @@
 				;
 					
 				if($getinfo['dos']=="0000-00-00") {echo
-				'<tr><td>Current Location</td><td>'.getaddress($getinfo['lat'],$getinfo['lng']).'</td></tr>
-				<tr><td colspan="2"></td></tr>'
+				'<tr><td>Current Location</td><td>'.getaddress($getinfo['lat'],$getinfo['lng']).'</td></tr>'
 				;}
 
 				echo
-				'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>
-				<tr><td>Chaturmas</td><td>'.$getinfo['chaturmas'].'</td></tr>'
+				'<tr><td colspan="2"></td></tr>
+				<tr><th colspan="2" align="left">Contact Info</th></tr>
+				<tr><td>Phone No.</td><td>'.$getinfo['contact'].'</td></tr>
+				<tr><td>Email</td><td><a href="'.$getinfo['email'].'">'.$getinfo['email'].'</a></td></tr>
+				<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>'
 				;
 				
 				if($getinfo['dos']!="0000-00-00") {echo
 				'<tr><td>Date Of Samadhi</td><td>'.$getinfo['dos'].'</td></tr>'
 				;}
 				
+				echo
+					'<tr><td colspan="2"></td></tr>
+					<tr><th colspan="2" align="left">Books</th></tr>'
+					;
+				$b = $db->prepare("SELECT * FROM books WHERE bguru = '$id'");
+				$b->execute();
+				while($brow = $b->fetch(PDO::FETCH_ASSOC)) {
+					$i++;
+					echo '<tr><td colspan="2">'.$i.' '.$brow['bname'].'</td></tr>';
+					}
+				
+				echo
+					'<tr><td colspan="2"></td></tr>
+					<tr><th colspan="2" align="left">Chaturmas</th></tr>'
+					;
+				$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmaslat!=0 AND chaturmaslng!=0");
+				$c->execute();
+				while($crow = $c->fetch(PDO::FETCH_ASSOC)) {
+					echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>'.getaddress($crow['chaturmaslat'],$crow['chaturmaslng']).'</td></tr>';
+					}
+				
 				if($getinfo['upadhi']=="1") {echo
 					'<tr><td colspan="2"></td></tr>
 					<tr><th colspan="2" align="left">Acharya Pad Details</th></tr>
 					<tr><td>Date</td><td>'.$getinfo['adate'].'</td></tr>
-					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'</a></td></tr>'
-				;}
+					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'</a></td></tr>
+					<tr><td>Place</td><td>'.getaddress($getinfo['alat'],$getinfo['alng']).'</td></tr>'
+					;}
 				
 				if($getinfo['ailacharyaguru']>0) {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>
 				<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>
 				<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'.getmuni($getinfo['ailacharyaguru']).'</a></td></tr>'
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'.getmuni($getinfo['ailacharyaguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['ailacharyalat'],$getinfo['ailacharyalng']).'</td></tr>'
 				;}
 				
 				if($getinfo['upadhyayguru']>0) {echo
@@ -102,7 +126,8 @@
 				<tr><th colspan="2" align="left">Upadhyay Pad Details</th></tr>
 				<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>
 				<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'</a></td></tr>'
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['upadhyaylat'],$getinfo['upadhyaylng']).'</td></tr>'
 				;}
 				
 				if($getinfo['upadhi']<5) {echo
@@ -110,7 +135,8 @@
 				<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>
 				<tr><td>Name</td><td>'.$getinfo['muniname'].'</td></tr>
 				<tr><td>Date</td><td>'.$getinfo['munidate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'</a></td></tr>'
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['munilat'],$getinfo['munilng']).'</td></tr>'
 				;}
 				
 				if($getinfo['ailakguru']>0) {echo
@@ -118,7 +144,8 @@
 				<tr><th colspan="2" align="left">Ailak Deeksha Details</th></tr>
 				<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>
 				<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'</a></td></tr>'
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['ailaklat'],$getinfo['ailaklng']).'</td></tr>'
 				;}
 					
 				if($getinfo['kguru']>0) {echo
@@ -126,7 +153,24 @@
 				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>
 				<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>
 				<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</a></td></tr>'
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['klat'],$getinfo['klng']).'</td></tr>'
+				;}
+				
+				if($getinfo['upadhi']==7) {echo
+				'<tr><td colspan="2"></td></tr>
+				<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
+				<tr><td>Date</td><td>'.$getinfo['aryikadate'].'</td></tr>
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['aryikalat'],$getinfo['aryikalng']).'</td></tr>'
+				;}
+				
+				if($getinfo['kshullikaguru']>0) {echo
+				'<tr><td colspan="2"></td></tr>
+				<tr><th colspan="2" align="left">Kshullika Deeksha Details</th></tr>
+				<tr><td>Date</td><td>'.$getinfo['kshullikadate'].'</td></tr>
+				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kshullikaguru'].'">'.getmuni($getinfo['kshullikaguru']).'</a></td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['kshullikalat'],$getinfo['kshullikalng']).'</td></tr>'
 				;}
 				
 				if($getinfo['bhramcharyadate']!="0000-00-00" or ($getinfo['bhramcharyaguru']>0)) {echo
@@ -143,12 +187,6 @@
 				'<tr><td>Taken By</td><td>Self</td></tr>'
 					;}
 				
-				if($getinfo['aryikaguru']>0) {echo
-				'<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
-				<tr><td>Date</td><td>'.$getinfo['aryikadate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'</td></tr>'
-				;}
-				
 				if($getinfo['vairagya']!="0000-00-00") {echo
 					'<tr><td colspan="2"></td></tr>
 					<tr><td>Vairagya</td><td>'.$getinfo['vairagya'].'</td></tr>'
@@ -161,13 +199,13 @@
 				<tr><td>Date of Birth</td><td>'.$getinfo['dob'].'</td></tr>
 				<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
 				<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
-				<tr><td>Birth Place</td><td>'.$getinfo['birthplace'].'</td></tr>'
+				<tr><td>Birth Place</td><td>'.getaddress($getinfo['birthlat'],$getinfo['birthlng']).'</td></tr>'
 				;
 				
 				if($getinfo['upadhi']<4) {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Shishyawali</th></tr>';
-				$r2 = $db->query("SELECT * FROM munishri, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
+				$r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
 				while($row = $r2->fetch(PDO::FETCH_ASSOC))
 				{
 					$i++;
