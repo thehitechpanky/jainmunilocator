@@ -52,7 +52,7 @@
 					<input type="text" id="alias" name="alias" class="verySmallBox" placeholder="Alias" value="<?php echo $row['alias']; ?>" /><br /><br />
 					
 					<b>Current Location</b><br />
-					<input type="text" id="location" name="location" class="longBox" value="<?php echo getaddress($row['lat'],$row['lng']); ?>"/><br /><br />
+					<input type="text" id="location" name="location" class="longBox" value="<?php echo getaddress($row['lat'],$row['lng']); ?>" /><br /><br />
 					
 					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br />
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
@@ -64,7 +64,8 @@
 						<option>2015</option>
 						<option>2014</option>
 					</select>
-					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo getaddress($row['chaturmaslat'],$row['chaturmaslng']); ?>"/><br /><br />
+					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo getaddress($row2['chaturmaslat'],$row2['chaturmaslng']); ?>" /><br /><br />
+					<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
 					
 					<div id="acharya" class="">
 						<b>Acharya Pad Details</b><br />
