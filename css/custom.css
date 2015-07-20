@@ -32,8 +32,8 @@ th, td {
 .hoverImg a { position:relative; }
 .hoverImg a span { position:absolute; display:none; z-index:99; }
 .hoverImg a:hover span {
-	top: -300px;
-	left: 400px;
+	top: -260px;
+	left: 200px;
 	display:block;
 	}
 
@@ -48,8 +48,8 @@ img.muni {
 	}
 
 img.smallLight {
-	height: 80px;
-	opacity: 0.5;
+	height: 250px;
+	opacity: 0.6;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 	}
 
