@@ -58,51 +58,18 @@
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
 					Date of Samadhi (if applicable) in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br /><br />
 					
-					<script type="text/javascript">
-						var compInfoArray = new Array();
-						<?php
-						$query1 = "SELECT * FROM company ORDER BY compname";
-						$result1 = mysql_query($query1) or die(mysql_error());
-						
-						// build javascript array
-						while($row1=mysql_fetch_array($result1)){ 
-							echo 'compInfoArray['.$row1['compid'].'] = new Array();';
-							echo 'compInfoArray['.$row1['compid'].']["compname"] = "'.$row1['compname'].'";';
-							echo 'compInfoArray['.$row1['compid'].']["compdescription"] = "'.$row1['compdescription'].'";';
-						}
-						?>
-						function showname() {
-						var compid = document.form1.compid.value;
-						document.form1.compname.value = compInfoArray[compid]["compname"];
-						document.form1.compdescription.value = compInfoArray[compid]["compdescription"];
-						}
-						
-						window.onload=function() {
-							showname();
-						}
-					</script>
-					<select name="compid" onchange="showname()">
-					<?php
-						$query1 = "SELECT * FROM company ORDER BY compname";
-						$result1 = mysql_query($query1) or die(mysql_error());
-						
-						// build javascript array
-						while($row1=mysql_fetch_array($result1)){ 
-							echo '<option value="'.$row1['compid'].'">'.$row1['compname'].'</option>';
-						}
-					?>
-					</select>
-					<label>
-						<input type="text" name="compname" value="" />
-						<input type="text" name="compdescription" value="" />
-					</label>
-					<input name="submit" type="submit" id="submit" value="Aceptar" />
+					
 					<strong>Chaturmas</strong><br />
 					<select id="chaturmasyear" name="chaturmasyear" class="smallBox">
 						<option value="0" disabled selected>Year</option>
 						<option>2015</option>
 						<option>2014</option>
 					</select>
+					<?php
+					$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasyear=2015");
+					$q->execute();
+					$row2 = $q->fetch(PDO::FETCH_ASSOC);
+					?>
 					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo getaddress($row2['chaturmaslat'],$row2['chaturmaslng']); ?>" /><br /><br />
 					<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
 					
