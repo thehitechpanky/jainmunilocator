@@ -58,6 +58,14 @@
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
 					Date of Samadhi (if applicable) in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br /><br />
 					
+					<strong>Chaturmas</strong><br />
+					<select id="chaturmasyear" name="chaturmasyear" class="smallBox">
+						<option value="0" disabled selected>Year</option>
+						<option>2015</option>
+						<option>2014</option>
+					</select>
+					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo getaddress($row['chaturmaslat'],$row['chaturmaslng']); ?>"/><br /><br />
+					
 					<div id="acharya" class="">
 						<b>Acharya Pad Details</b><br />
 						Date in YYYY-MM-DD<input type="text" id="adate" name="adate" class="smallBox" value="<?php echo $row['adate']; ?>" /><br />
@@ -65,7 +73,7 @@
 						<datalist id="aguruList">
 						</datalist>
 						<input type="hidden" name="aguru" id="aguruHidden" value="" /><br />
-						Place<input type="text" id="aplace" name="aplace" class="longBox" value="<?php echo getaddress($row['alat'],$row['alng']); ?>"/><br />
+					Place<input type="text" id="aplace" name="aplace" class="longBox" value="<?php echo getaddress($row['alat'],$row['alng']); ?>"/><br /><br />
 					</div>
 					
 					<div id="ailacharya" class="">
