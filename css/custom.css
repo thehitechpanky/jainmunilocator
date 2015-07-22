@@ -25,6 +25,10 @@ th, td {
 	display: inline-block;
 	}
 
+.today {
+	display: inline-block;
+	}
+
 .hidden {
 		display: none;
 	}
@@ -32,6 +36,14 @@ th, td {
 .hoverImg a { position:relative; }
 .hoverImg a span { position:absolute; display:none; z-index:99; }
 .hoverImg a:hover span {
+	top: -260px;
+	left: 200px;
+	display:block;
+	}
+
+td.hoverImg a { position:relative; }
+td.hoverImg a span { position:absolute; display:none; z-index:99; }
+td.hoverImg a:hover span {
 	top: -260px;
 	left: 200px;
 	display:block;
