@@ -26,7 +26,10 @@ th, td {
 	}
 
 .today {
-	display: inline-block;
+	text-align: center;
+	font-size: 17px;
+    font-weight: 200;
+	margin: 0;
 	}
 
 .hidden {
@@ -36,14 +39,6 @@ th, td {
 .hoverImg a { position:relative; }
 .hoverImg a span { position:absolute; display:none; z-index:99; }
 .hoverImg a:hover span {
-	top: -260px;
-	left: 200px;
-	display:block;
-	}
-
-td.hoverImg a { position:relative; }
-td.hoverImg a span { position:absolute; display:none; z-index:99; }
-td.hoverImg a:hover span {
 	top: -260px;
 	left: 200px;
 	display:block;
