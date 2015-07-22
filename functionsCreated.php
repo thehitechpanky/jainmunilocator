@@ -117,5 +117,7 @@ else{
 }
 
 $today = date("Y-m-d");
+$currentMonth = date("m");
+$currentDay = date("d");
 
 ?>
