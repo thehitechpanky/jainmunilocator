@@ -28,10 +28,12 @@ function getaddress($lat,$lng){
 	$json = @file_get_contents($url);
 	$data=json_decode($json);
 	$status = $data->status;
-	if($status=="OK")
+	if($status=="OK") {
 	return $data->results[0]->formatted_address;
-	else
+	} else {
 		return "N/A";
+		//alert('Geocoder failed due to: ' + status);
+	}
 }
 
 //Function to find latitude from location address
@@ -113,5 +115,7 @@ else{
 	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY uid, name ASC');
 	$t->execute();
 }
+
+$today = date("Y-m-d");
 
 ?>
