@@ -21,6 +21,11 @@ th, td {
 	width: 50px
 	}
 
+.subPara {
+		position:relative;
+		left: 20px;
+	}
+
 .inlineDiv {
 	display: inline-block;
 	}
