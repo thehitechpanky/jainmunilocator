@@ -6,7 +6,7 @@
 <!-- Google Map Markers -->
 <?php
 $array = array();
-$sql = "SELECT * FROM muni_location, munishri WHERE mid=id AND lat<>0 AND dos='0000-00-00'";
+$sql = "SELECT * FROM muni_location, munishri WHERE mid=id AND lat<>0 AND dos='0000-00-00' ORDER BY upadhi ASC";
 $result=mysqli_query($link,$sql);
 $i=0;
 while($row = mysqli_fetch_assoc($result)){
@@ -24,7 +24,14 @@ while($row = mysqli_fetch_assoc($result)){
 <script type='text/javascript' src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
 <!-- load slider menu here, just after jquery, because it won't work after other scripts -->
 <script type='text/javascript' src='js/sliderMenu.js'></script>
+<script type='text/javascript' src='js/formActions.js'></script>
 <!-- end jquery scripts -->
+
+<!-- start jquery calender scripts -->
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.js"></script>
+<script type="text/javascript" src="js/eventsCalendar.js"></script>-->
+<!-- end jquery calender scripts -->
 
 <!-- start google scripts -->
 <script type='text/javascript' src='https://www.google.com/recaptcha/api.js' async defer></script>
@@ -108,5 +115,3 @@ while($row = mysqli_fetch_assoc($result)){
 
 </body>
 </html>
-
-<?php include('compressHTML'); ?>
