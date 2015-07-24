@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
-<!-- Load Configuration File -->
-<?php include('config.php'); ?>
+<!-- Load Configuration File and created functions -->
+<?php include('functionsCreated.php'); ?>
 
 <head>
 
@@ -18,15 +18,7 @@
 	<meta name="alexaVerifyID" content="GfQ7YYpZjrH6gB9GuRuLa8OXMFA"/>
 
 	<!-- styles -->
-	<link href="./css/minified.css.php" rel="stylesheet">
- 	<!-- <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/default.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/isotope.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/layout.min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/prettyPhoto.min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/supersized.min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/light-style.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/googlemaps.min.css" type="text/css" media="screen" /> -->
+	<link href="./css/minified.css.php" rel="stylesheet" type="text/css" media="screen" />
 	<!-- end styles -->
 	
 	<!-- Load Map -->
