@@ -24,6 +24,14 @@ if($birthplace=="N/A") {
 	$birthlat = getlatitude($birthplace);
 	$birthlng = getlongitude($birthplace);
 }
+$samadhiplace = $_POST['samadhiplace'];
+if($samadhiplace=="N/A") {
+	$samadhilat = 0;
+	$samadhilng = 0;
+} else {
+	$samadhilat = getlatitude($samadhiplace);
+	$samadhilng = getlongitude($samadhiplace);
+}
 
 // fields of chaturmas
 $chaturmasid = $_POST['chaturmasid'];
@@ -137,6 +145,14 @@ if($kshullikaplace=="N/A") {
 // fields of bhramcharya
 $bhramcharyadate = $_POST['bhramcharyadate'];
 $bhramcharyaguru = $_POST['bhramcharyaguru'];
+$bhramcharyaplace = $_POST['bhramcharyaplace'];
+if($bhramcharyaplace=="N/A") {
+	$bhramcharyalat = 0;
+	$bhramcharyalng = 0;
+} else {
+	$bhramcharyalat = getlatitude($bhramcharyaplace);
+	$bhramcharyalng = getlongitude($bhramcharyaplace);
+}
 
 // fields of muni_location
 $location = $_POST['location'];
@@ -156,9 +172,13 @@ $text = file_get_contents($url);
 	if(strpos($text,'true')) {
 		
 		// Edit Database
-		$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, website=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, birthlat=?, birthlng=? WHERE id=?";	
+		$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, website=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=? WHERE id=?";	
 		$q = $db->prepare($sqlmunishri);
-		$q->execute(array($upadhi,$name,$alias,$website,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$birthlat,$birthlng,$id));
+		$q->execute(array($upadhi,$name,$alias,$website,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$id));
+		
+		$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, samadhilat=?, samadhilng=? WHERE historyid='$id'";	
+		$q = $db->prepare($sqlhistory);
+		$q->execute(array($birthlat,$birthlng,$samadhilat,$samadhilng));
 		
 		if($chaturmasid>0) {
 			$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=? WHERE chaturmasid='$chaturmasid'";
@@ -204,9 +224,9 @@ $text = file_get_contents($url);
 		$q = $db->prepare($sqlkshullika);
 		$q->execute(array($kshullikadate,$kshullikaguru,$kshullikalat,$kshullikalng));
 		
-		$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=? WHERE bhramcharyaid='$id'";
+		$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=?, bhramcharyalat=?, bhramcharyalng=? WHERE bhramcharyaid='$id'";
 		$q = $db->prepare($sqlbhramcharya);
-		$q->execute(array($bhramcharyadate,$bhramcharyaguru));
+		$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng));
 		
 		$sqllocation = "UPDATE muni_location SET lat=?, lng=? WHERE mid='$id'";
 		$q = $db->prepare($sqllocation);
