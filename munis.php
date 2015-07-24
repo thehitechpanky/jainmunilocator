@@ -22,7 +22,11 @@
 		<div class="divider clear"></div>
 		
 		<div>
-			<p><?php if(!$showmuni){ ?>
+			<p><?php 
+				$i = 0;
+				$j = 0;
+				if(!$showmuni){
+				?>
 				<form method="post" action="">
 					<div>
 						<label>Search : </label>
@@ -69,18 +73,24 @@
 					
 				if($getinfo['dos']=="0000-00-00") {echo
 				'<tr><td>Current Location</td><td>'.getaddress($getinfo['lat'],$getinfo['lng']).'</td></tr>'
-				;}
-
+					;}
+				
 				echo
+					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>'
+					;
+				
+				if($getinfo['dos']=="0000-00-00") {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Contact Info</th></tr>
 				<tr><td>Phone No.</td><td>'.$getinfo['contact'].'</td></tr>
-				<tr><td>Email</td><td><a href="'.$getinfo['email'].'">'.$getinfo['email'].'</a></td></tr>
-				<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>'
-				;
+				<tr><td>Email</td><td><a href="'.$getinfo['email'].'">'.$getinfo['email'].'</a></td></tr>'
+					;}
 				
 				if($getinfo['dos']!="0000-00-00") {echo
-				'<tr><td>Date Of Samadhi</td><td>'.$getinfo['dos'].'</td></tr>'
+				'<tr><td colspan="2"></td></tr>
+				<tr><th colspan="2" align="left">Samadhi Details</th></tr>
+				<tr><td>Date</td><td>'.$getinfo['dos'].'</td></tr>
+				<tr><td>Place</td><td>'.getaddress($getinfo['samadhilat'],$getinfo['samadhilng']).'</td></tr>'
 				;}
 				
 				echo
@@ -117,7 +127,10 @@
 				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>
 				<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>
 				<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'.getmuni($getinfo['ailacharyaguru']).'</a></td></tr>
+				<tr><td>Guru</td><td class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'
+					.getmuni($getinfo['ailacharyaguru']).
+					'<span><img class="smallLight" src="'.$getinfo["img"].'" alt="'.getmuni($getinfo['ailacharyaguru']).'" /></span>
+					</a></td></tr>
 				<tr><td>Place</td><td>'.getaddress($getinfo['ailacharyalat'],$getinfo['ailacharyalng']).'</td></tr>'
 				;}
 				
@@ -185,6 +198,10 @@
 				
 				if($getinfo['bhramcharyadate']!="0000-00-00" && ($getinfo['bhramcharyaguru']==0)) {echo
 				'<tr><td>Taken By</td><td>Self</td></tr>'
+					;}
+				
+				if($getinfo['bhramcharyadate']!="0000-00-00" or ($getinfo['bhramcharyaguru']>0)) {echo
+				'<tr><td>Place</td><td>'.getaddress($getinfo['bhramcharyalat'],$getinfo['bhramcharyalng']).'</td></tr>'
 					;}
 				
 				if($getinfo['vairagya']!="0000-00-00") {echo
