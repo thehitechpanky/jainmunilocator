@@ -24,7 +24,7 @@
 		<div>
 			<?php
 				$id=$_GET['id'];
-				$result = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya WHERE id= :userid AND upadhi=uid AND id=mid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
+				$result = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya WHERE id= :userid AND upadhi=uid AND id=mid AND id=historyid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
 				$result->bindParam(':userid', $id);
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
@@ -51,13 +51,19 @@
 					<div id="suffix_here" class="inlineDiv"></div>
 					<input type="text" id="alias" name="alias" class="verySmallBox" placeholder="Alias" value="<?php echo $row['alias']; ?>" /><br /><br />
 					
-					<b>Current Location</b><br />
+					<strong>Current Location</strong><br />
 					<input type="text" id="location" name="location" class="longBox" value="<?php echo getaddress($row['lat'],$row['lng']); ?>" /><br /><br />
 					
-					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br />
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
-					Date of Samadhi (if applicable) in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br /><br />
+					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
 					
+					<strong>Contact Info</strong><br />
+					Contact No.<input type="text" id="contact" name="contact" value="<?php echo $row['contact']; ?>" /><br />
+					Email ID<input type="text" id="email" name="email" value="<?php echo $row['email']; ?>" /><br /><br />
+					
+					<strong>Samadhi Details (If applicable)</strong><br />
+					Date in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br />
+					Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox" value="<?php echo getaddress($row['samadhilat'],$row['samadhilng']); ?>"/><br /><br />
 					
 					<strong>Chaturmas</strong><br />
 					<select id="chaturmasyear" name="chaturmasyear" class="smallBox">
