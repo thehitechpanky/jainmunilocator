@@ -52,7 +52,7 @@
 					<input type="text" id="alias" name="alias" class="verySmallBox" placeholder="Alias" value="<?php echo $row['alias']; ?>" /><br /><br />
 					
 					<strong>Current Location</strong><br />
-					<input type="text" id="location" name="location" class="longBox" value="<?php echo getaddress($row['lat'],$row['lng']); ?>" /><br /><br />
+					<input type="text" id="loaction" name="location" class="longBox addressInput" value="<?php echo getaddress($row['lat'],$row['lng']); ?>" /><br /><br />
 					
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
 					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
@@ -63,7 +63,7 @@
 					
 					<strong>Samadhi Details (If applicable)</strong><br />
 					Date in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br />
-					Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox" value="<?php echo getaddress($row['samadhilat'],$row['samadhilng']); ?>"/><br /><br />
+					Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox addressInput" value="<?php echo getaddress($row['samadhilat'],$row['samadhilng']); ?>"/><br /><br />
 					
 					<strong>Chaturmas</strong><br />
 					<select id="chaturmasyear" name="chaturmasyear" class="smallBox">
