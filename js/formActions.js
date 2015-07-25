@@ -1,12 +1,38 @@
-// Insert Delay
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-  clearTimeout (timer);
-  timer = setTimeout(callback, ms);
- };
-})();
+// Show Prefix and Suffix based on Upadhi
+function showPrefix(str) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		varprefix = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		varprefix = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	varprefix.onreadystatechange = function() {
+		if (varprefix.readyState == 4 && varprefix.status == 200) {
+			document.getElementById("prefix_here").innerHTML = varprefix.responseText;
+		}
+	}
+	varprefix.open("GET","./getPrefix.php?q="+str,true);
+	varprefix.send();
+}
+function showSuffix(str) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		varsuffix = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		varsuffix = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	varsuffix.onreadystatechange = function() {
+		if (varsuffix.readyState == 4 && varsuffix.status == 200) {
+			document.getElementById("suffix_here").innerHTML = varsuffix.responseText;
+		}
+	}
+	varsuffix.open("GET","./getSuffix.php?q="+str,true);
+	varsuffix.send();
+}
 
+// Load Function
 $(document).ready(function(){
 	
 	var listOption = null;
@@ -45,8 +71,15 @@ $(document).ready(function(){
 						  
 						});
 
+	// If Chaturmas Year Selection is changed
+	//$('#chaturmasyear').change(function() {
+		//$("#selectedYear").val($(this).val());
+	//});
+
 	// If Upadhi is changed
 	$('#upadhi').change(function() {
+		showPrefix(this.value);
+		showSuffix(this.value);
 		if($('#upadhi').val() == 1) {
 			// Show following fields in form
 			$('#acharya').attr('class', '');
@@ -141,36 +174,17 @@ $(document).ready(function(){
 }); // End Document ready
 
 
-// Show Prefix and Suffix based on Upadhi
-function showPrefix(str) {
-	if (window.XMLHttpRequest) {
-		// code for IE7+, Firefox, Chrome, Opera, Safari
-		varprefix = new XMLHttpRequest();
-	} else {
-		// code for IE6, IE5
-		varprefix = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	varprefix.onreadystatechange = function() {
-		if (varprefix.readyState == 4 && varprefix.status == 200) {
-			document.getElementById("prefix_here").innerHTML = varprefix.responseText;
-		}
-	}
-	varprefix.open("GET","./getPrefix.php?q="+str,true);
-	varprefix.send();
-}
-function showSuffix(str) {
-	if (window.XMLHttpRequest) {
-		// code for IE7+, Firefox, Chrome, Opera, Safari
-		varsuffix = new XMLHttpRequest();
-	} else {
-		// code for IE6, IE5
-		varsuffix = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	varsuffix.onreadystatechange = function() {
-		if (varsuffix.readyState == 4 && varsuffix.status == 200) {
-			document.getElementById("suffix_here").innerHTML = varsuffix.responseText;
-		}
-	}
-	varsuffix.open("GET","./getSuffix.php?q="+str,true);
-	varsuffix.send();
-}
+// Autocomplete for places
+var autoCompleteLocation = new google.maps.places.Autocomplete(document.getElementById('location'), {types:['establishment']});
+var autoCompleteSamadhiPlace = new google.maps.places.Autocomplete(document.getElementById('samadhiplace'), {types:['establishment']});
+var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace'), {types:['establishment']});
+var autoCompleteAPlace = new google.maps.places.Autocomplete(document.getElementById('aplace'), {types:['establishment']});
+var autoCompleteAilacharyaPlace = new google.maps.places.Autocomplete(document.getElementById('ailacharyaplace'), {types:['establishment']});
+var autoCompleteUpadhyayPlace = new google.maps.places.Autocomplete(document.getElementById('upadhyayplace'), {types:['establishment']});
+var autoCompleteMuniPlace = new google.maps.places.Autocomplete(document.getElementById('muniplace'), {types:['establishment']});
+var autoCompleteAilakPlace = new google.maps.places.Autocomplete(document.getElementById('ailakplace'), {types:['establishment']});
+var autoCompleteKPlace = new google.maps.places.Autocomplete(document.getElementById('kplace'), {types:['establishment']});
+var autoCompleteAryikaPlace = new google.maps.places.Autocomplete(document.getElementById('aryikaplace'), {types:['establishment']});
+var autoCompleteKshullikaPlace = new google.maps.places.Autocomplete(document.getElementById('kshullikaplace'), {types:['establishment']});
+var autoCompleteBhramcharyaPlace = new google.maps.places.Autocomplete(document.getElementById('bhramcharyaplace'), {types:['establishment']});
+var autoCompleteBirthPlace = new google.maps.places.Autocomplete(document.getElementById('birthplace'), {types:['establishment']});
