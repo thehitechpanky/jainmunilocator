@@ -24,7 +24,6 @@ while($row = mysqli_fetch_assoc($result)){
 <script type='text/javascript' src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
 <!-- load slider menu here, just after jquery, because it won't work after other scripts -->
 <script type='text/javascript' src='js/sliderMenu.js'></script>
-<script type='text/javascript' src='js/formActions.js'></script>
 <!-- end jquery scripts -->
 
 <!-- start jquery calender scripts -->
@@ -39,7 +38,7 @@ while($row = mysqli_fetch_assoc($result)){
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 <!-- end google scripts -->
 
-<!-- start internal scripts -->
+<!-- start custom scripts -->
 <script type='text/javascript'>
 	var locations =  <?php echo json_encode( $array ) ?>;
 </script>
@@ -54,8 +53,9 @@ while($row = mysqli_fetch_assoc($result)){
 <script type='text/javascript' src='js/jquery.preloader.js'></script>
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
-<script type='text/javascript' src='js/googlemaps.js'></script>
-<!-- end internal scripts -->
+<script type='text/javascript' src='js/googleMaps.js'></script>
+<script type='text/javascript' src='js/formActions.js'></script>
+<!-- end custom scripts -->
 
 <div class="space"></div>
 <div class="sub-footer clearfix">
