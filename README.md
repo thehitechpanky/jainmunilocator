@@ -21,7 +21,15 @@ Jain Muni Locator
 <h3>Scripts</h3>
 <ul>
 <li>All the javascript files are included in a single file - footer.php</li>
+<li>Map and related scripts are there in googleMaps.js</li>
+<li>Form related scripts are there in formActions.js</li>
 </ul>
+
+<h3>PHP</h3>
+<ul>
+<li>All the php functions are there in functionsCreated.php</li>
+</ul>
+<br />
 
 <h2>Contributors:</h2>
 <ul>
