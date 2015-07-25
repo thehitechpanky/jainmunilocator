@@ -10,13 +10,15 @@ Jain Muni Locator
 <p>Thus, advancing will establish oneself in moral values and will bring spiritual revolution.</p>
 <p> </p>
 
-<p><b><u>Contributors:</u></b>
-<ul><li>Developer - Dhruv Jain</li>
+<h2>Contributors:</h2>
+<ul>
+<li>Developer - Dhruv Jain</li>
 <li>Concept by - Pankaj Jain</li>
 <li>Code Imporved by - Mohd. Harris</li>
-</ul></p>
+</ul>
 
-<p><strong><u>Guidelines for contributing</u></strong></p>
+<h2>Guidelines for contributing</h2>
+
 <p><strong>CSS Styling</strong>
 <ul><li>All the styling is done in css files only.</li>
 <li>All the CSS files are included in a single file - css/minified.css.php</li>
