@@ -15,3 +15,7 @@ Jain Muni Locator
 <li>Concept by - Pankaj Jain</li>
 <li>Code Imporved by - Mohd. Harris</li>
 </ul></p>
+
+<p><strong><u>Instructions</u></strong></p>
+<p>All the styling is done in css files included in css/____.php</p>
+<p>All the javascript files are included in footer.php</p>
