@@ -16,6 +16,11 @@ Jain Muni Locator
 <li>Code Imporved by - Mohd. Harris</li>
 </ul></p>
 
-<p><strong><u>Instructions</u></strong></p>
-<p>All the styling is done in css files included in css/____.php</p>
-<p>All the javascript files are included in footer.php</p>
+<p><strong><u>Guidelines for contributing</u></strong></p>
+<p><strong>CSS Styling</strong>
+<ul><li>All the styling is done in css files only.</li>
+<li>All the CSS files are included in a single file - css/minified.css.php</li>
+</ul></p>
+<p><strong>Scripts</strong>
+<ul><li>All the javascript files are included in a single file - footer.php</li>
+</ul></p>
