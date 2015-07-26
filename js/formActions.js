@@ -35,6 +35,32 @@ function showSuffix(str) {
 // Load Function
 $(document).ready(function(){
 	
+	// Load Form based on upadhi selection
+	showPrefix($('#upadhi').val());
+	showSuffix($('#upadhi').val());
+	if($('#upadhi').val() == 1) {$('#acharya').attr('class', '');} else {$('#acharya').attr('class', 'hidden');}
+	if($('#upadhi').val() < 3) {$('#ailacharya').attr('class', '');} else {$('#ailacharya').attr('class', 'hidden');}
+	if($('#upadhi').val() < 4) {$('#upadhyay').attr('class', '');} else {$('#upadhyay').attr('class', 'hidden');}
+	if($('#upadhi').val() < 5) {$('#muni').attr('class', '');} else {$('#muni').attr('class', 'hidden');}
+	if($('#upadhi').val() < 6) {$('#ailak').attr('class', '');} else {$('#ailak').attr('class', 'hidden');}
+	if($('#upadhi').val() < 7) {$('#kshullak').attr('class', '');} else {$('#kshullak').attr('class', 'hidden');}
+	if($('#upadhi').val() == 7) {$('#aryika').attr('class', '');} else {$('#aryika').attr('class', 'hidden');}	
+	if($('#upadhi').val() > 6) {$('#kshullika').attr('class', '');} else {$('#kshullika').attr('class', 'hidden');}
+	
+	// If Upadhi is changed
+	$('#upadhi').change(function() {
+		showPrefix(this.value);
+		showSuffix(this.value);
+		if($('#upadhi').val() == 1) {$('#acharya').attr('class', '');} else {$('#acharya').attr('class', 'hidden');}
+		if($('#upadhi').val() < 3) {$('#ailacharya').attr('class', '');} else {$('#ailacharya').attr('class', 'hidden');}
+		if($('#upadhi').val() < 4) {$('#upadhyay').attr('class', '');} else {$('#upadhyay').attr('class', 'hidden');}
+		if($('#upadhi').val() < 5) {$('#muni').attr('class', '');} else {$('#muni').attr('class', 'hidden');}
+		if($('#upadhi').val() < 6) {$('#ailak').attr('class', '');} else {$('#ailak').attr('class', 'hidden');}
+		if($('#upadhi').val() < 7) {$('#kshullak').attr('class', '');} else {$('#kshullak').attr('class', 'hidden');}
+		if($('#upadhi').val() == 7) {$('#aryika').attr('class', '');} else {$('#aryika').attr('class', 'hidden');}	
+		if($('#upadhi').val() > 6) {$('#kshullika').attr('class', '');} else {$('#kshullika').attr('class', 'hidden');}
+	});
+	
 	var listOption = null;
 	
 	// If guru's guru is changed
@@ -70,106 +96,6 @@ $(document).ready(function(){
 					  		});
 						  
 						});
-
-	// If Chaturmas Year Selection is changed
-	//$('#chaturmasyear').change(function() {
-		//$("#selectedYear").val($(this).val());
-	//});
-
-	// If Upadhi is changed
-	$('#upadhi').change(function() {
-		showPrefix(this.value);
-		showSuffix(this.value);
-		if($('#upadhi').val() == 1) {
-			// Show following fields in form
-			$('#acharya').attr('class', '');
-			$('#ailacharya').attr('class', '');
-			$('#upadhyay').attr('class', '');
-			$('#muni').attr('class', '');
-			$('#ailak').attr('class', '');
-			$('#kshullak').attr('class', '');
-			// Hide following fields from form
-			$('#aryika').attr('class', 'hidden');
-			$('#kshullika').attr('class', 'hidden');
-		} else if($('#upadhi').val() == 2) {
-			// Show following fields in form
-			$('#ailacharya').attr('class', '');
-			$('#upadhyay').attr('class', '');
-			$('#muni').attr('class', '');
-			$('#ailak').attr('class', '');
-			$('#kshullak').attr('class', '');
-			// Hide following fields from form
-			$('#acharya').attr('class', 'hidden');
-			$('#aryika').attr('class', 'hidden');
-			$('#kshullika').attr('class', 'hidden');
-		} else if($('#upadhi').val() == 3) {
-			// Show following fields in form
-			$('#upadhyay').attr('class', '');
-			$('#muni').attr('class', '');
-			$('#ailak').attr('class', '');
-			$('#kshullak').attr('class', '');
-			// Hide following fields from form
-			$('#acharya').attr('class', 'hidden');
-			$('#ailacharya').attr('class', 'hidden');
-			$('#aryika').attr('class', 'hidden');
-			$('#kshullika').attr('class', 'hidden');
-		} else if($('#upadhi').val() == 4) {
-			// Show following fields in form
-			$('#muni').attr('class', '');
-			$('#ailak').attr('class', '');
-			$('#kshullak').attr('class', '');
-			// Hide following fields from form
-			$('#acharya').attr('class', 'hidden');
-			$('#ailacharya').attr('class', 'hidden');
-			$('#upadhyay').attr('class', 'hidden');
-			$('#aryika').attr('class', 'hidden');
-			$('#kshullika').attr('class', 'hidden');
-		} else if($('#upadhi').val() == 5) {
-			// Show following fields in form
-			$('#ailak').attr('class', '');
-			$('#kshullak').attr('class', '');
-			// Hide following fields from form
-			$('#acharya').attr('class', 'hidden');
-			$('#ailacharya').attr('class', 'hidden');
-			$('#upadhyay').attr('class', 'hidden');
-			$('#muni').attr('class', 'hidden');
-			$('#aryika').attr('class', 'hidden');
-			$('#kshullika').attr('class', 'hidden');
-		} else if($('#upadhi').val() == 6) {
-			// Show following fields in form
-			$('#kshullak').attr('class', '');
-			// Hide following fields from form
-			$('#acharya').attr('class', 'hidden');
-			$('#ailacharya').attr('class', 'hidden');
-			$('#upadhyay').attr('class', 'hidden');
-			$('#muni').attr('class', 'hidden');
-			$('#ailak').attr('class', 'hidden');
-			$('#aryika').attr('class', 'hidden');
-			$('#kshullika').attr('class', 'hidden');
-		} else if($('#upadhi').val() == 7) {
-			// Show following fields in form
-			$('#aryika').attr('class', '');
-			$('#kshullika').attr('class', '');
-			// Hide following fields in form
-			$('#acharya').attr('class', 'hidden');
-			$('#ailacharya').attr('class', 'hidden');
-			$('#upadhyay').attr('class', 'hidden');
-			$('#muni').attr('class', 'hidden');
-			$('#ailak').attr('class', 'hidden');
-			$('#kshullak').attr('class', 'hidden');
-		} else {
-			// Show following fields in form
-			$('#kshullika').attr('class', '');
-			// Hide following fields in form
-			$('#acharya').attr('class', 'hidden');
-			$('#ailacharya').attr('class', 'hidden');
-			$('#upadhyay').attr('class', 'hidden');
-			$('#muni').attr('class', 'hidden');
-			$('#ailak').attr('class', 'hidden');
-			$('#kshullak').attr('class', 'hidden');
-			$('#aryika').attr('class', 'hidden');
-		}
-	});
 
 }); // End Document ready
 
