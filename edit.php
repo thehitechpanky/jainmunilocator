@@ -178,61 +178,61 @@ $text = file_get_contents($url);
 		$q = $db->prepare($sqlmunishri);
 		$q->execute(array($upadhi,$name,$alias,$website,$contact,$email,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$id));
 		
-		$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, samadhilat=?, samadhilng=? WHERE historyid='$id'";	
+		$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhilat=?, samadhilng=?, samadhiplace=? WHERE historyid='$id'";	
 		$q = $db->prepare($sqlhistory);
-		$q->execute(array($birthlat,$birthlng,$samadhilat,$samadhilng));
+		$q->execute(array($birthlat,$birthlng,$birthplace,$samadhilat,$samadhilng,$samadhiplace));
 		
 		if($chaturmasid>0) {
-			$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=? WHERE chaturmasid='$chaturmasid'";
+			$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid='$chaturmasid'";
 			$q = $db->prepare($sqlchaturmas);
-			$q->execute(array($chaturmaslat,$chaturmaslng));
+			$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace));
 		} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
-			$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng) VALUES (?,?,?,?)";
+			$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)";
 			$q = $db->prepare($sqlchaturmas);
-			$q->execute(array($id,2015,$chaturmaslat,$chaturmaslng));
+			$q->execute(array($id,2015,$chaturmaslat,$chaturmaslng,$chaturmasplace));
 		} else {
 			//Nothing to be done here if user hasn't specified a chaturmas place
 		}
 		
-		$sqlacharya = "UPDATE acharya SET adate=?, aguru=?, alat=?, alng=? WHERE acharyaid='$id'";
+		$sqlacharya = "UPDATE acharya SET adate=?, aguru=?, alat=?, alng=?, aplace=? WHERE acharyaid='$id'";
 		$q = $db->prepare($sqlacharya);
-		$q->execute(array($adate,$aguru,$alat,$alng));
+		$q->execute(array($adate,$aguru,$alat,$alng,$aplace));
 		
-		$sqlailacharya = "UPDATE ailacharya SET ailacharyaname=?, ailacharyadate=?, ailacharyaguru=?, ailacharyalat=?, ailacharyalng=? WHERE ailacharyaid='$id'";
+		$sqlailacharya = "UPDATE ailacharya SET ailacharyaname=?, ailacharyadate=?, ailacharyaguru=?, ailacharyalat=?, ailacharyalng=?, ailacharyaplace=? WHERE ailacharyaid='$id'";
 		$q = $db->prepare($sqlailacharya);
-		$q->execute(array($ailacharyaname,$ailacharyadate,$ailacharyaguru,$ailacharyalat,$ailacharyalng));
+		$q->execute(array($ailacharyaname,$ailacharyadate,$ailacharyaguru,$ailacharyalat,$ailacharyalng,$ailacharyaplace));
 		
-		$sqlupadhyay = "UPDATE upadhyay SET upadhyayname=?, upadhyaydate=?, upadhyayguru=?, upadhyaylat=?, upadhyaylng=? WHERE upadhyayid='$id'";
+		$sqlupadhyay = "UPDATE upadhyay SET upadhyayname=?, upadhyaydate=?, upadhyayguru=?, upadhyaylat=?, upadhyaylng=?, upadhyayplace=? WHERE upadhyayid='$id'";
 		$q = $db->prepare($sqlupadhyay);
-		$q->execute(array($upadhyayname,$upadhyaydate,$upadhyayguru,$upadhyaylat,$upadhyaylng));
+		$q->execute(array($upadhyayname,$upadhyaydate,$upadhyayguru,$upadhyaylat,$upadhyaylng,$upadhyayplace));
 		
-		$sqlmuni = "UPDATE muni SET muniname=?, munidate=?, muniguru=?, munilat=?, munilng=? WHERE muniid='$id'";
+		$sqlmuni = "UPDATE muni SET muniname=?, munidate=?, muniguru=?, munilat=?, munilng=?, muniplace=? WHERE muniid='$id'";
 		$q = $db->prepare($sqlmuni);
-		$q->execute(array($muniname,$munidate,$muniguru,$munilat,$munilng));
+		$q->execute(array($muniname,$munidate,$muniguru,$munilat,$munilng,$muniplace));
 		
-		$sqlailak = "UPDATE ailak SET ailakname=?, ailakdate=?, ailakguru=?, ailaklat=?, ailaklng=? WHERE ailakid='$id'";
+		$sqlailak = "UPDATE ailak SET ailakname=?, ailakdate=?, ailakguru=?, ailaklat=?, ailaklng=?, ailakplace=? WHERE ailakid='$id'";
 		$q = $db->prepare($sqlailak);
-		$q->execute(array($ailakname,$ailakdate,$ailakguru,$ailaklat,$ailaklng));
+		$q->execute(array($ailakname,$ailakdate,$ailakguru,$ailaklat,$ailaklng,$ailakplace));
 		
-		$sqlkshullak = "UPDATE kshullak SET kname=?, kdate=?, kguru=?, klat=?, klng=? WHERE kid='$id'";
+		$sqlkshullak = "UPDATE kshullak SET kname=?, kdate=?, kguru=?, klat=?, klng=?, kplace=? WHERE kid='$id'";
 		$q = $db->prepare($sqlkshullak);
-		$q->execute(array($kname,$kdate,$kguru,$klat,$klng));
+		$q->execute(array($kname,$kdate,$kguru,$klat,$klng,$kplace));
 		
-		$sqlaryika = "UPDATE aryika SET aryikadate=?, aryikaguru=?, aryikalat=?, aryikalng=? WHERE aryikaid='$id'";
+		$sqlaryika = "UPDATE aryika SET aryikadate=?, aryikaguru=?, aryikalat=?, aryikalng=?, aryikaplace=? WHERE aryikaid='$id'";
 		$q = $db->prepare($sqlaryika);
-		$q->execute(array($aryikadate,$aryikaguru,$aryikalat,$aryikalng));
+		$q->execute(array($aryikadate,$aryikaguru,$aryikalat,$aryikalng,$aryikaplace));
 		
-		$sqlkshullika = "UPDATE kshullika SET kshullikadate=?, kshullikaguru=?, kshullikalat=?, kshullikalng=? WHERE kshullikaid='$id'";
+		$sqlkshullika = "UPDATE kshullika SET kshullikadate=?, kshullikaguru=?, kshullikalat=?, kshullikalng=?, kshullikaplace=? WHERE kshullikaid='$id'";
 		$q = $db->prepare($sqlkshullika);
-		$q->execute(array($kshullikadate,$kshullikaguru,$kshullikalat,$kshullikalng));
+		$q->execute(array($kshullikadate,$kshullikaguru,$kshullikalat,$kshullikalng,$kshullikaplace));
 		
-		$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=?, bhramcharyalat=?, bhramcharyalng=? WHERE bhramcharyaid='$id'";
+		$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=?, bhramcharyalat=?, bhramcharyalng=?, bhramcharyaplace=? WHERE bhramcharyaid='$id'";
 		$q = $db->prepare($sqlbhramcharya);
-		$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng));
+		$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng,$bhramcharyaplace));
 		
-		$sqllocation = "UPDATE muni_location SET lat=?, lng=? WHERE mid='$id'";
+		$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=? WHERE mid='$id'";
 		$q = $db->prepare($sqllocation);
-		$q->execute(array($lat,$lng));
+		$q->execute(array($lat,$lng,$location));
 		
 	} else {
 	
