@@ -8,9 +8,6 @@ $id = $_POST['ids'];
 $upadhi = $_POST['upadhi'];
 $name = $_POST['name'];
 $alias = $_POST['alias'];
-$website = $_POST['website'];
-$email = $_POST['email'];
-$contact = $_POST['contact'];
 $img = $_POST['img'];
 $dos = $_POST['dos'];
 $vairagya = $_POST['vairagya'];
@@ -18,6 +15,16 @@ $birthname = $_POST['birthname'];
 $dob = $_POST['dob'];
 $father = $_POST['father'];
 $mother = $_POST['mother'];
+
+// fields of contact
+$website = $_POST['website'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$facebook = $_POST['facebook'];
+$gplus = $_POST['gplus'];
+$youtube = $_POST['youtube'];
+
+// fields of history
 $birthplace = $_POST['birthplace'];
 if($birthplace=="N/A") {
 	$birthlat = 0;
@@ -174,9 +181,13 @@ $text = file_get_contents($url);
 	if(strpos($text,'true')) {
 		
 		// Edit Database
-		$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, website=?, contact=?, email=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=? WHERE id=?";	
+		$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=? WHERE id=?";	
 		$q = $db->prepare($sqlmunishri);
-		$q->execute(array($upadhi,$name,$alias,$website,$contact,$email,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$id));
+		$q->execute(array($upadhi,$name,$alias,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$id));
+		
+		$sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=? WHERE contactid='$id'";	
+		$q = $db->prepare($sqlcontact);
+		$q->execute(array($website,$phone,$email,$facebook,$gplus,$youtube));
 		
 		$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhilat=?, samadhilng=?, samadhiplace=? WHERE historyid='$id'";	
 		$q = $db->prepare($sqlhistory);
