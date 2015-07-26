@@ -24,7 +24,8 @@
 		<div>
 			<?php
 				$id=$_GET['id'];
-				$result = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya WHERE id= :userid AND upadhi=uid AND id=mid AND id=historyid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
+				$result = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, contact, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya
+				WHERE id= :userid AND upadhi=uid AND id=mid AND id=historyid AND id=contactid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
 				$result->bindParam(':userid', $id);
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
@@ -58,8 +59,11 @@
 					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
 					
 					<strong>Contact Info</strong><br />
-					Contact No.<input type="text" id="contact" name="contact" value="<?php echo $row['contact']; ?>" /><br />
-					Email ID<input type="text" id="email" name="email" value="<?php echo $row['email']; ?>" /><br /><br />
+					Contact No.<input type="text" id="phone" name="phone" value="<?php echo $row['phone']; ?>" /><br />
+					Email ID<input type="text" id="email" name="email" value="<?php echo $row['email']; ?>" /><br />
+					Facebook<input type="text" id="facebook" name="facebook" value="<?php echo $row['facebook']; ?>" /><br />
+					GPlus<input type="text" id="gplus" name="gplus" value="<?php echo $row['gplus']; ?>" /><br />
+					Youtube<input type="text" id="youtube" name="youtube" value="<?php echo $row['youtube']; ?>" /><br /><br />
 					
 					<strong>Samadhi Details (If applicable)</strong><br />
 					Date in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br />
