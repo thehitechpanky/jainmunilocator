@@ -60,7 +60,7 @@
 							<option value="1">Acharya</option>
 							<option value="2">Ailacharya</option>
 							<option value="3">Upadhyay</option>
-							<option value="4">Muni</option>
+							<option value="4" selected>Muni</option>
 							<option value="5">Ailak</option>
 							<option value="6">Kshullak</option>
 							<option value="7">Aryika</option>
