@@ -71,28 +71,29 @@
 				'<tr><td>Current Location</td><td>'.$getinfo['location'].'</td></tr>'
 					;}
 				
-				echo
-					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">';
-					if ($getinfo['website']!="#") {echo $getinfo['website'];} else {echo "N/A";} echo '</a></td></tr>
-					<tr><td>Social</td><td>
-					<a title="Facebook" target="_blank" href="'.$getinfo['facebook'].'">
-					<img width="25" height="25" title="Visit our Facebook Page" alt="Facebook | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/facebook.png" />
-					</a>
-					<a title="Google Plus" target="_blank" href="'.$getinfo['gplus'].'">
-					<img width="25" height="25" title="Visit our Google Plus Page" alt="Google Plus | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/googleplus.png" />
-					</a>
-					<a title="Youtube" target="_blank" href="'.$getinfo['youtube'].'">
-					<img width="25" height="25" title="Visit our Youtube Page" alt="Youtube | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/youtube.png" />
-					</a>
-					</td></tr>'
-					;
+				echo '<tr><td>Website</td><td><a href="'.$getinfo['website'].'">';
+					if ($getinfo['website']!="#") {echo $getinfo['website'];} else {echo "N/A";}
+				echo '</a></td></tr>';
 				
 				if($getinfo['dos']=="0000-00-00") {echo
-				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Contact Info</th></tr>
-				<tr><td>Phone No.</td><td>'.$getinfo['phone'].'</td></tr>
-				<tr><td>Email</td><td><a href="'.$getinfo['email'].'">'.$getinfo['email'].'</a></td></tr>'
-					;}
+				'<tr><td>Contact</td><td>
+					<a title="Phone" target="" href="#">
+						<img width="25" height="25" title="'.$getinfo['phone'].'" alt="Phone | Jain Muni Locator" src="./images/icons/phone30x30.png" />
+					</a>
+					<a title="Email" target="" href="#">
+						<img width="25" height="25" title="'.$getinfo['email'].'" alt="Email | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/email-blue.png" />
+					</a>
+					<a title="Facebook" target="_blank" href="'.$getinfo['facebook'].'">
+						<img width="25" height="25" title="Facebook Page" alt="Facebook | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/facebook.png" />
+					</a>
+					<a title="Google Plus" target="_blank" href="'.$getinfo['gplus'].'">
+						<img width="25" height="25" title="Google Plus Page" alt="Google Plus | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/googleplus.png" />
+					</a>
+					<a title="Youtube" target="_blank" href="'.$getinfo['youtube'].'">
+						<img width="25" height="25" title="Youtube Page" alt="Youtube | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/youtube.png" />
+					</a>
+				</td></tr>'
+				;}
 				
 				if($getinfo['dos']!="0000-00-00") {echo
 				'<tr><td colspan="2"></td></tr>
