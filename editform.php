@@ -52,7 +52,7 @@
 					<input type="text" id="alias" name="alias" class="verySmallBox" placeholder="Alias" value="<?php echo $row['alias']; ?>" /><br /><br />
 					
 					<strong>Current Location</strong><br />
-					<input type="text" id="location" name="location" class="longBox" value="<?php echo getaddress($row['lat'],$row['lng']); ?>" /><br /><br />
+					<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>" /><br /><br />
 					
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
 					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
@@ -63,7 +63,7 @@
 					
 					<strong>Samadhi Details (If applicable)</strong><br />
 					Date in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br />
-					Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox" value="<?php echo getaddress($row['samadhilat'],$row['samadhilng']); ?>"/><br /><br />
+					Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox" value="<?php echo $row['samadhiplace']; ?>"/><br /><br />
 					
 					<strong>Chaturmas</strong><br />
 					<select id="chaturmasyear" name="chaturmasyear" class="smallBox">
@@ -76,7 +76,7 @@
 					$q->execute();
 					$row2 = $q->fetch(PDO::FETCH_ASSOC);
 					?>
-					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo getaddress($row2['chaturmaslat'],$row2['chaturmaslng']); ?>" /><br /><br />
+					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br /><br />
 					<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
 					
 					<div id="acharya" class="">
@@ -86,7 +86,7 @@
 						<datalist id="aguruList">
 						</datalist>
 						<input type="hidden" name="aguru" id="aguruHidden" value="" /><br />
-					Place<input type="text" id="aplace" name="aplace" class="longBox" value="<?php echo getaddress($row['alat'],$row['alng']); ?>"/><br /><br />
+					Place<input type="text" id="aplace" name="aplace" class="longBox" value="<?php echo $row['aplace']; ?>"/><br /><br />
 					</div>
 					
 					<div id="ailacharya" class="">
@@ -94,7 +94,7 @@
 						Name<input type="text" id="ailacharyaname" name="ailacharyaname" value="<?php echo $row['ailacharyaname']; ?>" /><br />
 						Date in YYYY-MM-DD<input type="text" id="ailacharyadate" name="ailacharyadate" class="smallBox" value="<?php echo $row['ailacharyadate']; ?>" /><br />
 						Guru ID<input type="text" id="ailacharyaguru" name="ailacharyaguru" value="<?php echo $row['ailacharyaguru']; ?>" /><br />
-						Place<input type="text" id="ailacharyaplace" name="ailacharyaplace" class="longBox" value="<?php echo getaddress($row['ailacharyalat'],$row['ailacharyalng']); ?>"/><br /><br />
+						Place<input type="text" id="ailacharyaplace" name="ailacharyaplace" class="longBox" value="<?php echo $row['ailacharyaplace']; ?>"/><br /><br />
 					</div>
 					
 					<div id="upadhyay" class="">
@@ -102,7 +102,7 @@
 						Name<input type="text" id="upadhyayname" name="upadhyayname" value="<?php echo $row['upadhyayname']; ?>" /><br />
 						Date in YYYY-MM-DD<input type="text" id="upadhyaydate" name="upadhyaydate" class="smallBox" value="<?php echo $row['upadhyaydate']; ?>" /><br />
 						Guru ID<input type="text" id="upadhyayguru" name="upadhyayguru" value="<?php echo $row['upadhyayguru']; ?>" /><br />
-						Place<input type="text" id="upadhyayplace" name="upadhyayplace" class="longBox" value="<?php echo getaddress($row['upadhyaylat'],$row['upadhyaylng']); ?>"/><br /><br />
+						Place<input type="text" id="upadhyayplace" name="upadhyayplace" class="longBox" value="<?php echo $row['upadhyayplace']; ?>"/><br /><br />
 					</div>
 					
 					<div id="muni" class="">
@@ -110,7 +110,7 @@
 						Name<input type="text" id="muniname" name="muniname" value="<?php echo $row['muniname']; ?>" /><br />
 						Date in YYYY-MM-DD<input type="text" id="munidate" name="munidate" class="smallBox" value="<?php echo $row['munidate']; ?>" /><br />
 						Guru ID<input type="text" id="muniguru" name="muniguru" value="<?php echo $row['muniguru']; ?>" /><br />
-						Place<input type="text" id="muniplace" name="muniplace" class="longBox" value="<?php echo getaddress($row['munilat'],$row['munilng']); ?>"/><br /><br />
+						Place<input type="text" id="muniplace" name="muniplace" class="longBox" value="<?php echo $row['muniplace']; ?>"/><br /><br />
 					</div><br />
 					
 					<div id="ailak" class="">
@@ -118,7 +118,7 @@
 						Name<input type="text" id="ailakname" name="ailakname" value="<?php echo $row['ailakname']; ?>" /><br />
 						Date in YYYY-MM-DD<input type="text" id="ailakdate" name="ailakdate" class="smallBox" value="<?php echo $row['ailakdate']; ?>" /><br />
 						Guru ID<input type="text" id="ailakguru" name="ailakguru" value="<?php echo $row['ailakguru']; ?>" /><br />
-						Place<input type="text" id="ailakplace" name="ailakplace" class="longBox" value="<?php echo getaddress($row['ailaklat'],$row['ailaklng']); ?>"/><br /><br />
+						Place<input type="text" id="ailakplace" name="ailakplace" class="longBox" value="<?php echo $row['ailakplace']; ?>"/><br /><br />
 					</div>
 					
 					<div id="kshullak" class="">
@@ -126,27 +126,27 @@
 						Name<input type="text" id="kname" name="kname" value="<?php echo $row['kname']; ?>" /><br />
 						Date in YYYY-MM-DD<input type="text" id="kdate" name="kdate" class="smallBox" value="<?php echo $row['kdate']; ?>" /><br />
 						Guru ID<input type="text" name="kguru" id="kguru" value="<?php echo $row['kguru']; ?>" /><br />
-						Place<input type="text" id="kplace" name="kplace" class="longBox" value="<?php echo getaddress($row['klat'],$row['klng']); ?>" /><br /><br />
+						Place<input type="text" id="kplace" name="kplace" class="longBox" value="<?php echo $row['kplace']; ?>" /><br /><br />
 					</div>
 					
 					<div id="aryika" class="">
 						<b>Aryika Deeksha Details</b><br />
 						Date in YYYY-MM-DD<input type="text" id="aryikadate" name="aryikadate" class="smallBox" value="<?php echo $row['aryikadate']; ?>" /><br />
 						Guru ID<input type="text" id="aryikaguru" name="aryikaguru" value="<?php echo $row['aryikaguru']; ?>" /><br />
-						Place<input type="text" id="aryikaplace" name="aryikaplace" class="longBox" value="<?php echo getaddress($row['aryikalat'],$row['aryikalng']); ?>" /><br /><br />
+						Place<input type="text" id="aryikaplace" name="aryikaplace" class="longBox" value="<?php echo $row['aryikaplace']; ?>" /><br /><br />
 					</div>
 					
 					<div id="kshullika" class="">
 						<b>Kshullika Deeksha Details</b><br />
 						Date in YYYY-MM-DD<input type="text" id="kshullikadate" name="kshullikadate" class="smallBox" value="<?php echo $row['kshullikadate']; ?>" /><br />
 						Guru ID<input type="text" id="kshullikaguru" name="kshullikaguru" value="<?php echo $row['kshullikaguru']; ?>" /><br />
-						Place<input type="text" id="kshullikaplace" name="kshullikaplace" class="longBox" value="<?php echo getaddress($row['kshullikalat'],$row['kshullikalng']); ?>" /><br /><br />
+						Place<input type="text" id="kshullikaplace" name="kshullikaplace" class="longBox" value="<?php echo $row['kshullikaplace']; ?>" /><br /><br />
 					</div>
 					
 					<b>Bhramcharya Vrat Details</b><br />
 					Date in YYYY-MM-DD<input type="text" id="bhramcharyadate" name="bhramcharyadate" class="smallBox" value="<?php echo $row['bhramcharyadate']; ?>" /><br />
 					Guru ID<input type="text" id="bhramcharyaguru" name="bhramcharyaguru" value="<?php echo $row['bhramcharyaguru']; ?>" /><br />
-					Place<input type="text" id="bhramcharyaplace" name="bhramcharyaplace" class="longBox" value="<?php echo getaddress($row['bhramcharyalat'],$row['bhramcharyalng']); ?>" /><br /><br />
+					Place<input type="text" id="bhramcharyaplace" name="bhramcharyaplace" class="longBox" value="<?php echo $row['bhramcharyaplace']; ?>" /><br /><br />
 					
 					<b>Vairagya Details</b><br />
 					Date in YYYY-MM-DD<input type="text" id="vairagya" name="vairagya" class="smallBox" value="<?php echo $row['vairagya']; ?>" /><br /><br />
@@ -156,7 +156,7 @@
 					Date of Birth<input type="text" id="dob" name="dob" class="smallBox" value="<?php echo $row['dob']; ?>" /><br />
 					Father<input type="text" id="father" name="father" value="<?php echo $row['father']; ?>" /><br />
 					Mother<input type="text" id="mother" name="mother" value="<?php echo $row['mother']; ?>" /><br />
-					Birthplace<input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo getaddress($row['birthlat'],$row['birthlng']); ?>" /><br /><br />
+					Birthplace<input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br /><br />
 					
 					<div class="g-recaptcha" data-sitekey="6LcXYP8SAAAAAM8199rOJV8yoCWS4mI5FHb5Q70Q"></div><br />
 					
