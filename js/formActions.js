@@ -175,16 +175,16 @@ $(document).ready(function(){
 
 
 // Autocomplete for places
-var autoCompleteLocation = new google.maps.places.Autocomplete(document.getElementById('location'), {types:['establishment']});
-var autoCompleteSamadhiPlace = new google.maps.places.Autocomplete(document.getElementById('samadhiplace'), {types:['establishment']});
-var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace'), {types:['establishment']});
-var autoCompleteAPlace = new google.maps.places.Autocomplete(document.getElementById('aplace'), {types:['establishment']});
-var autoCompleteAilacharyaPlace = new google.maps.places.Autocomplete(document.getElementById('ailacharyaplace'), {types:['establishment']});
-var autoCompleteUpadhyayPlace = new google.maps.places.Autocomplete(document.getElementById('upadhyayplace'), {types:['establishment']});
-var autoCompleteMuniPlace = new google.maps.places.Autocomplete(document.getElementById('muniplace'), {types:['establishment']});
-var autoCompleteAilakPlace = new google.maps.places.Autocomplete(document.getElementById('ailakplace'), {types:['establishment']});
-var autoCompleteKPlace = new google.maps.places.Autocomplete(document.getElementById('kplace'), {types:['establishment']});
-var autoCompleteAryikaPlace = new google.maps.places.Autocomplete(document.getElementById('aryikaplace'), {types:['establishment']});
-var autoCompleteKshullikaPlace = new google.maps.places.Autocomplete(document.getElementById('kshullikaplace'), {types:['establishment']});
-var autoCompleteBhramcharyaPlace = new google.maps.places.Autocomplete(document.getElementById('bhramcharyaplace'), {types:['establishment']});
-var autoCompleteBirthPlace = new google.maps.places.Autocomplete(document.getElementById('birthplace'), {types:['establishment']});
+var autoCompleteLocation = new google.maps.places.Autocomplete(document.getElementById('location'));
+var autoCompleteSamadhiPlace = new google.maps.places.Autocomplete(document.getElementById('samadhiplace'));
+var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace'));
+var autoCompleteAPlace = new google.maps.places.Autocomplete(document.getElementById('aplace'));
+var autoCompleteAilacharyaPlace = new google.maps.places.Autocomplete(document.getElementById('ailacharyaplace'));
+var autoCompleteUpadhyayPlace = new google.maps.places.Autocomplete(document.getElementById('upadhyayplace'));
+var autoCompleteMuniPlace = new google.maps.places.Autocomplete(document.getElementById('muniplace'));
+var autoCompleteAilakPlace = new google.maps.places.Autocomplete(document.getElementById('ailakplace'));
+var autoCompleteKPlace = new google.maps.places.Autocomplete(document.getElementById('kplace'));
+var autoCompleteAryikaPlace = new google.maps.places.Autocomplete(document.getElementById('aryikaplace'));
+var autoCompleteKshullikaPlace = new google.maps.places.Autocomplete(document.getElementById('kshullikaplace'));
+var autoCompleteBhramcharyaPlace = new google.maps.places.Autocomplete(document.getElementById('bhramcharyaplace'));
+var autoCompleteBirthPlace = new google.maps.places.Autocomplete(document.getElementById('birthplace'));
