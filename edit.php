@@ -37,7 +37,7 @@ if($samadhiplace=="N/A") {
 
 // fields of chaturmas
 $chaturmasid = $_POST['chaturmasid'];
-$chaturmasyear = $_POST['chaturmasyear'];
+$latestChaturmasYear = $_POST['latestChaturmasYear'];
 $chaturmasplace = $_POST['chaturmasplace'];
 $chaturmaslat = getlatitude($chaturmasplace);
 $chaturmaslng = getlongitude($chaturmasplace);
@@ -189,7 +189,7 @@ $text = file_get_contents($url);
 		} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
 			$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)";
 			$q = $db->prepare($sqlchaturmas);
-			$q->execute(array($id,2015,$chaturmaslat,$chaturmaslng,$chaturmasplace));
+			$q->execute(array($id,$latestChaturmasYear,$chaturmaslat,$chaturmaslng,$chaturmasplace));
 		} else {
 			//Nothing to be done here if user hasn't specified a chaturmas place
 		}
