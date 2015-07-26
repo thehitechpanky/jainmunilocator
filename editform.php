@@ -31,7 +31,7 @@
 				for($i=0; $row = $result->fetch(); $i++){
 			?>
 			<div style="float:left;width:60%">				
-				<form action="edit.php" method="POST">
+				<form id="editForm" action="edit.php" method="POST">
 					
 					<input type="hidden" name="ids" value="<?php echo $id; ?>" />
 					
