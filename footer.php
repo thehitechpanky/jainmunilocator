@@ -11,7 +11,7 @@ $result=mysqli_query($link,$sql);
 $i=0;
 while($row = mysqli_fetch_assoc($result)){
 	if(isset($row)){
-	$array[$i][0]='<center><a href="./munis.php?id='.$row['id'].'"><img style="opacity:0.5" width="200px" src="'.$row['img'].'" /><br />'.getmuni($row['id']).'</a></center>';
+		$array[$i][0]='<center><a href="./munis.php?id='.$row['id'].'"><img style="opacity:0.5" width="200px" src="'.$row['img'].'" /><br />'.getmuni($row['id']).'</a><br />'.$row['location'].'</center>';
 	$array[$i][1]=$row['lat'];
 	$array[$i][2]=$row['lng'];
 	$i++;
@@ -86,26 +86,26 @@ while($row = mysqli_fetch_assoc($result)){
 	<div class="social">
 
 		<a title="Facebook" target="_blank" href="http://www.facebook.com/jainmunilocator">
-			<img width="22" height="22" title="Visit our Facebook Page" alt="Facebook | Jain Muni Locator" src="images/social/facebook.png" />
+			<img width="25" height="25" title="Visit our Facebook Page" alt="Facebook | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/facebook.png" />
 		</a>
 
 		<a title="Follow me" target="_blank" href="http://twitter.com/jainmunilocator">
-			<img width="22" height="22" title="Visit our Twitter Handle" alt="Follow Me | Jain Muni Locator" src="images/social/twitter.png" />
+			<img width="25" height="25" title="Visit our Twitter Handle" alt="Follow Me | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/twitter.png" />
 		</a>
 
 		<a title="Google Plus" target="_blank" href="http://plus.google.com/+JainmunilocatorOrg1">
-			<img width="22" height="22" title="Visit our Google Plus Page" alt="Google Plus | Jain Muni Locator" src="images/social/google.png" />
+			<img width="25" height="25" title="Visit our Google Plus Page" alt="Google Plus | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/googleplus.png" />
 		</a>
 
 		<a title="Flickr" target="_blank" href="#">
-			<img width="22" height="22" title="Visit our Flickr Link" alt="Flickr | Jain Muni Locator" src="images/social/flickr.png" />
+			<img width="25" height="25" title="Visit our Flickr Link" alt="Flickr | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/flickr.png" />
 		</a>
 		<a title="Youtube" target="_blank" href="#">
-			<img width="22" height="22" title="Visit our Youtube Channel" alt="Youtube | Jain Muni Locator" src="images/social/youtube.png" />
+			<img width="25" height="25" title="Visit our Youtube Channel" alt="Youtube | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/youtube.png" />
 		</a>
 
 		<a title="Linkedin" target="_blank" href="#">
-			<img width="22" height="22" title="Visit our Linkedin Page" alt="Linkedin | Jain Muni Locator" src="images/social/linkedin.png" />
+			<img width="25" height="25" title="Visit our Linkedin Page" alt="Linkedin | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/linkedin.png" />
 		</a>
 
 	</div>
