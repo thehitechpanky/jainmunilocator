@@ -68,7 +68,7 @@
 					<strong>Chaturmas</strong><br />
 					<?php
 					if($getinfo['dos']=="0000-00-00") {
-						$latestChaturmasYear = 2015;
+						$latestChaturmasYear = $currentYear;
 					} else {
 						
 						$latestChaturmasYear = date('Y', strtotime($getinfo['dos']));
