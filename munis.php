@@ -89,7 +89,7 @@
 				if($getinfo['dos']=="0000-00-00") {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Contact Info</th></tr>
-				<tr><td>Phone No.</td><td>'.$getinfo['contact'].'</td></tr>
+				<tr><td>Phone No.</td><td>'.$getinfo['phone'].'</td></tr>
 				<tr><td>Email</td><td><a href="'.$getinfo['email'].'">'.$getinfo['email'].'</a></td></tr>'
 					;}
 				
