@@ -66,13 +66,15 @@
 					Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox" value="<?php echo $row['samadhiplace']; ?>"/><br /><br />
 					
 					<strong>Chaturmas</strong><br />
-					<select id="chaturmasyear" name="chaturmasyear" class="smallBox">
-						<option value="0" disabled selected>Year</option>
-						<option>2015</option>
-						<option>2014</option>
-					</select>
 					<?php
-					$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasyear=2015");
+					if($getinfo['dos']=="0000-00-00") {
+						$latestChaturmasYear = 2015;
+					} else {
+						
+						$latestChaturmasYear = date('Y', strtotime($getinfo['dos']));
+					}
+					echo $latestChaturmasYear;
+					$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasyear='$latestChaturmasYear'");
 					$q->execute();
 					$row2 = $q->fetch(PDO::FETCH_ASSOC);
 					?>
