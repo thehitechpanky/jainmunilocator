@@ -35,8 +35,8 @@
 			$text = file_get_contents($url);
 		if(strpos($text,'true'))
 		{
-			$t = $db->prepare('INSERT INTO munishri (upadhi,name,alias,website,img,birthname,dob,father,mother) VALUES (?,?,?,?,?,?,?,?,?)');
-			if(!$t->execute(array($upadhi,$name,$alias,$website,$photo,$birthname,$dob,$father,$mother)))
+			$t = $db->prepare('INSERT INTO munishri (upadhi,name,alias,vairagya,birthname,dob,father,mother,img) VALUES (?,?,?,?,?,?,?,?,?)');
+			if(!$t->execute(array($upadhi,$name,$alias,$vairagya,$birthname,$dob,$father,$mother,$img)))
 			{
 				echo "<div style='color:red'>Some error encountered.Please Contact the website administrator<br /></div>";
 			}
@@ -72,7 +72,7 @@
 						<input type="text" value="" placeholder="Alias" name="alias" class="verySmallBox" /><br />						
 						<input type="text" value="" placeholder="Current Location" name="location" class="longBox" /><br />						
 						<input type="text" value="" placeholder="Website" name="website" /><br />
-						<input type="text" value="" placeholder="Image Link" name="photo" /><br />
+						<input type="text" value="" placeholder="Image Link" name="img" /><br />
 						
 						<div id="acharya" class="hidden">
 							<input type="text" value="" placeholder="Acharya Pad Date in YYYY-MM-DD" id="adate" name="adate" />
@@ -113,6 +113,8 @@
 							<input type="text" value="" placeholder="Kshullika Deeksha Date in YYYY-MM-DD" id="kshullikadate" name="kshullikadate" />
 							<input type="text" value="" placeholder="Kshullika Deeksha Given by" id="kshullikaguru" name="kshullikaguru" class="longBox" />
 						</div>
+						
+						<input type="text" value="" placeholder="Vairagya Date in YYYY-MM-DD" name="vairagya"><br />
 						
 						<input type="text" value="" placeholder="Birth Name" name="birthname"><br />
 						<input type="text" value="" placeholder="Date of Birth in YYYY-MM-DD" name="dob"><br />
