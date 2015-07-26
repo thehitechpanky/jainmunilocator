@@ -124,9 +124,9 @@
 				
 				if($getinfo['ailacharyaguru']>0) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>
-				<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>
-				<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
+				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>';
+					if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>';}
+				echo '<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
 				<tr><td>Guru</td><td class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'
 					.getmuni($getinfo['ailacharyaguru']).
 					'<span><img class="smallLight" src="'.$getinfo["img"].'" alt="'.getmuni($getinfo['ailacharyaguru']).'" /></span>
@@ -136,36 +136,36 @@
 				
 				if($getinfo['upadhyayguru']>0) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Upadhyay Pad Details</th></tr>
-				<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>
-				<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
+				<tr><th colspan="2" align="left">Upadhyay Pad Details</th></tr>';
+					if($getinfo['upadhyayname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>';}
+				echo '<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
 				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'</a></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['upadhyayplace'].'</td></tr>'
 				;}
 				
 				if($getinfo['upadhi']<5) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>
-				<tr><td>Name</td><td>'.$getinfo['muniname'].'</td></tr>
-				<tr><td>Date</td><td>'.$getinfo['munidate'].'</td></tr>
+				<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>';
+					if($getinfo['muniname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['muniname'].'</td></tr>';}
+				echo '<tr><td>Date</td><td>'.$getinfo['munidate'].'</td></tr>
 				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'</a></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['muniplace'].'</td></tr>'
 				;}
 				
 				if($getinfo['ailakguru']>0) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Ailak Deeksha Details</th></tr>
-				<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>
-				<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
+				<tr><th colspan="2" align="left">Ailak Deeksha Details</th></tr>';
+					if($getinfo['ailakname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>';}
+				echo '<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
 				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'</a></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['ailakplace'].'</td></tr>'
 				;}
 					
 				if($getinfo['kguru']>0) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>
-				<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>
-				<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
+				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>';
+					if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
+				echo '<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
 				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</a></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['kplace'].'</td></tr>'
 				;}
