@@ -108,7 +108,7 @@
 					'<tr><td colspan="2"></td></tr>
 					<tr><th colspan="2" align="left">Chaturmas</th></tr>'
 					;
-				$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmaslat!=0 AND chaturmaslng!=0");
+				$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasplace!='N/A'");
 				$c->execute();
 				while($crow = $c->fetch(PDO::FETCH_ASSOC)) {
 					echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>'.$crow['chaturmasplace'].'</td></tr>';
