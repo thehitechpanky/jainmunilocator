@@ -28,4 +28,5 @@ $z = 0;
 $today = date("Y-m-d");
 $currentMonth = date("m");
 $currentDay = date("d");
+$currentYear = date("Y");
 ?>
