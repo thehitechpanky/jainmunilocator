@@ -80,6 +80,7 @@
 					?>
 					<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br /><br />
 					<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
+					<input type="hidden" id="latestChaturmasYear" name="latestChaturmasYear" value="<?php echo $latestChaturmasYear; ?>" />
 					
 					<div id="acharya" class="">
 						<b>Acharya Pad Details</b><br />
