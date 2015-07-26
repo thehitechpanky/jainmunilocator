@@ -22,11 +22,7 @@
 		<div class="divider clear"></div>
 		
 		<div>
-			<p><?php 
-				$i = 0;
-				$j = 0;
-				if(!$showmuni){
-				?>
+			<p><?php if(!$showmuni){ ?>
 				<form method="post" action="">
 					<div>
 						<label>Search : </label>
@@ -76,7 +72,18 @@
 					;}
 				
 				echo
-					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>'
+					'<tr><td>Website</td><td><a href="'.$getinfo['website'].'">'.$getinfo['website'].'</a></td></tr>
+					<tr><td>Social</td><td>
+					<a title="Facebook" target="_blank" href="'.$getinfo['facebook'].'">
+					<img width="25" height="25" title="Visit our Facebook Page" alt="Facebook | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/facebook.png" />
+					</a>
+					<a title="Google Plus" target="_blank" href="'.$getinfo['gplus'].'">
+					<img width="25" height="25" title="Visit our Google Plus Page" alt="Google Plus | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/googleplus.png" />
+					</a>
+					<a title="Youtube" target="_blank" href="'.$getinfo['youtube'].'">
+					<img width="25" height="25" title="Visit our Youtube Page" alt="Youtube | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/youtube.png" />
+					</a>
+					</td></tr>'
 					;
 				
 				if($getinfo['dos']=="0000-00-00") {echo
