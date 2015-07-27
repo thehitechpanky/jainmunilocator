@@ -8,6 +8,7 @@
 			<li><a href="./about.php" title="About">About</a></li>
 			<li><a href="./munis.php" title="Munis">Munis</a></li>
 			<li><a href="./events.php"  title="Events">Events</a></li>
+			<li><a href="./chaturmas.php"  title="Chaturmas">Chaturmas</a></li>
 			<li><a href="./meaning-of-108.php" title="Meaning of 108">Meaning of 108</a></li>
 			<li><a href="./mahagun.php" title="Mahagun">Mahagun</a></li>
 			<li><a href="./contact.php" title="Contact">Contact</a></li>
