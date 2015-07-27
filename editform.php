@@ -155,15 +155,16 @@
 					Guru ID<input type="text" id="bhramcharyaguru" name="bhramcharyaguru" value="<?php echo $row['bhramcharyaguru']; ?>" /><br />
 					Place<input type="text" id="bhramcharyaplace" name="bhramcharyaplace" class="longBox" value="<?php echo $row['bhramcharyaplace']; ?>" /><br /><br />
 					
-					<b>Vairagya Details</b><br />
-					Date in YYYY-MM-DD<input type="text" id="vairagya" name="vairagya" class="smallBox" value="<?php echo $row['vairagya']; ?>" /><br /><br />
+					Vairagya Date in YYYY-MM-DD<input type="text" id="vairagya" name="vairagya" class="smallBox" value="<?php echo $row['vairagya']; ?>" /><br />
+					Grahtyag Date in YYYY-MM-DD<input type="text" id="grahtyag" name="grahtyag" class="smallBox" value="<?php echo $row['grahtyag']; ?>" /><br /><br />
 					
 					<b>History</b><br />
 					Birthname<input type="text" id="birthname" name="birthname" value="<?php echo $row['birthname']; ?>" /><br />
 					Date of Birth<input type="text" id="dob" name="dob" class="smallBox" value="<?php echo $row['dob']; ?>" /><br />
 					Father<input type="text" id="father" name="father" value="<?php echo $row['father']; ?>" /><br />
 					Mother<input type="text" id="mother" name="mother" value="<?php echo $row['mother']; ?>" /><br />
-					Birthplace<input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br /><br />
+					Birthplace<input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br />
+					Education<input type="text" id="education" name="education" value="<?php echo $row['education']; ?>" /><br /><br />
 					
 					<div class="g-recaptcha" data-sitekey="6LcXYP8SAAAAAM8199rOJV8yoCWS4mI5FHb5Q70Q"></div><br />
 					
