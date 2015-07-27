@@ -15,6 +15,8 @@ $birthname = $_POST['birthname'];
 $dob = $_POST['dob'];
 $father = $_POST['father'];
 $mother = $_POST['mother'];
+$grahtyag = $_POST['grahtyag'];
+$education = $_POST['education'];
 
 // fields of contact
 $website = $_POST['website'];
@@ -181,9 +183,9 @@ $text = file_get_contents($url);
 	if(strpos($text,'true')) {
 		
 		// Edit Database
-		$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=? WHERE id=?";	
+		$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, grahtyag=?, education=? WHERE id=?";	
 		$q = $db->prepare($sqlmunishri);
-		$q->execute(array($upadhi,$name,$alias,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$id));
+		$q->execute(array($upadhi,$name,$alias,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$grahtyag,$education,$id));
 		
 		$sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=? WHERE contactid='$id'";	
 		$q = $db->prepare($sqlcontact);
