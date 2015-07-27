@@ -218,6 +218,10 @@
 					<tr><td>Vairagya</td><td>'.$getinfo['vairagya'].'</td></tr>'
 													   ;}
 				
+				if($getinfo['grahtyag']!="0000-00-00") {echo
+					'<tr><td>Grah Tyag</td><td>'.$getinfo['grahtyag'].'</td></tr>'
+													   ;}
+				
 				echo
 					'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">History</th></tr>
@@ -225,7 +229,8 @@
 				<tr><td>Date of Birth</td><td>'.$getinfo['dob'].'</td></tr>
 				<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
 				<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
-				<tr><td>Birth Place</td><td>'.$getinfo['birthplace'].'</td></tr>'
+				<tr><td>Birth Place</td><td>'.$getinfo['birthplace'].'</td></tr>
+				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>'
 				;
 				
 				if($getinfo['upadhi']<4) {echo
