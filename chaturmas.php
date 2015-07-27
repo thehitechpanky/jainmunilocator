@@ -29,16 +29,17 @@ $c = "N/A";
 while($row = $q->fetch(PDO::FETCH_ASSOC)) {
 	$d = $row['chaturmasplace'];
 	if ($c == $d) {
-		$j = 0;
+		//This is intentionally left blank because only unique records are to fetched
 	} else {
 		$c = $d;
 		$i++;
 		echo '<br /><h3>'.$i.'. '.$c.'</h3>';
-		$q2 = $db->prepare("SELECT * FROM munishri, chaturmas WHERE approved=1 AND id=chaturmasid AND chaturmasplace='$c' AND chaturmasyear=2015 ORDER BY upadhi, name");
+		$q2 = $db->prepare("SELECT * FROM munishri, chaturmas WHERE approved=1 AND id=chaturmasmuni AND chaturmasplace='$c' AND chaturmasyear=2015 ORDER BY upadhi, name");
 		$q2->execute();
+		$j = 0;
 		while($row2 = $q2->fetch(PDO::FETCH_ASSOC)) {
 			$j++;
-			echo '<div class="hoverImg"><a href="?id='.$row2["id"].'">'.$j.'. '.getmuni($row2["id"]).'<span><img class="smallLight" src="'.$row2["img"].'" alt="'.getmuni($row2["id"]).'" /></span></a></div>';
+			echo '<div class="hoverImg"><a href="./munis.php?id='.$row2["id"].'">'.$j.'. '.getmuni($row2["id"]).'<span><img class="smallLight" src="'.$row2["img"].'" alt="'.getmuni($row2["id"]).'" /></span></a></div>';
 		}
 	}
 }
