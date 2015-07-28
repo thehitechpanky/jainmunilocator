@@ -93,3 +93,10 @@ img.Map {
 br.clear {
 	clear: both;
 }
+
+
+/* Lists */
+
+ol {
+	padding-left: 20px;
+}
