@@ -2,7 +2,6 @@
 
 <!-- start body -->
 <body onunload="" >
-<div id="editcloc" style="background-color:#00ffff">Loading Editing page...</div>
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
@@ -71,9 +70,10 @@
 				'<tr><td>Current Location</td><td>'.$getinfo['location'].'</td></tr>'
 					;}
 				
-				echo '<tr><td>Website</td><td><a href="'.$getinfo['website'].'">';
-					if ($getinfo['website']!="#") {echo $getinfo['website'];} else {echo "N/A";}
-				echo '</a></td></tr>';
+				if ($getinfo['website']!="#") {echo
+					'<tr><td>Website</td>
+					<td><a href="'.$getinfo['website'].'" target="_blank">'.$getinfo['website'].'</a></td></tr>'
+					;}
 				
 				if($getinfo['dos']=="0000-00-00") {echo
 				'<tr><td>Contact</td><td>
@@ -205,7 +205,7 @@
 				'<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['bhramcharyaguru'].'">'.getmuni($getinfo['bhramcharyaguru']).'</a></td></tr>'
 					;}
 				
-				if($getinfo['bhramcharyadate']!="0000-00-00" or $getinfo['bhramcharyaplace']!="N/A" && ($getinfo['bhramcharyaguru']==0)) {echo
+				if(($getinfo['bhramcharyadate']!="0000-00-00" or $getinfo['bhramcharyaplace']!="N/A") && ($getinfo['bhramcharyaguru']==0)) {echo
 				'<tr><td>Taken By</td><td>Self</td></tr>'
 					;}
 				
@@ -213,9 +213,12 @@
 				'<tr><td>Place</td><td>'.$getinfo['bhramcharyaplace'].'</td></tr>'
 					;}
 				
+				if($getinfo['vairagya']!="0000-00-00" or $getinfo['grahtyag']!="0000-00-00") {echo
+					'<tr><td colspan="2"></td></tr>'
+					;}
+				
 				if($getinfo['vairagya']!="0000-00-00") {echo
-					'<tr><td colspan="2"></td></tr>
-					<tr><td>Vairagya</td><td>'.$getinfo['vairagya'].'</td></tr>'
+					'<tr><td>Vairagya</td><td>'.$getinfo['vairagya'].'</td></tr>'
 													   ;}
 				
 				if($getinfo['grahtyag']!="0000-00-00") {echo
