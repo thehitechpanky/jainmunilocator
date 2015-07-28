@@ -1,9 +1,14 @@
+/* Tables */
+
 table, th, td {
     border-collapse: collapse;
 }
 th, td {
     padding: 5px;
 }
+
+
+/* Forms Input */
 
 .longBox {
 	width: 300px
@@ -20,6 +25,9 @@ th, td {
 .verySmallBox {
 	width: 50px
 	}
+
+
+/* Div */
 
 .subPara {
 		position:relative;
@@ -49,24 +57,40 @@ th, td {
 	display:block;
 	}
 
+
+/* Images */
+
+img.floatLeft {
+	float: left;
+	margin: 0px 50px 15px 0px;
+	width: 200px;
+}
+
 img.sidebar {
 	width: 200px;
 	margin-right:5px
-	}
+}
 
 img.muni {
 	width: 315px;
 	margin-right:5px
-	}
+}
 
 img.smallLight {
 	height: 250px;
 	opacity: 0.6;
     filter: alpha(opacity=50); /* For IE8 and earlier */
-	}
+}
 
 img.Map {
 	width: 200px;
 	opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
-	}
+}
+
+
+/* Br Tag */
+
+br.clear {
+	clear: both;
+}
