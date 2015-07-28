@@ -31,6 +31,7 @@
 				<tr><td>&#8226;</td><td><a href="./chaturmas.php">Chaturmas</a></td><td>&#8226;</td><td><a href="disclaimer.php">Disclaimer</a></td></tr>
 				<tr><td>&#8226;</td><td><a href="./meaning-of-108.php">Meaning of 108</a></td></tr>
 				<tr><td>&#8226;</td><td><a href="./mahagun.php">Mahagun</a></td></tr>
+				<tr><td>&#8226;</td><td><a href="./uttargun.php">Uttargun</a></td></tr>
 				<tr><td>&#8226;</td><td><a href="./contact.php">Contact</a></td></tr>
 				<tr><td>&#8226;</td><td><a href="./donate.php">Donate</a></td></tr>
 			</table>
