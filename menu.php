@@ -11,6 +11,7 @@
 			<li><a href="./chaturmas.php"  title="Chaturmas">Chaturmas</a></li>
 			<li><a href="./meaning-of-108.php" title="Meaning of 108">Meaning of 108</a></li>
 			<li><a href="./mahagun.php" title="Mahagun">Mahagun</a></li>
+			<li><a href="./uttargun.php" title="Uttargun">Uttargun</a></li>
 			<li><a href="./contact.php" title="Contact">Contact</a></li>
 			<li><a href="./donate.php"  title="Donate">Donate</a></li>
 		</ul>
