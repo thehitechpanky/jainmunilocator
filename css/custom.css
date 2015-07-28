@@ -60,10 +60,9 @@ th, td {
 
 /* Images */
 
-img.floatLeft {
-	float: left;
-	margin: 0px 50px 15px 0px;
-	width: 200px;
+img.floatRight {
+	float: right;
+	margin: 10px 10px 0px 20px;
 }
 
 img.sidebar {
