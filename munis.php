@@ -197,7 +197,7 @@
 				
 				if($getinfo['bhramcharyadate']!="0000-00-00" or $getinfo['bhramcharyaguru']>0 or $getinfo['bhramcharyaplace']!="N/A") {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Bhramcharya Vrat Details</th></tr>
+				<tr><th colspan="2" align="left">Bhramcharya (Seventh Pratima) Vrat Details</th></tr>
 				<tr><td>Date</td><td>'.$getinfo['bhramcharyadate'].'</td></tr>'
 					;}
 				
@@ -236,7 +236,7 @@
 				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>'
 				;
 				
-				if($getinfo['upadhi']<4) {echo
+				if($getinfo['upadhi']==1) {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Shishyawali</th></tr>';
 				$r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
@@ -248,9 +248,21 @@
 					{$j++; echo '<tr><td colspan="2"><a href="?id='.$row["id"].'">'.$j.': '.getmuni($row["id"]).'</a></td></tr>';}
 				}}
 				
-				echo '</table></div>';
+				echo '</table>';
 			
 			?>
+			
+			<br />
+			<hr>
+			
+			<!-- Facebook Comments Started -->
+			<div id="fb-root"></div>
+			<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $getinfo["id"]; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $getinfo["id"]; ?>" data-numposts="5"></div>
+			<!-- Facebook Comments Ended -->
+			
+			<br /><br /><br /><br /><br /><br /><br /><br /><br />
+			</div>
 			
 			<div style="float:right;width:40%">
 				<img alt="<?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><br />
