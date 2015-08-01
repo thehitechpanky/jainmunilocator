@@ -1,3 +1,5 @@
+/* Left Menu */
+
 #sliderheader {
   display: block;
   width: 100%;
@@ -13,24 +15,25 @@
 }
 
 .menubtn {
-  position: relative; 
-  z-index: 101;
-  color: #274a61;
-  text-decoration: none;
-  font-size: 0em;
-  line-height: 0em;
-  top: 35px;
-  padding: 55px;
-  background-image: url('../images/menu/menu.png');
-  background-position: 50% 50%;
-  background-size: 55px 55px;
-  background-repeat: no-repeat;
+	position: relative; 
+	z-index: 1010;
+	color: #274a61;
+	text-decoration: none;
+	font-size: 0em;
+	line-height: 0em;
+	top: 12px;
+	left: 20px;
+	padding: 10%;
+	background-image: url('https://maps.gstatic.com/tactile/omnibox/ic_menu.png');
+	background-position: 50% 50%;
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
 }
 
 
 .menubtn:hover, .openmenu .menubtn {
   color: #bdd43e;
-  background-image: url('../images/menu/menu-active.png');
+  background-image: url('https://maps.gstatic.com/tactile/omnibox/ic_menu.png');
 }
 
 /** toggle menu **/
@@ -65,14 +68,14 @@ body.openmenu {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 101;
-  overflow: hidden;
+  z-index: 1010;
+  overflow: auto;
   -webkit-box-shadow: 3px 0 7px rgba(0,0,0,0.55);
   -moz-box-shadow: 3px 0 7px rgba(0,0,0,0.55);
   box-shadow: 3px 0 7px rgba(0,0,0,0.55);
 }
 #menu ul {
-  margin-top: 45px;
+  margin-top: auto;
   z-index: 101;
   overflow-y: auto;
   overflow-x: hidden;
