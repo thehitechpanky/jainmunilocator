@@ -1,9 +1,17 @@
 //var markers = [];
-var map = new google.maps.Map(document.getElementById('map-canvas'), {
-	zoom: 5,
+
+var mapOptions = {
+	zoom: 6,
 	center: new google.maps.LatLng(23.2836,79.2318),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-});
+	//panControl: false,
+	//zoomControl: false,
+	mapTypeControl: false,
+	//scaleControl: false,
+	streetViewControl: false,
+	//overviewMapControl: false
+}
+
+var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 
 // Create the search box and link it to the UI element.
 var input = /** @type {HTMLInputElement} */(
