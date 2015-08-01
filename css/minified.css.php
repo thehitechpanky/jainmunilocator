@@ -21,10 +21,10 @@ ob_start("compress");
 	include('prettyPhoto.css');
 	include('supersized.css');
 	include('light-style.css');
-	include('googlemaps.css');
-	include('slider-menu.css');
+	include('googleMaps.css');
+	include('sliderMenu.css');
 	include('custom.css');
-
+	
 ob_end_flush();
 
 
