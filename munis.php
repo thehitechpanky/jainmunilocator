@@ -67,7 +67,9 @@
 				;
 					
 				if($getinfo['dos']=="0000-00-00") {echo
-				'<tr><td>Current Location</td><td>'.$getinfo['location'].'</td></tr>'
+					'<tr><td>Current Location</td><td>
+					<div itemscope itemtype="http://schema.org/Place"><span itemprop="address">'.$getinfo['location'].'</span></div>
+					</td></tr>'
 					;}
 				
 				if ($getinfo['website']!="#") {echo
@@ -112,11 +114,12 @@
 				while($brow = $b->fetch(PDO::FETCH_ASSOC)) {
 					$i++;
 					echo '<tr><td colspan="2"><div class="hoverImg" itemscope itemtype="http://schema.org/Book">
-					<a href="'.$brow['blink'].'">'.$i.' <span itemprop="name">'.$brow['bname'].'</span>
+					<a href="'.$brow['blink'].'" itemprop="url">'.$i.' <span itemprop="name">'.$brow['bname'].'</span>
 					<img class="smallLight" src="'.$brow['bimg'].'" alt="'.$brow['bname'].'" itemprop="image" />
 					</a></div></td></tr>';
 					}
 				
+				// Publish a list of Chaturmas Held at various locations so far.
 				echo
 					'<tr><td colspan="2"></td></tr>
 					<tr><th colspan="2" align="left">Chaturmas</th></tr>'
@@ -124,7 +127,9 @@
 				$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasplace!='N/A'");
 				$c->execute();
 				while($crow = $c->fetch(PDO::FETCH_ASSOC)) {
-					echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>'.$crow['chaturmasplace'].'</td></tr>';
+					echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>
+					<div itemscope itemtype="http://schema.org/Place"><span itemprop="address">
+					'.$crow['chaturmasplace'].'</span></div></td></tr>';
 					}
 				
 				if($getinfo['upadhi']=="1") {echo
