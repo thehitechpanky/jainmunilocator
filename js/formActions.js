@@ -99,6 +99,14 @@ $(document).ready(function(){
 
 }); // End Document ready
 
+// Insert Delay
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+  clearTimeout (timer);
+  timer = setTimeout(callback, ms);
+ };
+})();
 
 // Autocomplete for places
 var autoCompleteLocation = new google.maps.places.Autocomplete(document.getElementById('location'));
