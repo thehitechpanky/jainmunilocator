@@ -25,6 +25,7 @@ function getmuni($id)
 //Function to get url of muni image
 function getImg($id)
 {
+	global $db;
 	$m = $db->prepare("SELECT img FROM munishri WHERE id = ?");
 	$m->execute(array($id));
 	if($m->rowCount() == 1) {
