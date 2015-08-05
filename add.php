@@ -66,9 +66,9 @@
 							<option value="7">Aryika</option>
 							<option value="8">Kshullika</option>
 						</select>
-						<div id="prefix_here" class="inlineDiv"></div>
+						<div id="prefix_here" class="inline"></div>
 						<input type="text" value="" placeholder="Name" name="name" class="smallBox" />
-						<div id="suffix_here" class="inlineDiv"></div>
+						<div id="suffix_here" class="inline"></div>
 						<input type="text" value="" placeholder="Alias" name="alias" class="verySmallBox" /><br />						
 						<input type="text" value="" placeholder="Current Location" name="location" class="longBox" /><br />						
 						<input type="text" value="" placeholder="Website" name="website" /><br />
