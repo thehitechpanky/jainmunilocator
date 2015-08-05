@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 
 <!-- start body -->
-<body onunload="" >
+<body <?php echo $schemaOrgBody; ?>>
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
@@ -12,7 +12,7 @@
 	
 	<!-- start content wrapper -->	
 	
-		<div class="container" itemscope itemtype="http://schema.org/<?php echo $schemaOrgThing; ?>">
+		<div class="container" <?php echo $schemaOrg; ?>>
 
 		<div class="page-title">
 			<h1><span itemprop="name"><?php echo $title; ?></span></h1>
