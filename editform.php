@@ -47,13 +47,15 @@
 						<option value="7" <?php if($row['upadhi']==7) { echo "selected"; } ?> >Aryika</option>
 						<option value="8" <?php if($row['upadhi']==8) { echo "selected"; } ?> >Kshullika</option>
 					</select>
-					<div id="prefix_here" class="inlineDiv"></div>
+					<div id="prefix_here" class="inline"></div>
 					<input type="text" id="name" name="name" class="smallBox" placeholder="Name" value="<?php echo $row['name']; ?>" />
-					<div id="suffix_here" class="inlineDiv"></div>
+					<div id="suffix_here" class="inline"></div>
 					<input type="text" id="alias" name="alias" class="verySmallBox" placeholder="Alias" value="<?php echo $row['alias']; ?>" /><br /><br />
 					
+					<?php if($row['dos']=="0000-00-00") { ?>
 					<strong>Current Location</strong><br />
 					<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>" /><br /><br />
+					<?php } ?>
 					
 					Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
 					Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
@@ -150,7 +152,7 @@
 						Place<input type="text" id="kshullikaplace" name="kshullikaplace" class="longBox" value="<?php echo $row['kshullikaplace']; ?>" /><br /><br />
 					</div>
 					
-					<b>Bhramcharya Vrat Details</b><br />
+					<b>Bhramcharya (Seventh Pratima) Vrat Details</b><br />
 					Date in YYYY-MM-DD<input type="text" id="bhramcharyadate" name="bhramcharyadate" class="smallBox" value="<?php echo $row['bhramcharyadate']; ?>" /><br />
 					Guru ID<input type="text" id="bhramcharyaguru" name="bhramcharyaguru" value="<?php echo $row['bhramcharyaguru']; ?>" /><br />
 					Place<input type="text" id="bhramcharyaplace" name="bhramcharyaplace" class="longBox" value="<?php echo $row['bhramcharyaplace']; ?>" /><br /><br />
@@ -176,6 +178,7 @@
 			</div>
 			
 			<div class="innerDiv">
+				<?php //$cached_src = $imagecache->cache( 'http://jinaagamsaar.com/aacharya/images/viragsagar/2.jpg' ); ?>
 				<img alt="<?php echo getmuni($row['id']); ?>" width="315px" src="<?php echo $row['img']; ?>" />
 			</div>
 			
