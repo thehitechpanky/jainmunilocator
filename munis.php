@@ -131,7 +131,9 @@
 					'<tr><td colspan="2"></td></tr>
 					<tr><th colspan="2" align="left">Acharya Pad Details</th></tr>
 					<tr><td>Date</td><td>'.$getinfo['adate'].'</td></tr>
-					<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'</a></td></tr>
+					<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'
+					<img class="smallLight" src="'.getImg($getinfo['aguru']).'" alt="'.getmuni($getinfo['aguru']).'" />
+					</a></div></td></tr>
 					<tr><td>Place</td><td>'.$getinfo['aplace'].'</td></tr>'
 					;}
 				
@@ -140,10 +142,9 @@
 				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>';
 					if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
-				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'
-					.getmuni($getinfo['ailacharyaguru']).
-					'<img class="smallLight" src="'.getImg($getinfo['ailacharyaguru']).'" alt="'.getmuni($getinfo['ailacharyaguru']).'" />
-					</a></div></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'.getmuni($getinfo['ailacharyaguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['ailacharyaguru']).'" alt="'.getmuni($getinfo['ailacharyaguru']).'" />
+				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['ailacharyaplace'].'</td></tr>'
 				;}
 				
@@ -152,7 +153,9 @@
 				<tr><th colspan="2" align="left">Upadhyay Pad Details</th></tr>';
 					if($getinfo['upadhyayname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'</a></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['upadhyayguru']).'" alt="'.getmuni($getinfo['upadhyayguru']).'" />
+				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['upadhyayplace'].'</td></tr>'
 				;}
 				
@@ -161,7 +164,9 @@
 				<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>';
 					if($getinfo['muniname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['muniname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['munidate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'</a></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['muniguru']).'" alt="'.getmuni($getinfo['muniguru']).'" />
+				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['muniplace'].'</td></tr>'
 				;}
 				
@@ -170,7 +175,9 @@
 				<tr><th colspan="2" align="left">Ailak Deeksha Details</th></tr>';
 					if($getinfo['ailakname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'</a></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['ailakguru']).'" alt="'.getmuni($getinfo['ailakguru']).'" />
+				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['ailakplace'].'</td></tr>'
 				;}
 					
@@ -179,7 +186,9 @@
 				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>';
 					if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'</a></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['kguru']).'" alt="'.getmuni($getinfo['kguru']).'" />
+				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['kplace'].'</td></tr>'
 				;}
 				
@@ -187,7 +196,9 @@
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
 				<tr><td>Date</td><td>'.$getinfo['aryikadate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'</a></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['aryikaguru']).'" alt="'.getmuni($getinfo['aryikaguru']).'" />
+				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['aryikaplace'].'</td></tr>'
 				;}
 				
@@ -195,7 +206,8 @@
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Kshullika Deeksha Details</th></tr>
 				<tr><td>Date</td><td>'.$getinfo['kshullikadate'].'</td></tr>
-				<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['kshullikaguru'].'">'.getmuni($getinfo['kshullikaguru']).'</a></td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['kshullikaguru'].'">'.getmuni($getinfo['kshullikaguru']).'
+				<img class="smallLight" src="'.getImg($getinfo['kshullikaguru']).'" alt="'.getmuni($getinfo['kshullikaguru']).'" /></a><div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['kshullikaplace'].'</td></tr>'
 				;}
 				
@@ -206,7 +218,9 @@
 					;}
 				
 				if($getinfo['bhramcharyaguru']>0) {echo
-				'<tr><td>Guru</td><td><a href ="munis.php?id='.$getinfo['bhramcharyaguru'].'">'.getmuni($getinfo['bhramcharyaguru']).'</a></td></tr>'
+					'<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['bhramcharyaguru'].'">'.getmuni($getinfo['bhramcharyaguru']).'
+					<img class="smallLight" src="'.getImg($getinfo['bhramcharyaguru']).'" alt="'.getmuni($getinfo['bhramcharyaguru']).'" />
+					</a></div></td></tr>'
 					;}
 				
 				if(($getinfo['bhramcharyadate']!="0000-00-00" or $getinfo['bhramcharyaplace']!="N/A") && ($getinfo['bhramcharyaguru']==0)) {echo
