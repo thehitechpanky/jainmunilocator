@@ -121,13 +121,13 @@ if(isset($_GET['id'])) {
 		$title = getmuni($id);
 		$titletag = $title.' | Jain Muni Locator';
 		$showmuni = true;
-		$schemaOrgThing = "Person";
+		$schemaOrg = 'itemprop="about" itemscope itemtype="http://schema.org/Person"';
 	}
 	// For the page where wrong muni id is selected
 	else{
-		$title = "Jain Muni Locator";
+		$title = 'Jain Muni Locator';
 		$titletag = $title;
-		$schemaOrgThing = "WebPage";
+		$schemaOrg = '';
 	}
 }
 // When no id is entered in the url it will show the list of munis.
@@ -136,7 +136,7 @@ else{
 	$titletag = $title;
 	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY uid, name ASC');
 	$t->execute();
-	$schemaOrgThing = "WebPage";
+	$schemaOrg = '';
 }
 
 ?>
