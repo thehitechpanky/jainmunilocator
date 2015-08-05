@@ -142,7 +142,7 @@
 				echo '<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
 				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'
 					.getmuni($getinfo['ailacharyaguru']).
-					'<img class="smallLight" src="'.$getinfo['img'].'" alt="'.getmuni($getinfo['ailacharyaguru']).'" />
+					'<img class="smallLight" src="'.getImg($getinfo['ailacharyaguru']).'" alt="'.getmuni($getinfo['ailacharyaguru']).'" />
 					</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['ailacharyaplace'].'</td></tr>'
 				;}
