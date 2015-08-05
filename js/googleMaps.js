@@ -85,12 +85,3 @@ var searchBox = new google.maps.places.SearchBox(
 			}
 		})(marker, i));
 	}
-
-// Insert Delay
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-  clearTimeout (timer);
-  timer = setTimeout(callback, ms);
- };
-})();
