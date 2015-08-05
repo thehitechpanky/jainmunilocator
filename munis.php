@@ -12,10 +12,10 @@
 	
 	<!-- start content wrapper -->	
 	
-		<div class="container">
+		<div class="container" itemscope itemtype="http://schema.org/<?php echo $schemaOrgThing; ?>">
 
 		<div class="page-title">
-			<h1><?php echo $title; ?></h1>
+			<h1><span itemprop="name"><?php echo $title; ?></span></h1>
 		</div>
 		
 		<div class="divider clear"></div>
@@ -40,7 +40,7 @@
 						while($row = $r->fetch(PDO::FETCH_ASSOC))
 						{
 							$i++;
-							echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<span><img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></span></a></div>';
+							echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></a></div>';
 						}
 					}
 					else
@@ -55,7 +55,7 @@
 				while($row = $t->fetch(PDO::FETCH_ASSOC))
 					{
 						$i++;
-						echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<span><img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></span></a></div>';
+						echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></a></div>';
 					}
 				}
 			}
@@ -72,7 +72,7 @@
 				
 				if ($getinfo['website']!="#") {echo
 					'<tr><td>Website</td>
-					<td><a href="'.$getinfo['website'].'" target="_blank">'.$getinfo['website'].'</a></td></tr>'
+					<td><a href="'.$getinfo['website'].'" target="_blank" itemprop="url">'.$getinfo['website'].'</a></td></tr>'
 					;}
 				
 				if($getinfo['dos']=="0000-00-00") {echo
@@ -80,7 +80,7 @@
 					<a title="Phone" target="" href="#">
 						<img width="25" height="25" title="'.$getinfo['phone'].'" alt="Phone | Jain Muni Locator" src="./images/icons/phone30x30.png" />
 					</a>
-					<a title="Email" target="" href="#">
+					<a title="Email" target="" href="mailto:'.$getinfo['email'].'" itemprop="email">
 						<img width="25" height="25" title="'.$getinfo['email'].'" alt="Email | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/email-blue.png" />
 					</a>
 					<a title="Facebook" target="_blank" href="'.$getinfo['facebook'].'">
@@ -98,10 +98,11 @@
 				if($getinfo['dos']!="0000-00-00") {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Samadhi Details</th></tr>
-				<tr><td>Date</td><td>'.$getinfo['dos'].'</td></tr>
-				<tr><td>Place</td><td>'.$getinfo['samadhiplace'].'</td></tr>'
+				<tr><td>Date</td><td><span itemprop="deathDate">'.$getinfo['dos'].'</span></td></tr>
+				<tr><td>Place</td><td><span itemprop="deathPlace">'.$getinfo['samadhiplace'].'</span></td></tr>'
 				;}
 				
+				// Publish a list of Books Written by Muni.
 				echo
 					'<tr><td colspan="2"></td></tr>
 					<tr><th colspan="2" align="left">Books</th></tr>'
@@ -110,7 +111,10 @@
 				$b->execute();
 				while($brow = $b->fetch(PDO::FETCH_ASSOC)) {
 					$i++;
-					echo '<tr><td colspan="2">'.$i.' '.$brow['bname'].'</td></tr>';
+					echo '<tr><td colspan="2"><div class="hoverImg" itemscope itemtype="http://schema.org/Book">
+					<a href="'.$brow['blink'].'">'.$i.' <span itemprop="name">'.$brow['bname'].'</span>
+					<img class="smallLight" src="'.$brow['bimg'].'" alt="'.$brow['bname'].'" itemprop="image" />
+					</a></div></td></tr>';
 					}
 				
 				echo
@@ -136,10 +140,10 @@
 				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>';
 					if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
-				<tr><td>Guru</td><td class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'
 					.getmuni($getinfo['ailacharyaguru']).
-					'<span><img class="smallLight" src="'.$getinfo["img"].'" alt="'.getmuni($getinfo['ailacharyaguru']).'" /></span>
-					</a></td></tr>
+					'<img class="smallLight" src="'.$getinfo['img'].'" alt="'.getmuni($getinfo['ailacharyaguru']).'" />
+					</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['ailacharyaplace'].'</td></tr>'
 				;}
 				
@@ -228,11 +232,11 @@
 				echo
 					'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">History</th></tr>
-				<tr><td>Birthname</td><td>'.$getinfo['birthname'].'</td></tr>
-				<tr><td>Date of Birth</td><td>'.$getinfo['dob'].'</td></tr>
+				<tr><td>Birthname</td><td><span itemprop="name">'.$getinfo['birthname'].'</span></td></tr>
+				<tr><td>Date of Birth</td><td><span itemprop="birthDate">'.$getinfo['dob'].'</span></td></tr>
+				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$getinfo['birthplace'].'</span></td></tr>
 				<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
 				<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
-				<tr><td>Birth Place</td><td>'.$getinfo['birthplace'].'</td></tr>
 				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>'
 				;
 				
@@ -249,7 +253,7 @@
 				}}
 				
 				echo '</table>';
-			
+				
 			?>
 			
 			<br />
@@ -262,11 +266,12 @@
 			<!-- Facebook Comments Ended -->
 			
 			<br /><br /><br /><br /><br /><br /><br /><br /><br />
+			
 			</div>
 			
 			<div style="float:right;width:40%">
-				<img alt="<?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" /><br /><br />
-				<center><input type="button" value="EDIT DETAILS" onclick="location.href='./editform.php?id=<?php echo $getinfo['id']; ?>';" /></center>
+				<img alt="Photo of <?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" itemprop="image" /><br /><br />
+				<center><input type="button" value="UPDATE LOCATION / DETAILS" onclick="location.href='./editform.php?id=<?php echo $getinfo['id']; ?>';" /></center>
 			</div>
 			
 				<?php
