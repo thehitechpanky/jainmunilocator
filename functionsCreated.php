@@ -3,11 +3,6 @@
 // Load Configuration File
 include('./config.php');
 
-// Compress Images
-include('./ImageCache.php');
-$imagecache = new ImageCache();
-$imagecache->cached_image_directory = dirname(__FILE__) . './cache/images';
-
 //Function to find muni details
 function getmuni($id)
 {
