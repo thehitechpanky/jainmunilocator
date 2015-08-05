@@ -254,6 +254,7 @@
 				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>'
 				;
 				
+				// Shishyawali List
 				if($getinfo['upadhi']==1) {echo
 				'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Shishyawali</th></tr>';
@@ -262,8 +263,12 @@
 				{
 					$i++;
 					$guruid = getguru($row["id"]);
-					if($guruid==$getinfo["id"])
-					{$j++; echo '<tr><td colspan="2"><a href="?id='.$row["id"].'">'.$j.': '.getmuni($row["id"]).'</a></td></tr>';}
+					if($guruid==$getinfo["id"]) {
+						$j++;
+						echo '<tr><td colspan="2"><div class="hoverImg"><a href="?id='.$row["id"].'">'.$j.': '.getmuni($row["id"]).'
+						<img class="smallLight" src="'.getImg($row["id"]).'" alt="'.getmuni($row["id"]).'" />
+						</a></div></td></tr>';
+					}
 				}}
 				
 				echo '</table>';
