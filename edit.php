@@ -25,6 +25,7 @@ $phone = $_POST['phone'];
 $facebook = $_POST['facebook'];
 $gplus = $_POST['gplus'];
 $youtube = $_POST['youtube'];
+$wikipedia = $_POST['wikipedia'];
 
 // fields of history
 $birthplace = $_POST['birthplace'];
@@ -175,6 +176,10 @@ if($location=="N/A") {
 	$lng = getlongitude($location);
 }
 
+// fileds of editlog
+$t=time();
+$logtimestamp = date("Y-m-d",$t);
+$logip = $_SERVER['REMOTE_ADDR'];
 
 // Captcha Check
 $url = "https://www.google.com/recaptcha/api/siteverify?secret=6LcXYP8SAAAAAH7WUPMtiHoEiTnev6ofbzsuRY4U&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR'];
@@ -187,9 +192,9 @@ $text = file_get_contents($url);
 		$q = $db->prepare($sqlmunishri);
 		$q->execute(array($upadhi,$name,$alias,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$grahtyag,$education,$id));
 		
-		$sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=? WHERE contactid='$id'";	
+		$sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=?, wikipedia=? WHERE contactid='$id'";	
 		$q = $db->prepare($sqlcontact);
-		$q->execute(array($website,$phone,$email,$facebook,$gplus,$youtube));
+		$q->execute(array($website,$phone,$email,$facebook,$gplus,$youtube,$wikipedia));
 		
 		$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhilat=?, samadhilng=?, samadhiplace=? WHERE historyid='$id'";	
 		$q = $db->prepare($sqlhistory);
@@ -246,6 +251,10 @@ $text = file_get_contents($url);
 		$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=? WHERE mid='$id'";
 		$q = $db->prepare($sqllocation);
 		$q->execute(array($lat,$lng,$location));
+		
+		$sqleditlog = "INSERT INTO editlog (logtimestamp,logip,logmuniid) VALUES (?,?,?)";
+		$q = $db->prepare($sqleditlog);
+		$q->execute(array($logtimestamp,$logip,$id));
 		
 	} else {
 	
