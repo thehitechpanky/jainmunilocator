@@ -94,6 +94,9 @@
 					<a title="Youtube" target="_blank" href="'.$getinfo['youtube'].'">
 						<img width="25" height="25" title="Youtube Page" alt="Youtube | Jain Muni Locator" src="./images/icons/20-social-media-icons/57x57/youtube.png" />
 					</a>
+					<a title="Wikipedia" target="_blank" href="'.$getinfo['wikipedia'].'">
+						<img width="25" height="25" title="Wikipedia Page" alt="Wikipedia | Jain Muni Locator" src="./images/icons/wiki.png" />
+					</a>
 				</td></tr>'
 				;}
 				
@@ -135,7 +138,7 @@
 				if($getinfo['upadhi']=="1") {echo
 					'<tr><td colspan="2"></td></tr>
 					<tr><th colspan="2" align="left">Acharya Pad Details</th></tr>
-					<tr><td>Date</td><td>'.$getinfo['adate'].'</td></tr>
+					<tr><td>Date</td><td><time datetime="'.$getinfo['adate'].'">'.$getinfo['adate'].'</time></td></tr>
 					<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'
 					<img class="smallLight" src="'.getImg($getinfo['aguru']).'" alt="'.getmuni($getinfo['aguru']).'" />
 					</a></div></td></tr>
