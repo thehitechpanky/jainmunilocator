@@ -65,7 +65,8 @@
 					Email ID<input type="text" id="email" name="email" value="<?php echo $row['email']; ?>" /><br />
 					Facebook<input type="text" id="facebook" name="facebook" value="<?php echo $row['facebook']; ?>" /><br />
 					GPlus<input type="text" id="gplus" name="gplus" value="<?php echo $row['gplus']; ?>" /><br />
-					Youtube<input type="text" id="youtube" name="youtube" value="<?php echo $row['youtube']; ?>" /><br /><br />
+					Youtube<input type="text" id="youtube" name="youtube" value="<?php echo $row['youtube']; ?>" /><br />
+					Wikipedia<input type="text" id="wikipedia" name="wikipedia" value="<?php echo $row['wikipedia']; ?>" /><br /><br />
 					
 					<strong>Samadhi Details (If applicable)</strong><br />
 					Date in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br />
@@ -189,5 +190,8 @@
 	</div>
 	
 	<!--  end content wrapper  -->
- 	
-<?php include('footer.php'); ?>
+
+<?php
+$loadFormActionsScript = "Yes";
+include('footer.php');
+?>
