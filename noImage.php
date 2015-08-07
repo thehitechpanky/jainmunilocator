@@ -25,7 +25,7 @@
 			
 		<h4>Currently there are no images for following munis, please provide us links to images for the following munis. Just click on the name to open the edit page.</h4>
 		
-		<input id="guruNameInput" name="searchBox" type="text" placeholder="Search" class="fullWidth" />
+		<input id="searchBoxNoImg" name="searchBox" type="text" placeholder="Search" class="fullWidth" />
 			
 			<div id="searchResults"></div>		
 			
