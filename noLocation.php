@@ -28,6 +28,7 @@
 			<input id="searchBoxNoLocation" name="searchBox" type="text" placeholder="Search" class="fullWidth" />
 			
 			<div id="searchResults" class="hoverImg"></div>
+			Hello
 			
 			<br />
 			<hr>
@@ -51,4 +52,7 @@
 	
 	<!--  end content wrapper  -->
  	
-<?php include('footer.php'); ?>
+<?php
+$loadSearchScript="Yes";
+include('footer.php');
+?>
