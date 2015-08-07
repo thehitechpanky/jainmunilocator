@@ -39,8 +39,10 @@
 			
 			</div>
 			
-			<div class="sidebar">
-				<img alt="Photo of Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" class="" width="100%" />
+			<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+				<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+				</blockquote></div>
 			</div>';
 						
 			$loadSearchScript="Yes";
@@ -273,16 +275,20 @@
 			
 			<br /><br /><br /><br /><br /><br /><br /><br /><br />
 			
-			</div>';
-				
-			?>
-			
-			<div style="float:right;width:40%">
-				<img alt="Photo of <?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" itemprop="image" /><br /><br />
-				<center><input type="button" value="UPDATE LOCATION / DETAILS" onclick="location.href='./editform.php?id=<?php echo $getinfo['id']; ?>';" /></center>
 			</div>
-
-	<?php
+			
+			<div class="muniPageSidebar">
+				<center><input type="button" value="UPDATE LOCATION / DETAILS" onclick="location.href="./editform.php?id='.$getinfo['id'].'" />
+				</center><br /><br />
+				<img alt="Photo of '.getmuni($getinfo['id']).'" width="315px" src="'.$getinfo['img'].'" itemprop="image" /><br /><br />
+				
+				<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+					<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+						<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+					</blockquote></div>
+				</div>
+			
+			</div>';
 		}
 	?>
 		
