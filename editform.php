@@ -20,16 +20,16 @@
 		</div>
 		
 		<div class="divider clear"></div>
-		
-		<div>
+			
 			<?php
 				$id=$_GET['id'];
 				$result = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, contact, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya
 				WHERE id= :userid AND upadhi=uid AND id=mid AND id=historyid AND id=contactid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
 				$result->bindParam(':userid', $id);
 				$result->execute();
-				for($i=0; $row = $result->fetch(); $i++){
+				for($i=0; $row = $result->fetch(); $i++) {
 			?>
+			
 			<div style="float:left;width:60%">				
 				<form id="editForm" action="edit.php" method="POST">
 					
@@ -178,18 +178,23 @@
 				</form>
 			</div>
 			
-			<div class="innerDiv">
-				<?php //$cached_src = $imagecache->cache( 'http://jinaagamsaar.com/aacharya/images/viragsagar/2.jpg' ); ?>
-				<img alt="<?php echo getmuni($row['id']); ?>" width="315px" src="<?php echo $row['img']; ?>" />
+			<div class="muniPageSidebar">
+				
+				<img alt="<?php echo getmuni($row['id']); ?>" width="315px" src="<?php echo $row['img']; ?>" /><br /><br />
+				
+				<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+					<div class="fb-xfbml-parse-ignore">
+						<blockquote cite="https://www.facebook.com/jainmunilocator">
+							<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+						</blockquote>
+					</div>
+				</div>
+				
 			</div>
 			
 			<?php } ?>
-			
-		</div>
 		
-	</div>
-	
-	<!--  end content wrapper  -->
+	</div><!--  end content wrapper  -->
 
 <?php
 $loadFormActionsScript = "Yes";
