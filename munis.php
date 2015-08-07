@@ -26,10 +26,23 @@
 			<h4>List of All Digambar Jain Munis is given Below. Click on the name to see more information</h4>
 			<input id="searchBoxMuni" name="searchBox" type="text" class="fullWidth" />
 			<div id="searchResults" class="hoverImg"></div>
+			
+			<br /><hr>
+			
+			<!-- Facebook Comments Started -->
+			<div id="fb-root"></div>
+			<div class="fb-like" data-href="http://jainmunilocator.org/munis.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php" data-numposts="5"></div>
+			<!-- Facebook Comments Ended -->
+			
+			<br /><br /><br /><br /><br /><br /><br /><br /><br />
+			
 			</div>
+			
 			<div class="sidebar">
 				<img alt="Photo of Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" class="" width="100%" />
 			</div>';
+						
 			$loadSearchScript="Yes";
 		
 		} else {
