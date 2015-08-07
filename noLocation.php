@@ -43,7 +43,7 @@
 		</div>
 		
 		<div class="sidebar">
-			<img alt="Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" class="" width="100%" />
+			<img alt="Photo of Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" class="" width="100%" />
 		</div>
 		
 		<!-- end widgets -->
