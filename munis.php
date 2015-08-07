@@ -20,51 +20,22 @@
 		
 		<div class="divider clear"></div>
 		
-		<div>
-			<p><?php if(!$showmuni){ ?>
-				<form method="post" action="">
-					<div>
-						<label>Search : </label>
-						 <input type="text" value="" id="name" name="name" class="name"> <input type="submit" value="Search" name="submitsearch">
-					</div>
-				</form>	
-				<?php
-				$showshow = true;
-				if(isset($_POST['submitsearch']))
-				{
-					$r = $db->prepare("SELECT * FROM munishri WHERE name LIKE ? ORDER BY upadhi, name ASC");
-					$r->execute(array("%".$_POST["name"]."%"));
-					if($r->rowCount() != 0)
-					{
-					$showshow = false;
-						while($row = $r->fetch(PDO::FETCH_ASSOC))
-						{
-							$i++;
-							echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></a></div>';
-						}
-					}
-					else
-					{
-						echo  "<span style='color:red'>Our records don't have an entry for the Munishri you searched. If you have any kind of information about that muni please help us to collect the data by adding information <a href='http://jainmunilocator.org/add.php'>here</a></span><br /><br />";
-					}
-				}
-				if($showshow){
-			?>
-				<strong>List of All Digambar Jain Munis is given Below. Click on the name to see more information</strong><br /><br />
-			<?php
-				while($row = $t->fetch(PDO::FETCH_ASSOC))
-					{
-						$i++;
-						echo '<div class="hoverImg"><a href="?id='.$row["id"].'">'.$i.': '.getmuni($row["id"]).'<img class="smallLight" src="'.$row["img"].'" alt="'.getmuni($row["id"]).'" /></a></div>';
-					}
-				}
-			}
-			else{
+		<?php
+		if(!$showmuni) {echo
+			'<div class="inner-content">
+			<h4>List of All Digambar Jain Munis is given Below. Click on the name to see more information</h4>
+			<input id="searchBoxMuni" name="searchBox" type="text" class="fullWidth" />
+			<div id="searchResults" class="hoverImg"></div>
+			</div>
+			<div class="sidebar">
+				<img alt="Photo of Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" class="" width="100%" />
+			</div>';
+			$loadSearchScript="Yes";
+		
+		} else {
 				
 				//Gurudev Profile Details
-				echo
-				'<div style="float:left;width:50%"><table style="width:100%">'
-				;
+				echo '<div style="float:left;width:50%"><table style="width:100%">';
 					
 				if($getinfo['dos']=="0000-00-00") {echo
 					'<tr><td>Current Location</td><td>
@@ -147,7 +118,7 @@
 				
 				if($getinfo['ailacharyaguru']>0) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Ailacharya Pad Details</th></tr>';
+				<tr><th colspan="2" align="left">Elacharya Pad Details</th></tr>';
 					if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailacharyaname'].'</td></tr>';}
 				echo '<tr><td>Date</td><td>'.$getinfo['ailacharyadate'].'</td></tr>
 				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailacharyaguru'].'">'.getmuni($getinfo['ailacharyaguru']).'
@@ -279,36 +250,29 @@
 					}
 				}}
 				
-				echo '</table>';
-				
-			?>
-			
-			<br />
-			<hr>
+			echo '</table><br /><hr>
 			
 			<!-- Facebook Comments Started -->
 			<div id="fb-root"></div>
-			<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $getinfo["id"]; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-			<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $getinfo["id"]; ?>" data-numposts="5"></div>
+			<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id='.$getinfo["id"].'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id='.$getinfo["id"].'" data-numposts="5"></div>
 			<!-- Facebook Comments Ended -->
 			
 			<br /><br /><br /><br /><br /><br /><br /><br /><br />
 			
-			</div>
+			</div>';
+				
+			?>
 			
 			<div style="float:right;width:40%">
 				<img alt="Photo of <?php echo getmuni($getinfo['id']); ?>" width="315px" src="<?php echo $getinfo['img'] ?>" itemprop="image" /><br /><br />
 				<center><input type="button" value="UPDATE LOCATION / DETAILS" onclick="location.href='./editform.php?id=<?php echo $getinfo['id']; ?>';" /></center>
 			</div>
-			
-				<?php
-			}
-				?>
-			</p>
-		</div>
+
+	<?php
+		}
+	?>
 		
-	</div>
-	
-	<!--  end content wrapper  -->
+	</div><!--  end content wrapper  -->
  	
 <?php include('footer.php'); ?>
