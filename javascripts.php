@@ -13,7 +13,7 @@
 
 <!-- start google scripts -->
 <script type='text/javascript' src='https://www.google.com/recaptcha/api.js' async defer></script>
-<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=________________'></script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDcnIUTozeOU26CWZRSxQRRoTFeZtvzX6Y'></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 <!-- end google scripts -->
 
@@ -33,12 +33,20 @@
 <script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 <script type='text/javascript' src='js/googleMaps.js'></script>
+<script type='text/javascript' src='js/facebook.js'></script>
 <?php
+	
 if($loadFormActionsScript=="Yes") {
 	echo "<script type='text/javascript' src='js/formActions.js'></script>";
 } else {
 	$loadFormActionsScript = "No";
 }
+
+if($loadSearchScript=="Yes") {
+	echo "<script type='text/javascript' src='js/search.js'></script>";
+} else {
+	$loadSearchScript = "No";
+}
+
 ?>
-<script type='text/javascript' src='js/fbComments.js'></script>
 <!-- end custom scripts -->
