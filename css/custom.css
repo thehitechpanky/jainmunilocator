@@ -10,24 +10,33 @@ th, td {
 
 /* Forms Input */
 
+.fullWidth {
+	width: 100%;
+	}
+
 .longBox {
-	width: 300px
+	width: 300px;
 	}
 
 .mediumBox {
-	width: 110px
+	width: 110px;
 	}
 
 .smallBox {
-	width: 80px
+	width: 80px;
 }
 
 .verySmallBox {
-	width: 50px
+	width: 50px;
 	}
 
 
 /* Div */
+
+.muniPageSidebar {
+	float:right;
+	width:40%;
+	}
 
 .subPara {
 		position:relative;
@@ -47,6 +56,10 @@ th, td {
 
 .hidden {
 		display: none;
+	}
+
+.shown {
+		display: block;
 	}
 
 .hoverImg a { position:relative; }
@@ -72,12 +85,12 @@ img.floatLeft {
 
 img.sidebar {
 	width: 200px;
-	margin-right:5px
+	margin-right:5px;
 }
 
 img.muni {
 	width: 315px;
-	margin-right:5px
+	margin-right:5px;
 }
 
 img.smallLight {
@@ -104,4 +117,20 @@ br.clear {
 
 ol {
 	padding-left: 20px;
+}
+
+/* Links */
+a.button {
+	display: block;
+	background: #555;
+	padding: 10px;
+	text-align: center;
+	color: white;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+a.button:hover {
+	background: #3bc400;
+	color: #111111;
 }
