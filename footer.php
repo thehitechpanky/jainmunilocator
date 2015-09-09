@@ -3,8 +3,8 @@
 <!-- Analytics Included -->
 <?php
 include_once("analyticstracking.php");
-include "markers.php";
-include('javascripts.php');
+include 'markers.php';
+include 'javascripts.php';
 ?>
 
 <div class="space"></div>
