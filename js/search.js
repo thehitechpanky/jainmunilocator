@@ -11,16 +11,6 @@ $(document).ready(function(){
 		showSearchMuniResults(this.value);
 	});
 	
-	showSearchIdolResults($('#searchIdol').val());
-	
-	$('#searchIdol').keyup(function() {
-		showSearchIdolResults(this.value);
-	});
-	
-	$('#searchIdol').bind('input propertychange', function() {
-		showSearchIdolResults(this.value);
-	});
-	
 	showSearchNoLocationResults($('#searchBoxNoLocation').val());
 	
 	$('#searchBoxNoLocation').keyup(function() {
