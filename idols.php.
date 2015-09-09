@@ -1,0 +1,64 @@
+<?php include 'header.php'; ?>
+
+<!-- start body -->
+<body onunload="">
+	
+	<!-- start dotted pattern -->
+	<div class="bg-overlay"></div>
+	<!-- end dotted pattern -->
+		
+	<!-- start navigation -->
+	<?php include('menu.php'); ?>
+	<!-- end navigation -->
+	
+	<!-- start content wrapper -->	
+	<div class="content page-content">
+	
+	<?php
+	if(isset($_GET['id'])) {
+			$id = (int)$_GET['id'];
+			$t = $db->prepare("SELECT * FROM idols WHERE idolid = '$id'");
+			$t->execute();
+			if($t->rowCount() == 1) {
+				$row = $t->fetch(PDO::FETCH_ASSOC);
+				$title = 'Idol of '.$row['tirthankar'];
+			} else {
+				$title = 'Idols';
+			}
+		} else {
+			$title = 'Idols';
+	}
+	?>
+		
+		<div class="page-title">
+			<h1><span><?php echo $title; ?></span></h1>
+		</div>
+		
+		<div class="divider clear"></div>
+			
+		<div class="inner-content">
+			
+			<?php if($title=='Idols') { ?>
+			
+			<h4>List of All Digambar Jain Deity Idols is given Below. Click on the name to see more information</h4>
+			<input id="searchIdols" name="searchBox" type="text" class="fullWidth" />
+			<div id="searchResults" class="hoverImg"></div>			
+			<script type="text/javascript" src="js/searchIdols.js"></script>
+			
+			<?php
+			} else {
+				$templeid = $row['templeid'];
+				$t2 = $db->prepare("SELECT * FROM temples WHERE tid = '$templeid'");
+				$t2->execute();
+				if($t2->rowCount() == 1) {
+					$row2 = $t2->fetch(PDO::FETCH_ASSOC);
+				}
+		echo 'Temple: <a href="temples.php?id='.$templeid.'" title="'.$row2['tname'].'">'.$row2['tname'].'</a>';
+			}
+			?>
+			
+		</div>
+		
+	</div><!--  end content wrapper  -->
+
+<?php include 'footer.php'; ?>
