@@ -23,10 +23,10 @@ if(isset($_GET['id'])) {
 		$schemaOrgBody = 'itemscope itemtype="http://schema.org/ProfilePage"';
 		$schemaOrg = 'itemprop="about" itemscope itemtype="http://schema.org/Person"';
 	}
-	// For the page where wrong muni id is selected
+	// For general pages on the website
 	else{
 		$title = 'Jain Muni Locator';
-		$titletag = $title;
+		$titletag = $title.' - Details Digambar Jain Sadhus Sadhvis';
 		$schemaOrgBody = 'itemscope itemtype="http://schema.org/WebPage"';
 		$schemaOrg = '';
 	}
@@ -34,7 +34,7 @@ if(isset($_GET['id'])) {
 // When no id is entered in the url it will show the list of munis.
 else{
 	$title = "Jain Muni Locator";
-	$titletag = $title;
+	$titletag = $title.' - Details Digambar Jain Sadhus Sadhvis';
 	$t = $db->prepare('SELECT * FROM munishri, upadhis, aryika, kshullak, ailak, muni, upadhyay, ailacharya, acharya WHERE approved=1 AND uid=upadhi AND id=aryikaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY uid, name ASC');
 	$t->execute();
 	$schemaOrgBody = 'itemscope itemtype="http://schema.org/WebPage"';
@@ -46,13 +46,17 @@ else{
 <!-- Start Head -->
 <head>
 
-	<!-- start title -->
+	<!-- start title - should be 57 characters max as suggested by http://seorch.eu -->
 	<title><?php echo $titletag; ?></title>
 
 	<!-- start meta -->
-	<?php $metaKeywords = $titletag.', Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, Muni Dincharya, list of all digamabar jain munis'; ?>
+	<?php
+	$metaKeywords = $titletag.', Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis';
+	$keywords = $metaKeywords.', Elacharya, Upadhyay, Elak, Kshullak, Aryika, Kshullika, Bhramcharya';
+	?>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
+	<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
 	<meta name="keywords" content="<?php echo $metaKeywords ?>">
 	<meta name="author" content="Jain Muni Locator">
 	<meta name=viewport content="width=device-width, initial-scale=1">
@@ -71,3 +75,10 @@ else{
 
 </head>
 <!-- End Head -->
+
+<!-- start jquery scripts -->
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
+<script type='text/javascript' src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+<!-- load slider menu here, just after jquery, because it won't work after other scripts -->
+<script type='text/javascript' src='js/sliderMenu.js'></script>
+<!-- end jquery scripts -->
