@@ -38,6 +38,11 @@ th, td {
 	width:40%;
 	}
 
+.profile {
+	float:left;
+	width:50%;
+	}
+
 .subPara {
 		position:relative;
 		left: 20px;
