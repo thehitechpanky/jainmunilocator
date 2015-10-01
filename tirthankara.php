@@ -21,7 +21,9 @@
 			$t->execute();
 			if($t->rowCount() == 1) {
 				$row = $t->fetch(PDO::FETCH_ASSOC);
-				$title = $row['tirthankaraname'];
+				$name = $row['tirthankaraname'];
+				$title = $name;
+				$metre = $row['tirthankaraheight'] * 3;
 			} else {
 				$title = 'Tirthankara';
 			}
@@ -47,7 +49,6 @@
 			
 			<?php
 			} else {
-				$metre = $row['tirthankaraheight'] * 3;
 				echo '<table>
 				<tr><td>Symbol</td><td>'.$row['tirthankarasymbol'].'</td></tr>
 				<tr><td>Color</td><td>'.$row['tirthankaracolor'].'</td></tr>
@@ -59,11 +60,26 @@
 				echo '<h2>Idols</h2>
 				<ol>';
 				while($row2 = $t2->fetch(PDO::FETCH_ASSOC)) {
-					echo '<li><a href="idols.php?id='.$row2['idolid'].'">'.$row['tirthankaraname'].'</a></li>';
+					echo '<li><a href="idols.php?id='.$row2['idolid'].'">'.$name.'</a></li>';
 				}
 				echo '</ol>';
 			}
 			?>
+			
+		</div>
+		
+		<div class="muniPageSidebar">
+			<center><input type="button" value="UPDATE DETAILS" onclick="location.href='#'"/>
+			</center><br /><br />
+			
+			<img alt="Photo of <?php echo $name; ?>" width="315px" src="<?php echo $img; ?>" itemprop="image" />
+			<br /><br />
+				
+				<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+					<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+						<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+					</blockquote></div>
+				</div>
 			
 		</div>
 		
