@@ -22,7 +22,8 @@
 			if($t->rowCount() == 1) {
 				$row = $t->fetch(PDO::FETCH_ASSOC);
 				$name = $row['tirthankaraname'];
-				$title = $name;
+				$img = $row['tirthankaraimg'];
+				$title = 'Lord '.$name;
 				$metre = $row['tirthankaraheight'] * 3;
 			} else {
 				$title = 'Tirthankara';
@@ -38,7 +39,7 @@
 		
 		<div class="divider clear"></div>
 			
-		<div class="inner-content">
+		<div class="profile">
 			
 			<?php if ($title == 'Tirthankara') { ?>
 			
@@ -75,11 +76,11 @@
 			<img alt="Photo of <?php echo $name; ?>" width="315px" src="<?php echo $img; ?>" itemprop="image" />
 			<br /><br />
 				
-				<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-					<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
-						<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-					</blockquote></div>
-				</div>
+			<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+				<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+				</blockquote></div>
+			</div>
 			
 		</div>
 		
