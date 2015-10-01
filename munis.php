@@ -245,13 +245,12 @@
 				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$getinfo['birthplace'].'</span></td></tr>
 				<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
 				<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
-				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>'
-				;
+				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
 				
 				// Shishyawali List
 				if($getinfo['upadhi']==1) {echo
 				'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Shishyawali</th></tr>';
+				<tr><th colspan="2" align="left"><a id="shishyawali" href="#">Shishyawali</a></th></tr>';
 				$r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
 				while($row = $r2->fetch(PDO::FETCH_ASSOC))
 				{
@@ -259,12 +258,13 @@
 					$guruid = getguru($row["id"]);
 					if($guruid==$getinfo["id"]) {
 						$j++;
-						echo '<tr><td colspan="2"><div class="hoverImg"><a href="?id='.$row["id"].'">'.$j.': '.getmuni($row["id"]).'
+						echo '<tr class="slist hidden"><td colspan="2"><div class="hoverImg"><a href="?id='.$row["id"].'">'.$j.': '.getmuni($row["id"]).'
 						<img class="smallLight" src="'.getImg($row["id"]).'" alt="'.getmuni($row["id"]).'" />
 						</a></div></td></tr>';
 					}
 				}}
 				
+			$id = $getinfo['id'];
 			echo '</table><br /><hr>
 			
 			<!-- Facebook Comments Started -->
@@ -278,7 +278,8 @@
 			</div>
 			
 			<div class="muniPageSidebar">
-				<center><input type="button" value="UPDATE LOCATION / DETAILS" onclick="location.href="./editform.php?id='.$getinfo['id'].'" />
+				<center>
+					<a class="button" href="editform.php?id='.$id.'">UPDATE LOCATION / DETAILS</a>
 				</center><br /><br />
 				<img alt="Photo of '.getmuni($getinfo['id']).'" width="315px" src="'.$getinfo['img'].'" itemprop="image" /><br /><br />
 				
@@ -289,6 +290,7 @@
 				</div>
 			
 			</div>';
+			$loadMuniPageScript = "Yes";
 		}
 	?>
 		
