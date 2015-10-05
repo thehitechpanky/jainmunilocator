@@ -48,8 +48,16 @@
 			$loadSearchScript="Yes";
 		
 		} else {
-				
-				//Gurudev Profile Details
+			
+			//Gurudev Profile Details
+			if(isMobile()){
+				echo '<div>
+				<center>
+					<a class="button" href="editform.php?id='.$id.'">UPDATE LOCATION / DETAILS</a>
+				</center><br /><br />
+				<img alt="Photo of '.getmuni($getinfo['id']).'" width="315px" src="'.$getinfo['img'].'" itemprop="image" />
+				<br /><br /><table>';
+			} else {
 				echo '<div class="muniPageSidebar">
 						<center>
 							<a class="button" href="editform.php?id='.$id.'">UPDATE LOCATION / DETAILS</a>
@@ -65,6 +73,7 @@
 					</div>
 					
 					<div style="float:left;width:50%"><table style="width:100%">';
+			}
 					
 				if($getinfo['dos']=="0000-00-00") {echo
 					'<tr><td>Current Location</td><td>
