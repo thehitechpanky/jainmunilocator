@@ -50,7 +50,21 @@
 		} else {
 				
 				//Gurudev Profile Details
-				echo '<div style="float:left;width:50%"><table style="width:100%">';
+				echo '<div class="muniPageSidebar">
+						<center>
+							<a class="button" href="editform.php?id='.$id.'">UPDATE LOCATION / DETAILS</a>
+						</center><br /><br />
+						<img alt="Photo of '.getmuni($getinfo['id']).'" width="315px" src="'.$getinfo['img'].'" itemprop="image" /><br /><br />
+						
+						<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+							</blockquote></div>
+						</div>
+					
+					</div>
+					
+					<div style="float:left;width:50%"><table style="width:100%">';
 					
 				if($getinfo['dos']=="0000-00-00") {echo
 					'<tr><td>Current Location</td><td>
@@ -275,21 +289,8 @@
 			
 			<br /><br /><br /><br /><br /><br /><br /><br /><br />
 			
-			</div>
-			
-			<div class="muniPageSidebar">
-				<center>
-					<a class="button" href="editform.php?id='.$id.'">UPDATE LOCATION / DETAILS</a>
-				</center><br /><br />
-				<img alt="Photo of '.getmuni($getinfo['id']).'" width="315px" src="'.$getinfo['img'].'" itemprop="image" /><br /><br />
-				
-				<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-					<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
-						<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-					</blockquote></div>
-				</div>
-			
 			</div>';
+			
 			$loadMuniPageScript = "Yes";
 		}
 	?>
