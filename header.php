@@ -4,7 +4,7 @@
 <!-- Load Configuration File and created functions -->
 <?php
 
-include('functionsCreated.php');
+include 'functionsCreated.php';
 
 //Find Muni Name and Details
 $showmuni = false;
@@ -60,11 +60,8 @@ else{
 	<meta name="keywords" content="<?php echo $metaKeywords ?>">
 	<meta name="author" content="Jain Muni Locator">
 	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="alexaVerifyID" content="GfQ7YYpZjrH6gB9GuRuLa8OXMFA"/>
 
-	<!-- styles -->
-	<link href="./css/minified.css.php" rel="stylesheet" type="text/css" media="screen" />
-	<!-- end styles -->
+	<?php include 'alexa.php'; 'css.php'; ?>
 	
 	<!-- Start Search Controls -->
 	<input id="pac-input" class="controls" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search" />
@@ -78,9 +75,4 @@ else{
 </head>
 <!-- End Head -->
 
-<!-- start jquery scripts -->
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
-<script type='text/javascript' src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
-<!-- load slider menu here, just after jquery, because it won't work after other scripts -->
-<script type='text/javascript' src='js/sliderMenu.js'></script>
-<!-- end jquery scripts -->
+<?php include 'jquery.css'; ?>
