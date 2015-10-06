@@ -61,7 +61,7 @@ else{
 	<meta name="author" content="Jain Muni Locator">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 
-	<?php include 'alexa.php'; 'css.php'; ?>
+	<?php include 'alexa.php'; include 'css.php'; ?>
 	
 	<!-- Start Search Controls -->
 	<input id="pac-input" class="controls" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search" />
@@ -75,4 +75,4 @@ else{
 </head>
 <!-- End Head -->
 
-<?php include 'jquery.css'; ?>
+<?php include 'jquery.php'; ?>
