@@ -71,7 +71,9 @@ else{
 	<!-- End Search Controls -->
 	
 	<!-- Load Map -->
+	<?php if(ismobile()){}else{ ?>
 	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
+	<?php } ?>
 
 </head>
 <!-- End Head -->
