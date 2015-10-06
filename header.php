@@ -61,14 +61,17 @@ else{
 	<meta name="author" content="Jain Muni Locator">
 	<meta name=viewport content="width=device-width, initial-scale=1">
 
-	<?php include 'alexa.php'; include 'css.php'; ?>
+	<?php
+	include 'alexa.php';
+	include 'css.php';
+	if(ismobile()){}else{
+	?>
 	
 	<!-- Start Search Controls -->
 	<input id="pac-input" class="controls" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search" />
 	<!-- End Search Controls -->
 	
 	<!-- Load Map -->
-	<?php if(ismobile()){}else{ ?>
 	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
 	<?php } ?>
 
