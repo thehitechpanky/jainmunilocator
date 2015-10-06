@@ -64,7 +64,7 @@ else{
 	<?php
 	include 'alexa.php';
 	include 'css.php';
-	if(ismobile()){}else{
+	if(isMobile()){}else{
 	?>
 	
 	<!-- Start Search Controls -->
