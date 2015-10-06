@@ -24,11 +24,11 @@ $q->execute();
 if($q->rowCount() != 0) {
 	echo '<ol>';
 	while($row = $q->fetch(PDO::FETCH_ASSOC)) {
-		if(isMobile()){
+		//if(isMobile()){
 			echo '<li><a href="?id='.$row['id'].'" title="Profile of '.getmuni($row['id']).'" >'.getmuni($row['id']).'</a></li>';
-		} else {
-			echo '<li><a href="?id='.$row['id'].'" title="Profile of '.getmuni($row['id']).'" >'.getmuni($row['id']).'<img src="'.$row['img'].'" class="smallLight" alt="Photo of '.getmuni($row['id']).'" /></a></li>';
-		}
+		//} else {
+		//echo '<li><a href="?id='.$row['id'].'" title="Profile of '.getmuni($row['id']).'" >'.getmuni($row['id']).'<img src="'.$row['img'].'" class="smallLight" alt="Photo of '.getmuni($row['id']).'" /></a></li>';
+		//}
 	}
 	echo '</ol>';
 } else {
