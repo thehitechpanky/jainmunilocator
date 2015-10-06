@@ -300,6 +300,15 @@
 			
 			</div>';
 			
+			if(isMobile()){
+				echo
+			'<div class="fb-page" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+				<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+				</blockquote></div>
+			</div>';
+			}
+			
 			$loadMuniPageScript = "Yes";
 		}
 	?>
