@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
-
-<?php $metaKeywords = 'Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis'; ?>
-	<!-- Start Head -->
-	<head>
-		<!-- start title - should be 57 characters max as suggested by http://seorch.eu -->
-		<title>Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis</title>
-		
-		<?php
-		include 'meta.php';
-		include 'alexa.php';
-		include 'css.php';
-		?>
-		
-	</head>
-	<!-- End Head -->
-	
-	<?php include 'jquery.php'; include 'functions/universal.php'; ?>
+<?php
+$title = 'Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis';
+$metaKeywords = 'Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis';
+include 'head.php';
+?>
 	
 	<!-- start body -->
 	<body itemscope itemtype="http://schema.org/WebPage" >
