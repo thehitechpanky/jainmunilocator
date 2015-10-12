@@ -1,3 +1,5 @@
+<?php include 'functions/universal.php'; ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
@@ -17,14 +19,7 @@
 	
 		<link href="./css/minified.css.php" rel="stylesheet" type="text/css" media="screen" />
 		
-		<?php if(isMobile()){}else{ ?>
-		<!-- Load Map -->
-		<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
-		<?php } ?>
-		
 		<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
 		<script type='text/javascript' src='http://code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
 	
 	</head>
-
-<?php include 'functions/universal.php'; ?>
