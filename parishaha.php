@@ -33,27 +33,4 @@ include 'head.php';
 		</div><!-- end content wrapper -->
 		<?php } ?>
 
-<!-- Analytics Included -->
-<?php
-include_once("analyticstracking.php");
-include 'javascripts.php';
-?>
-
-<div class="space"></div>
-<div class="sub-footer clearfix">
-	<div class="copyright">&copy; 2014 Developed by <a  target="_blank" href="http://dhruvjain.org" title="Dhruv Jain">Dhruv Jain</a></div>
-
-<?php include 'footerMenu.php' ?>
-
-</div>
-
-	<div id="slidecaption"></div>
-
-<?php
-include 'social.php';
-include 'keywords.php';
-?>
-
-</body>
-
-</html>
+<?php include 'foot.php'; ?>
