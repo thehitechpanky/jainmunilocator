@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 
+<?php $metaKeywords = 'Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis'; ?>
 	<!-- Start Head -->
 	<head>
 		<!-- start title - should be 57 characters max as suggested by http://seorch.eu -->
-		<title>Parishaha Jain Muni Locator Details Digambar Jain Sadhus Sadhvis</title>
-		<!-- start meta -->
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
-		<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
-		<meta name="keywords" content="Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis">
-		<meta name="author" content="Jain Muni Locator">
-		<meta name=viewport content="width=device-width, initial-scale=1">
+		<title>Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis</title>
 		
 		<?php
+		include 'meta.php';
 		include 'alexa.php';
 		include 'css.php';
 		?>
@@ -45,11 +40,34 @@
 		<?php } ?>
 		
 		<div>
-			
+			Hello
 		</div>
 			
 		<?php if(isMobile()){}{ ?>
 		</div><!-- end content wrapper -->
 		<?php } ?>
-			
-	</body>
+
+<!-- Analytics Included -->
+<?php
+include_once("analyticstracking.php");
+include 'javascripts.php';
+?>
+
+<div class="space"></div>
+<div class="sub-footer clearfix">
+	<div class="copyright">&copy; 2014 Developed by <a  target="_blank" href="http://dhruvjain.org" title="Dhruv Jain">Dhruv Jain</a></div>
+
+<?php include("footerMenu.php") ?>
+
+</div>
+
+	<div id="slidecaption"></div>
+
+<?php
+include 'social.php' 
+include 'keywords.php'
+?>
+
+</body>
+
+</html>
