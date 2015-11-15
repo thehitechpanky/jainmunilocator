@@ -1,15 +1,20 @@
 <!-- start footer -->
 
 <!-- Analytics Included -->
-<?php
-include_once("analyticstracking.php");
+<?php include_once("analyticstracking.php"); ?>
 
-if(isMobile()){}else{
-	include 'markers.php';
-}
-
-include 'javascripts.php';
-?>
+<!-- start custom scripts -->
+<script type='text/javascript' src='js/jquery.custom.js'></script>
+<script type='text/javascript' src='js/jquery.supersized.js'></script>
+<script type='text/javascript' src='js/jquery.supersized.shutter.min.js'></script>
+<script type='text/javascript' src='js/jquery-ui-1.8.18.custom.min.js'></script>
+<script type='text/javascript' src='js/jquery.tipsy.js'></script>
+<script type='text/javascript' src='js/jquery.form.js'></script>
+<script type='text/javascript' src='js/jquery.isotope.min.js'></script>
+<script type='text/javascript' src='js/jquery.easing.js'></script>
+<script type='text/javascript' src='js/jquery.preloader.js'></script>
+<script type='text/javascript' src='js/jquery.prettyPhoto.js'></script>
+<script type='text/javascript' src='js/jquery.scroll.min.js'></script>
 
 <div class="space"></div>
 <div class="sub-footer clearfix">
