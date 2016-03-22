@@ -65,7 +65,7 @@ include 'map/googleMap.php';
 			<div id="menu">
 				<ul>		            
 					<li><a target="" href="./" title="Home">Home</a></li>
-					<li><a target="" href="./about.php" title="About">About</a></li>
+					<li><a target="" href="./map.php" title="Map">Map</a></li>
 					<li><a target="" href="./munis.php" title="Munis">Munis</a></li>
 				</ul>
 			</div>
