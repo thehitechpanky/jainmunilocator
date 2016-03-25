@@ -36,8 +36,11 @@ function onSignIn(googleUser) {
 	}
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", "../updateLocation.php?email=" + email + "&username=" + username + "&userimg=" + userimg + "&userlat=" + userlat + "&userlng=" + userlng, true);
+		xmlhttp.open("GET", "../updateLogin.php?email=" + email + "&username=" + username + "&userimg=" + userimg, true);
 		xmlhttp.send();
+		xmlhttp2 = new XMLHttpRequest();
+		xmlhttp2.open("GET", "../updateLocation.php?email=" + email + "&username=" + username + "&userimg=" + userimg + "&userlat=" + userlat + "&userlng=" + userlng, true);
+		xmlhttp2.send();
 		return false;
 	}
 };
