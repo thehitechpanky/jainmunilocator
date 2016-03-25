@@ -61,7 +61,7 @@ include 'nav.php';
 		<section id="team" class="team content-section">
 			<div class="container">
 						<div class="g-signin2" data-onsuccess="onSignIn"></div>
-				<div id="edit"><a class="btn btn-default btn-lg hidden" href="articles/editor.php?title=<?php echo $title; ?>&alias=<?php echo $alias; ?>">Edit</a></div>
+				<div id="edit" class="hidden"><a class="btn btn-default btn-lg" href="articles/editor.php?title=<?php echo $title; ?>&alias=<?php echo $alias; ?>">Edit</a></div>
 				<div class="row text-center">
 					<div class="col-md-12">
 						<h2>Our Team</h2>
