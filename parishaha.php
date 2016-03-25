@@ -59,14 +59,23 @@ include 'nav.php';
 		<!-- Our team Section -->
 		<section id="team" class="team content-section">
 			<div class="container">
-						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div class="g-signin2" data-onsuccess="onSignIn"></div>
 				<div id="edit" class="hidden"><a class="btn btn-default btn-lg" href="articles/editor.php?title=<?php echo $title; ?>&alias=<?php echo $alias; ?>">Edit</a></div>
 				<div class="row text-center">
 					<div class="col-md-12">
-						<h2>Our Team</h2>
+						<h2><?php echo $title; ?></h2>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 				<div><?php echo $content; ?></div>
+				
+				<!-- Facebook Comments Started -->
+				<hr>
+				<div id="fb-root"></div>
+				<div class="fb-like" data-href="http://jainmunilocator.org/ekadash-pratima.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+				<div class="fb-comments" data-href="http://jainmunilocator.org/ekadash-pratima.php" data-numposts="5"></div>
+				<!-- Facebook Comments Ended -->
+				
+				
 			</div><!-- /.container -->
 		</section><!-- /.our-team -->
 		
@@ -85,7 +94,7 @@ include 'nav.php';
 include 'scripts.php';
 include 'login/loginscripts.php';
 		?>
-
+		
 	</body>
 	
 </html>
