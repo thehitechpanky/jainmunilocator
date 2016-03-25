@@ -1,78 +1,92 @@
 <?php
-$title = 'Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis';
-$metaKeywords = 'Parishaha, Jain Muni Locator, Details Digambar Jain Sadhus Sadhvis, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis';
-include 'head.php';
+include 'config.php';
+$title = 'Parishaha';
+$alias = 'parishaha';
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 	
-	<!-- start body -->
-	<body itemscope itemtype="http://schema.org/WebPage" >
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
+		<title>Jain Muni Locator - Home</title>
+		
+		<!-- Bootstrap Core CSS -->
 		<?php
-		include('menu.php');
-		if(isMobile()){}{
+include 'bootstrap.php';
+include 'stylesheets.php';
 		?>
 		
-		<!-- start content wrapper -->
-		<div class="container" >
-			
-		<?php } ?>
-			
-			<div class="page-title">
-				<h1><span itemprop="name">22 Parishaha</span></h1>
-			</div>
 		
-		<?php if(isMobile()){}{ ?>
-		<div class="divider clear"></div>
-		<?php } ?>
+		<!-- Custom Fonts -->
+		<?php include 'font-awesome.php'; ?>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+		<link href="css/custom.css" rel="stylesheet" type="text/css" media="screen" />
+		<?php include 'login/login.php'; ?>
 		
-		<div>
-			Kshut, i.e., Hunger,
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<script>
+document.createElement('video');
+</script>
+<![endif]-->
+		
+	</head>
+	
+	<body id="home">
+		<!-- Navigation -->
+		<?php
+$q = $db->prepare('SELECT * FROM articles WHERE title=?');
+$q->execute(array($title));
+if($q->rowCount() > 0) {
+	$row = $q->fetch(PDO::FETCH_ASSOC);
+	$content = $row['content'];
+}
 
-Pipasa, i.e., Thirst,
+$navLinks = '<li><a href="/">Home</a></li>
+<li><a href="#team">'.$title.'</a></li>
+                                <li><a href="#contact">Contact us</a></li>';
+include 'nav.php';
+		?>
+		
+		
+		<!-- Our team Section -->
+		<section id="team" class="team content-section">
+			<div class="container">
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div id="edit"><a class="btn btn-default btn-lg hidden" href="articles/editor.php?title=<?php echo $title; ?>&alias=<?php echo $alias; ?>">Edit</a></div>
+				<div class="row text-center">
+					<div class="col-md-12">
+						<h2>Our Team</h2>
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+				<div><?php echo $content; ?></div>
+			</div><!-- /.container -->
+		</section><!-- /.our-team -->
+		
+		
+		
+		<!-- Contact section -->
+		<?php include 'contact.php'; ?>			
+		
+		<!-- Footer -->
+		<?php include 'footer2.php'; ?>		
+		
+		<!-- Facebook -->
+		<script type='text/javascript' src='js/facebook.js'></script>
+		
+		<?php
+include 'scripts';
+include 'login/loginscripts.php';
+		?>
 
-Sita, i.e., Cold.
-
-Ushna, i.e., Heat,
-
-Damsamasaka, i.e. Insect-bite,
-
-Nagnya, i.e., Nakedness,
-
-Arati, i.e., Ennui or disagreeable surroundings,
-
-Stri, i.e., Sex-passion,
-
-Charya, i.e., Walking too much,
-
-Nishadya, i.e., Continuous sitting in one posture,
-
-Sayya, i.e., Resting on hard earth,
-
-Akrosa, i.e., Abuse or unpleasant and insulting language,
-
-Vadha, i.e., Beating or violence inflicted by cruel persons,
-
-Yachana, i.e., Begging or desire to beg for food, medicine, etc.,
-
-Alabha, i.e., Disappointment from not getting what one wants, e.g. food,
-
-Roga, i.e., Diseases and infirmities in the body,
-
-Trnasparsa, i.e., Thorn-pricks or pricks from the sharp grass,
-
-Mala, i.e., Dirt and impurity all over the body,
-
-Satkara-puraskara, i.e. Remaining uninfluenced by praise or reward,
-
-Prajna, i.e., Pride of knowledge,
-
-Ajnana, i.e., feeling of ignorance or non-possession of knowledge, and
-
-Adarsana, i.e., slack-belief or temporary lack of faith.
-		</div>
-			
-		<?php if(isMobile()){}{ ?>
-		</div><!-- end content wrapper -->
-		<?php } ?>
-
-<?php include 'foot.php'; ?>
+	</body>
+	
+</html>
