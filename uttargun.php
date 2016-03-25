@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 
 <!-- start body -->
-<body onunload="" >
+<body onunload="" <?php echo $schemaOrgBody; ?>>
 
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
@@ -154,6 +154,17 @@
 				
 			</div>
 			<!-- end list items -->
+			
+			<br />
+			<hr>
+			
+			<!-- Facebook Comments Started -->
+			<div id="fb-root"></div>
+			<div class="fb-like" data-href="http://jainmunilocator.org/uttargun.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="http://jainmunilocator.org/uttargun.php" data-numposts="5"></div>
+			<!-- Facebook Comments Ended -->
+			
+			<br /><br /><br /><br /><br /><br /><br /><br /><br />
 			
 		</div>
 		<!-- end page content -->
