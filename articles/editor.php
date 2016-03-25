@@ -2,12 +2,13 @@
 
 include '../config.php';
 
-$title = $_GET['title'];
-$alias = $_GET['alias'];
-$q = $db->prepare('SELECT * FROM articles WHERE title=?');
-$q->execute(array($title));
-if($q->rowCount() > 0) {
+$id = $_GET['id'];
+$q = $db->prepare('SELECT * FROM articles WHERE id=?');
+$q->execute(array($id));
+if($q->rowCount() == 1) {
 	$row = $q->fetch(PDO::FETCH_ASSOC);
+	$title = $row['title'];
+	$alias = $row['alias'];
 	$content = $row['content'];
 }
 
@@ -65,10 +66,11 @@ include '../nav.php';
 				<form id="editForm" action="edit.php" method="POST">
 					<div class="row text-center">
 						<div class="col-md-12">
-							<h2><?php echo $title; ?></h2>
+							<h2>Editing <?php echo $title; ?></h2>
 						</div><!-- /.col-md-12 -->
 					</div><!-- /.row -->
-					<input type="hidden" name="title" value="<?php echo $title; ?>">
+					<input type="hidden" name="id" value="<?php echo $id; ?>">
+					<h3>Title <input type="text" name="title" value="<?php echo $title; ?>"></h3>
 					<input type="hidden" name="alias" value="<?php echo $alias; ?>">
 					<textarea name="content" id="content" rows="10" cols="80" class="hidden"><?php echo $content; ?></textarea>
 					<input type="hidden" id="author" name="author">
