@@ -25,6 +25,7 @@ function onSignIn(googleUser) {
 		$('#save').removeClass('hidden');
 		$('#reset').removeClass('hidden');
 		$('#cancel').removeClass('hidden');
+		$('#author').val(username);		
 	} else {
 		//alert('email');
 		$('#edit').attr('class', 'hidden');
