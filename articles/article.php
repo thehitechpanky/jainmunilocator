@@ -2,7 +2,7 @@
 include 'config.php';
 $q = $db->prepare('SELECT * FROM articles WHERE id=?');
 $q->execute(array($id));
-if($q->rowCount() > 0) {
+if($q->rowCount() == 0) {
 	$row = $q->fetch(PDO::FETCH_ASSOC);
 	$title = $row['title'];
 	$alias = $row['alias'];
