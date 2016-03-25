@@ -1,89 +1,99 @@
-<?php include('header.php'); ?>
+<?php
+include 'config.php';
+$title = 'Meaning of "108"';
+$alias = 'meaning-of-108';
+?>
 
-<!-- start body -->
-<body onunload="" <?php echo $schemaOrgBody; ?>>
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title><?php echo $title; ?></title>
+		
+		<!-- Bootstrap Core CSS -->
+		<?php
+include 'bootstrap.php';
+include 'stylesheets.php';
+		?>
+		
+		
+		<!-- Custom Fonts -->
+		<?php include 'font-awesome.php'; ?>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+		<?php include 'login/login.php'; ?>
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<script>
+document.createElement('video');
+</script>
+<![endif]-->
+		
+	</head>
+	
+	<body id="home">
+		<!-- Navigation -->
+		<?php
+$q = $db->prepare('SELECT * FROM articles WHERE title=?');
+$q->execute(array($title));
+if($q->rowCount() > 0) {
+	$row = $q->fetch(PDO::FETCH_ASSOC);
+	$content = $row['content'];
+}
 
-	<!-- start dotted pattern -->
-	<div class="bg-overlay"></div>
-	<!-- end dotted pattern -->
-	
-	<!-- start navigation -->
-	<?php include('menu.php'); ?>
-	<!-- end navigation -->
-	
-	<!-- start content wrapper -->
-	
-	<div class="content page-content">
-	
-		<div class="page-title">
-			<h1>Meaning of "108"</h1>
-		</div>
+$navLinks = '<li><a href="/">Home</a></li>
+<li><a href="#team">'.$title.'</a></li>
+                                <li><a href="#contact">Contact us</a></li>';
+include 'nav.php';
+		?>
 		
-		<div class="divider clear"></div>
 		
-		<div class="inner-content">	
-			108 represents the 108 qualities in Jain Upadhyay, Munishris and Sadhus.<br><br>
-			<b>There are 108 qualities of praiseworthy souls as elaborated below:</b>
-			<ul><li>Arihant..........12 Qualities</li>
-			<li>Siddh............08 Qualities</li>
-			<li>Acharya........36 Qualities</li>
-			<li>Upadhyay......25 Qualities</li>
-			<li>Sadhu...........27 Qualities</li></ul>
-			<ul><li><b>12 Qualities of Arihant are further sub divided as</b></li>
-			<ul><li>4 Atishay</li>
-			<ol><li>Gyan Atishay</li>
-			<li>Vachn Atishay</li>
-			<li>Puja Atishay</li>
-			<li>Apayapagm Atishay</li></ol>
-			<li>8 Prtiharya</li>
-			<ol><li>Singhasan</li>
-			<li>Bhamandal</li>
-			<li>Chhatra</li>
-			<li>Ashok Vriksh</li>
-			<li>Deva-dundubhi</li>
-			<li>Divya-dhwani</li>
-			<li>Pushp-vrushti</li>
-			<li>Chamar</li></ol></ul>
-			<table border="2">
-			<tr><th>8 Qualities of Siddh</th></tr>
-			<tr><th>S. No.</th><th>Quality (Gun)</th><th>Meaning</th><th>Karm/Dosh</th></tr>		
-			  <tr><td colspan="4">4 by destorying Ghati-Karm</td></tr>
-			    <tr><td>1.</td><td>Anant Gyan</td><td>Infinite Knowledge</td></tr>
-			    <tr><td>2.</td><td>Anant Darshan</td><td>Infinite Perception</td></tr>
-			    <tr><td>3.</td><td>Anant Charitra</td><td>Perfect Conduct</td></tr>
-			    <tr><td>4.</td><td>Anant Virya</td><td>Infinite Energy</td></tr>
-			  <tr><td colspan="4">4 by destroying Aghati-Karm</td></tr>
-			    <tr><td>1.</td><td>Avyabadha-sukh</td><td>Eternal Happiness</td></tr>
-			    <tr><td>2.</td><td>Akshay-stithi</td><td>Immortality</td></tr>
-			    <tr><td>3.</td><td>Arupitv</td><td>Formlessness</td></tr>
-			    <tr><td>4.</td><td>Aguru-Laghotv</td><td>Equality among all Siddh</td></tr>
-			</table>
-			</ul>
-			
-			<br />
-			<hr>
-			
-			<!-- Facebook Comments Started -->
-			<div id="fb-root"></div>
-			<div class="fb-like" data-href="http://jainmunilocator.org/meaning-of-108.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-			<div class="fb-comments" data-href="http://jainmunilocator.org/meaning-of-108.php" data-numposts="5"></div>
-			<!-- Facebook Comments Ended -->
-			
-			<br /><br /><br /><br /><br /><br /><br /><br /><br />
-			
-		</div>
+		<!-- Our team Section -->
+		<section id="team" class="team content-section">
+			<div class="container">
+				<div class="g-signin2" data-onsuccess="onSignIn"></div>
+				<div id="edit" class="hidden"><a class="btn btn-default btn-lg" href="articles/editor.php?title=<?php echo $title; ?>&alias=<?php echo $alias; ?>">Edit</a></div>
+				<div class="row text-center">
+					<div class="col-md-12">
+						<h2><?php echo $title; ?></h2>
+					</div><!-- /.col-md-12 -->
+				</div><!-- /.row -->
+				<div><?php echo $content; ?></div>
+				
+				<!-- Facebook Comments Started -->
+				<hr>
+				<div id="fb-root"></div>
+				<div class="fb-like" data-href="http://jainmunilocator.org/ekadash-pratima.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+				<div class="fb-comments" data-href="http://jainmunilocator.org/ekadash-pratima.php" data-numposts="5"></div>
+				<!-- Facebook Comments Ended -->
+				
+			</div><!-- /.container -->
+		</section><!-- /.our-team -->
 		
-		<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-			<div class="fb-xfbml-parse-ignore">
-				<blockquote cite="https://www.facebook.com/jainmunilocator">
-					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-				</blockquote>
-			</div>
-		</div>
 		
-		<!-- end widgets -->
-	</div>
+		
+		<!-- Contact section -->
+		<?php include 'contact.php'; ?>			
+		
+		<!-- Footer -->
+		<?php include 'footer2.php'; ?>		
+		
+		<!-- Facebook -->
+		<script type='text/javascript' src='js/facebook.js'></script>
+		
+		<?php
+include 'scripts.php';
+include 'login/loginscripts.php';
+		?>
+		
+	</body>
 	
-	<!--  end content wrapper  -->
- 	
-<?php include('footer.php'); ?>
+</html>
