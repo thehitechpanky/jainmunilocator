@@ -1,7 +1,7 @@
 <?php include('header.php'); ?>
 
 <!-- start body -->
-<body onunload="" >
+<body onunload="" <?php echo $schemaOrgBody; ?>>
 
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
@@ -59,10 +59,28 @@
 			    <tr><td>4.</td><td>Aguru-Laghotv</td><td>Equality among all Siddh</td></tr>
 			</table>
 			</ul>
+			
+			<br />
+			<hr>
+			
+			<!-- Facebook Comments Started -->
+			<div id="fb-root"></div>
+			<div class="fb-like" data-href="http://jainmunilocator.org/meaning-of-108.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="http://jainmunilocator.org/meaning-of-108.php" data-numposts="5"></div>
+			<!-- Facebook Comments Ended -->
+			
+			<br /><br /><br /><br /><br /><br /><br /><br /><br />
+			
 		</div>
-		<div class="sidebar">
-		<img src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" style="width:200px;margin-right:5px">
+		
+		<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+			<div class="fb-xfbml-parse-ignore">
+				<blockquote cite="https://www.facebook.com/jainmunilocator">
+					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+				</blockquote>
+			</div>
 		</div>
+		
 		<!-- end widgets -->
 	</div>
 	
