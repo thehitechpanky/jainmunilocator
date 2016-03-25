@@ -65,7 +65,7 @@ include 'nav.php';
 						<h2><?php echo $title; ?></h2>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
-				<div><?php echo $content; ?></div>
+				<div class="content"><?php echo $content; ?></div>
 				
 				<!-- Facebook Comments Started -->
 				<hr>
