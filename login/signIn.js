@@ -19,7 +19,7 @@ function onSignIn(googleUser) {
 	var username = profile.getName();
 	var email = profile.getEmail();	
 	var userimg = profile.getImageUrl();
-	if (email === 'capankajjain@smilyo.com') {
+	if (email === 'capankajjain@smilyo.com' || email === 'cloudjain@gmail.com') {
 		$('#edit').removeClass('hidden');
 		$('#content').removeClass('hidden');
 		$('#save').removeClass('hidden');
