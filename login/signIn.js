@@ -1,5 +1,10 @@
 var message = 'Welcome to Jain Muni Locator!\nPlease sign-in using the button on top right of your screen to know updated locations of Muni-shri.';
 //alert(message);
+$('#edit').attr('class', 'hidden');
+$('#content').attr('class', 'hidden');
+$('#save').attr('class', 'hidden');
+$('#reset').attr('class', 'hidden');
+$('#cancel').attr('class', 'hidden');
 
 navigator.geolocation.getCurrentPosition(function(position) {
 	userlat = position.coords.latitude;
@@ -14,21 +19,24 @@ function onSignIn(googleUser) {
 	var username = profile.getName();
 	var email = profile.getEmail();	
 	var userimg = profile.getImageUrl();
+	if (email === 'capankajjain@smilyo.com') {
+		$('#edit').removeClass('hidden');
+		$('#content').removeClass('hidden');
+		$('#save').removeClass('hidden');
+		$('#reset').removeClass('hidden');
+		$('#cancel').removeClass('hidden');
+	} else {
+		//alert('email');
+		$('#edit').attr('class', 'hidden');
+		$('#content').attr('class', 'hidden');
+		$('#save').attr('class', 'hidden');
+		$('#reset').attr('class', 'hidden');
+		$('#cancel').attr('class', 'hidden');
+	}
 	if (window.XMLHttpRequest) {
 		xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", "../updateLocation.php?email=" + email + "&username=" + username + "&userimg=" + userimg + "&userlat=" + userlat + "&userlng=" + userlng, true);
 		xmlhttp.send();
 		return false;
-	}
-	if (email == 'capankajjain@smilyo.com') {
-		$('#edit').removeClass('hidden');
-		$('#submit').removeClass('hidden');
-		$('#reset').removeClass('hidden');
-		$('#button').removeClass('hidden');
-	} else {
-		$('#edit').addClass('hidden');
-		$('#submit').addClass('hidden');
-		$('#reset').addClass('hidden');
-		$('#button').addClass('hidden');
 	}
 };
