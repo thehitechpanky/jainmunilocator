@@ -71,6 +71,7 @@ include '../nav.php';
 					<input type="hidden" name="title" value="<?php echo $title; ?>">
 					<input type="hidden" name="alias" value="<?php echo $alias; ?>">
 					<textarea name="content" id="content" rows="10" cols="80" class="hidden"><?php echo $content; ?></textarea>
+					<input type="hidden" id="author" name="author">
 					<input id="save" type="submit" value="Save" class="hidden">&nbsp;&nbsp;&nbsp;
 					<input id="reset" type="reset" value="Reset" class="hidden">&nbsp;&nbsp;&nbsp;
 					<input id="cancel" type="button" value="Cancel" onclick="location.href='./munis.php?id=<?php echo $id; ?>';" class="hidden">
