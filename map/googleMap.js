@@ -37,7 +37,7 @@ function initMap() {
 	var usermarker;
 	var userlocations = JSON.parse($("#userlocations").val());
 	var image = 'http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png';
-	if (email === '') {} else {
+	//if (email === '') {} else {
 		for (i = 0; i < userlocations.length; i++) {
 			//Markers
 			usermarker = new google.maps.Marker({
@@ -56,7 +56,7 @@ function initMap() {
 				}
 			})(usermarker, i));
 		}
-	}
+	//}
 	
 	// Create the search box and link it to the UI element.
 	var input = document.getElementById('pac-input');
