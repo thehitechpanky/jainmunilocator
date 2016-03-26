@@ -75,7 +75,7 @@ include 'login/login.php';
 		<?php
 //script has to be loaded after map div and marker boxes, otherwise maps will not work
 include 'map/googleMap.php';
-include 'loginscripts.php';
+include 'login/loginscripts.php';
 include 'analyticstracking.php';
 		?>
 		
