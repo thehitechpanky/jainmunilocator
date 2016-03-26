@@ -29,36 +29,35 @@ if($q->rowCount() > 0) {
 	<head>
 		
 		<title>Locate Digambara Muni | Jain Muni Locator</title>
-		
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-		<meta charset="utf-8">
+		<?php include 'meta.php' ?>		
 		<link rel="stylesheet" href="map/googleMap.css">
 		<link rel="stylesheet" href="nav/sliderMenu.css">
 		
-		<?php 
-include 'jquery.php';
+		<?php
+	include 'jquery.php';
 include 'login/login.php';
 		?>
 		
 		<script src="nav/sliderMenu.js" type="text/javascript"></script>
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		
 	</head>
 	
 	<body>
+		
 		<div id='map'></div>
+		
 		<input id="pac-input" class="controls" type="text" placeholder="       Search Box" />
+		
 		<textarea id=munilocations class="mapinput">
 			<?php echo json_encode($rows); ?>
 		</textarea>
+		
 		<textarea id=userlocations class="mapinput">
 			<?php echo json_encode($rows2); ?>
-		</textarea>		
-		<?php
-//script has to be loaded after map div and marker boxes, otherwise maps will not work
-include 'map/googleMap.php';
-		?>
+		</textarea>
+		
 		<div class="g-signin2" data-onsuccess="onSignIn" style="float: right;"></div>
+		
 		<!-- Start Menu -->
 		<div id="pgcontainer">
 			<a href="#" class="menubtn" title="Menu"></a>
@@ -72,5 +71,15 @@ include 'map/googleMap.php';
 			<div class="overlay"></div>
 		</div>
 		<!-- End Menu -->
+		
+		<?php
+//script has to be loaded after map div and marker boxes, otherwise maps will not work
+include 'map/googleMap.php';
+include 'loginscripts.php';
+include 'analyticstracking.php';
+		?>
+		
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		
 	</body>
 </html>
