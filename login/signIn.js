@@ -17,9 +17,9 @@ function onSignIn(googleUser) {
 	// The ID token you need to pass to your backend:
 	var id_token = googleUser.getAuthResponse().id_token;
 	var username = profile.getName();
-	var email = profile.getEmail();	
+	email = profile.getEmail();	
 	var userimg = profile.getImageUrl();
-	if (email === 'capankajjain@smilyo.com' || email === 'cloudjain@gmail.com') {
+	if (email === 'capankajjain@smilyo.com' || email === 'cloudjain@gmail.com' || email === 'djtarun550@gmail.com') {
 		$('#edit').removeClass('hidden');
 		$('#content').removeClass('hidden');
 		$('#save').removeClass('hidden');
