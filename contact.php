@@ -48,6 +48,7 @@
 </section><!-- /.cta-two-section -->
 
 
+<!-- Contact section -->
 <section id="contact" class="contact content-section no-bottom-pad wow fadeIn" data-wow-offset="10">
 	<div class="container">
 		<div class="row text-center">
