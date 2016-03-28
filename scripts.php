@@ -22,6 +22,9 @@
 <!-- Custom JavaScript -->
 <script src="../assets/js/hallooou.js"></script>
 
+<!-- Facebook -->
+<script type='text/javascript' src='js/facebook.js'></script>
+
 <?php
 include 'analyticstracking.php';
 include 'login/loginscripts.php';
