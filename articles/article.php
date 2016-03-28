@@ -14,34 +14,12 @@ if($q->rowCount() == 1) {
 <html lang="en">
 	
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+		<?php include 'meta.php'; ?>		
 		<title><?php echo $title; ?></title>
 		
-		<!-- Bootstrap Core CSS -->
 		<?php
-include 'bootstrap.php';
 include 'stylesheets.php';
 		?>
-		
-		
-		<!-- Custom Fonts -->
-		<?php include 'font-awesome.php'; ?>
-		<link href='http://fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-		<?php include 'login/login.php'; ?>
-		
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<script>
-document.createElement('video');
-</script>
-<![endif]-->
 		
 	</head>
 	
@@ -49,8 +27,9 @@ document.createElement('video');
 		<!-- Navigation -->
 		<?php
 $navLinks = '<li><a href="/">Home</a></li>
-<li><a href="#team">'.$title.'</a></li>
-                                <li><a href="#contact">Contact us</a></li>';
+			<li><a href="#team">'.$title.'</a></li>
+			<li><a href="#portfolio">Good Reads</a></li>
+            <li><a href="#contact">Contact us</a></li>';
 include 'nav.php';
 		?>
 		
@@ -78,19 +57,11 @@ include 'nav.php';
 		</section><!-- /.our-team -->
 		
 		
-		
-		<!-- Contact section -->
-		<?php include 'contact.php'; ?>			
-		
-		<!-- Footer -->
-		<?php include 'footer2.php'; ?>		
-		
-		<!-- Facebook -->
-		<script type='text/javascript' src='js/facebook.js'></script>
-		
 		<?php
+include 'goodreads.php';
+include 'contact.php';
+include 'footer2.php';
 include 'scripts.php';
-include 'login/loginscripts.php';
 		?>
 		
 	</body>
