@@ -1,3 +1,5 @@
+<?php $metaKeywords = 'Jain Muni Locator, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	
@@ -12,7 +14,7 @@ include 'stylesheets.php';
 		
 	</head>
 	
-	<body id="home">
+	<body id="home" itemscope itemtype="http://schema.org/WebPage">
 		<!-- Navigation -->
 		<?php
 $navLinks = '<li><a href="#about">About us</a></li>
@@ -39,7 +41,7 @@ include 'nav.php';
 					<!-- Set the first background image using inline CSS below. -->
 					<div class="fill" style="background-image:url('assets/images/mataji.jpg');"></div>
 					<div class="carousel-caption">
-						<h1 class="wow animated slideInDown">Jain Muni <span class="highlight">Locator</span></h1>
+						<h1 class="wow animated slideInDown"><span itemprop="name">Jain Muni <span class="highlight">Locator</span></span></h1>
 						<p class="intro-text wow animated slideInUp">One-stop online destination for Digambara Jains. Know about Jainism and its glory.</p>
 						<a href="map.php" class="btn btn-default btn-lg">Locate</a>
 					</div>
@@ -83,10 +85,10 @@ include 'nav.php';
 		
 		<!-- About Section -->
 		<section id="about" class="about content-section alt-bg-light wow fadeInUp" data-wow-offset="10">
-			<div class="container">
+			<div class="container" itemscope itemtype="http://schema.org/AboutPage">
 				<div class="row">
 					<div class="col-md-6">
-						<h2>Excited about Jain Muni Locator</h2>
+						<h2>Excited about <span itemprop="name">Jain Muni Locator</span></h2>
 						<p><strong>Guess where does our information come from?</strong></p>
 						<p>That's right, it's <strong>"YOU"</strong>. You are the one who have contributed in building this website. It's you who let us know, where monks &amp; currently are.</p>
 						
@@ -122,7 +124,7 @@ include 'nav.php';
 				<div class="row text-center">
 					<div class="col-md-12">
 						<h2>Explore</h2>
-						<h3 class="caption gray">What would you like to do today?</h3>
+						<p><strong>What would you like to do today?</strong></p>
 					</div><!-- /.col-md-12 -->
 					
 					<div class="container">
