@@ -1,10 +1,11 @@
-<?php $metaKeywords = 'Jain Muni Locator, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 	
 	<head>
 		<?php include 'meta.php'; ?>
+		<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
+		<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
+		<meta name="keywords" content="Jain Muni Locator, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis">
 		
 		<title>Jain Muni Locator - Home</title>
 		
@@ -42,7 +43,7 @@ include 'nav.php';
 					<div class="fill" style="background-image:url('assets/images/mataji.jpg');"></div>
 					<div class="carousel-caption">
 						<h1 class="wow animated slideInDown"><span itemprop="name">Jain Muni <span class="highlight">Locator</span></span></h1>
-						<p class="intro-text wow animated slideInUp">One-stop online destination for Digambara Jains. Know about Jainism and its glory.</p>
+						<p class="intro-text wow animated slideInUp">One-stop online destination for Digambara Jains. Know about <span itemprop="keywords">Jainism</span> and its glory.</p>
 						<a href="map.php" class="btn btn-default btn-lg">Locate</a>
 					</div>
 					<div class="overlay-detail"></div>
