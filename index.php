@@ -87,15 +87,15 @@ include 'nav.php';
 				<div class="row">
 					<div class="col-md-6">
 						<h2>Excited about Jain Muni Locator</h2>
-						<h3 class="caption gray">Guess where does our information come from?</h3>
-						<p>That's right, it's "YOU". You are the one who have contributed in building this website. It's you who let us know, where monks &amp; currently are.</p>
+						<p><strong>Guess where does our information come from?</strong></p>
+						<p>That's right, it's <strong>"YOU"</strong>. You are the one who have contributed in building this website. It's you who let us know, where monks &amp; currently are.</p>
 						
 						<blockquote>
 							There is no enemy out of your soul. The real enemies live inside yourself, they are anger, proud, curvedness, greed, attachmentes and hate.
-							<span>Lord Mahavira</span>
+							<span><strong>Lord Mahavira</strong></span>
 						</blockquote>
 						
-						<h3 class="gray light">Thanks a lot for your continuous support. We would do our best to make your Jain Muni Locator experience better than what it is today.</h3>
+						<p>Thanks a lot for your continuous support. We would do our best to make your Jain Muni Locator experience better than what it is today.</p>
 						
 					</div><!-- /.col-md-6 -->
 					
