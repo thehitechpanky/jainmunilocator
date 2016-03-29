@@ -23,7 +23,7 @@ include 'stylesheets.php';
 		
 	</head>
 	
-	<body id="home">
+	<body id="home" itemscope itemtype="http://schema.org/WebPage">
 		<!-- Navigation -->
 		<?php
 $navLinks = '<li><a href="/">Home</a></li>
@@ -41,7 +41,7 @@ include 'nav.php';
 				<div id="edit" class="hidden"><a class="btn btn-default btn-lg" href="articles/editor.php?id=<?php echo $id; ?>">Edit</a></div>
 				<div class="row text-center">
 					<div class="col-md-12">
-						<h2><?php echo $title; ?></h2>
+						<h2><span itemprop="name"><?php echo $title; ?></span></h2>
 					</div><!-- /.col-md-12 -->
 				</div><!-- /.row -->
 				<div class="content"><?php echo $content; ?></div>
