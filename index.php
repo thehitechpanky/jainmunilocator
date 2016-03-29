@@ -43,7 +43,7 @@ include 'nav.php';
 					<div class="fill" style="background-image:url('assets/images/mataji.jpg');"></div>
 					<div class="carousel-caption">
 						<h1 class="wow animated slideInDown"><span itemprop="name">Jain Muni <span class="highlight">Locator</span></span></h1>
-						<p class="intro-text wow animated slideInUp">One-stop online destination for Digambara Jains. Know about <span itemprop="keywords">Jainism</span> and its glory.</p>
+						<p class="intro-text wow animated slideInUp">One-stop online destination for Digambara Jains. Know about Jainism and its glory.</p>
 						<a href="map.php" class="btn btn-default btn-lg">Locate</a>
 					</div>
 					<div class="overlay-detail"></div>
@@ -53,8 +53,8 @@ include 'nav.php';
 					<!-- Set the second background image using inline CSS below. -->
 					<div class="fill" style="background-image:url('assets/images/vidyasagar.jpg');"></div>
 					<div class="carousel-caption">
-						<h1 class="wow animated slideInDown"><span class="highlight">Monks &amp; Nuns</span> Biography</h1>
-						<p class="intro-text wow animated slideInUp">Find out about the life events and disciples of Digambara Monks &amp; Nuns.</p>
+						<h1 class="wow animated slideInDown"><span class="highlight">Monks &amp; Nuns</span> <span itemprop="keywords">Biography</span></h1>,
+						<p class="intro-text wow animated slideInUp">Find out about the <span itemprop="keywords">life events</span> and <span itemprop="keywords">disciples</span> of <span itemprop="keywords">Digambara</span> Monks &amp; Nuns.</p>
 						<a href="munis.php" class="btn btn-default btn-lg">Monks &amp; Nuns</a>
 					</div>
 					<div class="overlay-detail"></div>
@@ -91,14 +91,15 @@ include 'nav.php';
 					<div class="col-md-6">
 						<h2>Excited about <span itemprop="name">Jain Muni Locator</span></h2>
 						<p><strong>Guess where does our information come from?</strong></p>
-						<p>That's right, it's <strong>"YOU"</strong>. You are the one who have contributed in building this website. It's you who let us know, where monks &amp; currently are.</p>
+						<p>That's right, it's <strong>"YOU"</strong>. You are the one who have contributed in building this website.&nbsp;
+							It's you who let us know, where <span itemprop="keywords">monks</span> &amp; <span itemprop="keywords">nuns</span> currently are.</p>
 						
 						<blockquote>
-							There is no enemy out of your soul. The real enemies live inside yourself, they are anger, proud, curvedness, greed, attachmentes and hate.
-							<span><strong>Lord Mahavira</strong></span>
+							There is no enemy out of your <span itemprop="keywords">soul</span>. The real enemies live inside yourself, they are anger, proud, curvedness, greed, attachmentes and hate.
+							<span><strong>Lord <span itemprop="keywords">Mahavira</span></strong></span>
 						</blockquote>
 						
-						<p>Thanks a lot for your continuous support. We would do our best to make your Jain Muni Locator experience better than what it is today.</p>
+						<p>Thanks a lot for your continuous support. We would do our best to make your <span itemprop="keywords">Jain</span> <span itemprop="keywords">Muni</span> <span itemprop="keywords">Locator</span> experience better than what it is today.</p>
 						
 					</div><!-- /.col-md-6 -->
 					
@@ -134,7 +135,7 @@ include 'nav.php';
 								<div class="col-md-4">
 									<div class="row services-item text-center wow flipInX" data-wow-offset="10">
 										<i class="fa fa-male fa-3x"></i>
-										<h4>Monks &amp; Nuns</h4>
+										<h4><span itemprop="keywords">Monks</span> &amp; <span itemprop="keywords">Nuns</span></h4>
 										<p>Check out profile and disciples.</p>
 									</div><!-- /.row -->
 								</div><!-- /.col-md-4 -->
@@ -145,7 +146,7 @@ include 'nav.php';
 									<div class="row services-item text-center wow flipInX" data-wow-offset="10">
 										<i class="fa fa-globe fa-3x"></i>
 										<h4>Map</h4>
-										<p>Locate Jain Saints and Nuns on a single map.</p>
+										<p>Locate <span itemprop="keywords">Jain</span> <span itemprop="keywords">Saints</span> and Nuns on a <span itemprop="keywords">single map</span>.</p>
 									</div><!-- /.row -->
 								</div><!-- /.col-md-4 -->
 							</a>
@@ -154,8 +155,8 @@ include 'nav.php';
 								<div class="col-md-4">
 									<div class="row services-item text-center wow flipInX" data-wow-offset="10">
 										<i class="fa fa-street-view fa-3x"></i>
-										<h4>Tirthankara</h4>
-										<p>Check biographies of Jain Tirthankaras.</p>
+										<h4><span itemprop="keywords">Tirthankara</span></h4>
+										<p>Check <span itemprop="keywords">biographies</span> of Jain Tirthankaras.</p>
 									</div><!-- /.row -->
 								</div><!-- /.col-md-4 -->
 							</a>
@@ -174,7 +175,7 @@ include 'nav.php';
 								<div class="col-md-4">
 									<div class="row services-item text-center wow flipInX" data-wow-offset="20">
 										<i class="fa fa-bullhorn fa-3x"></i>
-										<h4>Chaturmas</h4>
+										<h4><span itemprop="keywords">Chaturmas</span></h4>
 										<p>Know about the current and previous chaturmas places.</p>
 									</div><!-- /.row -->
 								</div><!-- /.col-md-4 -->
@@ -185,7 +186,7 @@ include 'nav.php';
 									<div class="row services-item text-center wow flipInX" data-wow-offset="20">
 										<i class="fa fa-clock-o fa-3x"></i>
 										<h4>Timeline</h4>
-										<p>Check out the timeline to Jainism.</p>
+										<p>Check out the <span itemprop="keywords">timeline</span> of <span itemprop="keywords">Jainism</span>.</p>
 									</div><!-- /.row -->
 								</div><!-- /.col-md-4 -->
 							</a>
