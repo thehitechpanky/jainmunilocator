@@ -1,6 +1,6 @@
 <?php
 // configuration
-include '../functionsCreated.php';
+include('../functionsCreated.php');
 
 $id = $_POST['ids'];
 
@@ -169,6 +169,7 @@ if($bhramcharyaplace=="N/A") {
 }
 
 // fields of muni_location
+$oldlocation = $_POST['oldlocation'];
 $location = $_POST['location'];
 if($location=="N/A") {
 	$lat = 0;
@@ -260,12 +261,13 @@ if(strpos($text,'true')) {
 	$q = $db->prepare($sqleditlog);
 	$q->execute(array($editor,$logip,$id));
 	
-	
-	$to = 'capankajjain@smilyo.com';
-	$from = $editor;
-	$subject = 'Location update from Jain Muni Locator';
-	$msg = 'Hello Pankaj<br />'.$title.' is now at '.$location.'.';
-	include '../email.php';
+	if ($oldlocation == $location) {} else {
+		$to = 'capankajjain@smilyo.com';
+		$from = $editor;
+		$subject = 'Location update from Jain Muni Locator';
+		$msg = 'Hello Pankaj<br />'.$title.' is now at '.$location.'.';
+		include '../email.php';
+	}
 	
 	
 } else {
