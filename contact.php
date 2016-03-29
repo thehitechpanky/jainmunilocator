@@ -9,22 +9,22 @@
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
 				<strong><span class="timer">71</span>+</strong>
-				<span class="count-description">Acharya, Ailacharya &amp; Upadhyay</span>
+				<span class="count-description"><span itemprop="keywords">Acharya</span>, <span itemprop="keywords">Ailacharya</span> &amp; <span itemprop="keywords">Upadhyay</span></span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
 				<strong><span class="timer">172</span>+</strong>
-				<span class="count-description">Muni</span>
+				<span class="count-description"><span itemprop="keywords">Muni</span></span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
 				<strong><span class="timer">129</span>+</strong>
-				<span class="count-description">Aryika</span>
+				<span class="count-description"><span itemprop="keywords">Aryika</span></span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
 				<strong><span class="timer">13</span>+</strong>
-				<span class="count-description">Ailak &amp; Kshullak</span>
+				<span class="count-description"><span itemprop="keywords">Ailak</span> &amp; <span itemprop="keywords">Kshullak</span></span>
 			</div><!-- /.col-sm-3 -->
 			
 		</div><!-- /.row -->
@@ -52,9 +52,9 @@
 <section id="contact" class="contact content-section no-bottom-pad wow fadeIn" data-wow-offset="10">
 	<div class="container">
 		<div class="row text-center">
-			<div class="col-md-12">
-				<h2>Contact</h2>
-				<h3 class="caption gray">Feel free to get in touch with us if you have a new project or simply something awesome</h3>
+			<div class="col-md-12" itemscope itemtype="http://schema.org/ContactPage">
+				<h2><span itemprop="name">Contact</span></h2>
+				<h3 class="caption gray">Feel free to <span itemprop="keywords">get in touch</span> with us if you have a new <span itemprop="keywords">project</span> or simply something <span itemprop="keywords">awesome</span></h3>
 			</div><!-- /.col-md-12 -->
 			
 		</div><!-- /.row -->
@@ -64,7 +64,7 @@
 		<div class="row form-container">
 			
 			<div class="col-md-8 contact-form">
-				<h3>Drop us a line</h3>
+				<h3>Drop us a word</h3>
 				<form class="ajax-form" id="contactForm" method="post" action="assets/php/contact.php">
 					<div class="form-group">
 						<input type="text" class="form-control" id="name" name="name" placeholder="Your Name..." value="" required>
@@ -84,16 +84,16 @@
 				</form>
 			</div><!-- /.contact-form -->
 			
-			<div class="col-md-4 contact-address">
-				<h3>Administrator</h3>
+			<div class="col-md-4 contact-address" itemscope itemtype="http://schema.org/Person">
+				<h3><span itemprop="jobTitle">Administrator</span></h3>
 				<div class="team-member wow fadeIn" data-wow-offset="10">
 					<figure>
 						<img src="assets/images/pankaj-jain.jpg" alt="Pankaj Jain" class="img-responsive">
 						<figcaption>
 							<center>
-								<h1>Pankaj Jain</h1>
-								<p><i class="fa fa-envelope fa-fw"></i>&nbsp; capankajjain@smilyo.com</p>
-								<p><i class="fa fa-phone fa-fw"></i>&nbsp; +91 9818609955</p>
+								<h1><span itemprop="name">Pankaj Jain</span></h1>
+								<p><i class="fa fa-envelope fa-fw"></i>&nbsp; <span itemprop="email">capankajjain@smilyo.com</span></p>
+								<p><i class="fa fa-phone fa-fw"></i>&nbsp; <span itemprop="telephone">+91 9818609955</span></p>
 								<ul>
 									<li><a href="https://www.facebook.com/thehitechpanky"><i class="fa fa-facebook fa-2x"></i></a></li>
 									<li><a href="https://twitter.com/thehitechpanky"><i class="fa fa-twitter fa-2x"></i></a></li>
