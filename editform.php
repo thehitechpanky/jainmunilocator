@@ -203,8 +203,6 @@ for($i=0; $row = $result->fetch(); $i++) {
 include 'login/loginscripts.php';
 		?>
 		
-		<input type="hidden" id="editoremail">
-		
 	</div><!--  end content wrapper  -->
 	
 	<?php
