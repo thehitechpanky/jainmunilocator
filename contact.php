@@ -4,7 +4,7 @@
 		<div class="row text-center">
 			<div class="col-md-12">
 				<h2 class="white">Stats so far</h2>
-				<h3 class="caption">The count is as follows and growing</h3>
+				<h3 class="caption">The count is as follows and growing...</h3>
 			</div><!-- /.col-md-12 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
@@ -54,7 +54,7 @@
 		<div class="row text-center">
 			<div class="col-md-12" itemscope itemtype="http://schema.org/ContactPage">
 				<h2><span itemprop="name">Contact</span></h2>
-				<h3 class="caption gray">Feel free to <span itemprop="keywords">get in touch</span> with us if you have a new <span itemprop="keywords">project</span> or simply something <span itemprop="keywords">awesome</span></h3>
+				<p>Feel free to <span itemprop="keywords">get in touch</span> with us if you have a new <span itemprop="keywords">project</span> or simply something <span itemprop="keywords">awesome</span></p>
 			</div><!-- /.col-md-12 -->
 			
 		</div><!-- /.row -->
