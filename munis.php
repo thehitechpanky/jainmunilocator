@@ -312,8 +312,9 @@ if(!$showmuni) {echo
 	
 	$loadMuniPageScript = "Yes";
 }
+include 'login/loginscripts.php';
 		?>
-		
+		<input type="hidden" id="editoremail">
 	</div><!--  end content wrapper  -->
 	
 	<?php include('footer.php'); ?>
