@@ -198,10 +198,11 @@ for($i=0; $row = $result->fetch(); $i++) {
 			
 		</div>
 		
-		<?php
-} 
-include 'login/loginscripts.php';
-		?>
+		<?php } ?>
+		
+		<!-- Login -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script type='text/javascript' src='login/login.js'></script>
 		
 	</div><!--  end content wrapper  -->
 	
