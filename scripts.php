@@ -24,7 +24,10 @@
 <!-- Facebook -->
 <script type='text/javascript' src='js/facebook.js'></script>
 
+<!-- Login -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type='text/javascript' src='login/login.js'></script>
+
 <?php
 include 'analyticstracking.php';
-include 'login/loginscripts.php';
 ?>
