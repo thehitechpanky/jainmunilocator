@@ -14,49 +14,53 @@ function initMap() {
 	var infowindow = new google.maps.InfoWindow();
 	var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info.png';
 	
-	for (i = 0; i < locations.length; i++) {
-		//Markers
-		munimarker = new google.maps.Marker({
-			position: new google.maps.LatLng(locations[i]['lat'], locations[i]['lng']),
-			map: map,
-		});
-		//Infowindow
-		google.maps.event.addListener(munimarker, 'click', (function(munimarker, i) {
-			return function() {
-				content = '<a href="munis.php?id=' + locations[i]['id'] + '"><center><img width="200px" src="' + locations[i]['img'];
-				content += '" /><p>' + locations[i]['uname'] + ' ' + locations[i]['prefix'] + ' ';
-				content += locations[i]['name'] + ' ' + locations[i]['suffix'] + '</p><p>';
-				content += locations[i]['location'] + '</p></center></a>';
-				infowindow.setContent(content);
-				infowindow.open(map, munimarker);
-			}
-		})(munimarker, i));
-	}
+	setTimeout(function() { 
+		for (i = 0; i < locations.length; i++) {
+			//Markers
+			munimarker = new google.maps.Marker({
+				position: new google.maps.LatLng(locations[i]['lat'], locations[i]['lng']),
+				map: map,
+			});
+			//Infowindow
+			google.maps.event.addListener(munimarker, 'click', (function(munimarker, i) {
+				return function() {
+					content = '<a href="munis.php?id=' + locations[i]['id'] + '"><center><img width="200px" src="' + locations[i]['img'];
+					content += '" /><p>' + locations[i]['uname'] + ' ' + locations[i]['prefix'] + ' ';
+					content += locations[i]['name'] + ' ' + locations[i]['suffix'] + '</p><p>';
+					content += locations[i]['location'] + '</p></center></a>';
+					infowindow.setContent(content);
+					infowindow.open(map, munimarker);
+				}
+			})(munimarker, i));
+		}
+	}, 2000);
 	
 	//Usermarkers and their infowindows
 	var usermarker;
 	var userlocations = JSON.parse($("#userlocations").val());
 	var image = 'http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png';
-	//if (email === '') {} else {
-		for (i = 0; i < userlocations.length; i++) {
-			//Markers
-			usermarker = new google.maps.Marker({
-				position: new google.maps.LatLng(userlocations[i]['userlat'], userlocations[i]['userlng']),
-				map: map,
-				icon: image
-			});
-			//User Infowindow
-			google.maps.event.addListener(usermarker, 'click', (function(usermarker, i) {
-				return function() {
-					content = '<center><img src="' + userlocations[i]['userimg'];
-					content += '" /><p>' + userlocations[i]['username'] + '</p><p>';
-					content += userlocations[i]['userlocation'] + '</p></center>';
-					infowindow.setContent(content);
-					infowindow.open(map, usermarker);
-				}
-			})(usermarker, i));
+	setTimeout(function() { 
+		var email = $('#editoremail').val();
+		if (email.length === 0) {} else {
+			for (i = 0; i < userlocations.length; i++) {
+				//Markers
+				usermarker = new google.maps.Marker({
+					position: new google.maps.LatLng(userlocations[i]['userlat'], userlocations[i]['userlng']),
+					map: map,
+					icon: image
+				});
+				//User Infowindow
+				google.maps.event.addListener(usermarker, 'click', (function(usermarker, i) {
+					return function() {
+						content = '<center><img src="' + userlocations[i]['userimg'];
+						content += '" /><p>' + userlocations[i]['username'] + '</p></center>';
+						infowindow.setContent(content);
+						infowindow.open(map, usermarker);
+					}
+				})(usermarker, i));
+			}
 		}
-	//}
+	}, 3000);
 	
 	// Create the search box and link it to the UI element.
 	var input = document.getElementById('pac-input');
