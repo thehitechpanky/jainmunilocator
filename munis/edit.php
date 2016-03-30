@@ -169,18 +169,6 @@ if($bhramcharyaplace=="N/A") {
 	$bhramcharyalng = getlongitude($bhramcharyaplace);
 }
 
-// fields of muni_location
-$oldlocation = $_POST['oldlocation'];
-$location = $_POST['location'];
-if($location=="N/A") {
-	$lat = 0;
-	$lng = 0;
-} else {
-	$lat = getlatitude($location);
-	$lng = getlongitude($location);
-}
-$locality = getlocality($lat,$lng);
-
 $editor = $_POST['editoremail'];
 
 // fileds of editlog
@@ -254,6 +242,19 @@ if(strpos($text,'true')) {
 	$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=?, bhramcharyalat=?, bhramcharyalng=?, bhramcharyaplace=? WHERE bhramcharyaid='$id'";
 	$q = $db->prepare($sqlbhramcharya);
 	$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng,$bhramcharyaplace));
+	
+	// fields of muni_location
+	$oldlocation = $_POST['oldlocation'];
+	$location = $_POST['location'];
+	if($location=="N/A") {
+		$lat = 0;
+		$lng = 0;
+		$locality = "N/A";
+	} else {
+		$lat = getlatitude($location);
+		$lng = getlongitude($location);
+		$locality = getlocality($lat,$lng);
+	}
 	
 	$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid='$id'";
 	$q = $db->prepare($sqllocation);
