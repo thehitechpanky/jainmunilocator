@@ -286,7 +286,9 @@ if(strpos($text,'true')) {
 			$to = $row['email'];
 			$from = 'capankajjain@smilyo.com';
 			$subject = 'Location update from Jain Muni Locator';
-			$msg = 'Hello '.$row['username'].'<br />'.$title.' is now at '.$location.'.<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
+			$msg = 'Hello '.$row['username'].'<br />'.$title.' is now at '.$location.'.&nbsp;
+			To find out more about Guruvar / Mataji, click <a href="http://jainmunilocator.org/munis.php?id='.$id.'">here</a>.
+			<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
 			$email = new SendGrid\Email();
 			$email
 				->addTo($to)
