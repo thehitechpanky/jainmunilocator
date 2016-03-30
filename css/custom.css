@@ -1,15 +1,15 @@
 /* Body */
 body {
-    background-color: #fffff;
+	color: #000000;
 }
 
 /* Tables */
 
 table, th, td {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 th, td {
-    padding: 5px;
+	padding: 5px;
 }
 
 
@@ -17,15 +17,15 @@ th, td {
 
 .fullWidth {
 	width: 100%;
-	}
+}
 
 .longBox {
 	width: 300px;
-	}
+}
 
 .mediumBox {
 	width: 110px;
-	}
+}
 
 .smallBox {
 	width: 80px;
@@ -33,7 +33,7 @@ th, td {
 
 .verySmallBox {
 	width: 50px;
-	}
+}
 
 
 /* Div */
@@ -41,36 +41,44 @@ th, td {
 .muniPageSidebar {
 	float:right;
 	width:40%;
-	}
+}
 
 .profile {
 	float:left;
 	width:50%;
-	}
+}
 
 .subPara {
-		position:relative;
-		left: 20px;
-	}
+	position:relative;
+	left: 20px;
+}
 
 .inline {
 	display: inline-block;
-	}
+}
+
+.login {
+	position: fixed;
+	top: 0%;
+	right: 0%;
+	z-index: 10000;
+}
 
 .today {
 	text-align: center;
 	font-size: 17px;
-    font-weight: 200;
+	font-weight: 200;
 	margin: 0;
-	}
+}
 
 .hidden {
-		display: none;
-	}
+	display: none;
+}
 
 .shown {
-		display: block;
-	}
+	display: block;
+}
+
 
 .hoverImg a { position:relative; }
 .hoverImg a img { position:absolute; display:none; z-index:99; }
@@ -78,7 +86,7 @@ th, td {
 	top: -260px;
 	left: 200px;
 	display:block;
-	}
+}
 
 
 /* Images */
@@ -106,13 +114,13 @@ img.muni {
 img.smallLight {
 	height: 250px;
 	opacity: 0.6;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
+	filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 img.Map {
 	width: 200px;
 	opacity: 0.5;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
+	filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 
