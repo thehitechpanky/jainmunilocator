@@ -1,6 +1,7 @@
 <?php
 // configuration
-include('../functionsCreated.php');
+include '../functionsCreated.php';
+include '../map/locality.php';
 
 $id = $_POST['ids'];
 
@@ -178,6 +179,7 @@ if($location=="N/A") {
 	$lat = getlatitude($location);
 	$lng = getlongitude($location);
 }
+$locality = getlocality($lat,$lng);
 
 $editor = $_POST['editoremail'];
 
@@ -253,22 +255,48 @@ if(strpos($text,'true')) {
 	$q = $db->prepare($sqlbhramcharya);
 	$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng,$bhramcharyaplace));
 	
-	$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=? WHERE mid='$id'";
+	$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid='$id'";
 	$q = $db->prepare($sqllocation);
-	$q->execute(array($lat,$lng,$location));
+	$q->execute(array($lat,$lng,$location,$locality));
 	
 	$sqleditlog = "INSERT INTO editlog (editor,logip,logmuniid) VALUES (?,?,?)";
 	$q = $db->prepare($sqleditlog);
 	$q->execute(array($editor,$logip,$id));
 	
-	if ($oldlocation == $location) {} else {
-		$to = 'capankajjain@smilyo.com';
-		$from = $editor;
-		$subject = 'Location update from Jain Muni Locator';
-		$msg = 'Hello Pankaj<br />'.$title.' is now at '.$location.'.';
+	//Thank message to the editor
+	if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') {} else {
+		$to = $editor;
+		$from = 'capankajjain@smilyo.com';
+		$subject = 'Thank you from Jain Muni Locator';
+		$msg = 'Hello '.$editor.'<br />Thank you for updating the information about '.$title.' on Jain Muni Locator.<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
 		include '../email.php';
 	}
 	
+	$u = $db->prepare("SELECT * FROM user WHERE email != ? AND userlocality = ?");
+	$u->execute(array($editor,$locality));
+	require("../sendgrid-php/sendgrid-php.php");
+	include '../sendgridkey.php';
+	
+	while ($row = $u->fetch(PDO::FETCH_ASSOC)) {
+		$emailreceiver = $row['email'];
+		if ($oldlocation == $location) {} else {
+			//$q = $db->prepare("INSERT INTO mail (log) VALUES (?)");
+			//$q->execute(array($emailreceiver));
+			$to = $row['email'];
+			$from = 'capankajjain@smilyo.com';
+			$subject = 'Location update from Jain Muni Locator';
+			$msg = 'Hello '.$row['username'].'<br />'.$title.' is now at '.$location.'.<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
+			$email = new SendGrid\Email();
+			$email
+				->addTo($to)
+				//->addTo('bar@foo.com') //One of the most notable changes is how `addTo()` behaves. We are now using our Web API parameters instead of the X-SMTPAPI header. What this means is that if you call `addTo()` multiple times for an email, **ONE** email will be sent with each email address visible to everyone.
+				->setFrom($from)
+				->setSubject($subject)
+				->setHtml($msg)
+				;
+			$sendgrid->send($email);
+		}
+	}
 	
 } else {
 	
