@@ -15,7 +15,7 @@ $(document).ready(function(){
 		if (email.length === 0) {
 			alert('Welcome to Jain Muni Locator!\nPlease sign-in using the button on top right of your screen to know updated locations of Muni-shri via email.');
 		}
-	}, 2000);
+	}, 5000);
 });
 
 function onSignIn(googleUser) {
