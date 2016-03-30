@@ -10,8 +10,11 @@ navigator.geolocation.getCurrentPosition(function(position) {
 });
 
 $(document).ready(function(){
-	setTimeout(function() { 
-		//alert(userlat);
+	setTimeout(function() {
+		var email = $('#editoremail').val();
+		if (email.length === 0) {
+			alert('Welcome to Jain Muni Locator!\nPlease sign-in using the button on top right of your screen to know updated locations of Muni-shri via email.');
+		}
 	}, 2000);
 });
 
@@ -38,11 +41,6 @@ function onSignIn(googleUser) {
 		$('#save').attr('class', 'hidden');
 		$('#reset').attr('class', 'hidden');
 		$('#cancel').attr('class', 'hidden');
-	}
-	
-	if (email.length === 0) {
-		var message = 'Welcome to Jain Muni Locator!\nPlease sign-in using the button on top right of your screen to know updated locations of Muni-shri via email.';
-		alert(message);
 	}
 	
 	if (window.XMLHttpRequest) {
