@@ -3,6 +3,8 @@
 <!-- start body -->
 <body onunload="" >
 	
+	<div class="g-signin2" data-onsuccess="onSignIn" style="float: right;"></div>
+	
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
@@ -31,7 +33,7 @@ for($i=0; $row = $result->fetch(); $i++) {
 		?>
 		
 		<div style="float:left;width:60%">				
-			<form id="editForm" action="edit.php" method="POST">
+			<form id="editForm" action="munis/edit.php" method="POST">
 				
 				<input type="hidden" name="ids" value="<?php echo $id; ?>" />
 				
@@ -54,6 +56,7 @@ for($i=0; $row = $result->fetch(); $i++) {
 				
 				<?php if($row['dos']=="0000-00-00") { ?>
 				<strong>Current Location</strong><br />
+				<input type="hidden" name="oldlocation" value="<?php echo $row['location']; ?>">
 				<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>" /><br /><br />
 				<?php } ?>
 				
@@ -169,7 +172,10 @@ for($i=0; $row = $result->fetch(); $i++) {
 				Birthplace<input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br />
 				Education<input type="text" id="education" name="education" value="<?php echo $row['education']; ?>" /><br /><br />
 				
-				<div class="g-recaptcha" data-sitekey="6LcXYP8SAAAAAM8199rOJV8yoCWS4mI5FHb5Q70Q"></div><br />
+				<input type="hidden" id="editoremail" name="editoremail">
+				
+				<?php include 'captcha.php'; ?>
+				<br />
 				
 				<input type="submit" value="Save" />&nbsp;&nbsp;&nbsp;
 				<input type="reset" value="Reset" />&nbsp;&nbsp;&nbsp;
