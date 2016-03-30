@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-
-<!-- Load Configuration File and created functions -->
-<?php
+	
+	<!-- Load Configuration File and created functions -->
+	<?php
 
 include 'functionsCreated.php';
 
@@ -41,41 +41,39 @@ else{
 	$schemaOrg = '';
 }
 
-?>
-
-<!-- Start Head -->
-<head>
-
-	<!-- start title - should be 57 characters max as suggested by http://seorch.eu -->
-	<title><?php echo $titletag; ?></title>
-
-	<!-- start meta -->
-	<?php
-	$metaKeywords = $titletag.', Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis';
-	$keywords = $metaKeywords.', Elacharya, Upadhyay, Elak, Kshullak, Aryika, Kshullika, Bhramcharya';
-	?>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
-	<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
-	<meta name="keywords" content="<?php echo $metaKeywords ?>">
-	<meta name="author" content="Jain Muni Locator">
-	<meta name=viewport content="width=device-width, initial-scale=1">
-
-	<?php
-	include 'alexa.php';
-	include 'css.php';
-	if(isMobile()){}else{
 	?>
 	
-	<!-- Start Search Controls -->
-	<input id="pac-input" class="controls" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search" />
-	<!-- End Search Controls -->
+	<!-- Start Head -->
+	<head>
+		
+		<!-- start title - should be 57 characters max as suggested by http://seorch.eu -->
+		<title><?php echo $titletag; ?></title>
+		
+		<!-- start meta -->
+		<?php
+include 'meta.php';
+$metaKeywords = $titletag.', Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis';
+$keywords = $metaKeywords.', Elacharya, Upadhyay, Elak, Kshullak, Aryika, Kshullika, Bhramcharya';
+		?>
+		<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
+		<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
+		<meta name="keywords" content="<?php echo $metaKeywords ?>">
+		
+		<?php
+			include 'alexa.php';
+include 'css.php';
+if(isMobile()){}else{
+		?>
+		
+		<!-- Start Search Controls -->
+		<input id="pac-input" class="controls" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search" />
+		<!-- End Search Controls -->
+		
+		<!-- Load Map -->
+		<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
+		<?php } ?>
+		
+	</head>
+	<!-- End Head -->
 	
-	<!-- Load Map -->
-	<div id="customcon"><div id="map-canvas" style="z-index:0;"></div></div>
-	<?php } ?>
-
-</head>
-<!-- End Head -->
-
-<?php include 'jquery.php'; ?>
+	<?php include 'jquery.php'; ?>
