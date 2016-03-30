@@ -46,8 +46,6 @@ if($q->rowCount() > 0) {
 		
 		<input id="pac-input" class="controls" type="text" placeholder="       Search Box" />
 		
-		<input type="text" id="editoremail">
-		
 		<div class="g-signin2" data-onsuccess="onSignIn" style="float: right;"></div>
 		
 		<!-- Start Menu -->
@@ -71,6 +69,8 @@ if($q->rowCount() > 0) {
 		<textarea id="userlocations" class="mapinput">
 			<?php echo json_encode($rows2); ?>
 		</textarea>
+		
+		<input type="hidden" id="editoremail">
 		
 		<?php include 'jquery.php'; ?>
 		<script src="nav/sliderMenu.js" type="text/javascript"></script>
