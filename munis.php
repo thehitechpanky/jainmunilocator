@@ -312,9 +312,13 @@ if(!$showmuni) {echo
 	
 	$loadMuniPageScript = "Yes";
 }
-include 'login/loginscripts.php';
 		?>
+		
+		<!-- Login -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script type='text/javascript' src='login/login.js'></script>
 		<input type="hidden" id="editoremail">
+		
 	</div><!--  end content wrapper  -->
 	
 	<?php include('footer.php'); ?>
