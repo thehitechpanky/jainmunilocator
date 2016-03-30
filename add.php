@@ -2,7 +2,7 @@
 
 <!-- start body -->
 <body onunload="" >
-
+	
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
@@ -14,7 +14,7 @@
 	<!-- start content wrapper -->	
 	
 	<div class="content page-content">
-	
+		
 		<div class="page-title">
 			<h1>Add Information About Munis</h1>
 		</div>
@@ -22,36 +22,36 @@
 		<div class="divider clear"></div>
 		
 		<div class="inner-content">	
-		<?php
-		if(isset($_POST['submit']))
+			<?php
+if(isset($_POST['submit']))
+{
+	foreach($_POST as $key => $con)
+	{
+		if($con == "")
+			$con = "N/A";
+		$$key = htmlentities(strip_tags($con));				
+	}
+	$url = "https://www.google.com/recaptcha/api/siteverify?secret=6LcXYP8SAAAAAH7WUPMtiHoEiTnev6ofbzsuRY4U&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR'];
+	$text = file_get_contents($url);
+	if(strpos($text,'true'))
+	{
+		$t = $db->prepare('INSERT INTO munishri (upadhi,name,vairagya,birthname,dob,father,mother) VALUES (?,?,?,?,?,?,?)');
+		if(!$t->execute(array($upadhi,$name,$vairagya,$birthname,$dob,$father,$mother)))
 		{
-			foreach($_POST as $key => $con)
-			{
-				if($con == "")
-					$con = "N/A";
-				$$key = htmlentities(strip_tags($con));				
-			}
-			$url = "https://www.google.com/recaptcha/api/siteverify?secret=6LcXYP8SAAAAAH7WUPMtiHoEiTnev6ofbzsuRY4U&response=".$_POST['g-recaptcha-response']."&remoteip=".$_SERVER['REMOTE_ADDR'];
-			$text = file_get_contents($url);
-		if(strpos($text,'true'))
-		{
-			$t = $db->prepare('INSERT INTO munishri (upadhi,name,alias,vairagya,birthname,dob,father,mother,img) VALUES (?,?,?,?,?,?,?,?,?)');
-			if(!$t->execute(array($upadhi,$name,$alias,$vairagya,$birthname,$dob,$father,$mother,$img)))
-			{
-				echo "<div style='color:red'>Some error encountered.Please Contact the website administrator<br /></div>";
-			}
-			else
-			{
-				echo "<div style='color:green'>Information Submitted successfully. It will appear on the website once approved by the administrator<br /></div>";
-			}
-			
+			echo "<div style='color:red'>Some error encountered.Please Contact the website administrator<br /></div>";
 		}
 		else
 		{
-			echo "no";
+			echo "<div style='color:green'>Information Submitted successfully. It will appear on the website once approved by the administrator<br /></div>";
 		}
-		}
-		?>
+		
+	}
+	else
+	{
+		echo "no";
+	}
+}
+			?>
 			<fieldset>
 				<form method="post" action="">
 					<div>
@@ -125,14 +125,23 @@
 					</div>
 				</form>
 			</fieldset>
-	
+			
 		</div>
-		<div class="sidebar">
-			<img alt="Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" style="width:200px;margin-right:5px">
+		
+		<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+			<div class="fb-xfbml-parse-ignore">
+				<blockquote cite="https://www.facebook.com/jainmunilocator">
+					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+				</blockquote>
+			</div>
 		</div>
+		
 		<!-- end widgets -->
 	</div>
 	
 	<!--  end content wrapper  -->
- 	
-<?php include('footer.php'); ?>
+	
+	<?php
+$loadFormActionsScript = "Yes";
+include('footer.php');
+	?>
