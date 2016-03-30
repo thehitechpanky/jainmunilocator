@@ -28,33 +28,25 @@ if($q->rowCount() > 0) {
 	
 	<head>
 		
-		<title>Locate Digambara Muni | Jain Muni Locator</title>
-		<?php include 'meta.php' ?>		
+		<title>Locate Digambara Monks &amp; Nuns - Jain Muni Locator</title>
+		
+		<?php include 'meta.php' ?>
+		<meta name="description" content="Jain Muni Locator is about building a global database to locate all the Digambar Jain Muni-shris in world, freely accessible to all the Jainism followers.">
+		<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
+		<meta name="keywords" content="Jain Muni Locator, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis">
+		
 		<link rel="stylesheet" href="map/googleMap.css">
 		<link rel="stylesheet" href="nav/sliderMenu.css">
 		
-		<?php
-	include 'jquery.php';
-include 'login/login.php';
-		?>
-		
-		<script src="nav/sliderMenu.js" type="text/javascript"></script>
-		
 	</head>
 	
-	<body>
+	<body itemscope itemtype="http://schema.org/WebPage">
 		
-		<div id='map'></div>
+		<div id='map' itemscope itemtype="http://schema.org/Map"></div>
 		
 		<input id="pac-input" class="controls" type="text" placeholder="       Search Box" />
 		
-		<textarea id=munilocations class="mapinput">
-			<?php echo json_encode($rows); ?>
-		</textarea>
-		
-		<textarea id=userlocations class="mapinput">
-			<?php echo json_encode($rows2); ?>
-		</textarea>
+		<input type="text" id="editoremail">
 		
 		<div class="g-signin2" data-onsuccess="onSignIn" style="float: right;"></div>
 		
@@ -72,14 +64,27 @@ include 'login/login.php';
 		</div>
 		<!-- End Menu -->
 		
+		<textarea id="munilocations" class="mapinput">
+			<?php echo json_encode($rows); ?>
+		</textarea>
+		
+		<textarea id="userlocations" class="mapinput">
+			<?php echo json_encode($rows2); ?>
+		</textarea>
+		
+		<?php include 'jquery.php'; ?>
+		<script src="nav/sliderMenu.js" type="text/javascript"></script>
+		
+		<!-- Login -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script type='text/javascript' src='login/login.js'></script>
+		
 		<?php
 //script has to be loaded after map div and marker boxes, otherwise maps will not work
 include 'map/googleMap.php';
-include 'login/loginscripts.php';
 include 'analyticstracking.php';
 		?>
 		
-		<script src="https://apis.google.com/js/platform.js" async defer></script>
-		
 	</body>
+	
 </html>
