@@ -13,6 +13,12 @@ if ($q->rowCount() == 1) {
 	$getinfo = $q->fetch(PDO::FETCH_ASSOC);
 	$dos = $getinfo['dos'];
 	$website = $getinfo['website'];
+	$phone = $getinfo['phone'];
+	$email = $getinfo['email'];
+	$facebook = $getinfo['facebook'];
+	$gplus = $getinfo['gplus'];
+	$youtube = $getinfo['youtube'];
+	$wikipedia = $getinfo['wikipedia'];
 	
 	include 'munis/getMuni.php';
 	include 'munis/getImg.php';
@@ -50,15 +56,33 @@ if ($q->rowCount() == 1) {
 			<div class="container" itemscope itemtype="http://schema.org/Person">
 				<div class="row">
 					<h1><center><span itemprop="name"><?php echo $title; ?></span></center></h1>
+					<hr>
 					<div class="col-md-6">
 						<table style="width:100%">
 							<?php if($dos=="0000-00-00") { ?>
-							<tr><th>Current Location</th><td>
+							<tr><td>Current Location</td><td>
 								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address"><?php echo $getinfo['location']; ?></span></a></div>
 								</td></tr>
 							<?php } if ($website != "#") { ?>
 							<tr><td>Website</td>
 								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
+							<?php } if($dos=="0000-00-00") { ?>
+							<tr><th colspan="2" align="left">Contact</th></tr>
+							<?php if ($phone > 0) { ?>
+							<tr><td><i class="fa fa-phone"></i> Phone</td><td><?php echo $phone; ?></td></tr>
+							<?php } ?>
+							<tr><td><i class="fa fa-envelope-o"></i> Email</td><td><?php echo $email; ?></td></tr>
+							<tr><td>Social Links</td><td>
+								<?php if ($facebook != 'N/A') { ?>
+								<a title="Facebook" target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook"></i></a>
+								<?php } if ($gplus != 'N/A') { ?>
+								<a title="Google Plus" target="_blank" href="<?php echo $gplus; ?>"><i class="fa fa-google-plus"></i></a>
+								<?php } if ($youtube != 'N/A') { ?>
+								<a title="Youtube" target="_blank" href="<?php echo $youtube; ?>"><i class="fa fa-youtube"></i></a>
+								<?php } if ($wikipedia != 'N/A') { ?>
+								<a title="Wikipedia" target="_blank" href="<?php echo $wikipedia; ?>"><i class="fa fa-wikipedia-w"></i></a>
+								<?php } ?>
+								</td></tr>
 							<?php } if($dos != "0000-00-00") { ?>
 							<tr><td colspan="2"></td></tr>
 							<tr><th colspan="2" align="left">Samadhi Details</th></tr>
@@ -216,7 +240,17 @@ if ($q->rowCount() == 1) {
 				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
 	
 							?>
+							
 						</table>
+						
+						<hr>
+						
+						<!-- Facebook Comments Started -->
+						<div id="fb-root"></div>
+						<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id='.$getinfo["id"].'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+						<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id='.$getinfo["id"].'" data-numposts="5"></div>
+						<!-- Facebook Comments Ended -->
+						
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
