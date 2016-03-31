@@ -12,6 +12,7 @@ if ($q->rowCount() == 1) {
 	// When an id is entered in the url
 	$row = $q->fetch(PDO::FETCH_ASSOC);
 	$dos = $row['dos'];
+	$website = $row['website'];
 	
 	include 'munis/getMuni.php';
 	$title = getmuni($id);
@@ -49,9 +50,12 @@ if ($q->rowCount() == 1) {
 					<div class="col-md-6">
 						<table style="width:100%">
 							<?php if($dos=="0000-00-00") { ?>
-							<tr><td>Current Location</td><td>
-								<div itemscope itemtype="http://schema.org/Place"><span itemprop="address"><?php echo $row['location']; ?></span></div>
+							<tr><th>Current Location</th><td>
+								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address"><?php echo $row['location']; ?></span></a></div>
 								</td></tr>
+							<?php } if ($website != "#") { ?>
+							<tr><th>Website</th>
+								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
 							<?php } ?>
 						</table>
 					</div><!-- /.col-md-6 -->
