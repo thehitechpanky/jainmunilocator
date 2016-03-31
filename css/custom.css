@@ -8,10 +8,27 @@ body {
 table, th, td {
 	border-collapse: collapse;
 }
+
+table a {
+	color: #000000;
+}
+
+table a:hover {
+	color: rgba(254,82,76, 1);
+}
+
 th, td {
 	padding: 5px;
 }
 
+th {
+	color: rgba(254,82,76, 1);
+	font-size: 17px;
+}
+
+td {
+	font-size: 15px;
+}
 
 /* Forms Input */
 
@@ -58,10 +75,8 @@ th, td {
 }
 
 .login {
-	position: fixed;
-	top: 0%;
-	right: 0%;
-	z-index: 10000;
+	float: right;
+	padding: 6px 20px;
 }
 
 .today {
@@ -134,10 +149,25 @@ br.clear {
 /* Lists */
 
 ol {
-	padding-left: 20px;
+	text-align: left;
+	font-size: 17px;
+	padding: 20px 0px 0px 40px;	
+}
+
+li {
+	padding: 2px;
+}
+
+ol a {
+	color: #000000;
+}
+
+ol a:hover {
+	color: rgba(254,82,76, 1);
 }
 
 /* Links */
+
 a.button {
 	display: block;
 	background: #555;
