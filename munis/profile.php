@@ -36,6 +36,7 @@ if ($q->rowCount() == 1) {
 		<!-- Navigation -->
 		<?php
 	$navLinks = '<li><a href="#about">'.$title.'</a></li>
+	<li><a href="editMuni.php?id='.$id.'"></a>Update Location / Details</li>
 	<li><a href="#contact">Contact us</a></li>';
 	include 'nav.php';
 		?>
@@ -56,7 +57,7 @@ if ($q->rowCount() == 1) {
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<a class="button" href="editform.php?id='.$id.'">UPDATE LOCATION / DETAILS</a>
+						<a class="btn btn-default btn-lg" href="editform.php?id=<?php echo $id; ?>">UPDATE LOCATION / DETAILS</a>
 						<img alt="Photo of <?php echo $title; ?>" width="315px" src="<?php echo $row['img']; ?>" itemprop="image" />
 						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
 							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
