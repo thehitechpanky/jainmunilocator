@@ -11,6 +11,7 @@ $q->execute(array($id));
 if ($q->rowCount() == 1) {
 	// When an id is entered in the url
 	$getinfo = $q->fetch(PDO::FETCH_ASSOC);
+	$upadhi = $getinfo['upadhi'];
 	$dos = $getinfo['dos'];
 	$website = $getinfo['website'];
 	$phone = $getinfo['phone'];
@@ -45,10 +46,18 @@ if ($q->rowCount() == 1) {
 		
 		<!-- Navigation -->
 		<?php
+	
 	$navLinks = '<li><a href="#about">'.$title.'</a></li>
-	<li><a href="editMuni.php?id='.$id.'"></a>Update Location / Details</li>
-	<li><a href="#contact">Contact us</a></li>';
+	<li><a href="editMuni.php?id='.$id.'">Update Location / Details</a></li>';
+	
+	if ($upadhi == 1) {
+		$navLinks = $navLinks.'<li><a href="#team">Disciples</a></li>';
+	}
+	
+	$navLinks = $navLinks.'<li><a href="#contact">Contact us</a></li>';
+	
 	include 'nav.php';
+	
 		?>
 		
 		<!-- About Section -->
@@ -70,8 +79,9 @@ if ($q->rowCount() == 1) {
 							<tr><th colspan="2" align="left">Contact</th></tr>
 							<?php if ($phone > 0) { ?>
 							<tr><td><i class="fa fa-phone"></i> Phone</td><td><?php echo $phone; ?></td></tr>
-							<?php } ?>
+							<?php } if ($email != 'N/A') { ?>
 							<tr><td><i class="fa fa-envelope-o"></i> Email</td><td><?php echo $email; ?></td></tr>
+							<?php } ?>
 							<tr><td>Social Links</td><td>
 								<?php if ($facebook != 'N/A') { ?>
 								<a title="Facebook" target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook"></i></a>
@@ -267,7 +277,51 @@ if ($q->rowCount() == 1) {
 			</div><!-- /.container -->
 		</section><!-- /.section -->
 		
+		<?php if ($upadhi == 1) { ?>
+		<!-- Our team Section -->
+		<section id="team" class="team content-section">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-md-12">
+						<h2>Our Team</h2>
+						<h3 class="caption gray">Meet the people who make awesome stuffs</h3>
+					</div><!-- /.col-md-12 -->
+					
+					<div class="container">
+						<div class="row">
+							
+							<?php
+								$r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
+								while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
+									$guruid = getguru($row["id"]);
+									if($guruid==$getinfo["id"]) {
+							?>
+							<a href="?id=<?php echo $row["id"]; ?>">
+								<div class="col-md-4">
+									<div class="team-member wow fadeIn" data-wow-offset="10">
+										<figure>
+											<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" class="img-responsive">
+											<figcaption>
+												<p><?php echo getmuni($row["id"]); ?></p>
+											</figcaption>
+										</figure>
+									</div><!-- /.team-member -->
+								</div><!-- /.col-md-4 -->
+							</a>
+							<?php
+									}
+								}
+							?>
+							
+						</div><!-- /.row -->
+					</div><!-- /.container -->
+					
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.our-team -->
+		
 		<?php
+							}
 	include 'contact.php';
 	include 'footer2.php';
 	include 'scripts.php';
