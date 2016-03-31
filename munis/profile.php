@@ -73,25 +73,25 @@ if ($q->rowCount() == 1) {
 							<tr><td>Current Location</td><td>
 								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address"><?php echo $getinfo['location']; ?></span></a></div>
 								</td></tr>
-							<?php } if ($website != "#") { ?>
-							<tr><td>Website</td>
-								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
 							<?php } if($dos=="0000-00-00") { ?>
 							<tr><th colspan="2" align="left">Contact</th></tr>
-							<?php if ($phone > 0) { ?>
+							<?php if ($website != "#") { ?>
+							<tr><td>Website</td>
+								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
+							<?php } if ($phone > 0) { ?>
 							<tr><td><i class="fa fa-phone"></i> Phone</td><td><?php echo $phone; ?></td></tr>
 							<?php } if ($email != 'N/A') { ?>
-							<tr><td><i class="fa fa-envelope-o"></i> Email</td><td><?php echo $email; ?></td></tr>
+							<tr><td><i class="fa fa-envelope-o"></i> Email</td><td><a title="Email" target="" href="mailto:<?php echo $email; ?>" itemprop="email"><?php echo $email; ?></a></td></tr>
+							<?php } if ($wikipedia != '#') { ?>
+							<tr><td><i class="fa fa-wikipedia-w"></i> Wikipedia</td><td><a title="Wikipedia" target="_blank" href="<?php echo $wikipedia; ?>"><?php echo $wikipedia; ?></a></td></tr>
 							<?php } ?>
 							<tr><td>Social Links</td><td>
-								<?php if ($facebook != 'N/A') { ?>
+								<?php if ($facebook != '#') { ?>
 								<a title="Facebook" target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook"></i></a>
-								<?php } if ($gplus != 'N/A') { ?>
+								<?php } if ($gplus != '#') { ?>
 								<a title="Google Plus" target="_blank" href="<?php echo $gplus; ?>"><i class="fa fa-google-plus"></i></a>
-								<?php } if ($youtube != 'N/A') { ?>
+								<?php } if ($youtube != '#') { ?>
 								<a title="Youtube" target="_blank" href="<?php echo $youtube; ?>"><i class="fa fa-youtube"></i></a>
-								<?php } if ($wikipedia != 'N/A') { ?>
-								<a title="Wikipedia" target="_blank" href="<?php echo $wikipedia; ?>"><i class="fa fa-wikipedia-w"></i></a>
 								<?php } ?>
 								</td></tr>
 							<?php } if($dos != "0000-00-00") { ?>
@@ -285,35 +285,23 @@ if ($q->rowCount() == 1) {
 				<div class="row text-center">
 					<div class="col-md-12">
 						<h2>Disciples</h2>
-						<p>Monks &amp; Nuns initiated by Acharya Shri<p>
+						<p>Monks &amp; Nuns initiated by <?php echo $title; ?><p>
 						</div><!-- /.col-md-12 -->
-					
 					<div class="container">
 						<div class="row">
-							
 							<?php
-								$r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
-								while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
-									$guruid = getguru($row["id"]);
-									if($guruid==$getinfo["id"]) {
+								 $r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
+								 while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
+									 $guruid = getguru($row["id"]);
+									 if($guruid==$getinfo["id"]) {
 							?>
-							<a href="?id=<?php echo $row["id"]; ?>">
-								<div class="col-md-4">
-									<div class="team-member wow fadeIn" data-wow-offset="10">
-										<figure>
-											<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" width="200px" height="150px">
-											<figcaption>
-												<p><?php echo getmuni($row["id"]); ?></p>
-											</figcaption>
-										</figure>
-									</div><!-- /.team-member -->
-								</div><!-- /.col-md-4 -->
-							</a>
+							&nbsp;<a href="?id=<?php echo $row["id"]; ?>">
+							<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" height="200px" width="150px">
+							</a>&nbsp;
 							<?php
-									}
-								}
+									 }
+								 }
 							?>
-							
 						</div><!-- /.row -->
 					</div><!-- /.container -->
 					
@@ -322,7 +310,7 @@ if ($q->rowCount() == 1) {
 		</section><!-- /.our-team -->
 		
 		<?php
-							}
+								}
 	include 'contact.php';
 	include 'footer2.php';
 	include 'scripts.php';
