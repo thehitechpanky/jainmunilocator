@@ -22,6 +22,7 @@ if ($q->rowCount() == 1) {
 	$wikipedia = $getinfo['wikipedia'];
 	
 	include 'munis/getMuni.php';
+	include 'munis/getGuru.php';
 	include 'munis/getImg.php';
 	
 	$title = getmuni($id);
@@ -283,9 +284,9 @@ if ($q->rowCount() == 1) {
 			<div class="container">
 				<div class="row text-center">
 					<div class="col-md-12">
-						<h2>Our Team</h2>
-						<h3 class="caption gray">Meet the people who make awesome stuffs</h3>
-					</div><!-- /.col-md-12 -->
+						<h2>Disciples</h2>
+						<p>Monks &amp; Nuns initiated by Acharya Shri<p>
+						</div><!-- /.col-md-12 -->
 					
 					<div class="container">
 						<div class="row">
@@ -300,7 +301,7 @@ if ($q->rowCount() == 1) {
 								<div class="col-md-4">
 									<div class="team-member wow fadeIn" data-wow-offset="10">
 										<figure>
-											<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" class="img-responsive">
+											<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" width="200px" height="150px">
 											<figcaption>
 												<p><?php echo getmuni($row["id"]); ?></p>
 											</figcaption>
