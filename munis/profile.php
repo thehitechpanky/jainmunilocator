@@ -48,8 +48,10 @@ if ($q->rowCount() == 1) {
 		<!-- Navigation -->
 		<?php
 	
-	$navLinks = '<li><a href="#about">'.$title.'</a></li>
-	<li><a href="editMuni.php?id='.$id.'">Update Location / Details</a></li>';
+	$navLinks = '<li><a href="/">Home</a></li>
+	<li><a href="munis.php">Monks &amp; Nuns</a></li>
+	<li><a href="#about">'.$title.'</a></li>
+	<li><a href="munis/editMuni.php?id='.$id.'">Update Location / Details</a></li>';
 	
 	if ($upadhi == 1) {
 		$navLinks = $navLinks.'<li><a href="#team">Disciples</a></li>';
@@ -265,7 +267,7 @@ if ($q->rowCount() == 1) {
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<a class="btn btn-default btn-lg" href="editform.php?id=<?php echo $id; ?>">UPDATE LOCATION / DETAILS</a>
+						<a class="btn btn-default btn-lg" href="munis/editMuni.php?id=<?php echo $id; ?>">UPDATE LOCATION / DETAILS</a>
 						<img alt="Photo of <?php echo $title; ?>" width="315px" src="<?php echo $getinfo['img']; ?>" itemprop="image" />
 						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
 							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
