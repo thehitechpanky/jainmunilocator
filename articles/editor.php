@@ -10,6 +10,7 @@ if($q->rowCount() == 1) {
 	$title = $row['title'];
 	$alias = $row['alias'];
 	$content = $row['content'];
+	$keywords = $row['keywords'];
 }
 
 ?>
@@ -40,8 +41,7 @@ include '../nav.php';
 		<!-- Our team Section -->
 		<section id="team" class="team content-section">
 			<div class="container">
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
-				<form id="editForm" action="edit.php" method="POST">
+				<form id="editForm" action="edit.php" method="POST" class="hidden">
 					<div class="row text-center">
 						<div class="col-md-12">
 							<h2>Editing <?php echo $title; ?></h2>
@@ -51,15 +51,16 @@ include '../nav.php';
 					<h3>Title <input type="text" name="title" value="<?php echo $title; ?>"></h3>
 					<input type="hidden" name="alias" value="<?php echo $alias; ?>">
 					<textarea name="content" id="content" rows="10" cols="80" class="hidden"><?php echo $content; ?></textarea>
+					<input type="text" id="keywords" name="keywords" value="<?php echo $keywords; ?>">
 					<input type="hidden" id="author" name="author">
-					<input id="save" type="submit" value="Save" class="hidden">&nbsp;&nbsp;&nbsp;
-					<input id="reset" type="reset" value="Reset" class="hidden">&nbsp;&nbsp;&nbsp;
-					<input id="cancel" type="button" value="Cancel" onclick="location.href='./munis.php?id=<?php echo $id; ?>';" class="hidden">
+					<input id="save" type="submit" value="Save">&nbsp;&nbsp;&nbsp;
+					<input id="reset" type="reset" value="Reset">&nbsp;&nbsp;&nbsp;
+					<input id="cancel" type="button" value="Cancel" onclick="location.href='./munis.php?id=<?php echo $id; ?>';">
 				</form>
 			</div><!-- /.container -->
 		</section><!-- /.our-team -->
 		
-
+		
 		<?php
 include '../contact.php';
 include '../footer2.php';
