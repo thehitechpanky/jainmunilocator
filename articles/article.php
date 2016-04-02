@@ -7,6 +7,7 @@ if($q->rowCount() == 1) {
 	$title = $row['title'];
 	$alias = $row['alias'];
 	$content = $row['content'];
+	$keywords = $row['keywords'];
 }
 ?>
 
@@ -37,14 +38,14 @@ include 'nav.php';
 		<!-- Our team Section -->
 		<section id="team" class="team content-section">
 			<div class="container">
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
 				<div id="edit" class="hidden"><a class="btn btn-default btn-lg" href="articles/editor.php?id=<?php echo $id; ?>">Edit</a></div>
 				<div class="row text-center">
 					<div class="col-md-12">
 						<h2><span itemprop="name"><?php echo $title; ?></span></h2>
 					</div><!-- /.col-md-12 -->
-				</div><!-- /.row -->
-				<div class="content"><?php echo $content; ?></div>
+				</div><!-- /.row --><hr>
+				<div class="content"><?php echo $content; ?></div><hr>
+				<div><?php echo 'Keywords: <span itemprop="keywords">'.$keywords.'</span>'; ?></div>
 				
 				<!-- Facebook Comments Started -->
 				<hr>
