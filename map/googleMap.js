@@ -60,7 +60,7 @@ function initMap() {
 				})(usermarker, i));
 			}
 		}
-	}, 3000);
+	}, 4000);
 	
 	// Create the search box and link it to the UI element.
 	var input = document.getElementById('pac-input');
