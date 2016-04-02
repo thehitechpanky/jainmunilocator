@@ -55,10 +55,40 @@ td {
 
 /* Div */
 
-.muniPageSidebar {
-	float:right;
-	width:40%;
+.image {
+	position: relative;
+	width: 315px;
 }
+
+.image img {
+	border: 2px solid rgba(254,82,76, 1);
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+	opacity:1;
+}
+
+.image:hover img {
+	position: relative;
+	opacity: 0.3;
+	background: rgba(254,82,76, 1);
+}
+
+.upload {
+	float: left;
+	position: absolute;
+	left: 37%;
+	top: 35%;
+	display: none;
+	padding: 5px;
+	color: ffffff;
+	opacity: 1;
+}
+
+.image:hover .upload {
+	display: block;
+	opacity: 1;
+		}
 
 .profile {
 	float:left;
@@ -151,7 +181,7 @@ br.clear {
 ol {
 	text-align: left;
 	font-size: 17px;
-	padding: 20px 0px 0px 40px;	
+	padding: 20px 0px 0px 30px;	
 }
 
 li {
