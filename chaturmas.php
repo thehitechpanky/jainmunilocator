@@ -1,8 +1,9 @@
 <?php include('header.php'); ?>
 
 <!-- start body -->
-<body onunload="" >
-
+<body onunload="" <?php echo $schemaOrgBody; ?>>
+	<div class="g-signin2" data-onsuccess="onSignIn" style="float:right; z-index:10000;"></div>	
+	
 	<!-- start dotted pattern -->
 	<div class="bg-overlay"></div>
 	<!-- end dotted pattern -->
@@ -14,7 +15,7 @@
 	<!-- start content wrapper -->
 	
 	<div class="content page-content">
-	
+		
 		<div class="page-title">
 			<h1>Chaturmas 2015</h1>
 		</div>
@@ -22,7 +23,7 @@
 		<div class="divider clear"></div>
 		
 		<div class="inner-content">
-<?php
+			<?php
 $q = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasyear=2015 AND NOT (chaturmasplace='N/A') ORDER BY chaturmasplace");
 $q->execute();
 $c = "N/A";
@@ -43,14 +44,32 @@ while($row = $q->fetch(PDO::FETCH_ASSOC)) {
 		}
 	}
 }
-?>
-					
+
+			?>
+			
+			<br />
+			<hr>
+			
+			<!-- Facebook Comments Started -->
+			<div id="fb-root"></div>
+			<div class="fb-like" data-href="http://jainmunilocator.org/chaturmas.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+			<div class="fb-comments" data-href="http://jainmunilocator.org/chaturmas.php" data-numposts="5"></div>
+			<!-- Facebook Comments Ended -->
+			
+			<br /><br /><br /><br /><br /><br /><br /><br /><br />
+			
 		</div>
-		<div class="sidebar">
-		<img alt="Acharya Kundkund | Jain Muni Locator" src="http://www.vitragvani.com/m/jeevan_parichay/pics/Aarcharya_kundkund.jpg" class="sidebar">
+		
+		<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+			<div class="fb-xfbml-parse-ignore">
+				<blockquote cite="https://www.facebook.com/jainmunilocator">
+					<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+				</blockquote>
+			</div>
 		</div>
+		
 	</div>
 	
 	<!--  end content wrapper  -->
- 	
-<?php include('footer.php'); ?>
+	
+	<?php include('footer.php'); ?>
