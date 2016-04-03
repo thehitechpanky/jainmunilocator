@@ -21,11 +21,20 @@ if ($q->rowCount() == 1) {
 	$youtube = $getinfo['youtube'];
 	$wikipedia = $getinfo['wikipedia'];
 	
+	include 'isMobile.php';
 	include 'munis/getMuni.php';
 	include 'munis/getGuru.php';
 	include 'munis/getImg.php';
+	include 'munis/getImgName.php';
 	
 	$title = getmuni($id);
+	$imgName = getImgName($id);
+	
+	if (file_exists("munis/uploads/{$imgName}.jpg")) {
+		$img = "munis/uploads/{$imgName}.jpg";
+	} else {
+		$img = $getinfo['img'];
+	}
 	
 ?>
 
@@ -70,6 +79,14 @@ if ($q->rowCount() == 1) {
 					<h1><center><span itemprop="name"><?php echo $title; ?></span></center></h1>
 					<hr>
 					<div class="col-md-6">
+						<div class="sidebar">
+							<div id="pic"><a class="btn btn-default btn-lg" href="munis/editMuni.php?id=<?php echo $id; ?>">
+								UPDATE LOCATION / DETAILS</a><br />
+								<figure>
+									<img alt="Photo of <?php echo $title; ?>" src="<?php echo $img; ?>" itemprop="image" />
+								</figure>
+							</div>
+						</div>
 						<table style="width:100%">
 							<?php if($dos=="0000-00-00") { ?>
 							<tr><td>Current Location</td><td>
@@ -78,7 +95,7 @@ if ($q->rowCount() == 1) {
 							<?php } if($dos=="0000-00-00") { ?>
 							<tr><th colspan="2" align="left">Contact</th></tr>
 							<?php if ($website != "#") { ?>
-							<tr><td>Website</td>
+							<tr><td><i class="fa fa-link"></i> Website</td>
 								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
 							<?php } if ($phone > 0) { ?>
 							<tr><td><i class="fa fa-phone"></i> Phone</td><td><?php echo $phone; ?></td></tr>
@@ -89,11 +106,11 @@ if ($q->rowCount() == 1) {
 							<?php } ?>
 							<tr><td>Social Links</td><td>
 								<?php if ($facebook != '#') { ?>
-								<a title="Facebook" target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook"></i></a>
+								<a title="Facebook" target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook fa-2x"></i></a>&nbsp;&nbsp;
 								<?php } if ($gplus != '#') { ?>
-								<a title="Google Plus" target="_blank" href="<?php echo $gplus; ?>"><i class="fa fa-google-plus"></i></a>
+								<a title="Google Plus" target="_blank" href="<?php echo $gplus; ?>"><i class="fa fa-google-plus fa-2x"></i></a>&nbsp;&nbsp;
 								<?php } if ($youtube != '#') { ?>
-								<a title="Youtube" target="_blank" href="<?php echo $youtube; ?>"><i class="fa fa-youtube"></i></a>
+								<a title="Youtube" target="_blank" href="<?php echo $youtube; ?>"><i class="fa fa-youtube fa-2x"></i></a>&nbsp;&nbsp;
 								<?php } ?>
 								</td></tr>
 							<?php } if($dos != "0000-00-00") { ?>
@@ -180,11 +197,11 @@ if ($q->rowCount() == 1) {
 				<tr><td>Place</td><td>'.$getinfo['ailakplace'].'</td></tr>'
 									 ;}
 	
-	if($getinfo['kguru']>0) {echo
+	if($getinfo['kdate'] == '0000-00-00' && $getinfo['kguru'] == 0 && $getinfo['kplace'] == 'N/A') {} {echo
 		'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>';
-							 if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
-							 echo '<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
+																									   if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
+																									   echo '<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
 				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'
 				<img class="smallLight" src="'.getImg($getinfo['kguru']).'" alt="'.getmuni($getinfo['kguru']).'" />
 				</a></div></td></tr>
@@ -250,6 +267,7 @@ if ($q->rowCount() == 1) {
 				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$getinfo['birthplace'].'</span></td></tr>
 				<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
 				<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
+				<tr><td>Spouse</td><td>'.$getinfo['spouse'].'</td><tr>
 				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
 	
 							?>
@@ -267,14 +285,20 @@ if ($q->rowCount() == 1) {
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<a class="btn btn-default btn-lg" href="munis/editMuni.php?id=<?php echo $id; ?>">UPDATE LOCATION / DETAILS</a>
-						<img alt="Photo of <?php echo $title; ?>" width="315px" src="<?php echo $getinfo['img']; ?>" itemprop="image" />
-						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
-								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-								</blockquote></div>
+						<div class="sidebar">
+							<div id="picright">
+								<a class="btn btn-default btn-lg" href="munis/editMuni.php?id=<?php echo $id; ?>">UPDATE LOCATION / DETAILS</a><br />
+								<figure>
+									<img alt="Photo of <?php echo $title; ?>" src="<?php echo $img; ?>" itemprop="image" />
+								</figure>
+							</div><br />
+							<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+								<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+									<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+									</blockquote></div>
+							</div>
+							<?php include 'adsense.php'; ?>
 						</div>
-						<?php include 'adsense.php'; ?>
 					</div><!-- /.col-md-6 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
@@ -317,7 +341,7 @@ if ($q->rowCount() == 1) {
 	include 'footer2.php';
 	include 'scripts.php';
 		?>
-		
+		<script type="text/javascript" src="munis/pic.js"></script>
 	</body>
 	
 </html>
