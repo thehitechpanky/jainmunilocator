@@ -1,4 +1,5 @@
 <?php
+
 require("../sendgrid-php/sendgrid-php.php");
 include '../sendgridkey.php';
 $email = new SendGrid\Email();
@@ -10,4 +11,5 @@ $email
     ->setHtml($msg)
 ;
 $sendgrid->send($email);
+
 ?>
