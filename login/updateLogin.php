@@ -14,7 +14,8 @@ $u = $db->prepare("SELECT * FROM user WHERE email=?");
 $u->execute(array($email));
 
 if($u->rowCount() == 1) {
-	$lastlogin = $u->fetch(PDO::FETCH_ASSOC);
+	$row = $u->fetch(PDO::FETCH_ASSOC);
+	$lastlogin = $row['usertimestamp'];
 	$q = $db->prepare("UPDATE user SET username=?, userimg=?, userlat=?, userlng=?, userlocation=?, userlocality=?, lastlogin=?, userip=? WHERE email=?");
 	$q->execute(array($username,$userimg,$userlat,$userlng,$userlocation,$userlocality,$userip,$lastlogin,$email));
 } else {
