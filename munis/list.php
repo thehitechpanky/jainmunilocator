@@ -1,3 +1,5 @@
+<?php include 'config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	
@@ -6,9 +8,7 @@
 		
 		<title>Digambara Monks &amp; Nuns | Jain Muni Locator</title>
 		
-		<?php
-include 'stylesheets.php';
-		?>
+		<?php include 'stylesheets.php'; ?>
 		
 	</head>
 	
