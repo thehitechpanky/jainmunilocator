@@ -1,3 +1,19 @@
+<?php
+$t = $db->prepare("SELECT * FROM munishri");
+$t->execute();
+$counttotal = 0;
+$countmonks = 0;
+$countnuns = 0;
+$countjuniors = 0;
+while($row = $t->fetch(PDO::FETCH_ASSOC)) {
+	$u = $row['upadhi'];
+	$counttotal = $counttotal + 1;
+	if ($u < 5) { $countmonks = $countmonks + 1; }
+	if ($u == 7) { $countnuns = $countnuns + 1; }
+	if ($u == 5 || $u == 6 || $u == 8) { $countjuniors = $countjuniors + 1; }
+}
+?>
+
 <!-- Counter Section -->
 <section id="counter" class="counter-section content-section">
 	<div class="container">
@@ -8,23 +24,23 @@
 			</div><!-- /.col-md-12 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
-				<strong><span class="timer">71</span>+</strong>
-				<span class="count-description"><span itemprop="keywords">Acharya</span>, <span itemprop="keywords">Ailacharya</span> &amp; <span itemprop="keywords">Upadhyay</span></span>
+				<strong><span class="timer"><?php echo $countmonks; ?></span></strong>
+				<span class="count-description">Monks<br />(<span itemprop="keywords">Acharya</span>, <span itemprop="keywords">Ailacharya</span>, <span itemprop="keywords">Upadhyay</span>, <span itemprop="keywords">Muni</span>)</span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
-				<strong><span class="timer">172</span>+</strong>
-				<span class="count-description"><span itemprop="keywords">Muni</span></span>
+				<strong><span class="timer"><?php echo $countnuns; ?></span></strong>
+				<span class="count-description">Nuns<br />(<span itemprop="keywords">Aryika</span>)</span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
-				<strong><span class="timer">129</span>+</strong>
-				<span class="count-description"><span itemprop="keywords">Aryika</span></span>
+				<strong><span class="timer"><?php echo $countjuniors; ?></span></strong>
+				<span class="count-description">Juniors<br />(<span itemprop="keywords">Ailak</span>, <span itemprop="keywords">Kshullak</span>, <span itemprop="keywords">Kshullika</span>)</span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
-				<strong><span class="timer">13</span>+</strong>
-				<span class="count-description"><span itemprop="keywords">Ailak</span> &amp; <span itemprop="keywords">Kshullak</span></span>
+				<strong><span class="timer"><?php echo $counttotal; ?></span></strong>
+				<span class="count-description">Total</span>
 			</div><!-- /.col-sm-3 -->
 			
 		</div><!-- /.row -->
@@ -88,7 +104,7 @@
 				<h3><span itemprop="jobTitle">Administrator</span></h3>
 				<div class="team-member wow fadeIn" data-wow-offset="10">
 					<figure>
-						<img src="assets/images/pankaj-jain.jpg" alt="Pankaj Jain" class="img-responsive">
+						<img src="../assets/images/pankaj-jain.jpg" alt="Pankaj Jain" class="img-responsive">
 						<figcaption>
 							<center>
 								<h1><span itemprop="name">Pankaj Jain</span></h1>
