@@ -21,6 +21,10 @@ if ($q->rowCount() == 1) {
 	$youtube = $getinfo['youtube'];
 	$wikipedia = $getinfo['wikipedia'];
 	
+	$kdate = $getinfo['kdate'];
+	$kguru = $getinfo['kguru'];
+	$kplace = $getinfo['kplace'];
+	
 	include 'isMobile.php';
 	include 'munis/getMuni.php';
 	include 'munis/getGuru.php';
@@ -58,7 +62,6 @@ if ($q->rowCount() == 1) {
 		<?php
 	
 	$navLinks = '<li><a href="/">Home</a></li>
-	<li><a href="munis.php">Monks &amp; Nuns</a></li>
 	<li><a href="#about">'.$title.'</a></li>
 	<li><a href="munis/editMuni.php?id='.$id.'">Update Location / Details</a></li>';
 	
@@ -66,7 +69,9 @@ if ($q->rowCount() == 1) {
 		$navLinks = $navLinks.'<li><a href="#team">Disciples</a></li>';
 	}
 	
-	$navLinks = $navLinks.'<li><a href="#contact">Contact us</a></li>';
+	$navLinks = $navLinks.'<li><a href="munis.php">Other Monks &amp; Nuns</a></li>
+	<li><a href="map.php">Locate Monks &amp; Nuns</a></li>
+	<li><a href="#contact">Contact us</a></li>';
 	
 	include 'nav.php';
 	
@@ -197,16 +202,17 @@ if ($q->rowCount() == 1) {
 				<tr><td>Place</td><td>'.$getinfo['ailakplace'].'</td></tr>'
 									 ;}
 	
-	if($getinfo['kdate'] == '0000-00-00' && $getinfo['kguru'] == 0 && $getinfo['kplace'] == 'N/A') {} {echo
-		'<tr><td colspan="2"></td></tr>
+	if ($kdate != '0000-00-00' || $kguru > 0) {
+		echo
+			'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>';
-																									   if($getinfo['ailacharyaname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
-																									   echo '<tr><td>Date</td><td>'.$getinfo['kdate'].'</td></tr>
+		if($getinfo['kname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
+		echo '<tr><td>Date</td><td>'.$kdate.'</td></tr>
 				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'
 				<img class="smallLight" src="'.getImg($getinfo['kguru']).'" alt="'.getmuni($getinfo['kguru']).'" />
 				</a></div></td></tr>
-				<tr><td>Place</td><td>'.$getinfo['kplace'].'</td></tr>'
-								 ;}
+				<tr><td>Place</td><td>'.$getinfo['kplace'].'</td></tr>';
+	}
 	
 	if($getinfo['upadhi']==7) {echo
 		'<tr><td colspan="2"></td></tr>
@@ -335,12 +341,35 @@ if ($q->rowCount() == 1) {
 			</div><!-- /.container -->
 		</section><!-- /.our-team -->
 		
+		<?php } ?>
+		
+		<!-- Our team Section -->
+		<section id="lineage" class="team content-section">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-md-12">
+						<h2>Lineage</h2>
+						<p>Lineage of <?php echo $title; ?><p>
+						</div><!-- /.col-md-12 -->
+					<div class="container">
+						<div class="row">
+							<?php
+	$guruid = getguru($id);
+	if ($guruid > 0) { echo '<a href="munis.php?id='.$guruid.'"><img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" title="'.getmuni($guruid).'" height="250px" width="180px"></a>'; }
+							?>
+						</div><!-- /.row -->
+					</div><!-- /.container -->
+					
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</section><!-- /.our-team -->
+		
 		<?php
-								}
 	include 'contact.php';
 	include 'footer2.php';
 	include 'scripts.php';
 		?>
+		
 		<script type="text/javascript" src="munis/pic.js"></script>
 	</body>
 	
