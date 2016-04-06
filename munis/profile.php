@@ -354,8 +354,12 @@ if ($q->rowCount() == 1) {
 					<div class="container">
 						<div class="row">
 							<?php
-	$guruid = getguru($id);
-	if ($guruid > 0) { echo '<a href="munis.php?id='.$guruid.'"><img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" title="'.getmuni($guruid).'" height="250px" width="180px"></a>'; }
+	$guruid = $id;
+	while ($guruid > 0) {
+		echo '&nbsp;<a href="?id='.$guruid.'"><img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" title="'.getmuni($guruid).'" height="250px" width="180px"></a>&nbsp;';
+		$guruid = getguru($guruid);
+	}
+	
 							?>
 						</div><!-- /.row -->
 					</div><!-- /.container -->
