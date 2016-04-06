@@ -319,8 +319,8 @@ if ($q->rowCount() == 1) {
 		<!-- Our team Section -->
 		<section id="team" class="team content-section">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
+				<div class="row text-center">
+					<div class="col-md-12">
 						<h2>Disciples</h2>
 						<p>Monks &amp; Nuns initiated by <?php echo $title; ?></p>
 					</div><!-- /.col-md-12 -->
@@ -335,7 +335,7 @@ if ($q->rowCount() == 1) {
 									 $guruid = getguru($row["id"]);
 									 if($guruid==$getinfo["id"]) {
 							?>
-							<div itemscope itemtype="http://schema.org/Person" class="inline text-center">
+							<div itemscope itemtype="http://schema.org/Person" class="inline">
 								<a href="?id=<?php echo $row["id"]; ?>">
 									<figure>
 										<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" height="200px" width="150px" itemprop="image">
@@ -360,8 +360,8 @@ if ($q->rowCount() == 1) {
 		<!-- Our team Section -->
 		<section id="lineage" class="team content-section">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
+				<div class="row text-center">
+					<div class="col-md-12">
 						<h2>Lineage</h2>
 						<p>Lineage of <?php echo $title; ?></p>
 					</div><!-- /.col-md-12 -->
@@ -371,10 +371,10 @@ if ($q->rowCount() == 1) {
 							<?php
 	$guruid = $id;
 	while ($guruid > 0) {
-		echo '<div itemscope itemtype="http://schema.org/Person" class="inline text-center">
-		<a href="?id='.$guruid.'" title="'.getmuni($guruid).'>
+		echo '<div itemscope itemtype="http://schema.org/Person" class="inline">
+		<a href="?id='.$guruid.'">
 		<figure>
-		<img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" title="'.getmuni($guruid).'" height="250px" width="180px" itemprop="image">
+		<img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" height="250px" width="180px" itemprop="image">
 		<figcaption><span itemprop="honorificPrefix">'.getUpadhi($guruid).'</span><br /><span itemprop="name">'.getName($guruid).'</span></figcaption>
 		</figure>
 		</a>
