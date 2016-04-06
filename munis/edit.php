@@ -1,7 +1,13 @@
 <?php
+
+$editor = $_POST['editoremail'];
+
 // configuration
-include '../functionsCreated.php';
+include '../config.php';
 include '../map/locality.php';
+include '../map/getLongitude.php';
+include '../map/getLatitude.php';
+include 'getMuni.php';
 
 $id = $_POST['ids'];
 
@@ -9,15 +15,17 @@ $title = getmuni($id);
 
 // fields of munishri
 $upadhi = $_POST['upadhi'];
+$title = $_POST['title'];
 $name = $_POST['name'];
 $alias = $_POST['alias'];
-$img = $_POST['img'];
+//$img = $_POST['img'];
 $dos = $_POST['dos'];
 $vairagya = $_POST['vairagya'];
 $birthname = $_POST['birthname'];
 $dob = $_POST['dob'];
 $father = $_POST['father'];
 $mother = $_POST['mother'];
+$spouse = $_POST['spouse'];
 $grahtyag = $_POST['grahtyag'];
 $education = $_POST['education'];
 
@@ -169,142 +177,124 @@ if($bhramcharyaplace=="N/A") {
 	$bhramcharyalng = getlongitude($bhramcharyaplace);
 }
 
-$editor = $_POST['editoremail'];
-
 // fileds of editlog
 $t=time();
-$logtimestamp = date("Y-m-d",$t);
 $logip = $_SERVER['REMOTE_ADDR'];
 
-// Captcha Check
-$url = "https://www.google.com/recaptcha/api/siteverify?secret=6LcXYP8SAAAAAH7WUPMtiHoEiTnev6ofbzsuRY4U&response=".$_POST['g-recaptcha-response']."&remoteip=".$logip;
-$text = file_get_contents($url);
+// Edit Database
+$sqlmunishri = "UPDATE munishri SET upadhi=?, title=?, name=?, alias=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, spouse=?, grahtyag=?, education=? WHERE id=?";	
+$q = $db->prepare($sqlmunishri);
+$q->execute(array($upadhi,$title,$name,$alias,$dos,$vairagya,$birthname,$dob,$father,$mother,$spouse,$grahtyag,$education,$id));
 
-if(strpos($text,'true')) {
-	
-	// Edit Database
-	$sqlmunishri = "UPDATE munishri SET upadhi=?, name=?, alias=?, img=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, grahtyag=?, education=? WHERE id=?";	
-	$q = $db->prepare($sqlmunishri);
-	$q->execute(array($upadhi,$name,$alias,$img,$dos,$vairagya,$birthname,$dob,$father,$mother,$grahtyag,$education,$id));
-	
-	$sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=?, wikipedia=? WHERE contactid='$id'";	
-	$q = $db->prepare($sqlcontact);
-	$q->execute(array($website,$phone,$email,$facebook,$gplus,$youtube,$wikipedia));
-	
-	$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhilat=?, samadhilng=?, samadhiplace=? WHERE historyid='$id'";	
-	$q = $db->prepare($sqlhistory);
-	$q->execute(array($birthlat,$birthlng,$birthplace,$samadhilat,$samadhilng,$samadhiplace));
-	
-	if($chaturmasid>0) {
-		$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid='$chaturmasid'";
-		$q = $db->prepare($sqlchaturmas);
-		$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace));
-	} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
-		$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)";
-		$q = $db->prepare($sqlchaturmas);
-		$q->execute(array($id,$latestChaturmasYear,$chaturmaslat,$chaturmaslng,$chaturmasplace));
-	} else {
-		//Nothing to be done here if user hasn't specified a chaturmas place
-	}
-	
-	$sqlacharya = "UPDATE acharya SET adate=?, aguru=?, alat=?, alng=?, aplace=? WHERE acharyaid='$id'";
-	$q = $db->prepare($sqlacharya);
-	$q->execute(array($adate,$aguru,$alat,$alng,$aplace));
-	
-	$sqlailacharya = "UPDATE ailacharya SET ailacharyaname=?, ailacharyadate=?, ailacharyaguru=?, ailacharyalat=?, ailacharyalng=?, ailacharyaplace=? WHERE ailacharyaid='$id'";
-	$q = $db->prepare($sqlailacharya);
-	$q->execute(array($ailacharyaname,$ailacharyadate,$ailacharyaguru,$ailacharyalat,$ailacharyalng,$ailacharyaplace));
-	
-	$sqlupadhyay = "UPDATE upadhyay SET upadhyayname=?, upadhyaydate=?, upadhyayguru=?, upadhyaylat=?, upadhyaylng=?, upadhyayplace=? WHERE upadhyayid='$id'";
-	$q = $db->prepare($sqlupadhyay);
-	$q->execute(array($upadhyayname,$upadhyaydate,$upadhyayguru,$upadhyaylat,$upadhyaylng,$upadhyayplace));
-	
-	$sqlmuni = "UPDATE muni SET muniname=?, munidate=?, muniguru=?, munilat=?, munilng=?, muniplace=? WHERE muniid='$id'";
-	$q = $db->prepare($sqlmuni);
-	$q->execute(array($muniname,$munidate,$muniguru,$munilat,$munilng,$muniplace));
-	
-	$sqlailak = "UPDATE ailak SET ailakname=?, ailakdate=?, ailakguru=?, ailaklat=?, ailaklng=?, ailakplace=? WHERE ailakid='$id'";
-	$q = $db->prepare($sqlailak);
-	$q->execute(array($ailakname,$ailakdate,$ailakguru,$ailaklat,$ailaklng,$ailakplace));
-	
-	$sqlkshullak = "UPDATE kshullak SET kname=?, kdate=?, kguru=?, klat=?, klng=?, kplace=? WHERE kid='$id'";
-	$q = $db->prepare($sqlkshullak);
-	$q->execute(array($kname,$kdate,$kguru,$klat,$klng,$kplace));
-	
-	$sqlaryika = "UPDATE aryika SET aryikadate=?, aryikaguru=?, aryikalat=?, aryikalng=?, aryikaplace=? WHERE aryikaid='$id'";
-	$q = $db->prepare($sqlaryika);
-	$q->execute(array($aryikadate,$aryikaguru,$aryikalat,$aryikalng,$aryikaplace));
-	
-	$sqlkshullika = "UPDATE kshullika SET kshullikadate=?, kshullikaguru=?, kshullikalat=?, kshullikalng=?, kshullikaplace=? WHERE kshullikaid='$id'";
-	$q = $db->prepare($sqlkshullika);
-	$q->execute(array($kshullikadate,$kshullikaguru,$kshullikalat,$kshullikalng,$kshullikaplace));
-	
-	$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=?, bhramcharyalat=?, bhramcharyalng=?, bhramcharyaplace=? WHERE bhramcharyaid='$id'";
-	$q = $db->prepare($sqlbhramcharya);
-	$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng,$bhramcharyaplace));
-	
-	// fields of muni_location
-	$oldlocation = $_POST['oldlocation'];
-	$location = $_POST['location'];
-	if($location=="N/A") {
-		$lat = 0;
-		$lng = 0;
-		$locality = "N/A";
-	} else {
-		$lat = getlatitude($location);
-		$lng = getlongitude($location);
-		$locality = getlocality($lat,$lng);
-	}
-	
-	$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid='$id'";
-	$q = $db->prepare($sqllocation);
-	$q->execute(array($lat,$lng,$location,$locality));
-	
-	$sqleditlog = "INSERT INTO editlog (editor,logip,logmuniid) VALUES (?,?,?)";
-	$q = $db->prepare($sqleditlog);
-	$q->execute(array($editor,$logip,$id));
-	
-	//Thank message to the editor
-	if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') {} else {
-		$to = $editor;
+$sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=?, wikipedia=? WHERE contactid='$id'";	
+$q = $db->prepare($sqlcontact);
+$q->execute(array($website,$phone,$email,$facebook,$gplus,$youtube,$wikipedia));
+
+$sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhilat=?, samadhilng=?, samadhiplace=? WHERE historyid='$id'";	
+$q = $db->prepare($sqlhistory);
+$q->execute(array($birthlat,$birthlng,$birthplace,$samadhilat,$samadhilng,$samadhiplace));
+
+if($chaturmasid>0) {
+	$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid='$chaturmasid'";
+	$q = $db->prepare($sqlchaturmas);
+	$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace));
+} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
+	$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)";
+	$q = $db->prepare($sqlchaturmas);
+	$q->execute(array($id,$latestChaturmasYear,$chaturmaslat,$chaturmaslng,$chaturmasplace));
+} else {
+	//Nothing to be done here if user hasn't specified a chaturmas place
+}
+
+$sqlacharya = "UPDATE acharya SET adate=?, aguru=?, alat=?, alng=?, aplace=? WHERE acharyaid='$id'";
+$q = $db->prepare($sqlacharya);
+$q->execute(array($adate,$aguru,$alat,$alng,$aplace));
+
+$sqlailacharya = "UPDATE ailacharya SET ailacharyaname=?, ailacharyadate=?, ailacharyaguru=?, ailacharyalat=?, ailacharyalng=?, ailacharyaplace=? WHERE ailacharyaid='$id'";
+$q = $db->prepare($sqlailacharya);
+$q->execute(array($ailacharyaname,$ailacharyadate,$ailacharyaguru,$ailacharyalat,$ailacharyalng,$ailacharyaplace));
+
+$sqlupadhyay = "UPDATE upadhyay SET upadhyayname=?, upadhyaydate=?, upadhyayguru=?, upadhyaylat=?, upadhyaylng=?, upadhyayplace=? WHERE upadhyayid='$id'";
+$q = $db->prepare($sqlupadhyay);
+$q->execute(array($upadhyayname,$upadhyaydate,$upadhyayguru,$upadhyaylat,$upadhyaylng,$upadhyayplace));
+
+$sqlmuni = "UPDATE muni SET muniname=?, munidate=?, muniguru=?, munilat=?, munilng=?, muniplace=? WHERE muniid='$id'";
+$q = $db->prepare($sqlmuni);
+$q->execute(array($muniname,$munidate,$muniguru,$munilat,$munilng,$muniplace));
+
+$sqlailak = "UPDATE ailak SET ailakname=?, ailakdate=?, ailakguru=?, ailaklat=?, ailaklng=?, ailakplace=? WHERE ailakid='$id'";
+$q = $db->prepare($sqlailak);
+$q->execute(array($ailakname,$ailakdate,$ailakguru,$ailaklat,$ailaklng,$ailakplace));
+
+$sqlkshullak = "UPDATE kshullak SET kname=?, kdate=?, kguru=?, klat=?, klng=?, kplace=? WHERE kid='$id'";
+$q = $db->prepare($sqlkshullak);
+$q->execute(array($kname,$kdate,$kguru,$klat,$klng,$kplace));
+
+$sqlaryika = "UPDATE aryika SET aryikadate=?, aryikaguru=?, aryikalat=?, aryikalng=?, aryikaplace=? WHERE aryikaid='$id'";
+$q = $db->prepare($sqlaryika);
+$q->execute(array($aryikadate,$aryikaguru,$aryikalat,$aryikalng,$aryikaplace));
+
+$sqlkshullika = "UPDATE kshullika SET kshullikadate=?, kshullikaguru=?, kshullikalat=?, kshullikalng=?, kshullikaplace=? WHERE kshullikaid='$id'";
+$q = $db->prepare($sqlkshullika);
+$q->execute(array($kshullikadate,$kshullikaguru,$kshullikalat,$kshullikalng,$kshullikaplace));
+
+$sqlbhramcharya = "UPDATE bhramcharya SET bhramcharyadate=?, bhramcharyaguru=?, bhramcharyalat=?, bhramcharyalng=?, bhramcharyaplace=? WHERE bhramcharyaid='$id'";
+$q = $db->prepare($sqlbhramcharya);
+$q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng,$bhramcharyaplace));
+
+// fields of muni_location
+$oldlocation = $_POST['oldlocation'];
+$location = $_POST['location'];
+if($location=="N/A") {
+	$lat = 0;
+	$lng = 0;
+	$locality = "N/A";
+} else {
+	$lat = getlatitude($location);
+	$lng = getlongitude($location);
+	$locality = getlocality($lat,$lng);
+}
+
+$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid='$id'";
+$q = $db->prepare($sqllocation);
+$q->execute(array($lat,$lng,$location,$locality));
+
+$sqleditlog = "INSERT INTO editlog (editor,logip,logmuniid) VALUES (?,?,?)";
+$q = $db->prepare($sqleditlog);
+$q->execute(array($editor,$logip,$id));
+
+//Thank message to the editor
+if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') {} else {
+	$to = $editor;
+	$from = 'capankajjain@smilyo.com';
+	$subject = 'Thank you from Jain Muni Locator';
+	$msg = 'Hello '.$editor.'<br />Thank you for updating the information about '.$title.' on Jain Muni Locator.<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
+	include '../email.php';
+}
+
+$u = $db->prepare("SELECT * FROM user WHERE email != ? AND userlocality = ?");
+$u->execute(array($editor,$locality));
+require("../sendgrid-php/sendgrid-php.php");
+include '../sendgridkey.php';
+
+while ($row = $u->fetch(PDO::FETCH_ASSOC)) {
+	$emailreceiver = $row['email'];
+	if ($oldlocation == $location) {} else {
+		$to = $row['email'];
 		$from = 'capankajjain@smilyo.com';
-		$subject = 'Thank you from Jain Muni Locator';
-		$msg = 'Hello '.$editor.'<br />Thank you for updating the information about '.$title.' on Jain Muni Locator.<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
-		include '../email.php';
-	}
-	
-	$u = $db->prepare("SELECT * FROM user WHERE email != ? AND userlocality = ?");
-	$u->execute(array($editor,$locality));
-	require("../sendgrid-php/sendgrid-php.php");
-	include '../sendgridkey.php';
-	
-	while ($row = $u->fetch(PDO::FETCH_ASSOC)) {
-		$emailreceiver = $row['email'];
-		if ($oldlocation == $location) {} else {
-			//$q = $db->prepare("INSERT INTO mail (log) VALUES (?)");
-			//$q->execute(array($emailreceiver));
-			$to = $row['email'];
-			$from = 'capankajjain@smilyo.com';
-			$subject = 'Location update from Jain Muni Locator';
-			$msg = 'Hello '.$row['username'].'<br />'.$title.' is now at '.$location.'.&nbsp;
+		$subject = 'Location update from Jain Muni Locator';
+		$msg = 'Hello '.$row['username'].'<br />'.$title.' is now at '.$location.'.&nbsp;
 			To find out more about Guruvar / Mataji, click <a href="http://jainmunilocator.org/munis.php?id='.$id.'">here</a>.
 			<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
-			$email = new SendGrid\Email();
-			$email
-				->addTo($to)
-				//->addTo('bar@foo.com') //One of the most notable changes is how `addTo()` behaves. We are now using our Web API parameters instead of the X-SMTPAPI header. What this means is that if you call `addTo()` multiple times for an email, **ONE** email will be sent with each email address visible to everyone.
-				->setFrom($from)
-				->setSubject($subject)
-				->setHtml($msg)
-				;
-			$sendgrid->send($email);
-		}
+		$email = new SendGrid\Email();
+		$email
+			->addTo($to)
+			->setFrom($from)
+			->setSubject($subject)
+			->setHtml($msg)
+			;
+		$sendgrid->send($email);
 	}
-	
-} else {
-	
-	echo "Wrong Recaptcha, Please try again!";
-	
 }
 
 header('location: ../munis.php?id='.$id);
