@@ -5,10 +5,20 @@ include 'config.php';
 $id = (int)$_GET['id'];
 
 $q = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location, history, contact
-						WHERE id = ? AND approved=1 AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid AND id=mid AND id=historyid AND id=contactid');
+						WHERE id = ? AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid
+						AND id=ailacharyaid AND id=acharyaid AND id=mid AND id=historyid AND id=contactid');
 $q->execute(array($id));
 
 if ($q->rowCount() == 1) {
+	
+	include 'isMobile.php';
+	include 'munis/getMuni.php';
+	include 'munis/getGuru.php';
+	include 'munis/getImg.php';
+	include 'munis/getImgName.php';
+	include 'munis/getName.php';
+	include 'munis/getUpadhi.php';
+	
 	// When an id is entered in the url
 	$getinfo = $q->fetch(PDO::FETCH_ASSOC);
 	$upadhi = $getinfo['upadhi'];
@@ -24,12 +34,6 @@ if ($q->rowCount() == 1) {
 	$kdate = $getinfo['kdate'];
 	$kguru = $getinfo['kguru'];
 	$kplace = $getinfo['kplace'];
-	
-	include 'isMobile.php';
-	include 'munis/getMuni.php';
-	include 'munis/getGuru.php';
-	include 'munis/getImg.php';
-	include 'munis/getImgName.php';
 	
 	$title = getmuni($id);
 	$imgName = getImgName($id);
@@ -56,7 +60,7 @@ if ($q->rowCount() == 1) {
 		
 	</head>
 	
-	<body id="home">
+	<body id="home" itemscope itemtype="http://schema.org/WebPage">
 		
 		<!-- Navigation -->
 		<?php
@@ -69,8 +73,9 @@ if ($q->rowCount() == 1) {
 		$navLinks = $navLinks.'<li><a href="#team">Disciples</a></li>';
 	}
 	
-	$navLinks = $navLinks.'<li><a href="munis.php">Other Monks &amp; Nuns</a></li>
-	<li><a href="map.php">Locate Monks &amp; Nuns</a></li>
+	$navLinks = $navLinks.'<li><a href="#lineage">Lineage</a></li>
+	<li><a href="munis.php">Other Monks &amp; Nuns</a></li>
+	<li><a href="map.php">Map</a></li>
 	<li><a href="#contact">Contact us</a></li>';
 	
 	include 'nav.php';
@@ -314,22 +319,31 @@ if ($q->rowCount() == 1) {
 		<!-- Our team Section -->
 		<section id="team" class="team content-section">
 			<div class="container">
-				<div class="row text-center">
-					<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12 text-center">
 						<h2>Disciples</h2>
-						<p>Monks &amp; Nuns initiated by <?php echo $title; ?><p>
-						</div><!-- /.col-md-12 -->
+						<p>Monks &amp; Nuns initiated by <?php echo $title; ?></p>
+					</div><!-- /.col-md-12 -->
+					
 					<div class="container">
 						<div class="row">
 							<?php
-								 $r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid ORDER BY upadhi, name ASC");
+								 $r2 = $db->query("SELECT * FROM munishri, aryika, kshullak, ailak, upadhyay, ailacharya, acharya, upadhis
+								 WHERE approved=1 AND id=aryikaid AND id=kid AND id=ailakid AND id=upadhyayid AND id=ailacharyaid AND id=acharyaid
+								 AND upadhi=uid ORDER BY upadhi, name ASC");
 								 while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
 									 $guruid = getguru($row["id"]);
 									 if($guruid==$getinfo["id"]) {
 							?>
-							&nbsp;<a href="?id=<?php echo $row["id"]; ?>">
-							<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" height="200px" width="150px">
-							</a>&nbsp;
+							<div itemscope itemtype="http://schema.org/Person" class="inline text-center">
+								<a href="?id=<?php echo $row["id"]; ?>">
+									<figure>
+										<img src="<?php echo getImg($row["id"]); ?>" alt="<?php echo getmuni($row["id"]); ?>" height="200px" width="150px" itemprop="image">
+										<figcaption><span itemprop="honorificPrefix"><?php echo $row['uname']; ?></span><br />
+											<span itemprop="name"><?php echo $row['name']; ?></span></figcaption>
+									</figure>
+								</a>
+							</div>
 							<?php
 									 }
 								 }
@@ -346,17 +360,25 @@ if ($q->rowCount() == 1) {
 		<!-- Our team Section -->
 		<section id="lineage" class="team content-section">
 			<div class="container">
-				<div class="row text-center">
-					<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-12 text-center">
 						<h2>Lineage</h2>
-						<p>Lineage of <?php echo $title; ?><p>
-						</div><!-- /.col-md-12 -->
+						<p>Lineage of <?php echo $title; ?></p>
+					</div><!-- /.col-md-12 -->
+					
 					<div class="container">
 						<div class="row">
 							<?php
 	$guruid = $id;
 	while ($guruid > 0) {
-		echo '&nbsp;<a href="?id='.$guruid.'"><img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" title="'.getmuni($guruid).'" height="250px" width="180px"></a>&nbsp;';
+		echo '<div itemscope itemtype="http://schema.org/Person" class="inline text-center">
+		<a href="?id='.$guruid.'" title="'.getmuni($guruid).'>
+		<figure>
+		<img src="'.getImg($guruid).'" alt="'.getmuni($guruid).'" title="'.getmuni($guruid).'" height="250px" width="180px" itemprop="image">
+		<figcaption><span itemprop="honorificPrefix">'.getUpadhi($guruid).'</span><br /><span itemprop="name">'.getName($guruid).'</span></figcaption>
+		</figure>
+		</a>
+		</div>';
 		$guruid = getguru($guruid);
 	}
 	
