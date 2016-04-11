@@ -15,8 +15,7 @@ if($q->rowCount() != 0) {
 	while($row = $q->fetch(PDO::FETCH_ASSOC)) {
 		$data['id'] = $row['id'];
 		$data['name'] = getmuni($row['id']);
-		array_push($response, $data); 
-		//echo '<option value="'.getmuni($row['id']).'">';
+		array_push($response, $data);
 	}
 }
 
