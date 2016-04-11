@@ -1,6 +1,10 @@
 <?php
 include 'config.php';
 include 'munis/getMuni.php';
+include 'calendar/month.php';
+$today = date('d M Y');
+$currentday = date('d');
+$currentmonth = date('m');
 ?>
 
 <!DOCTYPE html>
@@ -37,44 +41,97 @@ include 'nav.php';
 				<div class="row">
 					<h1>Events</h1>
 					<div class="col-md-6">
+						<h2>Today's Events</h2>
+						
 						<?php
-echo "<h3>Today's Events</h3>
-<table class='sub'>
-<tr><th colspan='2' align='left'>Muni Deeksha Diwas</th></tr>";
 $i = 0;
-$t = $db->prepare("SELECT * FROM munishri, muni WHERE id=muniid AND DAY(munidate)='$currentDay' AND MONTH(munidate)='$currentMonth' ORDER BY upadhi");
-$t->execute();
-while($row = $t->fetch(PDO::FETCH_ASSOC)) {
-	$i++;
-	echo '<tr><td>'.$i.'.</td><td><a href="./munis.php?id='.$row['id'].'">'.getmuni($row['id']).'</a></td></tr>';
-}
-echo "<tr><th colspan='2' align='left'>Aryika Deeksha Diwas</th></tr>";
-$i = 0;
-$t = $db->prepare("SELECT * FROM munishri, aryika WHERE id=aryikaid AND DAY(aryikadate)='$currentDay' AND MONTH(aryikadate)='$currentMonth' ORDER BY upadhi");
-$t->execute();
-while($row = $t->fetch(PDO::FETCH_ASSOC)) {
-	$i++;
-	echo '<tr><td><a href="./munis.php?id='.$row['id'].'">'.$i.': '.getmuni($row['id']).'</a></td></tr>';
-}
-echo "</table>
-<div>&nbsp;</div>
-<h3>This Month's Events</h3>
-<table class='sub'>
-<tr><th colspan='3' align='left'>Muni Deeksha Diwas</th></tr>
-<tr><td>S. No.</td><td>Date</td><td>Muni-Shri</td>";
-$i = 0;
-$t = $db->prepare("SELECT * FROM munishri, muni WHERE id=muniid AND MONTH(munidate)='$currentMonth' ORDER BY DAY(munidate), upadhi");
-$t->execute();
-while($row = $t->fetch(PDO::FETCH_ASSOC)) {
-	$i++;
-	$muniDate = $row['munidate'];
-	echo '<tr><td>'.$i.'</td><td>'.date('d', strtotime($muniDate)).'</td><td><a href="./munis.php?id='.$row['id'].'">'.getmuni($row['id']).'</a></td></tr>';
-}
-echo "</table>";
-						?>			
+$j = 0;
+$q = $db->prepare("SELECT * FROM munishri, muni, aryika WHERE id=muniid AND id=aryikaid AND (upadhi=2 OR upadhi=4 OR upadhi=7) AND (DAY(munidate)=? OR DAY(aryikadate)=?) AND (MONTH(munidate)=? OR MONTH(aryikadate)=?)");
+$q->execute(array($currentday,$currentday,$currentmonth,$currentmonth));
+
+while ($q->fetch(PDO::FETCH_ASSOC)) { $i++; }
+
+if ($i > 0) {
+						?>					
 						
-						<hr>
+						<h3>Intitiation Anniversary (दीक्षा दिवस)</h3>
+						<table>
+							<tr><th>S.No.</th><th>Name</th></tr>
+							
+							<?php
+	$t = $db->prepare("SELECT id, upadhi, muniid, munidate FROM muni, munishri WHERE id=muniid AND (upadhi=2 OR upadhi=4 OR upadhi=7) AND DAY(munidate)=? AND MONTH(munidate)=? UNION
+	SELECT id, upadhi, aryikaid, aryikadate FROM aryika, munishri WHERE id=aryikaid AND (upadhi=2 OR upadhi=4 OR upadhi=7) AND DAY(aryikadate)=? AND MONTH(aryikadate)=?");
+	$t->execute(array($currentday,$currentmonth,$currentday,$currentmonth));
+	while ($row = $t->fetch(PDO::FETCH_ASSOC)) {
+		$j++;
+		echo '<tr><td>'.$j.'</td><td><a href="munis.php?id='.$row['id'].'">'.getmuni($row['id']).'</a></td></tr>';
+	}
+							?>
+							
+						</table><br /><br />
 						
+						<?php } ?>
+						
+						<h2>This Month's Events</h2>
+						
+						<?php
+$i = 0;
+$j = 0;
+$q = $db->prepare("SELECT * FROM munishri, acharya WHERE id=acharyaid AND upadhi=1 AND MONTH(adate)=?");
+$q->execute(array($currentmonth));
+
+while ($q->fetch(PDO::FETCH_ASSOC)) { $i++; }
+
+if ($i > 0) {
+						?>
+						
+						<h3>Promotion Anniversary (पदारोहण दिवस)</h3>
+						<table>
+							<tr><th>S.No.</th><th>Date</th><th>Name</th></tr>
+							
+							<?php		
+	$t = $db->prepare("SELECT * FROM munishri, acharya WHERE id=acharyaid AND upadhi=1 AND MONTH(adate)=? ORDER BY DAY(adate)");
+	$t->execute(array($currentmonth));
+	while ($row = $t->fetch(PDO::FETCH_ASSOC)) {
+		$j++;
+		echo '<tr><td>'.$j.'</td><td>'.date('d',strtotime($row['adate'])).'</td><td><a href="munis.php?id='.$row['id'].'">'
+			.getmuni($row['id']).'</a></td></tr>';
+	}
+							?>
+							
+						</table><br />
+						
+						<?php
+}
+$i = 0;
+$j = 0;
+$q = $db->prepare("SELECT * FROM munishri, muni, aryika WHERE id=muniid AND id=aryikaid AND (upadhi=2 OR upadhi=4 OR upadhi=7) AND (MONTH(munidate)=? OR MONTH(aryikadate)=?)");
+$q->execute(array($currentmonth,$currentmonth));
+
+while ($q->fetch(PDO::FETCH_ASSOC)) { $i++; }
+
+if ($i > 0) {
+						?>
+						<h3>Intitiation Anniversary (दीक्षा दिवस)</h3>
+						<table>
+							<tr><th>S.No.</th><th>Date</th><th>Name</th></tr>
+							
+							<?php
+	$t = $db->prepare("SELECT id, upadhi, muniid, munidate FROM muni, munishri WHERE id=muniid AND (upadhi=2 OR upadhi=4 OR upadhi=7) AND MONTH(munidate)=? UNION
+	SELECT id, upadhi, aryikaid, aryikadate FROM aryika, munishri WHERE id=aryikaid AND (upadhi=2 OR upadhi=4 OR upadhi=7) AND MONTH(aryikadate)=? ORDER BY DAY(munidate)");
+	$t->execute(array($currentmonth,$currentmonth));
+	while ($row = $t->fetch(PDO::FETCH_ASSOC)) {
+		$j++;
+		echo '<tr><td>'.$j.'</td><td>'.date('d',strtotime($row['munidate'])).'</td>
+		<td><a href="munis.php?id='.$row['id'].'">'.getmuni($row['id']).'</a></td></tr>';
+	}
+							?>			
+							
+						</table>
+						
+						<?php } ?>
+						
+						<hr>			
 						<!-- Facebook Comments Started -->
 						<div id="fb-root"></div>
 						<div class="fb-like" data-href="http://jainmunilocator.org/events.php" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
@@ -83,7 +140,8 @@ echo "</table>";
 						
 					</div><!-- /.col-md-6 -->
 					
-					<div class="col-md-6">
+					<div class="col-md-6 text-center">
+						<h1><?php echo $today; ?></h1>
 						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
 							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
 								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
