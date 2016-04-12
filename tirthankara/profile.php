@@ -17,9 +17,10 @@ if ($q->rowCount() == 1) {
 	$title = 'Lord '.$name;
 	$height = $row['tirthankaraheight'];
 	$metre = $height * 3;
+	$mokshadate = $row['mokshamonth'].' '.$row['mokshahalf'].' '.$row['mokshaday'];
 	
-	if (file_exists("tirthankara/uploads/{$name}.jpg")) {
-		$img = "tirthankara/uploads/{$name}.jpg";
+	if (file_exists('tirthankara/uploads/'.$name.'.jpg')) {
+		$img = 'tirthankara/uploads/'.$name.'.jpg';
 	} else {
 		$img = 'na.png';
 	}
@@ -70,6 +71,9 @@ if ($q->rowCount() == 1) {
 							<tr><td>Symbol</td><td><?php echo $row['tirthankarasymbol']; ?></td></tr>
 							<tr><td>Color</td><td><?php echo $row['tirthankaracolor']; ?></td></tr>
 							<tr><td>Height</td><td><?php echo $height; ?> bows (<?php echo $metre; ?> metres)</td></tr>
+							<tr><td><td></tr>
+							<tr><th colspan="2">Panchkalyanaka</th></tr>
+							<tr><td>Moksha</td><td><?php echo $mokshadate; ?></td></tr>
 						</table>
 						
 						<hr>
