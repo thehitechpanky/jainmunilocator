@@ -24,9 +24,14 @@ function initMap() {
 			//Infowindow
 			google.maps.event.addListener(munimarker, 'click', (function(munimarker, i) {
 				return function() {
-					content = '<a href="munis.php?id=' + locations[i]['id'] + '"><center><img width="200px" src="' + locations[i]['img'];
-					content += '" /><p>' + locations[i]['uname'] + ' ' + locations[i]['prefix'] + ' ';
-					content += locations[i]['name'] + ' ' + locations[i]['suffix'] + '</p><p>';
+					var name = locations[i]['name'];
+					var img = name.toLowerCase();
+					img = img.replace(/\s/g, "");
+					img = 'munis/uploads/' + img + '.jpg';
+					content = '<a href="munis.php?id=' + locations[i]['id'] + '"><center><img width="200px" src="' + img;
+					content += '" onError="this.onerror=null;this.src=';
+					content += '&#39;na.png&#39;;" /><p>' + locations[i]['uname'] + ' ' + locations[i]['prefix'] + ' ';
+					content += name + ' ' + locations[i]['suffix'] + '</p><p>';
 					content += locations[i]['location'] + '</p></center></a>';
 					infowindow.setContent(content);
 					infowindow.open(map, munimarker);
