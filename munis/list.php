@@ -12,7 +12,7 @@
 		
 	</head>
 	
-	<body id="home">
+	<body id="home" itemscope itemtype="http://schema.org/WebPage">
 		
 		<!-- Navigation -->
 		<?php
@@ -28,7 +28,7 @@ include 'nav.php';
 					<h1>Digambara Monks &amp; Nuns</h1>
 					<div class="col-md-6">
 						<input id="searchMunis" type="text" class="fullWidth" placeholder="Search by typing here... Click on any name below to know more...">
-						<div id="searchResults" class="hoverImg"></div>
+						<div id="searchResults"></div>
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
