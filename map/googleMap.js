@@ -24,8 +24,10 @@ function initMap() {
 			//Infowindow
 			google.maps.event.addListener(munimarker, 'click', (function(munimarker, i) {
 				return function() {
+					var uname = locations[i]['uname'];
 					var name = locations[i]['name'];
-					var img = name.toLowerCase();
+					var img = uname + '_' + name;
+					var img = img.toLowerCase();
 					img = img.replace(/\s/g, "");
 					img = 'munis/uploads/' + img + '.jpg';
 					content = '<a href="munis.php?id=' + locations[i]['id'] + '"><center><img width="200px" src="' + img;
