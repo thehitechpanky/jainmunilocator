@@ -2,7 +2,7 @@
 //Function to get url of muni image
 function getImg($id) {
 	global $db;
-	$m = $db->prepare("SELECT * FROM munishri WHERE id = ?");
+	$m = $db->prepare("SELECT * FROM munishri, upadhis WHERE id=? AND upadhi=uid");
 	$m->execute(array($id));
 	if($m->rowCount() == 1) {
 		$row = $m->fetch(PDO::FETCH_ASSOC);		
@@ -13,6 +13,7 @@ function getImg($id) {
 			$imgAlias = str_replace(array( '(', ')' ), '', $alias);
 			$imgName = $imgName.'_'.$imgAlias;
 		}
+		$imgName = $row['uname'].'_'.$imgName;
 		$imgName = strtolower($imgName);
 		$imgName = preg_replace('/\s+/', '', $imgName);
 		
