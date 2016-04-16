@@ -32,6 +32,10 @@ if ($q->rowCount() == 1) {
 	$youtube = $getinfo['youtube'];
 	$wikipedia = $getinfo['wikipedia'];
 	
+	$upadhyayadate = $getinfo['upadhyaydate'];
+	$upadhyayaguru = $getinfo['upadhyayguru'];
+	$upadhyayaplace = $getinfo['upadhyayplace'];
+	
 	$elakdate = $getinfo['ailakdate'];
 	$elakguru = $getinfo['ailakguru'];
 	$elakplace = $getinfo['ailakplace'];
@@ -181,11 +185,11 @@ if ($q->rowCount() == 1) {
 				<tr><td>Place</td><td>'.$getinfo['ailacharyaplace'].'</td></tr>'
 										  ;}
 	
-	if($getinfo['upadhyayguru']>0) {echo
+	if($upadhyayadate != '0000-00-00' || $upadhyayaguru > 0) {echo
 		'<tr><td colspan="2"></td></tr>
 				<tr><th colspan="2" align="left">Upadhyay Pad Details</th></tr>';
-									if($getinfo['upadhyayname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>';}
-									echo '<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
+															  if($getinfo['upadhyayname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['upadhyayname'].'</td></tr>';}
+															  echo '<tr><td>Date</td><td>'.$getinfo['upadhyaydate'].'</td></tr>
 				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['upadhyayguru'].'">'.getmuni($getinfo['upadhyayguru']).'
 				<img class="smallLight" src="'.getImg($getinfo['upadhyayguru']).'" alt="'.getmuni($getinfo['upadhyayguru']).'" />
 				</a></div></td></tr>
@@ -212,7 +216,7 @@ if ($q->rowCount() == 1) {
 				<img class="smallLight" src="'.getImg($getinfo['ailakguru']).'" alt="'.getmuni($getinfo['ailakguru']).'" />
 				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['ailakplace'].'</td></tr>'
-									 ;}
+														;}
 	
 	if ($kdate != '0000-00-00' || $kguru > 0) {
 		echo
