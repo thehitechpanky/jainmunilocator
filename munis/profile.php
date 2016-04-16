@@ -22,6 +22,7 @@ if ($q->rowCount() == 1) {
 	// When an id is entered in the url
 	$getinfo = $q->fetch(PDO::FETCH_ASSOC);
 	$upadhi = $getinfo['upadhi'];
+	$uname = $getinfo['uname'];
 	$dos = $getinfo['dos'];
 	$website = $getinfo['website'];
 	$phone = $getinfo['phone'];
@@ -31,9 +32,15 @@ if ($q->rowCount() == 1) {
 	$youtube = $getinfo['youtube'];
 	$wikipedia = $getinfo['wikipedia'];
 	
+	$elakdate = $getinfo['ailakdate'];
+	$elakguru = $getinfo['ailakguru'];
+	$elakplace = $getinfo['ailakplace'];
+	
 	$kdate = $getinfo['kdate'];
 	$kguru = $getinfo['kguru'];
 	$kplace = $getinfo['kplace'];
+	
+	$spouse = $getinfo['spouse'];
 	
 	$title = getmuni($id);
 	$imgName = getImgName($id);
@@ -66,7 +73,7 @@ if ($q->rowCount() == 1) {
 		<?php
 	
 	$navLinks = '<li><a href="/">Home</a></li>
-	<li><a href="#about">'.$title.'</a></li>
+	<li><a href="#about">'.$uname.' Shri</a></li>
 	<li><a href="munis/editMuni.php?id='.$id.'">Update Location / Details</a></li>';
 	
 	if ($upadhi == 1) {
@@ -196,11 +203,11 @@ if ($q->rowCount() == 1) {
 				<tr><td>Place</td><td>'.$getinfo['muniplace'].'</td></tr>'
 								  ;}
 	
-	if($getinfo['ailakguru']>0) {echo
+	if($elakdate != '0000-00-00' || $elakguru > 0) {echo
 		'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Ailak Deeksha Details</th></tr>';
-								 if($getinfo['ailakname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>';}
-								 echo '<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
+				<tr><th colspan="2" align="left">Elak Deeksha Details</th></tr>';
+													if($getinfo['ailakname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['ailakname'].'</td></tr>';}
+													echo '<tr><td>Date</td><td>'.$getinfo['ailakdate'].'</td></tr>
 				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['ailakguru'].'">'.getmuni($getinfo['ailakguru']).'
 				<img class="smallLight" src="'.getImg($getinfo['ailakguru']).'" alt="'.getmuni($getinfo['ailakguru']).'" />
 				</a></div></td></tr>
@@ -276,10 +283,12 @@ if ($q->rowCount() == 1) {
 				<tr><td>Birthname</td><td><span itemprop="name">'.$getinfo['birthname'].'</span></td></tr>
 				<tr><td>Date of Birth</td><td><span itemprop="birthDate">'.$getinfo['dob'].'</span></td></tr>
 				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$getinfo['birthplace'].'</span></td></tr>
-				<tr><td>Father</td><td>'.$getinfo['father'].'</td></tr>
-				<tr><td>Mother</td><td>'.$getinfo['mother'].'</td></tr>
-				<tr><td>Spouse</td><td>'.$getinfo['spouse'].'</td><tr>
-				<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
+				<tr><td>Father</td><td itemprop="parent">'.$getinfo['father'].'</td></tr>
+				<tr><td>Mother</td><td itemprop="parent">'.$getinfo['mother'].'</td></tr>';
+	if ($spouse == "") {} else {
+		echo '<tr><td>Spouse</td><td>'.$getinfo['spouse'].'</td><tr>';
+	}
+	'<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
 	
 							?>
 							
@@ -300,7 +309,7 @@ if ($q->rowCount() == 1) {
 							<div id="picright">
 								<a class="btn btn-default btn-lg" href="munis/editMuni.php?id=<?php echo $id; ?>">UPDATE LOCATION / DETAILS</a><br />
 								<figure>
-									<img alt="Photo of <?php echo $title; ?>" src="<?php echo $img; ?>" itemprop="image" />
+									<img alt="Photo of <?php echo $title; ?>" src="<?php echo $img; ?>" />
 								</figure>
 							</div><br />
 							<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
