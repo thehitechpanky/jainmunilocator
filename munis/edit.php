@@ -11,6 +11,16 @@ include 'getMuni.php';
 
 $id = $_POST['ids'];
 
+$t = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location, history, contact
+						WHERE id = ? AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid
+						AND id=ailacharyaid AND id=acharyaid AND id=mid AND id=historyid AND id=contactid');
+$t->execute(array($id));
+
+if ($t->rowCount() == 1) {
+	$row = $t->fetch(PDO::FETCH_ASSOC);
+	$oldname = $row['name'];
+}
+
 $title = getmuni($id);
 
 // fields of munishri
@@ -259,9 +269,9 @@ $sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WH
 $q = $db->prepare($sqllocation);
 $q->execute(array($lat,$lng,$location,$locality));
 
-$sqleditlog = "INSERT INTO editlog (editor,logip,logmuniid) VALUES (?,?,?)";
+$sqleditlog = "INSERT INTO editlog (editor,logip,logmuniid,oldname,newname) VALUES (?,?,?,?,?)";
 $q = $db->prepare($sqleditlog);
-$q->execute(array($editor,$logip,$id));
+$q->execute(array($editor,$logip,$id,$oldname,$name));
 
 //Thank message to the editor
 if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') {} else {
@@ -283,8 +293,9 @@ while ($row = $u->fetch(PDO::FETCH_ASSOC)) {
 		$to = $row['email'];
 		$from = 'capankajjain@smilyo.com';
 		$subject = 'Location update from Jain Muni Locator';
-		$msg = 'Hello '.$row['username'].'<br />'.$title.' is now at '.$location.'.&nbsp;
-			To find out more about Guruvar / Mataji, click <a href="http://jainmunilocator.org/munis.php?id='.$id.'">here</a>.
+		$msg = 'Jai Jinendra '.$row['username'].' Ji!<br />'.$title.' is now at '.$location.'.&nbsp;
+			To find out more about Guruvar / Mataji, click <a href="http://jainmunilocator.org/munis.php?id='.$id.'">here</a>.<br />
+			To see the locations of other Guruvar / Mataji, click <a href="http://jainmunilocator.org/map.php">here</a>.
 			<br /><br />Thanks &amp; Regards<br />Pankaj Jain<br />Administrator<br />Jain Muni Locator';
 		$email = new SendGrid\Email();
 		$email
