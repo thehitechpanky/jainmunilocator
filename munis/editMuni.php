@@ -2,6 +2,7 @@
 
 include '../config.php';
 include 'getMuni.php';
+include 'getImgName.php';
 
 $id = $_GET['id'];
 $q = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, contact, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya
@@ -13,8 +14,13 @@ if($q->rowCount() == 1) {
 	$id = $row['id'];
 	$upadhi = $row['upadhi'];
 	$title = getmuni($id);
+	$imgName = getImgName($id);
+	if (file_exists("uploads/{$imgName}.jpg")) {
+		$img = "uploads/{$imgName}.jpg";
+	} else {
+		$img = 'na.png';
+	}
 }
-
 ?>
 
 
@@ -30,15 +36,16 @@ if($q->rowCount() == 1) {
 include '../stylesheets.php';
 		?>
 		
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		
 	</head>
 	
-	<body id="home">
+	<body id="home" itemscope itemtype="http://schema.org/WebPage">
 		<!-- Navigation -->
 		<?php
-$navLinks = '<li><a href="#about">About us</a></li>
-                                <li><a href="#services">Explore</a></li>
-                                <li><a href="#products">Mobile App</a></li>
-                                <li><a href="#portfolio">Good Reads</a></li>
+$navLinks = '<li><a href="/">Home</a></li>
+<li><a href="#about">Edit Page</a></li>
+<li><a href="../munis.php">Monk list</a></li>
                                 <li><a href="#contact">Contact us</a></li>';
 include '../nav.php'
 		?>
@@ -47,23 +54,47 @@ include '../nav.php'
 		<section id="about" class="about content-section alt-bg-light wow fadeInUp" data-wow-offset="10">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6">
-						<h2>Edit <?php echo $row['uname']; ?> Shri details</h2>
-						<form id="editForm" action="edit.php" method="POST">
+					<h2>Edit <?php echo $row['uname']; ?> Shri details</h2>
+					
+					<div class="col-md-6">						
+						
+						<dialog id="uploadbox" style="z-index: 10000;">
+							<form action="upload.php" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="imgId" value="<?php echo $id; ?>">
+								<input type="hidden" name="imgUname" value="<?php echo $row['uname']; ?>">
+								<input type="hidden" name="imgName" value="<?php echo $row['name']; ?>">
+								<input type="hidden" name="imgAlias" value="<?php echo $row['alias']; ?>">
+								<input type="file" name="fileToUpload" id="fileToUpload">
+								<input type="submit" value="Upload Image" name="submit">
+								<a href="#" id="closeupload">Close</a>
+							</form>
+						</dialog>
+						
+						<form id="editForm" action="edit.php" method="POST" class="hidden">
+							
+							<div class="image">
+								<figure>
+									<img id="pic" src="<?php echo $img; ?>" alt="<?php echo $title; ?>">
+									<figcaption>
+										<p><a href="#" title="Change Image" class="camera"><i class='fa fa-camera fa-5x'></i></a></p>
+									</figcaption>
+								</figure>
+							</div>
 							
 							<input type="hidden" name="ids" value="<?php echo $id; ?>" />
 							
-							<b>Name</b><br />
+							<b>Name</b><br />							
+							<input type="text" id="title" name="title" class="verySmallBox" placeholder="Title" value="<?php echo $row['title']; ?>">
 							<select id="upadhi" name="upadhi" class="mediumBox">
 								<option value="0" disabled selected>Upadhi</option>
-								<option value="1" <?php if($upadhi==1) { echo "selected"; } ?> >Acharya</option>
-								<option value="2" <?php if($upadhi==2) { echo "selected"; } ?> >Ailacharya</option>
-								<option value="3" <?php if($upadhi==3) { echo "selected"; } ?> >Upadhyay</option>
-								<option value="4" <?php if($upadhi==4) { echo "selected"; } ?> >Muni</option>
-								<option value="5" <?php if($upadhi==5) { echo "selected"; } ?> >Ailak</option>
-								<option value="6" <?php if($$upadhi==6) { echo "selected"; } ?> >Kshullak</option>
-								<option value="7" <?php if($upadhi==7) { echo "selected"; } ?> >Aryika</option>
-								<option value="8" <?php if($upadhi==8) { echo "selected"; } ?> >Kshullika</option>
+								<option value="1" <?php if($upadhi==1) { echo "selected"; } ?>>Acharya</option>
+								<option value="2" <?php if($upadhi==2) { echo "selected"; } ?>>Elacharya</option>
+								<option value="3" <?php if($upadhi==3) { echo "selected"; } ?>>Upadhyay</option>
+								<option value="4" <?php if($upadhi==4) { echo "selected"; } ?>>Muni</option>
+								<option value="5" <?php if($upadhi==5) { echo "selected"; } ?>>Elak</option>
+								<option value="6" <?php if($upadhi==6) { echo "selected"; } ?>>Kshullak</option>
+								<option value="7" <?php if($upadhi==7) { echo "selected"; } ?>>Aryika</option>
+								<option value="8" <?php if($upadhi==8) { echo "selected"; } ?>>Kshullika</option>
 							</select>
 							<div id="prefix_here" class="inline"></div>
 							<input type="text" id="name" name="name" class="smallBox" placeholder="Name" value="<?php echo $row['name']; ?>" />
@@ -72,10 +103,10 @@ include '../nav.php'
 							
 							<?php if($row['dos']=="0000-00-00") { ?>
 							<strong>Current Location</strong><br />
+							<input type="hidden" name="oldlocation" value="<?php echo $row['location']; ?>">
 							<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>" /><br /><br />
 							<?php } ?>
 							
-							Image Link<input type="text" id="img" name="img" class="longBox" value="<?php echo $row['img']; ?>" /><br />
 							Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
 							
 							<strong>Contact Info</strong><br />
@@ -94,31 +125,144 @@ include '../nav.php'
 							<?php
 if($row['dos']=="0000-00-00") {
 	$latestChaturmasYear = $currentYear;
-} else {
-	
+} else {	
 	$latestChaturmasYear = date('Y', strtotime($row['dos']));
 }
+
+$firstChaturmasYear = $latestChaturmasYear;
+if(date('Y', strtotime($row['munidate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['munidate']));
+}
+if(date('Y', strtotime($row['ailakdate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['ailakdate']));
+}
+if(date('Y', strtotime($row['kdate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['kdate']));
+}
+if(date('Y', strtotime($row['aryikadate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['aryikadate']));
+}
+if(date('Y', strtotime($row['kshullikadate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['kshullikadate']));
+}
+
 echo $latestChaturmasYear;
-$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasyear='$latestChaturmasYear'");
-$q->execute();
+$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+$q->execute(array($id,$latestChaturmasYear));
 $row2 = $q->fetch(PDO::FETCH_ASSOC);
 							?>
-							<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br /><br />
+							<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
 							<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="latestChaturmasYear" name="latestChaturmasYear" value="<?php echo $latestChaturmasYear; ?>" />
+							<input type="hidden" id="latestChaturmasYear" name="latestChaturmasYear" value="<?php echo $latestChaturmasYear; ?>" />							
+							<?php
+$year2 = $latestChaturmasYear - 1;
+if ($year2 > $firstChaturmasYear) {
+	echo $year2;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year2));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace2" name="chaturmasplace2" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid2" name="chaturmasid2" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year2" name="year2" value="<?php echo $year2; ?>" />
+							<?php
+}
+$year3 = $latestChaturmasYear - 2;
+if ($year3 > $firstChaturmasYear) {
+	echo $year3;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year3));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace3" name="chaturmasplace3" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid3" name="chaturmasid3" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year3" name="year3" value="<?php echo $year3; ?>" />
+							<?php
+}
+$year4 = $latestChaturmasYear - 3;
+if ($year4 > $firstChaturmasYear) {
+	echo $year4;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year4));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace4" name="chaturmasplace4" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid4" name="chaturmasid4" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year4" name="year4" value="<?php echo $year4; ?>" />
+							<?php
+}
+$year5 = $latestChaturmasYear - 4;
+if ($year5 > $firstChaturmasYear) {
+	echo $year5;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year5));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace5" name="chaturmasplace5" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid5" name="chaturmasid5" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year5" name="year5" value="<?php echo $year5; ?>" />
+							<?php
+}
+$year6 = $latestChaturmasYear - 5;
+if ($year6 > $firstChaturmasYear) {
+	echo $year6;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year6));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace6" name="chaturmasplace6" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid6" name="chaturmasid6" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year6" name="year6" value="<?php echo $year6; ?>" />
+							<?php
+}
+$year7 = $latestChaturmasYear - 6;
+if ($year7 > $firstChaturmasYear) {
+	echo $year7;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year7));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace7" name="chaturmasplace7" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid7" name="chaturmasid7" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year5" name="year7" value="<?php echo $year7; ?>" />
+							<?php
+}
+$year8 = $latestChaturmasYear - 7;
+if ($year8 > $firstChaturmasYear) {
+	echo $year8;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year8));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace8" name="chaturmasplace8" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid8" name="chaturmasid8" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year8" name="year8" value="<?php echo $year8; ?>" />
+							<?php
+}
+$year9 = $latestChaturmasYear - 8;
+if ($year9 > $firstChaturmasYear) {
+	echo $year9;
+	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+	$q->execute(array($id,$year9));
+	$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace9" name="chaturmasplace9" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmasid9" name="chaturmasid9" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="year9" name="year9" value="<?php echo $year9; ?>" />
+							<?php } ?><br />
 							
 							<div id="acharya" class="">
 								<b>Acharya Pad Details</b><br />
-								Date in YYYY-MM-DD<input type="text" id="adate" name="adate" class="smallBox" value="<?php echo $row['adate']; ?>" /><br />
-								Guru<input type="text" id="aguru" value="<?php echo getmuni($row['aguru']); ?>" list="aguruList"/>
+								Date in YYYY-MM-DD <input type="text" id="adate" name="adate" class="smallBox" value="<?php echo $row['adate']; ?>" /><br />
+								Guru <input type="text" id="aguru" value="<?php echo getmuni($row['aguru']); ?>" list="aguruList" >
 								<datalist id="aguruList">
 								</datalist>
-								<input type="hidden" name="aguru" id="aguruHidden" value="" /><br />
-								Place<input type="text" id="aplace" name="aplace" class="longBox" value="<?php echo $row['aplace']; ?>"/><br /><br />
+								<input type="hidden" name="aguru" id="aguruHidden" value="<?php echo $row['aguru']; ?>" /><br />
+								Place <input type="text" id="aplace" name="aplace" class="longBox" value="<?php echo $row['aplace']; ?>"/><br /><br />
 							</div>
 							
 							<div id="ailacharya" class="">
-								<b>Ailacharya Pad Details</b><br />
+								<b>Elacharya Pad Details</b><br />
 								Name<input type="text" id="ailacharyaname" name="ailacharyaname" value="<?php echo $row['ailacharyaname']; ?>" /><br />
 								Date in YYYY-MM-DD<input type="text" id="ailacharyadate" name="ailacharyadate" class="smallBox" value="<?php echo $row['ailacharyadate']; ?>" /><br />
 								Guru ID<input type="text" id="ailacharyaguru" name="ailacharyaguru" value="<?php echo $row['ailacharyaguru']; ?>" /><br />
@@ -142,7 +286,7 @@ $row2 = $q->fetch(PDO::FETCH_ASSOC);
 							</div><br />
 							
 							<div id="ailak" class="">
-								<b>Ailak Deeksha Details</b><br />
+								<b>Elak Deeksha Details</b><br />
 								Name<input type="text" id="ailakname" name="ailakname" value="<?php echo $row['ailakname']; ?>" /><br />
 								Date in YYYY-MM-DD<input type="text" id="ailakdate" name="ailakdate" class="smallBox" value="<?php echo $row['ailakdate']; ?>" /><br />
 								Guru ID<input type="text" id="ailakguru" name="ailakguru" value="<?php echo $row['ailakguru']; ?>" /><br />
@@ -180,37 +324,50 @@ $row2 = $q->fetch(PDO::FETCH_ASSOC);
 							Grahtyag Date in YYYY-MM-DD<input type="text" id="grahtyag" name="grahtyag" class="smallBox" value="<?php echo $row['grahtyag']; ?>" /><br /><br />
 							
 							<b>History</b><br />
-							Birthname<input type="text" id="birthname" name="birthname" value="<?php echo $row['birthname']; ?>" /><br />
-							Date of Birth<input type="text" id="dob" name="dob" class="smallBox" value="<?php echo $row['dob']; ?>" /><br />
-							Father<input type="text" id="father" name="father" value="<?php echo $row['father']; ?>" /><br />
-							Mother<input type="text" id="mother" name="mother" value="<?php echo $row['mother']; ?>" /><br />
-							Birthplace<input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br />
-							Education<input type="text" id="education" name="education" value="<?php echo $row['education']; ?>" /><br /><br />
+							Birthname <input type="text" id="birthname" name="birthname" value="<?php echo $row['birthname']; ?>" /><br />
+							Date of Birth <input type="text" id="dob" name="dob" class="smallBox" value="<?php echo $row['dob']; ?>" /><br />
+							Father <input type="text" id="father" name="father" value="<?php echo $row['father']; ?>" /><br />
+							Mother <input type="text" id="mother" name="mother" value="<?php echo $row['mother']; ?>" /><br />
+							Spouse <input type="text" id="spouse" name="spouse" value="<?php echo $row['spouse']; ?>" /><br />
+							Birthplace <input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br />
+							Education <input type="text" id="education" name="education" value="<?php echo $row['education']; ?>" /><br /><br />
 							
-							<?php include 'captcha.php'; ?><br />
+							<input type="hidden" id="editoremail" name="editoremail">
 							
 							<input type="submit" value="Save" />&nbsp;&nbsp;&nbsp;
 							<input type="reset" value="Reset" />&nbsp;&nbsp;&nbsp;
-							<input type="button" value="Cancel" onclick="location.href='./munis.php?id=<?php echo $id; ?>';" />
+							<input type="button" value="Cancel" onclick="location.href='../munis.php?id=<?php echo $id; ?>';" />
 							
 						</form>
 						
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<img alt="<?php echo getmuni($row['id']); ?>" width="315px" src="<?php echo $row['img']; ?>" /><br /><br />
+						<div class="image">
+							<figure>
+								<img id="picright" src="<?php echo $img; ?>" alt="<?php echo $title; ?>">
+								<figcaption>
+									<p><a href="#" title="Change Image" class="camera"><i class='fa fa-camera fa-5x'></i></a></p>
+								</figcaption>
+							</figure>
+						</div><div class="image">
 						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
 							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
 								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-								</blockquote></div>
+								</blockquote>
+							</div>
 						</div>
+						</div><div class="image">
+						
+						<?php include '../adsense.php'; ?>
+						
+						</div>
+						
 					</div><!-- /.col-md-6 -->
 					
-					<div class="col-md-6">
-						<?php include '../adsense.php'; ?>
-					</div><!-- /.col-md-6 -->
 				</div><!-- /.row -->
 			</div><!-- /.container -->
+			
 		</section><!-- /.section -->
 		
 		
@@ -218,7 +375,12 @@ $row2 = $q->fetch(PDO::FETCH_ASSOC);
 include '../contact.php';
 include '../footer2.php';
 include '../scripts.php';
+include '../map/autocomplete.php';
 		?>
+		
+		<script type='text/javascript' src='pic.js'></script>
+		<script type='text/javascript' src='formActions.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		
 	</body>
 	
