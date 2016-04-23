@@ -121,136 +121,6 @@ include '../nav.php'
 							Date in YYYY-MM-DD<input type="text" id="dos" name="dos" class="smallBox" value="<?php echo $row['dos']; ?>" /><br />
 							Place<input type="text" id="samadhiplace" name="samadhiplace" class="longBox" value="<?php echo $row['samadhiplace']; ?>"/><br /><br />
 							
-							<strong>Chaturmas</strong><br />
-							<?php
-if($row['dos']=="0000-00-00") {
-	$latestChaturmasYear = $currentYear;
-} else {	
-	$latestChaturmasYear = date('Y', strtotime($row['dos']));
-}
-
-$firstChaturmasYear = $latestChaturmasYear;
-if(date('Y', strtotime($row['munidate'])) > 1000) {
-	$firstChaturmasYear = date('Y', strtotime($row['munidate']));
-}
-if(date('Y', strtotime($row['ailakdate'])) > 1000) {
-	$firstChaturmasYear = date('Y', strtotime($row['ailakdate']));
-}
-if(date('Y', strtotime($row['kdate'])) > 1000) {
-	$firstChaturmasYear = date('Y', strtotime($row['kdate']));
-}
-if(date('Y', strtotime($row['aryikadate'])) > 1000) {
-	$firstChaturmasYear = date('Y', strtotime($row['aryikadate']));
-}
-if(date('Y', strtotime($row['kshullikadate'])) > 1000) {
-	$firstChaturmasYear = date('Y', strtotime($row['kshullikadate']));
-}
-
-echo $latestChaturmasYear;
-$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-$q->execute(array($id,$latestChaturmasYear));
-$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="latestChaturmasYear" name="latestChaturmasYear" value="<?php echo $latestChaturmasYear; ?>" />							
-							<?php
-$year2 = $latestChaturmasYear - 1;
-if ($year2 > $firstChaturmasYear) {
-	echo $year2;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year2));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace2" name="chaturmasplace2" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid2" name="chaturmasid2" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year2" name="year2" value="<?php echo $year2; ?>" />
-							<?php
-}
-$year3 = $latestChaturmasYear - 2;
-if ($year3 > $firstChaturmasYear) {
-	echo $year3;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year3));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace3" name="chaturmasplace3" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid3" name="chaturmasid3" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year3" name="year3" value="<?php echo $year3; ?>" />
-							<?php
-}
-$year4 = $latestChaturmasYear - 3;
-if ($year4 > $firstChaturmasYear) {
-	echo $year4;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year4));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace4" name="chaturmasplace4" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid4" name="chaturmasid4" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year4" name="year4" value="<?php echo $year4; ?>" />
-							<?php
-}
-$year5 = $latestChaturmasYear - 4;
-if ($year5 > $firstChaturmasYear) {
-	echo $year5;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year5));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace5" name="chaturmasplace5" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid5" name="chaturmasid5" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year5" name="year5" value="<?php echo $year5; ?>" />
-							<?php
-}
-$year6 = $latestChaturmasYear - 5;
-if ($year6 > $firstChaturmasYear) {
-	echo $year6;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year6));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace6" name="chaturmasplace6" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid6" name="chaturmasid6" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year6" name="year6" value="<?php echo $year6; ?>" />
-							<?php
-}
-$year7 = $latestChaturmasYear - 6;
-if ($year7 > $firstChaturmasYear) {
-	echo $year7;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year7));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace7" name="chaturmasplace7" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid7" name="chaturmasid7" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year5" name="year7" value="<?php echo $year7; ?>" />
-							<?php
-}
-$year8 = $latestChaturmasYear - 7;
-if ($year8 > $firstChaturmasYear) {
-	echo $year8;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year8));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace8" name="chaturmasplace8" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid8" name="chaturmasid8" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year8" name="year8" value="<?php echo $year8; ?>" />
-							<?php
-}
-$year9 = $latestChaturmasYear - 8;
-if ($year9 > $firstChaturmasYear) {
-	echo $year9;
-	$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
-	$q->execute(array($id,$year9));
-	$row2 = $q->fetch(PDO::FETCH_ASSOC);
-							?>
-							<input type="text" id="chaturmasplace9" name="chaturmasplace9" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
-							<input type="hidden" id="chaturmasid9" name="chaturmasid9" value="<?php echo $row2['chaturmasid']; ?>" />
-							<input type="hidden" id="year9" name="year9" value="<?php echo $year9; ?>" />
-							<?php } ?><br />
-							
 							<div id="acharya" class="">
 								<b>Acharya Pad Details</b><br />
 								Date in YYYY-MM-DD <input type="text" id="adate" name="adate" class="smallBox" value="<?php echo $row['adate']; ?>" /><br />
@@ -331,6 +201,62 @@ if ($year9 > $firstChaturmasYear) {
 							Spouse <input type="text" id="spouse" name="spouse" value="<?php echo $row['spouse']; ?>" /><br />
 							Birthplace <input type="text" id="birthplace" name="birthplace" class="longBox" value="<?php echo $row['birthplace']; ?>" /><br />
 							Education <input type="text" id="education" name="education" value="<?php echo $row['education']; ?>" /><br /><br />
+							
+							<strong>Chaturmas</strong><br />
+							<?php
+if($row['dos']=="0000-00-00") {
+	$latestChaturmasYear = $currentYear;
+} else {	
+	$latestChaturmasYear = date('Y', strtotime($row['dos']));
+}
+
+$firstChaturmasYear = $latestChaturmasYear;
+if(date('Y', strtotime($row['munidate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['munidate']));
+}
+if(date('Y', strtotime($row['ailakdate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['ailakdate']));
+}
+if(date('Y', strtotime($row['kdate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['kdate']));
+}
+if(date('Y', strtotime($row['aryikadate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['aryikadate']));
+}
+if(date('Y', strtotime($row['kshullikadate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['kshullikadate']));
+}
+
+echo $latestChaturmasYear;
+$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+$q->execute(array($id,$latestChaturmasYear));
+$row2 = $q->fetch(PDO::FETCH_ASSOC);
+							?>
+							<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>" /><br />
+							<input type="hidden" id="chaturmaslat" name="chaturmaslat" value="<?php echo $row2['chaturmaslat']; ?>" >
+							<input type="hidden" id="chaturmaslng" name="chaturmaslng" value="<?php echo $row2['chaturmaslng']; ?>" >
+							<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>" />
+							<input type="hidden" id="latestChaturmasYear" name="latestChaturmasYear" value="<?php echo $latestChaturmasYear; ?>" />							
+							<?php
+$year = $latestChaturmasYear;
+$i = 1;
+
+while($year > 0) {
+	$i++;
+	$year = $year - 1;
+	if ($year > $firstChaturmasYear) {
+		echo $year.'&nbsp;';
+		$q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear=?");
+		$q->execute(array($id,$year));
+		$row2 = $q->fetch(PDO::FETCH_ASSOC);
+		echo '<input type="text" id="chaturmasplace'.$i.'" name="chaturmasplace'.$i.'" class="longBox" value="'.$row2['chaturmasplace'].'" /><br />
+							<input type="hidden" id="chaturmaslat'.$i.'" name="chaturmaslat'.$i.'" value="'.$row2['chaturmaslat'].'" >
+							<input type="hidden" id="chaturmaslng'.$i.'" name="chaturmaslng'.$i.'" value="'.$row2['chaturmaslng'].'" >
+							<input type="hidden" name="chaturmasid'.$i.'" value="'.$row2['chaturmasid'].'" />';
+	} else { $year = 0; }
+}
+							?>
+							<br />
 							
 							<input type="hidden" id="editoremail" name="editoremail">
 							
