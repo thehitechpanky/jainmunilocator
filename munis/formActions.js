@@ -42,7 +42,7 @@ $(document).ready(function(){
 	});
 	
 	// This is keyup
-	$('#aguru').keyup(function() {
+	$('#aguru').on('change keydown paste input', function() {
 		delay(function(){
 			$.ajax({url: "getGuruOptions.php?term=" + $('#aguru').val(), success: function(result) {
 					if(result && result.length) {
@@ -75,7 +75,17 @@ setTimeout(function() {
 	if (email.length === 0) {
 		alert('You need to login to gain access to editing.');
 	}
-}, 5000);
+}, 6100);
+
+(function() {  
+	var dialog = document.getElementById('uploadbox');  
+	$('.camera').click(function() {
+		dialog.show();  
+	});  
+	document.getElementById('closeupload').onclick = function() {  
+		dialog.close();  
+	};  
+})();
 
 }); // End Document ready
 
@@ -119,7 +129,6 @@ function showSuffix(str) {
 // Autocomplete for places
 var autoCompleteLocation = new google.maps.places.Autocomplete(document.getElementById('location'));
 var autoCompleteSamadhiPlace = new google.maps.places.Autocomplete(document.getElementById('samadhiplace'));
-var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace'));
 var autoCompleteAPlace = new google.maps.places.Autocomplete(document.getElementById('aplace'));
 var autoCompleteAilacharyaPlace = new google.maps.places.Autocomplete(document.getElementById('ailacharyaplace'));
 var autoCompleteUpadhyayPlace = new google.maps.places.Autocomplete(document.getElementById('upadhyayplace'));
@@ -130,3 +139,85 @@ var autoCompleteAryikaPlace = new google.maps.places.Autocomplete(document.getEl
 var autoCompleteKshullikaPlace = new google.maps.places.Autocomplete(document.getElementById('kshullikaplace'));
 var autoCompleteBhramcharyaPlace = new google.maps.places.Autocomplete(document.getElementById('bhramcharyaplace'));
 var autoCompleteBirthPlace = new google.maps.places.Autocomplete(document.getElementById('birthplace'));
+
+function initialize() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+function initialize2() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace2'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat2').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng2').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize2);
+function initialize3() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace3'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat3').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng3').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize3);
+function initialize4() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace4'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat4').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng4').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize4);
+function initialize5() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace5'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat5').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng5').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize5);
+function initialize6() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace6'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat6').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng6').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize6);
+function initialize7() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace7'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat7').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng7').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize7);
+function initialize8() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace8'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat8').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng8').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize8);
+function initialize9() {
+	var autoCompleteChaturmasPlace = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace9'));
+	google.maps.event.addListener(autoCompleteChaturmasPlace, 'place_changed', function () {
+		var place = autoCompleteChaturmasPlace.getPlace();
+		document.getElementById('chaturmaslat9').value = place.geometry.location.lat();
+		document.getElementById('chaturmaslng9').value = place.geometry.location.lng();
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize9);
