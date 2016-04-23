@@ -66,13 +66,6 @@ if($samadhiplace=="N/A") {
 	$samadhilng = getlongitude($samadhiplace);
 }
 
-// fields of chaturmas
-$chaturmasid = $_POST['chaturmasid'];
-$latestChaturmasYear = $_POST['latestChaturmasYear'];
-$chaturmasplace = $_POST['chaturmasplace'];
-$chaturmaslat = getlatitude($chaturmasplace);
-$chaturmaslng = getlongitude($chaturmasplace);
-
 
 // fields of acharya
 $adate = $_POST['adate'];
@@ -187,10 +180,6 @@ if($bhramcharyaplace=="N/A") {
 	$bhramcharyalng = getlongitude($bhramcharyaplace);
 }
 
-// fileds of editlog
-$t=time();
-$logip = $_SERVER['REMOTE_ADDR'];
-
 // Edit Database
 $sqlmunishri = "UPDATE munishri SET upadhi=?, title=?, name=?, alias=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, spouse=?, grahtyag=?, education=? WHERE id=?";	
 $q = $db->prepare($sqlmunishri);
@@ -204,7 +193,15 @@ $sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhil
 $q = $db->prepare($sqlhistory);
 $q->execute(array($birthlat,$birthlng,$birthplace,$samadhilat,$samadhilng,$samadhiplace));
 
-if($chaturmasid>0) {
+
+// Chaturmas
+$chaturmasid = $_POST['chaturmasid'];
+$latestChaturmasYear = $_POST['latestChaturmasYear'];
+$chaturmasplace = $_POST['chaturmasplace'];
+$chaturmaslat = $_POST['chaturmaslat'];
+$chaturmaslng = $_POST['chaturmaslng'];
+
+if($chaturmasid > 0) {
 	$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid='$chaturmasid'";
 	$q = $db->prepare($sqlchaturmas);
 	$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace));
@@ -212,8 +209,44 @@ if($chaturmasid>0) {
 	$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)";
 	$q = $db->prepare($sqlchaturmas);
 	$q->execute(array($id,$latestChaturmasYear,$chaturmaslat,$chaturmaslng,$chaturmasplace));
-} else {
-	//Nothing to be done here if user hasn't specified a chaturmas place
+}
+
+$firstChaturmasYear = $latestChaturmasYear;
+if(date('Y', strtotime($row['munidate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['munidate']));
+}
+if(date('Y', strtotime($row['ailakdate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['ailakdate']));
+}
+if(date('Y', strtotime($row['kdate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['kdate']));
+}
+if(date('Y', strtotime($row['aryikadate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['aryikadate']));
+}
+if(date('Y', strtotime($row['kshullikadate'])) > 1000) {
+	$firstChaturmasYear = date('Y', strtotime($row['kshullikadate']));
+}
+
+$year = $latestChaturmasYear;
+$i = 1;
+
+while($year > 0) {
+	$i++;
+	$year = $year - 1;
+	if ($year > $firstChaturmasYear) {
+		$chaturmasid = $_POST['chaturmasid'.$i];
+		$chaturmasplace = $_POST['chaturmasplace'.$i];
+		$chaturmaslat = $_POST['chaturmaslat'.$i];
+		$chaturmaslng = $_POST['chaturmaslng'.$i];
+		if($chaturmasid > 0) {
+			$q = $db->prepare("UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid=?");
+			$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace,$chaturmasid));
+		} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
+			$q = $db->prepare("INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)");
+			$q->execute(array($id,$year,$chaturmaslat,$chaturmaslng,$chaturmasplace));
+		}
+	} else { $year = 0; }
 }
 
 $sqlacharya = "UPDATE acharya SET adate=?, aguru=?, alat=?, alng=?, aplace=? WHERE acharyaid='$id'";
@@ -265,12 +298,12 @@ if($location=="N/A") {
 	$locality = getlocality($lat,$lng);
 }
 
-$sqllocation = "UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid='$id'";
-$q = $db->prepare($sqllocation);
-$q->execute(array($lat,$lng,$location,$locality));
+$q = $db->prepare("UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid=?");
+$q->execute(array($lat,$lng,$location,$locality,$id));
 
-$sqleditlog = "INSERT INTO editlog (editor,logip,logmuniid,oldname,newname) VALUES (?,?,?,?,?)";
-$q = $db->prepare($sqleditlog);
+// Editlog
+$logip = $_SERVER['REMOTE_ADDR'];
+$q = $db->prepare("INSERT INTO editlog (editor,logip,logmuniid,oldname,newname) VALUES (?,?,?,?,?)");
 $q->execute(array($editor,$logip,$id,$oldname,$name));
 
 //Thank message to the editor
