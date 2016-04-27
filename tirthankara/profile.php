@@ -4,7 +4,7 @@ include 'config.php';
 
 $id = (int)$_GET['id'];
 
-$q = $db->prepare("SELECT * FROM tirthankara, moksha WHERE tirthankaraid=? AND mokshaid=tirthankaraid");
+$q = $db->prepare("SELECT * FROM tirthankara, garbha, birth, diksha, kg, moksha WHERE tirthankaraid=? AND garbhaid=tirthankaraid AND birthid=tirthankaraid AND dikshaid=tirthankaraid AND kgid=tirthankaraid AND mokshaid=tirthankaraid");
 $q->execute(array($id));
 
 if ($q->rowCount() == 1) {
@@ -17,6 +17,10 @@ if ($q->rowCount() == 1) {
 	$title = 'Lord '.$name;
 	$height = $row['tirthankaraheight'];
 	$metre = $height * 3;
+	$garbhadate = $row['garbhamonth'].' '.$row['garbhahalf'].' '.$row['garbhaday'];
+	$birthdate = $row['birthmonth'].' '.$row['birthhalf'].' '.$row['birthday'];
+	$dikshadate = $row['dikshamonth'].' '.$row['dikshahalf'].' '.$row['dikshaday'];
+	$kgdate = $row['kgmonth'].' '.$row['kghalf'].' '.$row['kgday'];
 	$mokshadate = $row['mokshamonth'].' '.$row['mokshahalf'].' '.$row['mokshaday'];
 	
 	if (file_exists('tirthankara/uploads/'.$name.'.jpg')) {
@@ -73,6 +77,10 @@ if ($q->rowCount() == 1) {
 							<tr><td>Height</td><td><?php echo $height; ?> bows (<?php echo $metre; ?> metres)</td></tr>
 							<tr><td><td></tr>
 							<tr><th colspan="2">Panchkalyanaka</th></tr>
+							<tr><td>Garbha</td><td><?php echo $garbhadate; ?></td></tr>
+							<tr><td>Janma</td><td><?php echo $birthdate; ?></td></tr>
+							<tr><td>Diksha</td><td><?php echo $dikshadate; ?></td></tr>
+							<tr><td>Kevala Gyan</td><td><?php echo $kgdate; ?></td></tr>
 							<tr><td>Moksha</td><td><?php echo $mokshadate; ?></td></tr>
 						</table>
 						
