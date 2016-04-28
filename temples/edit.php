@@ -98,10 +98,9 @@ include '../nav.php'
 							<input type="hidden" name="id" value="<?php echo $id; ?>" />
 							Name <input type="text" name="name" class="longBox" value="<?php echo $name; ?>" /><br /><br />
 							
-							<input type="hidden" name="oldaddress" value="<?php echo $address; ?>">
 							Address <input type="text" id="address" name="address" class="longBox" value="<?php echo $address; ?>" /><br /><br />
-							<input type="hidden" name="lat" value="<?php echo $lat; ?>">
-							<input type="hidden" name="lng" value="<?php echo $lng; ?>">							
+							<input type="hidden" id="lat" name="lat" value="<?php echo $lat; ?>">
+							<input type="hidden" id="lng" name="lng" value="<?php echo $lng; ?>">							
 							
 							Category <select name="cat" class="longBox">
 							<option value="Atishay Kshetra" <?php if($cat=='Atishay Ksetra') { echo "selected"; } ?>>Atishay Ksetra</option>
