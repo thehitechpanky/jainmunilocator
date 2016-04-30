@@ -135,19 +135,94 @@ google.maps.event.addDomListener(window, 'load', function () {
 		$('#locationlng').val(place.geometry.location.lng());
 	});
 });
-
-var autoCompleteSamadhiPlace = new google.maps.places.Autocomplete(document.getElementById('samadhiplace'));
-var autoCompleteAPlace = new google.maps.places.Autocomplete(document.getElementById('aplace'));
-var autoCompleteAilacharyaPlace = new google.maps.places.Autocomplete(document.getElementById('ailacharyaplace'));
-var autoCompleteUpadhyayPlace = new google.maps.places.Autocomplete(document.getElementById('upadhyayplace'));
-var autoCompleteMuniPlace = new google.maps.places.Autocomplete(document.getElementById('muniplace'));
-var autoCompleteAilakPlace = new google.maps.places.Autocomplete(document.getElementById('ailakplace'));
-var autoCompleteKPlace = new google.maps.places.Autocomplete(document.getElementById('kplace'));
-var autoCompleteAryikaPlace = new google.maps.places.Autocomplete(document.getElementById('aryikaplace'));
-var autoCompleteKshullikaPlace = new google.maps.places.Autocomplete(document.getElementById('kshullikaplace'));
-var autoCompleteBhramcharyaPlace = new google.maps.places.Autocomplete(document.getElementById('bhramcharyaplace'));
-var autoCompleteBirthPlace = new google.maps.places.Autocomplete(document.getElementById('birthplace'));
-
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('samadhiplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#samadhilat').val(place.geometry.location.lat());
+		$('#samadhilng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('aplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#alat').val(place.geometry.location.lat());
+		$('#alng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('ailacharyaplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#ailacharyalat').val(place.geometry.location.lat());
+		$('#ailacharyalng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('upadhyayplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#upadhyaylat').val(place.geometry.location.lat());
+		$('#upadhyaylng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('muniplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#munilat').val(place.geometry.location.lat());
+		$('#munilng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('ailakplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#ailaklat').val(place.geometry.location.lat());
+		$('#ailaklng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('kplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#klat').val(place.geometry.location.lat());
+		$('#klng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('aryikaplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#aryikalat').val(place.geometry.location.lat());
+		$('#aryikalng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('kshullikaplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#kshullikalat').val(place.geometry.location.lat());
+		$('#kshullikalng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('bhramcharyaplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#bhramcharyalat').val(place.geometry.location.lat());
+		$('#bhramcharyalng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('birthplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#birthlat').val(place.geometry.location.lat());
+		$('#birthlng').val(place.geometry.location.lng());
+	});
+});
 google.maps.event.addDomListener(window, 'load', function () {
 	var cPlace1 = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace'));
 	google.maps.event.addListener(cPlace1, 'place_changed', function () {
@@ -156,7 +231,6 @@ google.maps.event.addDomListener(window, 'load', function () {
 		$('#chaturmaslng').val(place.geometry.location.lng());
 	});
 });
-
 for (var i = 1; i < 100; i++) {
 	window['cPlace' + i] = new google.maps.places.Autocomplete(document.getElementById('chaturmasplace' + i));
 	google.maps.event.addListener(window['cPlace' + i], 'place_changed', function () {
