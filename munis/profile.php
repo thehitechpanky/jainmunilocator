@@ -109,28 +109,30 @@ if ($q->rowCount() == 1) {
 							</div>
 						</div>
 						<table style="width:100%">
+							<tr><th colspan="2"><input type="checkbox" id="follow" name="follow">&nbsp;&nbsp;Follow</th></tr>
 							<?php if($dos=="0000-00-00") { ?>
-							<tr><td>Current Location</td><td>
+							<tr><td>Last known Location</td><td>
 								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address"><?php echo $getinfo['location']; ?></span></a></div>
 								</td></tr>
+							<tr><td>As on (date)</td><td><?php echo $getinfo['timestamp']; ?></td></tr>
 							<?php } if($dos=="0000-00-00") { ?>
 							<tr><th colspan="2" align="left">Contact</th></tr>
-							<?php if ($website != "#") { ?>
+							<?php if ($website != "#" && $website != "") { ?>
 							<tr><td><i class="fa fa-link"></i> Website</td>
 								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
 							<?php } if ($phone > 0) { ?>
 							<tr><td><i class="fa fa-phone"></i> Phone</td><td><?php echo $phone; ?></td></tr>
-							<?php } if ($email != 'N/A') { ?>
+							<?php } if ($email != 'N/A' && $email != '') { ?>
 							<tr><td><i class="fa fa-envelope-o"></i> Email</td><td><a title="Email" target="" href="mailto:<?php echo $email; ?>" itemprop="email"><?php echo $email; ?></a></td></tr>
-							<?php } if ($wikipedia != '#') { ?>
+							<?php } if ($wikipedia != '#' && $wikipedia != '') { ?>
 							<tr><td><i class="fa fa-wikipedia-w"></i> Wikipedia</td><td><a title="Wikipedia" target="_blank" href="<?php echo $wikipedia; ?>"><?php echo $wikipedia; ?></a></td></tr>
 							<?php } ?>
 							<tr><td>Social Links</td><td>
-								<?php if ($facebook != '#') { ?>
+								<?php if ($facebook != '#' && $facebook != '') { ?>
 								<a title="Facebook" target="_blank" href="<?php echo $facebook; ?>"><i class="fa fa-facebook fa-2x"></i></a>&nbsp;&nbsp;
-								<?php } if ($gplus != '#') { ?>
+								<?php } if ($gplus != '#' && $gplus != '') { ?>
 								<a title="Google Plus" target="_blank" href="<?php echo $gplus; ?>"><i class="fa fa-google-plus fa-2x"></i></a>&nbsp;&nbsp;
-								<?php } if ($youtube != '#') { ?>
+								<?php } if ($youtube != '#' && $youtube != '') { ?>
 								<a title="Youtube" target="_blank" href="<?php echo $youtube; ?>"><i class="fa fa-youtube fa-2x"></i></a>&nbsp;&nbsp;
 								<?php } ?>
 								</td></tr>
@@ -194,7 +196,7 @@ if ($q->rowCount() == 1) {
 				<img class="smallLight" src="'.getImg($getinfo['upadhyayguru']).'" alt="'.getmuni($getinfo['upadhyayguru']).'" />
 				</a></div></td></tr>
 				<tr><td>Place</td><td>'.$getinfo['upadhyayplace'].'</td></tr>'
-										;}
+																  ;}
 	
 	if($getinfo['upadhi']<5) {echo
 		'<tr><td colspan="2"></td></tr>
@@ -292,7 +294,7 @@ if ($q->rowCount() == 1) {
 	if ($spouse == "") {} else {
 		echo '<tr><td>Spouse</td><td>'.$getinfo['spouse'].'</td><tr>';
 	}
-	'<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
+	echo '<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
 	
 							?>
 							
@@ -410,6 +412,8 @@ if ($q->rowCount() == 1) {
 		?>
 		
 		<script type="text/javascript" src="munis/pic.js"></script>
+		<script type="text/javascript" src="munis/follow.js"></script>
+		
 	</body>
 	
 </html>
