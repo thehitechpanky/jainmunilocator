@@ -50,135 +50,80 @@ $wikipedia = $_POST['wikipedia'];
 
 // fields of history
 $birthplace = $_POST['birthplace'];
-if($birthplace=="N/A") {
-	$birthlat = 0;
-	$birthlng = 0;
-} else {
-	$birthlat = getlatitude($birthplace);
-	$birthlng = getlongitude($birthplace);
-}
+$birthlat = $_POST['birthlat'];
+$birthlng = $_POST['birthlng'];
 $samadhiplace = $_POST['samadhiplace'];
-if($samadhiplace=="N/A") {
-	$samadhilat = 0;
-	$samadhilng = 0;
-} else {
-	$samadhilat = getlatitude($samadhiplace);
-	$samadhilng = getlongitude($samadhiplace);
-}
+$samadhilat = $_POST['samadhilat'];
+$samadhilng = $_POST['samadhilng'];
 
 
 // fields of acharya
 $adate = $_POST['adate'];
 $aguru = $_POST['aguru'];
 $aplace = $_POST['aplace'];
-if($aplace=="N/A") {
-	$alat = 0;
-	$alng = 0;
-} else {
-	$alat = getlatitude($aplace);
-	$alng = getlongitude($aplace);
-}
+$alat = $_POST['alat'];
+$alng = $_POST['alng'];
 
 // fields of ailacharya
 $ailacharyaname = $_POST['ailacharyaname'];
 $ailacharyadate = $_POST['ailacharyadate'];
 $ailacharyaguru = $_POST['ailacharyaguru'];
 $ailacharyaplace = $_POST['ailacharyaplace'];
-if($ailacharyaplace=="N/A") {
-	$ailacharyalat = 0;
-	$ailacharyalng = 0;
-} else {
-	$ailacharyalat = getlatitude($ailacharyaplace);
-	$ailacharyalng = getlongitude($ailacharyaplace);
-}
+$ailacharyalat = $_POST['ailacharyalat'];
+$ailacharyalng = $_POST['ailacharyalng'];
 
 // fields of upadhyay
 $upadhyayname = $_POST['upadhyayname'];
 $upadhyaydate = $_POST['upadhyaydate'];
 $upadhyayguru = $_POST['upadhyayguru'];
 $upadhyayplace = $_POST['upadhyayplace'];
-if($upadhyayplace=="N/A") {
-	$upadhyaylat = 0;
-	$upadhyaylng = 0;
-} else {
-	$upadhyaylat = getlatitude($upadhyayplace);
-	$upadhyaylng = getlongitude($upadhyayplace);
-}
+$upadhyaylat = $_POST['upadhyaylat'];
+$upadhyaylng = $_POST['upadhyaylng'];
 
 // fields of muni
 $muniname = $_POST['muniname'];
 $munidate = $_POST['munidate'];
 $muniguru = $_POST['muniguru'];
 $muniplace = $_POST['muniplace'];
-if($muniplace=="N/A") {
-	$munilat = 0;
-	$munilng = 0;
-} else {
-	$munilat = getlatitude($muniplace);
-	$munilng = getlongitude($muniplace);
-}
+$munilat = $_POST['munilat'];
+$munilng = $_POST['munilng'];
 
 // fields of ailak
 $ailakname = $_POST['ailakname'];
 $ailakdate = $_POST['ailakdate'];
 $ailakguru = $_POST['ailakguru'];
 $ailakplace = $_POST['ailakplace'];
-if($ailakplace=="N/A") {
-	$ailaklat = 0;
-	$ailaklng = 0;
-} else {
-	$ailaklat = getlatitude($ailakplace);
-	$ailaklng = getlongitude($ailakplace);
-}
+$ailaklat = $_POST['ailaklat'];
+$ailaklng = $_POST['ailaklng'];
 
 // fields of kshullak
 $kname = $_POST['kname'];
 $kdate = $_POST['kdate'];
 $kguru = $_POST['kguru'];
 $kplace = $_POST['kplace'];
-if($kplace=="N/A") {
-	$klat = 0;
-	$klng = 0;
-} else {
-	$klat = getlatitude($kplace);
-	$klng = getlongitude($kplace);
-}
+$klat = $_POST['klat'];
+$klng = $_POST['klng'];
 
 // fields of aryika
 $aryikadate = $_POST['aryikadate'];
 $aryikaguru = $_POST['aryikaguru'];
 $aryikaplace = $_POST['aryikaplace'];
-if($aryikaplace=="N/A") {
-	$aryikalat = 0;
-	$aryikalng = 0;
-} else {
-	$aryikalat = getlatitude($aryikaplace);
-	$aryikalng = getlongitude($aryikaplace);
-}
+$aryikalat = $_POST['aryikalat'];
+$aryikalng = $_POST['aryikalng'];
 
 // fields of kshullika
 $kshullikadate = $_POST['kshullikadate'];
 $kshullikaguru = $_POST['kshullikaguru'];
 $kshullikaplace = $_POST['kshullikaplace'];
-if($kshullikaplace=="N/A") {
-	$kshullikalat = 0;
-	$kshullikalng = 0;
-} else {
-	$kshullikalat = getlatitude($kshullikaplace);
-	$kshullikalng = getlongitude($kshullikaplace);
-}
+$kshullikalat = $_POST['kshullikalat'];
+$kshullikalng = $_POST['kshullikalng'];
 
 // fields of bhramcharya
 $bhramcharyadate = $_POST['bhramcharyadate'];
 $bhramcharyaguru = $_POST['bhramcharyaguru'];
 $bhramcharyaplace = $_POST['bhramcharyaplace'];
-if($bhramcharyaplace=="N/A") {
-	$bhramcharyalat = 0;
-	$bhramcharyalng = 0;
-} else {
-	$bhramcharyalat = getlatitude($bhramcharyaplace);
-	$bhramcharyalng = getlongitude($bhramcharyaplace);
-}
+$bhramcharyalat = $_POST['bhramcharyalat'];
+$bhramcharyalng = $_POST['bhramcharyalng'];
 
 // Edit Database
 $sqlmunishri = "UPDATE munishri SET upadhi=?, title=?, name=?, alias=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, spouse=?, grahtyag=?, education=? WHERE id=?";	
@@ -291,15 +236,7 @@ $oldlocation = $_POST['oldlocation'];
 $location = $_POST['location'];
 $lat = $_POST['locationlat'];
 $lng = $_POST['locationlng'];
-if($location=="N/A") {
-	//	$lat = 0;
-	//	$lng = 0;
-	$locality = "N/A";
-} else {
-	//	$lat = getlatitude($location);
-	//	$lng = getlongitude($location);
-	$locality = getlocality($lat,$lng);
-}
+if($location=="N/A") {} else { $locality = getlocality($lat,$lng); }
 
 $q = $db->prepare("UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid=?");
 $q->execute(array($lat,$lng,$location,$locality,$id));
