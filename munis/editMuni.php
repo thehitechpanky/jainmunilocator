@@ -112,6 +112,8 @@ include '../nav.php'
 							<strong>Current Location</strong><br />
 							<input type="hidden" name="oldlocation" value="<?php echo $row['location']; ?>">
 							<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>" /><br /><br />
+							<input type="hidden" id="locationlat" name="locationlat" value="<?php echo $row['lat']; ?>" >
+							<input type="hidden" id="locationlng" name="locationlng" value="<?php echo $row['lng']; ?>" >
 							<?php } ?>
 							
 							Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
@@ -247,8 +249,9 @@ $row2 = $q->fetch(PDO::FETCH_ASSOC);
 							<?php
 $year = $latestChaturmasYear;
 $i = 1;
+$firstChaturmasYear = $firstChaturmasYear - 1;
 
-while($year > -1) {
+while($year > 0) {
 	$i++;
 	$year = $year - 1;
 	if ($year > $firstChaturmasYear) {
