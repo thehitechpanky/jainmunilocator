@@ -230,6 +230,7 @@ if(date('Y', strtotime($row['kshullikadate'])) > 1000) {
 
 $year = $latestChaturmasYear;
 $i = 1;
+$firstChaturmasYear = $firstChaturmasYear - 1;
 
 while($year > 0) {
 	$i++;
@@ -288,13 +289,15 @@ $q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharya
 // fields of muni_location
 $oldlocation = $_POST['oldlocation'];
 $location = $_POST['location'];
+$lat = $_POST['locationlat'];
+$lng = $_POST['locationlng'];
 if($location=="N/A") {
-	$lat = 0;
-	$lng = 0;
+	//	$lat = 0;
+	//	$lng = 0;
 	$locality = "N/A";
 } else {
-	$lat = getlatitude($location);
-	$lng = getlongitude($location);
+	//	$lat = getlatitude($location);
+	//	$lng = getlongitude($location);
 	$locality = getlocality($lat,$lng);
 }
 
@@ -303,8 +306,8 @@ $q->execute(array($lat,$lng,$location,$locality,$id));
 
 // Editlog
 $logip = $_SERVER['REMOTE_ADDR'];
-$q = $db->prepare("INSERT INTO editlog (editor,logip,logmuniid,oldname,newname) VALUES (?,?,?,?,?)");
-$q->execute(array($editor,$logip,$id,$oldname,$name));
+$q = $db->prepare("INSERT INTO editlog (editor,logip,type,logmuniid,oldname,newname,oldloc,newloc) VALUES (?,?,?,?,?,?,?,?)");
+$q->execute(array($editor,$logip,'muni',$id,$oldname,$name,$oldlocation,$location));
 
 //Thank message to the editor
 if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') {} else {
