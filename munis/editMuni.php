@@ -5,6 +5,13 @@ include 'getMuni.php';
 include 'getImgName.php';
 
 $id = $_GET['id'];
+
+if (!isset($id))
+{
+	header("Location: http://jainmunilocator.org/"); /* Redirect browser */
+	exit();
+}
+
 $q = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, contact, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya
 				WHERE id=? AND upadhi=uid AND id=mid AND id=historyid AND id=contactid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
 $q->execute(array($id));
@@ -241,7 +248,7 @@ $row2 = $q->fetch(PDO::FETCH_ASSOC);
 $year = $latestChaturmasYear;
 $i = 1;
 
-while($year > 0) {
+while($year > -1) {
 	$i++;
 	$year = $year - 1;
 	if ($year > $firstChaturmasYear) {
