@@ -1,7 +1,6 @@
 <?php
 include '../config.php';
 include 'getGuru.php';
-include 'getImg.php';
 include 'getMuni.php';
 include 'getUpadhi.php';
 ?>
@@ -34,16 +33,21 @@ include '../nav.php';
 					<h1>Digambara Monks &amp; Nuns</h1>
 					<div class="col-md-6">
 						<?php
-$r2 = $db->query("SELECT * FROM munishri");
+$r2 = $db->query("SELECT * FROM munishri, upadhis WHERE upadhi=uid ORDER BY upadhi, name");
 while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
 	$id = $row['id'];
+	$img = $row['uname'].'_'.$row['name'].'_'.str_replace(array( '(', ')' ), '', $row['alias']);
+	$img = strtolower($img);
+	$img = preg_replace('/\s+/', '', $img);
+	$img = 'uploads/'.$img.'.jpg';
+	if (file_exists($img)) {} else { $img = 'na.png'; }
 	$guruid = getguru($id);
 	if($guruid == 0) {
 						?>
 						<div itemscope itemtype="http://schema.org/Person" class="inline">
-							<a href="?id=<?php echo $id; ?>">
+							<a href="../munis.php?id=<?php echo $id; ?>">
 								<figure>
-									<img src="<?php echo getImg($id); ?>" alt="<?php echo getmuni($id); ?>" height="200px" width="150px" itemprop="image">
+									<img src="<?php echo $img; ?>" alt="<?php echo getmuni($id); ?>" height="200px" width="150px" itemprop="image">
 									<figcaption><span itemprop="honorificPrefix"><?php echo getupadhi($id); ?></span><br />
 										<span itemprop="name"><?php echo $row['name']; ?></span></figcaption>
 								</figure>
@@ -74,8 +78,6 @@ include '../contact.php';
 include '../footer2.php';
 include '../scripts.php';
 		?>
-		
-		<script type="text/javascript" src="search.js"></script>
 		
 	</body>
 	
