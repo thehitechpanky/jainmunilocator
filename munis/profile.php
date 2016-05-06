@@ -5,7 +5,7 @@ include 'config.php';
 $id = (int)$_GET['id'];
 
 $q = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location, history, contact
-						WHERE id = ? AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid
+						WHERE id=? AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid
 						AND id=ailacharyaid AND id=acharyaid AND id=mid AND id=historyid AND id=contactid');
 $q->execute(array($id));
 
@@ -49,11 +49,8 @@ if ($q->rowCount() == 1) {
 	$title = getmuni($id);
 	$imgName = getImgName($id);
 	
-	if (file_exists("munis/uploads/{$imgName}.jpg")) {
-		$img = "munis/uploads/{$imgName}.jpg";
-	} else {
-		$img = $getinfo['img'];
-	}
+	$img = "munis/uploads/{$imgName}.jpg";
+	if (file_exists($img)) {} else { $img = $getinfo['img']; }
 	
 ?>
 
@@ -153,17 +150,6 @@ if ($q->rowCount() == 1) {
 					<a href="'.$brow['blink'].'" itemprop="url">'.$i.' <span itemprop="name">'.$brow['bname'].'</span>
 					<img class="smallLight" src="'.$brow['bimg'].'" alt="'.$brow['bname'].'" itemprop="image" />
 					</a></div></td></tr>';
-	}
-							?>
-							<tr><td colspan="2"></td></tr>
-							<tr><th colspan="2" align="left">Chaturmas</th></tr>
-							<?php
-	$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasplace!='N/A'");
-	$c->execute();
-	while($crow = $c->fetch(PDO::FETCH_ASSOC)) {
-		echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>
-					<div itemscope itemtype="http://schema.org/Place"><span itemprop="address">
-					'.$crow['chaturmasplace'].'</span></div></td></tr>';
 	}
 	
 	if($getinfo['upadhi']=="1") {echo
@@ -296,7 +282,18 @@ if ($q->rowCount() == 1) {
 	}
 	echo '<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
 	
-							?>
+							?>							
+							<tr><td colspan="2"></td></tr>
+							<tr><th colspan="2" align="left">Chaturmas</th></tr>
+							<?php
+	$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasplace!='N/A'");
+	$c->execute();
+	while($crow = $c->fetch(PDO::FETCH_ASSOC)) {
+		echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>
+					<div itemscope itemtype="http://schema.org/Place"><span itemprop="address">
+					'.$crow['chaturmasplace'].'</span></div></td></tr>';
+	}
+							?>	
 							
 						</table>
 						
