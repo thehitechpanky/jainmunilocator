@@ -1,14 +1,18 @@
-<?php include 'config.php'; ?>
+<?php
+include '../config.php';
+include 'getGuru.php';
+include 'getImg.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 	
 	<head>
-		<?php include 'meta.php'; ?>
+		<?php include '../meta.php'; ?>
 		
 		<title>Digambara Monks &amp; Nuns | Jain Muni Locator</title>
 		
-		<?php include 'stylesheets.php'; ?>
+		<?php include '../stylesheets.php'; ?>
 		
 	</head>
 	
@@ -18,7 +22,7 @@
 		<?php
 $navLinks = '<li><a href="#about">Digambara Monks &amp; Nuns</a></li>
 	<li><a href="#contact">Contact us</a></li>';
-include 'nav.php';
+include '../nav.php';
 		?>
 		
 		<!-- About Section -->
@@ -55,7 +59,7 @@ while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
 									<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
 								</blockquote></div>
 						</div>
-						<?php include 'adsense.php'; ?>
+						<?php include '../adsense.php'; ?>
 					</div><!-- /.col-md-6 -->
 					
 				</div><!-- /.row -->
@@ -63,12 +67,12 @@ while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
 		</section><!-- /.section -->
 		
 		<?php
-include 'contact.php';
-include 'footer2.php';
-include 'scripts.php';
+include '../contact.php';
+include '../footer2.php';
+include '../scripts.php';
 		?>
 		
-		<script type="text/javascript" src="munis/search.js"></script>
+		<script type="text/javascript" src="search.js"></script>
 		
 	</body>
 	
