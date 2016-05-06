@@ -36,11 +36,13 @@ include '../nav.php';
 $r2 = $db->query("SELECT * FROM munishri, upadhis WHERE upadhi=uid ORDER BY upadhi, name");
 while($row = $r2->fetch(PDO::FETCH_ASSOC)) {
 	$id = $row['id'];
-	$img = $row['uname'].'_'.$row['name'].'_'.str_replace(array( '(', ')' ), '', $row['alias']);
+	$alias = $row['alias'];
+	$img = $row['uname'].'_'.$row['name'];
+	if ($alias == '') {} else { $img = $img.'_'.str_replace(array( '(', ')' ), '', $alias); }
 	$img = strtolower($img);
 	$img = preg_replace('/\s+/', '', $img);
 	$img = 'uploads/'.$img.'.jpg';
-	if (file_exists($img)) {} else { $img = 'na.png'; }
+	//if (file_exists($img)) {} else { $img = 'na.png'; }
 	$guruid = getguru($id);
 	if($guruid == 0) {
 						?>
