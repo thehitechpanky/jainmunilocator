@@ -199,8 +199,8 @@ include '../nav.php'
 								Date in YYYY-MM-DD<input type="text" id="aryikadate" name="aryikadate" class="smallBox" value="<?php echo $row['aryikadate']; ?>"><br />
 								Guru ID<input type="text" id="aryikaguru" name="aryikaguru" value="<?php echo $row['aryikaguru']; ?>"><br />
 								Place<input type="text" id="aryikaplace" name="aryikaplace" class="longBox" value="<?php echo $row['aryikaplace']; ?>"><br /><br />
-								<input type="hidden" id="kshullikalat" name="kshullikalat" value="<?php echo $row['kshullikalat']; ?>">
-								<input type="hidden" id="kshullikalng" name="kshullikalng" value="<?php echo $row['kshullikalng']; ?>">
+								<input type="hidden" id="aryikalat" name="aryikalat" value="<?php echo $row['aryikalat']; ?>">
+								<input type="hidden" id="aryikalng" name="aryikalng" value="<?php echo $row['aryikalng']; ?>">
 							</div>
 							
 							<div id="kshullika" class="">
