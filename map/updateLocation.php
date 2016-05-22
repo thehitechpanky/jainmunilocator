@@ -22,6 +22,8 @@ if($u->rowCount() == 1) {
 	$q->execute(array($useremail,$username,$userimg,$userlat,$userlng,$userlocation,$userlocality,$userip));
 }
 
+echo $username;
+
 if (strlen($useremail) == 0 || $useremail = 'capankajjain@smilyo.com' || $useremail == 'rachna424.rj@gmail.com') {} else {
 	$to = 'capankajjain@smilyo.com';
 	$from = $useremail;
