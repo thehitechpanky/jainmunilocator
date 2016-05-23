@@ -10,5 +10,6 @@ if($q->rowCount() != 0) {
 		$result[]=$row;
 	}
 }
+//echo $result;
 print(json_encode($result));
 ?>
