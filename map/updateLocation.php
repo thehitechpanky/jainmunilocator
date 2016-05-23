@@ -2,7 +2,7 @@
 include '../config.php';
 include 'getAddress.php';
 include 'locality.php';
-$useremail = $_GET['email'];
+$useremail = $_GET['userlocationemail'];
 $userlat = $_GET['userlat'];
 $userlng = $_GET['userlng'];
 $userlocation = getaddress($userlat,$userlng);
@@ -12,10 +12,10 @@ $userlocality = getlocality($userlat,$userlng);
 $u = $db->prepare("SELECT * FROM userlocation WHERE email=?");
 $u->execute(array($useremail));
 if($u->rowCount() == 1) {
-	$q = $db->prepare("UPDATE userlocation SET userlat=?, userlng=?, userlocation=?, userlocality=? WHERE email=?");
+	$q = $db->prepare("UPDATE userlocation SET userlat=?, userlng=?, userlocation=?, userlocality=? WHERE userlocationemail=?");
 	$q->execute(array($userlat,$userlng,$userlocation,$userlocality,$useremail));
 } else {
-	$q = $db->prepare("INSERT INTO userlocation (email,userlat,userlng,userlocation,userlocality) VALUES (?,?,?,?,?)");
+	$q = $db->prepare("INSERT INTO userlocation (userlocationemail,userlat,userlng,userlocation,userlocality) VALUES (?,?,?,?,?)");
 	$q->execute(array($useremail,$userlat,$userlng,$userlocation,$userlocality));
 }
 
