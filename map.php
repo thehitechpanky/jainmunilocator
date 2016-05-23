@@ -1,39 +1,3 @@
-<?php
-include 'config.php';
-include 'munis/getMuni.php';
-
-// Muni Markers from SQL
-$q = $db->prepare("SELECT * FROM muni_location, munishri, upadhis WHERE mid=id AND upadhi=uid AND lat>0 AND dos='0000-00-00' ORDER BY upadhi DESC");
-$q->execute();
-$i = 0;
-if($q->rowCount() > 0) {
-	$rows = array();
-	while($row = $q->fetch(PDO::FETCH_ASSOC)) {
-		$rows[] = $row;
-	}
-}
-
-// User Markers from SQL for map
-$q = $db->prepare("SELECT * FROM user WHERE userlat>0");
-$q->execute();
-if($q->rowCount() > 0) {
-	$rows2 = array();
-	while($row2 = $q->fetch(PDO::FETCH_ASSOC)) {
-		$rows2[] = $row2;
-	}
-}
-
-// Temple markers
-$q = $db->prepare("SELECT * FROM temples WHERE tlat>0");
-$q->execute();
-if($q->rowCount() > 0) {
-	$rows3 = array();
-	while($row3 = $q->fetch(PDO::FETCH_ASSOC)) {
-		$rows3[] = $row3;
-	}
-}
-?>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -74,18 +38,6 @@ if($q->rowCount() > 0) {
 		</div>
 		<!-- End Menu -->
 		
-		<textarea id="munilocations" class="mapinput">
-			<?php echo json_encode($rows); ?>
-		</textarea>
-		
-		<textarea id="userlocations" class="mapinput">
-			<?php echo json_encode($rows2); ?>
-		</textarea>
-		
-		<textarea id="templelocations" class="mapinput">
-			<?php echo json_encode($rows3); ?>
-		</textarea>
-		
 		<input type="hidden" id="editoremail">
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -97,8 +49,8 @@ if($q->rowCount() > 0) {
 		<script src="map/googleMap.js" type="text/javascript"></script>
 		
 		<?php
-//script has to be loaded after map div and marker boxes, otherwise maps will not work
-include 'map/googleMap.php';
+	//script has to be loaded after map div and marker boxes, otherwise maps will not work
+	include 'map/googleMap.php';
 include 'analyticstracking.php';
 		?>
 		
