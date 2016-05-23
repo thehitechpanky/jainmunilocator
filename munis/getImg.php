@@ -17,15 +17,11 @@ function getImg($id) {
 		$imgName = strtolower($imgName);
 		$imgName = preg_replace('/\s+/', '', $imgName);
 		
-		if (file_exists("munis/uploads/{$imgName}.jpg")) {
-			$img = "munis/uploads/{$imgName}.jpg";
-		} else {
-			$img = 'na.png';
-		}
+		$img = "munis/uploads/{$imgName}.jpg";
+		if (file_exists($img)) {} else { $img = 'na.png'; }
 		return $img;
 	} else {
 		return "na.png";
 	}
 }
-
 ?>
