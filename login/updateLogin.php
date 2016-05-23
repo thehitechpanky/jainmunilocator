@@ -4,12 +4,7 @@ include '../config.php';
 $email = $_GET['email'];
 $username = $_GET['username'];
 $userimg = $_GET['userimg'];
-$userlat = 0;
-$userlng = 0;
-$userlocation = 'N/A';
-$userlocality = 'N/A';
-// fileds of editlog
-$userip = $_SERVER['REMOTE_ADDR'];
+
 $u = $db->prepare("SELECT * FROM user WHERE email=?");
 $u->execute(array($email));
 
@@ -20,12 +15,12 @@ if ($email == '') {
 		$row = $u->fetch(PDO::FETCH_ASSOC);
 		$lastlogin = $row['usertimestamp'];
 		//echo $lastlogin;
-		$q = $db->prepare("UPDATE user SET username=?, userimg=?, userlat=?, userlng=?, userlocation=?, userlocality=?, lastlogin=?, userip=? WHERE email=?");
-		$q->execute(array($username,$userimg,$userlat,$userlng,$userlocation,$userlocality,$lastlogin,$userip,$email));
+		$q = $db->prepare("UPDATE user SET username=?, userimg=?, lastlogin=?, userip=? WHERE email=?");
+		$q->execute(array($username,$userimg,$lastlogin,$_SERVER['REMOTE_ADDR'],$email));
 		$result = 'Updated';
 	} else {
-		$q = $db->prepare("INSERT INTO user (email,username,userimg,userlat,userlng,userlocation,userlocality,userip) VALUES (?,?,?,?,?,?,?,?)");
-		$q->execute(array($email,$username,$userimg,$userlat,$userlng,$userlocation,$userlocality,$userip));
+		$q = $db->prepare("INSERT INTO user (email,username,userimg,userip) VALUES (?,?,?,?)");
+		$q->execute(array($email,$username,$userimg,$_SERVER['REMOTE_ADDR']));
 		$result = 'Inserted';
 	}
 }
