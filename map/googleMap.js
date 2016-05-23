@@ -49,7 +49,7 @@ function initMap() {
 	$.ajax({url: 'map/usermarkers.php', success: function(result) {
 		userlocations = JSON.parse(result);
 	}});
-	var image = 'http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png';
+	var usericon = 'http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png';
 	setTimeout(function() { 
 		var email = $('#editoremail').val();
 		if (email.length === 0) {} else {
@@ -58,7 +58,7 @@ function initMap() {
 				usermarker = new google.maps.Marker({
 					position: new google.maps.LatLng(userlocations[i]['userlat'], userlocations[i]['userlng']),
 					map: map,
-					icon: image
+					icon: usericon
 				});
 				//User Infowindow
 				google.maps.event.addListener(usermarker, 'click', (function(usermarker, i) {
@@ -72,6 +72,34 @@ function initMap() {
 			}
 		}
 	}, 2000);
+	
+	// Temple markers and their infowindows
+	var templemarker;
+	var templelocation;
+	$.ajax({url: 'map/templemarkers.php', success: function(result) {
+		templelocation = JSON.parse(result);
+	}});
+	var templeicon = 'http://maps.google.com/mapfiles/kml/pal3/icon31.png';
+	setTimeout(function() { 
+		for (i = 0; i < templelocation.length; i++) {
+			//Markers
+			templemarker = new google.maps.Marker({
+				position: new google.maps.LatLng(templelocation[i]['tlat'], templelocation[i]['tlng']),
+				map: map,
+				icon: templeicon
+			});
+			//User Infowindow
+			google.maps.event.addListener(templemarker, 'click', (function(templemarker, i) {
+				return function() {
+					var img = 'temples/uploads/' + templelocation[i]['tid'] + '.jpg';
+					content = '<center><img src="' + img;
+					content += '" /><p>' + templelocation[i]['tname'] + '</p></center>';
+					infowindow.setContent(content);
+					infowindow.open(map, templemarker);
+				}
+			})(templemarker, i));
+		}
+	}, 1000);
 	
 	// Create the search box and link it to the UI element.
 	var input = document.getElementById('pac-input');
