@@ -7,9 +7,10 @@ function initMap() {
 	});
 	
 	//Marker and their infowindow Code Starts for locating munis
-	var locations = $("#munilocations").val();
-	locations = JSON.parse(locations);
-	//alert(locations);
+	var locations;
+	$.ajax({url: 'map/munimarkers.php', success: function(result) {
+		locations = JSON.parse(result);
+	}});
 	var munimarker, i, content;
 	var infowindow = new google.maps.InfoWindow();
 	var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/info.png';
@@ -40,11 +41,14 @@ function initMap() {
 				}
 			})(munimarker, i));
 		}
-	}, 2000);
+	}, 1000);
 	
 	//Usermarkers and their infowindows
 	var usermarker;
-	var userlocations = JSON.parse($("#userlocations").val());
+	var userlocations;
+	$.ajax({url: 'map/usermarkers.php', success: function(result) {
+		userlocations = JSON.parse(result);
+	}});
 	var image = 'http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png';
 	setTimeout(function() { 
 		var email = $('#editoremail').val();
@@ -67,7 +71,7 @@ function initMap() {
 				})(usermarker, i));
 			}
 		}
-	}, 4000);
+	}, 2000);
 	
 	// Create the search box and link it to the UI element.
 	var input = document.getElementById('pac-input');
