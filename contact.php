@@ -9,8 +9,8 @@ while($row = $t->fetch(PDO::FETCH_ASSOC)) {
 	$u = $row['upadhi'];
 	$counttotal = $counttotal + 1;
 	if ($u < 5) { $countmonks = $countmonks + 1; }
-	if ($u == 7) { $countnuns = $countnuns + 1; }
-	if ($u == 5 || $u == 6 || $u == 8) { $countjuniors = $countjuniors + 1; }
+	if ($u == 7 || $u == 8) { $countnuns = $countnuns + 1; }
+	if ($u == 5 || $u == 6 || $u == 9) { $countjuniors = $countjuniors + 1; }
 }
 ?>
 
@@ -20,7 +20,7 @@ while($row = $t->fetch(PDO::FETCH_ASSOC)) {
 		<div class="row text-center">
 			<div class="col-md-12">
 				<h2 class="white">Stats so far</h2>
-				<h3 class="caption">The count is as follows and growing...</h3>
+				<h3 class="caption">The count of <span itemprop="keywords">Digambara</span> monks &amp; nuns is as follows and growing...</h3>
 			</div><!-- /.col-md-12 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
@@ -30,7 +30,7 @@ while($row = $t->fetch(PDO::FETCH_ASSOC)) {
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
 				<strong><span class="timer"><?php echo $countnuns; ?></span></strong>
-				<span class="count-description">Nuns<br />(<span itemprop="keywords">Aryika</span>)</span>
+				<span class="count-description">Nuns<br />(<span itemprop="keywords">Ganini Aryika</span>, <span itemprop="keywords">Aryika</span>)</span>
 			</div><!-- /.col-sm-3 -->
 			
 			<div class="col-sm-3 counter-wrap wow fadeInUp" data-wow-offset="10">
@@ -53,11 +53,13 @@ while($row = $t->fetch(PDO::FETCH_ASSOC)) {
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9">
-				<h3>Have an idea?</h3>
-				<p>Let us know what we should do more...</p>
+				<h3>Would you like to donate?</h3>
+				<p>What could be a small amount for you means a lot for us...</p>
 			</div>
 			<div class="col-sm-3">
-				<a href="https://docs.google.com/forms/d/1sYAbfHaI6MheZWN0EKeVkiqyWD17-0RsSNJ9vEIHRK0/viewform" class="btn btn-overcolor">Get in touch</a>
+				<a href="https://www.payumoney.com/paybypayumoney/#/137599" target="_blank" class="btn btn-overcolor">
+					Donate
+				</a>
 			</div>
 		</div><!-- /.row -->
 	</div><!-- /.container -->
