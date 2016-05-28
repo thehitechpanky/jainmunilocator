@@ -12,9 +12,10 @@ if (!isset($id))
 	exit();
 }
 
-$q = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, contact, acharya, ailacharya, upadhyay, muni, ailak, kshullak, aryika, kshullika, bhramcharya
-				WHERE id=? AND upadhi=uid AND id=mid AND id=historyid AND id=contactid AND id=acharyaid AND id=ailacharyaid AND id=upadhyayid AND id=muniid AND id=ailakid AND id=kid AND id=aryikaid AND id=kshullikaid AND id=bhramcharyaid");
-$q->execute(array($id));
+$q = $db->prepare("SELECT * FROM munishri, upadhis, muni_location, history, contact, acharya, ailacharya, upadhyay, muni, ailak, kshullak, ganini,
+aryika, kshullika, bhramcharya WHERE id=? AND upadhi=uid AND mid=? AND historyid=? AND contactid=? AND acharyaid=? AND ailacharyaid=? AND upadhyayid=?
+AND muniid=? AND ailakid=? AND kid=? AND ganiniid=? AND aryikaid=? AND kshullikaid=? AND bhramcharyaid=?");
+$q->execute(array($id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id));
 
 if($q->rowCount() == 1) {
 	$row = $q->fetch(PDO::FETCH_ASSOC);
@@ -100,8 +101,9 @@ include '../nav.php'
 								<option value="4" <?php if($upadhi==4) { echo "selected"; } ?>>Muni</option>
 								<option value="5" <?php if($upadhi==5) { echo "selected"; } ?>>Elak</option>
 								<option value="6" <?php if($upadhi==6) { echo "selected"; } ?>>Kshullak</option>
-								<option value="7" <?php if($upadhi==7) { echo "selected"; } ?>>Aryika</option>
-								<option value="8" <?php if($upadhi==8) { echo "selected"; } ?>>Kshullika</option>
+								<option value="7" <?php if($upadhi==7) { echo "selected"; } ?>>Ganini Aryika</option>
+								<option value="8" <?php if($upadhi==8) { echo "selected"; } ?>>Aryika</option>
+								<option value="9" <?php if($upadhi==9) { echo "selected"; } ?>>Kshullika</option>
 							</select>
 							<div id="prefix_here" class="inline"></div>
 							<input type="text" id="name" name="name" class="smallBox" placeholder="Name" value="<?php echo $row['name']; ?>" />
@@ -194,8 +196,17 @@ include '../nav.php'
 								<input type="hidden" id="klng" name="klng" value="<?php echo $row['klng']; ?>">
 							</div>
 							
+							<div id="ganini" class="">
+								<strong>Ganini Aryika Pad Details</strong><br />
+								Date in YYYY-MM-DD<input type="text" id="ganinidate" name="ganinidate" class="smallBox" value="<?php echo $row['ganinidate']; ?>"><br />
+								Guru ID<input type="text" id="ganiniguru" name="ganiniguru" value="<?php echo $row['ganiniguru']; ?>"><br />
+								Place<input type="text" id="ganiniplace" name="ganiniplace" class="longBox" value="<?php echo $row['ganiniplace']; ?>"><br /><br />
+								<input type="hidden" id="ganinilat" name="ganinilat" value="<?php echo $row['ganinilat']; ?>">
+								<input type="hidden" id="ganinilng" name="ganinilng" value="<?php echo $row['ganinilng']; ?>">
+							</div>
+							
 							<div id="aryika" class="">
-								<b>Aryika Deeksha Details</b><br />
+								<strong>Aryika Deeksha Details</strong><br />
 								Date in YYYY-MM-DD<input type="text" id="aryikadate" name="aryikadate" class="smallBox" value="<?php echo $row['aryikadate']; ?>"><br />
 								Guru ID<input type="text" id="aryikaguru" name="aryikaguru" value="<?php echo $row['aryikaguru']; ?>"><br />
 								Place<input type="text" id="aryikaplace" name="aryikaplace" class="longBox" value="<?php echo $row['aryikaplace']; ?>"><br /><br />
@@ -204,7 +215,7 @@ include '../nav.php'
 							</div>
 							
 							<div id="kshullika" class="">
-								<b>Kshullika Deeksha Details</b><br />
+								<strong>Kshullika Deeksha Details</strong><br />
 								Date in YYYY-MM-DD<input type="text" id="kshullikadate" name="kshullikadate" class="smallBox" value="<?php echo $row['kshullikadate']; ?>"><br />
 								Guru ID<input type="text" id="kshullikaguru" name="kshullikaguru" value="<?php echo $row['kshullikaguru']; ?>"><br />
 								Place<input type="text" id="kshullikaplace" name="kshullikaplace" class="longBox" value="<?php echo $row['kshullikaplace']; ?>"><br /><br />
