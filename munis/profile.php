@@ -286,8 +286,8 @@ if ($q->rowCount() == 1) {
 							<tr><td colspan="2"></td></tr>
 							<tr><th colspan="2" align="left">Chaturmas</th></tr>
 							<?php
-	$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni='$id' AND chaturmasplace!='N/A'");
-	$c->execute();
+	$c = $db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? ORDER BY chaturmasyear DESC");
+	$c->execute(array($id));
 	while($crow = $c->fetch(PDO::FETCH_ASSOC)) {
 		echo '<tr><td>'.$crow['chaturmasyear'].'</td><td>
 					<div itemscope itemtype="http://schema.org/Place"><span itemprop="address">
