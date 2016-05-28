@@ -11,10 +11,10 @@ include 'getMuni.php';
 
 $id = $_POST['ids'];
 
-$t = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location, history, contact
-						WHERE id = ? AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid
-						AND id=ailacharyaid AND id=acharyaid AND id=mid AND id=historyid AND id=contactid');
-$t->execute(array($id));
+$t = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, ganini, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location,
+history, contact WHERE id=? AND uid=upadhi AND kshullikaid=? AND aryikaid=? AND ganiniid=? AND bhramcharyaid=? AND kid=? AND ailakid=? AND muniid=?
+AND upadhyayid=? AND ailacharyaid=? AND acharyaid=? AND mid=? AND historyid=? AND contactid=?');
+$t->execute(array($id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id));
 
 if ($t->rowCount() == 1) {
 	$row = $t->fetch(PDO::FETCH_ASSOC);
@@ -103,13 +103,6 @@ $kguru = $_POST['kguru'];
 $kplace = $_POST['kplace'];
 $klat = $_POST['klat'];
 $klng = $_POST['klng'];
-
-// fields of aryika
-$aryikadate = $_POST['aryikadate'];
-$aryikaguru = $_POST['aryikaguru'];
-$aryikaplace = $_POST['aryikaplace'];
-$aryikalat = $_POST['aryikalat'];
-$aryikalng = $_POST['aryikalng'];
 
 // fields of kshullika
 $kshullikadate = $_POST['kshullikadate'];
@@ -219,9 +212,23 @@ $sqlkshullak = "UPDATE kshullak SET kname=?, kdate=?, kguru=?, klat=?, klng=?, k
 $q = $db->prepare($sqlkshullak);
 $q->execute(array($kname,$kdate,$kguru,$klat,$klng,$kplace));
 
-$sqlaryika = "UPDATE aryika SET aryikadate=?, aryikaguru=?, aryikalat=?, aryikalng=?, aryikaplace=? WHERE aryikaid='$id'";
-$q = $db->prepare($sqlaryika);
-$q->execute(array($aryikadate,$aryikaguru,$aryikalat,$aryikalng,$aryikaplace));
+// fields of ganini aryika
+$ganinidate = $_POST['ganinidate'];
+$ganiniguru = $_POST['ganiniguru'];
+$ganiniplace = $_POST['ganiniplace'];
+$ganinilat = $_POST['ganinilat'];
+$ganinilng = $_POST['ganinilng'];
+$q = $db->prepare("UPDATE ganini SET ganinidate=?, ganiniguru=?, ganinilat=?, ganinilng=?, ganiniplace=? WHERE ganiniid=?");
+$q->execute(array($ganinidate,$ganiniguru,$ganinilat,$ganinilng,$ganiniplace,$id));
+
+// fields of aryika
+$aryikadate = $_POST['aryikadate'];
+$aryikaguru = $_POST['aryikaguru'];
+$aryikaplace = $_POST['aryikaplace'];
+$aryikalat = $_POST['aryikalat'];
+$aryikalng = $_POST['aryikalng'];
+$q = $db->prepare("UPDATE aryika SET aryikadate=?, aryikaguru=?, aryikalat=?, aryikalng=?, aryikaplace=? WHERE aryikaid=?");
+$q->execute(array($aryikadate,$aryikaguru,$aryikalat,$aryikalng,$aryikaplace,$id));
 
 $sqlkshullika = "UPDATE kshullika SET kshullikadate=?, kshullikaguru=?, kshullikalat=?, kshullikalng=?, kshullikaplace=? WHERE kshullikaid='$id'";
 $q = $db->prepare($sqlkshullika);
@@ -236,7 +243,7 @@ $oldlocation = $_POST['oldlocation'];
 $location = $_POST['location'];
 $lat = $_POST['locationlat'];
 $lng = $_POST['locationlng'];
-if($location=="N/A") {} else { $locality = getlocality($lat,$lng); }
+if($location=="N/A") { $locality = ''; } else { $locality = getlocality($lat,$lng); }
 
 $q = $db->prepare("UPDATE muni_location SET lat=?, lng=?, location=?, locality=? WHERE mid=?");
 $q->execute(array($lat,$lng,$location,$locality,$id));
@@ -255,7 +262,7 @@ if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') 
 	include '../email.php';
 }
 
-$u = $db->prepare("SELECT * FROM user WHERE email != ? AND userlocality = ?");
+$u = $db->prepare("SELECT * FROM user, userlocation WHERE email != ? AND userlocality=? AND userlocationemail=email");
 $u->execute(array($editor,$locality));
 require("../sendgrid-php/sendgrid-php.php");
 include '../sendgridkey.php';
