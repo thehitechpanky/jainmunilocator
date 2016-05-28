@@ -4,10 +4,10 @@ include 'config.php';
 
 $id = (int)$_GET['id'];
 
-$q = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya, muni_location, history, contact
-						WHERE id=? AND uid=upadhi AND id=kshullikaid AND id=aryikaid AND id=bhramcharyaid AND id=kid AND id=ailakid AND id=muniid AND id=upadhyayid
-						AND id=ailacharyaid AND id=acharyaid AND id=mid AND id=historyid AND id=contactid');
-$q->execute(array($id));
+$q = $db->prepare('SELECT * FROM munishri, upadhis, kshullika, aryika, ganini, bhramcharya, kshullak, ailak, muni, upadhyay, ailacharya, acharya,
+muni_location, history, contact WHERE id=? AND uid=upadhi AND kshullikaid=? AND aryikaid=? AND ganiniid=? AND bhramcharyaid=? AND kid=? AND ailakid=?
+AND muniid=? AND upadhyayid=? AND ailacharyaid=? AND acharyaid=? AND mid=? AND historyid=? AND contactid=?');
+$q->execute(array($id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id));
 
 if ($q->rowCount() == 1) {
 	
@@ -43,6 +43,14 @@ if ($q->rowCount() == 1) {
 	$kdate = $getinfo['kdate'];
 	$kguru = $getinfo['kguru'];
 	$kplace = $getinfo['kplace'];
+	
+	$ganinidate = $getinfo['ganinidate'];
+	$ganiniguru = getmuni($getinfo['ganiniguru']);
+	$ganiniplace = $getinfo['ganiniplace'];
+	
+	$aryikadate = $getinfo['aryikadate'];
+	$aryikaguru = getmuni($getinfo['aryikaguru']);
+	$aryikaplace = $getinfo['aryikaplace'];
 	
 	$spouse = $getinfo['spouse'];
 	
@@ -218,15 +226,23 @@ if ($q->rowCount() == 1) {
 				<tr><td>Place</td><td>'.$getinfo['kplace'].'</td></tr>';
 	}
 	
-	if($getinfo['upadhi']==7) {echo
-		'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
-				<tr><td>Date</td><td>'.$getinfo['aryikadate'].'</td></tr>
-				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aryikaguru'].'">'.getmuni($getinfo['aryikaguru']).'
-				<img class="smallLight" src="'.getImg($getinfo['aryikaguru']).'" alt="'.getmuni($getinfo['aryikaguru']).'" />
-				</a></div></td></tr>
-				<tr><td>Place</td><td>'.$getinfo['aryikaplace'].'</td></tr>'
-		;}
+	if ($upadhi == 7) {
+							?>
+							<tr><td colspan="2"></td></tr>
+							<tr><th colspan="2" align="left">Ganini Aryika Pad Details</th></tr>
+							<tr><td>Date</td><td><time datetime="<?php echo $ganinidate; ?>"><?php echo $ganinidate; ?></time></td></tr>
+							<tr><td>Guru</td><td><?php echo $ganiniguru; ?></td></tr>
+							<tr><td>Place</td><td><?php echo $ganiniplace; ?></td></tr>
+							
+							<?php } if($upadhi > 6) { ?>
+							
+							<tr><td colspan="2"></td></tr>
+							<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
+							<tr><td>Date</td><td><?php echo $aryikadate; ?></td></tr>
+							<tr><td>Guru</td><td><?php echo $aryikaguru; ?></td></tr>
+							<tr><td>Place</td><td><?php echo $aryikaplace; ?></td></tr>
+							
+							<?php }
 	
 	if($getinfo['kshullikaguru']>0) {echo
 		'<tr><td colspan="2"></td></tr>
