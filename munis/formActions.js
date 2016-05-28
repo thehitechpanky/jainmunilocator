@@ -10,7 +10,8 @@ $(document).ready(function(){
 	if($('#upadhi').val() < 5) {$('#muni').attr('class', '');} else {$('#muni').attr('class', 'hidden');}
 	if($('#upadhi').val() < 6) {$('#ailak').attr('class', '');} else {$('#ailak').attr('class', 'hidden');}
 	if($('#upadhi').val() < 7) {$('#kshullak').attr('class', '');} else {$('#kshullak').attr('class', 'hidden');}
-	if($('#upadhi').val() == 7) {$('#aryika').attr('class', '');} else {$('#aryika').attr('class', 'hidden');}	
+	if($('#upadhi').val() == 7) {$('#ganini').attr('class', '');} else {$('#ganini').attr('class', 'hidden');}	
+	if($('#upadhi').val() > 6) {$('#aryika').attr('class', '');} else {$('#aryika').attr('class', 'hidden');}	
 	if($('#upadhi').val() > 6) {$('#kshullika').attr('class', '');} else {$('#kshullika').attr('class', 'hidden');}
 	
 	// If Upadhi is changed
@@ -23,7 +24,8 @@ $(document).ready(function(){
 		if($('#upadhi').val() < 5) {$('#muni').attr('class', '');} else {$('#muni').attr('class', 'hidden');}
 		if($('#upadhi').val() < 6) {$('#ailak').attr('class', '');} else {$('#ailak').attr('class', 'hidden');}
 		if($('#upadhi').val() < 7) {$('#kshullak').attr('class', '');} else {$('#kshullak').attr('class', 'hidden');}
-		if($('#upadhi').val() == 7) {$('#aryika').attr('class', '');} else {$('#aryika').attr('class', 'hidden');}	
+		if($('#upadhi').val() == 7) {$('#ganini').attr('class', '');} else {$('#ganini').attr('class', 'hidden');}	
+		if($('#upadhi').val() > 6) {$('#aryika').attr('class', '');} else {$('#aryika').attr('class', 'hidden');}	
 		if($('#upadhi').val() > 6) {$('#kshullika').attr('class', '');} else {$('#kshullika').attr('class', 'hidden');}
 	});
 	
@@ -189,6 +191,14 @@ google.maps.event.addDomListener(window, 'load', function () {
 		var place = autocomplete.getPlace();
 		$('#klat').val(place.geometry.location.lat());
 		$('#klng').val(place.geometry.location.lng());
+	});
+});
+google.maps.event.addDomListener(window, 'load', function () {
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('ganiniplace'));
+	google.maps.event.addListener(autocomplete, 'place_changed', function () {
+		var place = autocomplete.getPlace();
+		$('#ganinilat').val(place.geometry.location.lat());
+		$('#ganinilng').val(place.geometry.location.lng());
 	});
 });
 google.maps.event.addDomListener(window, 'load', function () {
