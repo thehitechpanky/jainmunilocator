@@ -1,14 +1,14 @@
 <?php
 include '../config.php';
-include 'getAddress.php';
 include 'serverkey.php';
+include 'getAddress.php';
 include 'locality.php';
 $useremail = $_GET['email'];
 $userlat = $_GET['userlat'];
 $userlng = $_GET['userlng'];
 $userlocation = getaddress($userlat,$userlng);
+echo 'User address is '.$userlocation.'.<br />';
 $userlocality = getlocality($userlat,$userlng);
-if ($userlocality == '') { $userlocality = 'N/A'; }
 echo 'User locality is '.$userlocality.'.';
 
 // fileds of editlog
