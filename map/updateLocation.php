@@ -1,15 +1,18 @@
 <?php
 include '../config.php';
 include 'getAddress.php';
+include 'serverkey.php';
 include 'locality.php';
-$useremail = $_GET['userlocationemail'];
+$useremail = $_GET['email'];
 $userlat = $_GET['userlat'];
 $userlng = $_GET['userlng'];
 $userlocation = getaddress($userlat,$userlng);
 $userlocality = getlocality($userlat,$userlng);
+if ($userlocality == '') { $userlocality = 'N/A'; }
+echo 'User locality is '.$userlocality.'.';
 
 // fileds of editlog
-$u = $db->prepare("SELECT * FROM userlocation WHERE email=?");
+$u = $db->prepare("SELECT * FROM userlocation WHERE userlocationemail=?");
 $u->execute(array($useremail));
 if($u->rowCount() == 1) {
 	$q = $db->prepare("UPDATE userlocation SET userlat=?, userlng=?, userlocation=?, userlocality=? WHERE userlocationemail=?");
