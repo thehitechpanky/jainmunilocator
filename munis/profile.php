@@ -18,11 +18,14 @@ if ($q->rowCount() == 1) {
 	include 'munis/getImgName.php';
 	include 'munis/getName.php';
 	include 'munis/getUpadhi.php';
+	include 'munis/getsanghalocation.php';
+	include 'munis/getsanghatimestamp.php';
 	
 	// When an id is entered in the url
 	$getinfo = $q->fetch(PDO::FETCH_ASSOC);
 	$upadhi = $getinfo['upadhi'];
 	$uname = $getinfo['uname'];
+	$sangha = $getinfo['sangha'];
 	$dos = $getinfo['dos'];
 	$website = $getinfo['website'];
 	$phone = $getinfo['phone'];
@@ -82,14 +85,14 @@ if ($q->rowCount() == 1) {
 		<?php
 	
 	$navLinks = '<li><a href="/">Home</a></li>
-	<li><a href="#about">'.$uname.' Shri</a></li>
-	<li><a href="munis/editMuni.php?id='.$id.'">Update Location / Details</a></li>';
+	<li><a href="#about">'.$uname.' Shri</a></li>';
 	
 	if ($upadhi == 1) {
 		$navLinks = $navLinks.'<li><a href="#team">Disciples</a></li>';
 	}
 	
 	$navLinks = $navLinks.'<li><a href="#lineage">Lineage</a></li>
+	<li><a href="munis/editMuni.php?id='.$id.'">Update Location / Details</a></li>
 	<li><a href="munis.php">Other Monks &amp; Nuns</a></li>
 	<li><a href="map.php">Map</a></li>
 	<li><a href="#contact">Contact us</a></li>';
@@ -117,9 +120,14 @@ if ($q->rowCount() == 1) {
 							<tr><th colspan="2"><input type="checkbox" id="follow" name="follow">&nbsp;&nbsp;Follow</th></tr>
 							<?php if($dos=="0000-00-00") { ?>
 							<tr><td>Last known Location</td><td>
-								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address"><?php echo $getinfo['location']; ?></span></a></div>
+								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address">
+									<?php if ($sangha > 0) { echo getsanghalocation($sangha); } else { echo $getinfo['location']; } ?>
+									</span></a></div>
 								</td></tr>
-							<tr><td>As on (date)</td><td><?php echo $getinfo['timestamp']; ?></td></tr>
+							<tr><td>As on (date)</td><td>
+								<?php  if ($sangha > 0) { echo getsanghatimestamp($sangha); } else { echo $getinfo['timestamp']; } ?></td></tr>
+							<?php } if ($upadhi > 3 && $dos == '0000-00-00' && $sangha > 0) { ?>
+							<tr><td>Currently with</td><td><a href="?id=<?php echo $sangha; ?>"><?php echo getmuni($sangha); ?></a></td></tr>
 							<?php } if($dos=="0000-00-00") { ?>
 							<tr><th colspan="2" align="left">Contact</th></tr>
 							<?php if ($website != "#" && $website != "") { ?>
@@ -317,8 +325,8 @@ if ($q->rowCount() == 1) {
 						
 						<!-- Facebook Comments Started -->
 						<div id="fb-root"></div>
-						<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id='.$getinfo["id"].'" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-						<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id='.$getinfo["id"].'" data-numposts="5"></div>
+						<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+						<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $id; ?>" data-numposts="5"></div>
 						<!-- Facebook Comments Ended -->
 						
 					</div><!-- /.col-md-6 -->
@@ -331,10 +339,10 @@ if ($q->rowCount() == 1) {
 									<img alt="Photo of <?php echo $title; ?>" src="<?php echo $img; ?>" />
 								</figure>
 							</div><br />
-							<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-								<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+							<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+								<blockquote cite="https://www.facebook.com/jainmunilocator" class="fb-xfbml-parse-ignore">
 									<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-									</blockquote></div>
+								</blockquote>
 							</div>
 							<?php include 'adsense.php'; ?>
 						</div>
