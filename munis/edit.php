@@ -19,43 +19,11 @@ $t->execute(array($id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id,$id));
 if ($t->rowCount() == 1) {
 	$row = $t->fetch(PDO::FETCH_ASSOC);
 	$oldname = $row['name'];
+	$uname = $row['uname'];
+	$oldlocation = $row['location'];
 }
 
 $title = getmuni($id);
-
-// fields of munishri
-$upadhi = $_POST['upadhi'];
-$title = $_POST['title'];
-$name = $_POST['name'];
-$alias = $_POST['alias'];
-//$img = $_POST['img'];
-$dos = $_POST['dos'];
-$vairagya = $_POST['vairagya'];
-$birthname = $_POST['birthname'];
-$dob = $_POST['dob'];
-$father = $_POST['father'];
-$mother = $_POST['mother'];
-$spouse = $_POST['spouse'];
-$grahtyag = $_POST['grahtyag'];
-$education = $_POST['education'];
-
-// fields of contact
-$website = $_POST['website'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$facebook = $_POST['facebook'];
-$gplus = $_POST['gplus'];
-$youtube = $_POST['youtube'];
-$wikipedia = $_POST['wikipedia'];
-
-// fields of history
-$birthplace = $_POST['birthplace'];
-$birthlat = $_POST['birthlat'];
-$birthlng = $_POST['birthlng'];
-$samadhiplace = $_POST['samadhiplace'];
-$samadhilat = $_POST['samadhilat'];
-$samadhilng = $_POST['samadhilng'];
-
 
 // fields of acharya
 $adate = $_POST['adate'];
@@ -118,37 +86,62 @@ $bhramcharyaplace = $_POST['bhramcharyaplace'];
 $bhramcharyalat = $_POST['bhramcharyalat'];
 $bhramcharyalng = $_POST['bhramcharyalng'];
 
-// Edit Database
-$sqlmunishri = "UPDATE munishri SET upadhi=?, title=?, name=?, alias=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, spouse=?, grahtyag=?, education=? WHERE id=?";	
-$q = $db->prepare($sqlmunishri);
-$q->execute(array($upadhi,$title,$name,$alias,$dos,$vairagya,$birthname,$dob,$father,$mother,$spouse,$grahtyag,$education,$id));
+// Edit munishri
+$upadhi = $_POST['upadhi'];
+$title = $_POST['title'];
+$name = $_POST['name'];
+$alias = $_POST['alias'];
+$sangha = $_POST['sangha'];
+$dos = $_POST['dos'];
+$vairagya = $_POST['vairagya'];
+$birthname = $_POST['birthname'];
+$dob = $_POST['dob'];
+$father = $_POST['father'];
+$mother = $_POST['mother'];
+$spouse = $_POST['spouse'];
+$grahtyag = $_POST['grahtyag'];
+$education = $_POST['education'];
+$q = $db->prepare("UPDATE munishri SET upadhi=?, title=?, name=?, alias=?, sangha=?, dos=?, vairagya=?, birthname=?, dob=?, father=?, mother=?, spouse=?, grahtyag=?, education=? WHERE id=?");
+$q->execute(array($upadhi,$title,$name,$alias,$sangha,$dos,$vairagya,$birthname,$dob,$father,$mother,$spouse,$grahtyag,$education,$id));
 
+// fields of contact
+$website = $_POST['website'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$facebook = $_POST['facebook'];
+$gplus = $_POST['gplus'];
+$youtube = $_POST['youtube'];
+$wikipedia = $_POST['wikipedia'];
 $sqlcontact = "UPDATE contact SET website=?, phone=?, email=?, facebook=?, gplus=?, youtube=?, wikipedia=? WHERE contactid='$id'";	
 $q = $db->prepare($sqlcontact);
 $q->execute(array($website,$phone,$email,$facebook,$gplus,$youtube,$wikipedia));
 
+// fields of history
+$birthplace = $_POST['birthplace'];
+$birthlat = $_POST['birthlat'];
+$birthlng = $_POST['birthlng'];
+$samadhiplace = $_POST['samadhiplace'];
+$samadhilat = $_POST['samadhilat'];
+$samadhilng = $_POST['samadhilng'];
 $sqlhistory = "UPDATE history SET birthlat=?, birthlng=?, birthplace=?, samadhilat=?, samadhilng=?, samadhiplace=? WHERE historyid='$id'";	
 $q = $db->prepare($sqlhistory);
 $q->execute(array($birthlat,$birthlng,$birthplace,$samadhilat,$samadhilng,$samadhiplace));
 
-
 // Chaturmas
-$chaturmasid = $_POST['chaturmasid'];
-$latestChaturmasYear = $_POST['latestChaturmasYear'];
-$chaturmasplace = $_POST['chaturmasplace'];
-$chaturmaslat = $_POST['chaturmaslat'];
-$chaturmaslng = $_POST['chaturmaslng'];
-
+$chaturmasid = $_POST['chaturmasid1'];
+$latestChaturmasYear = $_POST['latestChaturmasYear1'];
+$chaturmasplace = $_POST['chaturmasplace1'];
+$chaturmaslat = $_POST['chaturmaslat1'];
+$chaturmaslng = $_POST['chaturmaslng1'];
+$chaturmasloc = $_POST['chaturmasloc1'];
+$chaturmasstate = $_POST['chaturmasstate1'];
 if($chaturmasid > 0) {
-	$sqlchaturmas = "UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid='$chaturmasid'";
-	$q = $db->prepare($sqlchaturmas);
-	$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace));
+	$q = $db->prepare("UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=?, chaturmasstate=?, chaturmasloc=? WHERE chaturmasid=?");
+	$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace,$chaturmasstate,$chaturmasloc,$chaturmasid));
 } elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
-	$sqlchaturmas = "INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)";
-	$q = $db->prepare($sqlchaturmas);
-	$q->execute(array($id,$latestChaturmasYear,$chaturmaslat,$chaturmaslng,$chaturmasplace));
+	$q = $db->prepare("INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace,chaturmasloc,chaturmasstate) VALUES (?,?,?,?,?,?,?)");
+	$q->execute(array($id,$latestChaturmasYear,$chaturmaslat,$chaturmaslng,$chaturmasplace,$chaturmasloc,$chaturmasstate));
 }
-
 $firstChaturmasYear = $latestChaturmasYear;
 if(date('Y', strtotime($row['munidate'])) > 1000) {
 	$firstChaturmasYear = date('Y', strtotime($row['munidate']));
@@ -165,11 +158,9 @@ if(date('Y', strtotime($row['aryikadate'])) > 1000) {
 if(date('Y', strtotime($row['kshullikadate'])) > 1000) {
 	$firstChaturmasYear = date('Y', strtotime($row['kshullikadate']));
 }
-
 $year = $latestChaturmasYear;
 $i = 1;
 $firstChaturmasYear = $firstChaturmasYear - 1;
-
 while($year > 0) {
 	$i++;
 	$year = $year - 1;
@@ -178,12 +169,14 @@ while($year > 0) {
 		$chaturmasplace = $_POST['chaturmasplace'.$i];
 		$chaturmaslat = $_POST['chaturmaslat'.$i];
 		$chaturmaslng = $_POST['chaturmaslng'.$i];
+		$chaturmasloc = $_POST['chaturmasloc'.$i];
+		$chaturmasstate = $_POST['chaturmasstate'.$i];
 		if($chaturmasid > 0) {
-			$q = $db->prepare("UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=? WHERE chaturmasid=?");
-			$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace,$chaturmasid));
+			$q = $db->prepare("UPDATE chaturmas SET chaturmaslat=?, chaturmaslng=?, chaturmasplace=?, chaturmasloc=?, chaturmasstate=? WHERE chaturmasid=?");
+			$q->execute(array($chaturmaslat,$chaturmaslng,$chaturmasplace,$chaturmasloc,$chaturmasstate,$chaturmasid));
 		} elseif ($chaturmasplace!="" && $chaturmasplace!="N/A") {
-			$q = $db->prepare("INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace) VALUES (?,?,?,?,?)");
-			$q->execute(array($id,$year,$chaturmaslat,$chaturmaslng,$chaturmasplace));
+			$q = $db->prepare("INSERT INTO chaturmas (chaturmasmuni,chaturmasyear,chaturmaslat,chaturmaslng,chaturmasplace,chaturmasloc,chaturmasstate) VALUES (?,?,?,?,?,?,?)");
+			$q->execute(array($id,$year,$chaturmaslat,$chaturmaslng,$chaturmasplace,$chaturmasloc,$chaturmasstate));
 		}
 	} else { $year = 0; }
 }
@@ -239,7 +232,6 @@ $q = $db->prepare($sqlbhramcharya);
 $q->execute(array($bhramcharyadate,$bhramcharyaguru,$bhramcharyalat,$bhramcharyalng,$bhramcharyaplace));
 
 // fields of muni_location
-$oldlocation = $_POST['oldlocation'];
 $location = $_POST['location'];
 $lat = $_POST['locationlat'];
 $lng = $_POST['locationlng'];
@@ -249,9 +241,8 @@ $q = $db->prepare("UPDATE muni_location SET lat=?, lng=?, location=?, locality=?
 $q->execute(array($lat,$lng,$location,$locality,$id));
 
 // Editlog
-$logip = $_SERVER['REMOTE_ADDR'];
 $q = $db->prepare("INSERT INTO editlog (editor,logip,type,logmuniid,oldname,newname,oldloc,newloc) VALUES (?,?,?,?,?,?,?,?)");
-$q->execute(array($editor,$logip,'muni',$id,$oldname,$name,$oldlocation,$location));
+$q->execute(array($editor,$_SERVER['REMOTE_ADDR'],$uname,$id,$oldname,$name,$oldlocation,$location));
 
 //Thank message to the editor
 if($editor == 'capankajjain@smilyo.com' || $editor == 'rachna424.rj@gmail.com') {} else {
