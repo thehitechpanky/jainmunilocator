@@ -16,7 +16,11 @@
 		
 		<!-- Navigation -->
 		<?php
-$navLinks = '<li><a href="#about">Digambara Monks &amp; Nuns</a></li>
+$navLinks = '<li><a href="/">Home</a></li>
+<li><a href="#about">Digambara Monks &amp; Nuns</a></li>
+<li><a href="map.php">Map</a></li>
+<li><a href="events.php">Events</a></li>
+<li><a href="chaturmas.php">Chaturmas</a></li>
 	<li><a href="#contact">Contact us</a></li>';
 include 'nav.php';
 		?>
@@ -32,11 +36,10 @@ include 'nav.php';
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-							<div class="fb-xfbml-parse-ignore">
-								<blockquote cite="https://www.facebook.com/jainmunilocator">
-									<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-								</blockquote></div>
+						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+							<blockquote cite="https://www.facebook.com/jainmunilocator" class="fb-xfbml-parse-ignore">
+								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
+							</blockquote>
 						</div>
 						<?php include 'adsense.php'; ?>
 					</div><!-- /.col-md-6 -->
