@@ -1,3 +1,5 @@
+<?php include 'config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	
@@ -7,11 +9,9 @@
 		<!-- Meta Keywords should be 8 only for optimum SEO results as suggested by http://www.seoworkers.com/tools/analyzer.html -->
 		<meta name="keywords" content="Jain Muni Locator, Jainism, Jain Sadhu, Jain Acharya, Jain Guru, Meaning of 108, Mahagun, list of all digamabar jain munis">
 		
-		<title>Jain Muni Locator - Home</title>
+		<title>Jain Muni Locator | Digambara monks &amp; nuns</title>
 		
-		<?php
-include 'stylesheets.php';
-		?>
+		<?php include 'stylesheets.php'; ?>
 		
 	</head>
 	
@@ -95,8 +95,8 @@ include 'nav.php';
 							It's you who let us know, where <span itemprop="keywords">monks</span> &amp; <span itemprop="keywords">nuns</span> currently are.</p>
 						
 						<blockquote>
-							There is no enemy out of your <span itemprop="keywords">soul</span>. The real enemies live inside yourself, they are anger, proud, curvedness, greed, attachmentes and hate.
-							<span><strong>Lord <span itemprop="keywords">Mahavira</span></strong></span>
+							There is no enemy out of your soul. The real enemies live inside yourself, they are anger, proud, curvedness, greed, attachmentes and hate.
+							<span><strong>Lord Mahavira</strong></span>
 						</blockquote>
 						
 						<p>Thanks a lot for your continuous support. We would do our best to make your <span itemprop="keywords">Jain</span> <span itemprop="keywords">Muni</span> <span itemprop="keywords">Locator</span> experience better than what it is today.</p>
@@ -104,10 +104,10 @@ include 'nav.php';
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+							<blockquote cite="https://www.facebook.com/jainmunilocator" class="fb-xfbml-parse-ignore">
 								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-								</blockquote></div>
+							</blockquote>
 						</div>
 					</div><!-- /.col-md-6 -->
 					
@@ -181,12 +181,12 @@ include 'nav.php';
 								</div><!-- /.col-md-4 -->
 							</a>
 							
-							<a href="timeline.php">
+							<a href="temples.php">
 								<div class="col-md-4">
 									<div class="row services-item text-center wow flipInX" data-wow-offset="20">
-										<i class="fa fa-clock-o fa-3x"></i>
-										<h4>Timeline</h4>
-										<p>Check out the <span itemprop="keywords">timeline</span> of <span itemprop="keywords">Jainism</span>.</p>
+										<i class="fa fa-fort-awesome fa-3x"></i>
+										<h4>Temples</h4>
+										<p>Know about <span itemprop="keywords">Digambara Jain Temples</span>.</p>
 									</div><!-- /.row -->
 								</div><!-- /.col-md-4 -->
 							</a>
@@ -205,54 +205,58 @@ include 'nav.php';
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<img src="assets/images/hallooou_template-iphone_white.png" class="center-block img-responsive">
+						<a href="https://play.google.com/store/apps/details?id=com.architjn.jainmunilocator">
+							<img src="assets/images/jmlapp.png" class="center-block img-responsive">
+						</a>
 					</div><!-- /.col-md-4 -->
 					
 					<div class="col-md-8">
 						<div class="products-container">
 							
 							<div class="col-md-12">
-								<h2>We will soon launch our mobile app!</h2>
-								<h3 class="caption white">You can know about Jainism from a tap on your smartphone screen. Won't that be awesome?</h3>
+								<h2><a href="https://play.google.com/store/apps/details?id=com.architjn.jainmunilocator">Try our new android app!</a></h2>
+								<h3 class="caption white"><a href="https://play.google.com/store/apps/details?id=com.architjn.jainmunilocator">
+									You can know about Jainism from a tap on your smartphone screen. Isn't that simply awesome?
+									</a></h3>
 							</div><!-- /.col-md-12 -->
 							
 							<div class="col-md-6 product-item wow fadeIn" data-wow-offset="10">
 								<div class="media-left">
-									<span class="icon"><i class="fa fa-arrows-alt fa-3x"></i></span>
+									<span class="icon"><i class="fa fa-globe fa-3x"></i></span>
 								</div><!-- /.media-left -->
 								<div class="media-body">
-									<h3 class="media-heading">Responsive Layout</h3>
-									<p>Powerful Layout with Responsive functionality that can be adapted to any screen size.</p>
+									<h3 class="media-heading">Map</h3>
+									<p>An interactive and responsive map to assist you.</p>
 								</div><!-- /.media-body -->
 							</div><!-- /.col-md-6 -->
 							
 							<div class="col-md-6 product-item wow fadeIn" data-wow-offset="10">
 								<div class="media-left">
-									<span class="icon"><i class="fa fa-eye fa-3x"></i></span>
+									<span class="icon"><i class="fa fa-search fa-3x"></i></span>
 								</div><!-- /.media-left -->
 								<div class="media-body">
-									<h3 class="media-heading">Retina Ready Graphics</h3>
-									<p>Looks beautiful &amp; ultra-sharp on Retina Displays with Retina Icons, Fonts &amp; Images.</p>
+									<h3 class="media-heading">Search Places</h3>
+									<p>Search for any location and find out who all are there at present.</p>
 								</div><!-- /.media-body -->
 							</div><!-- /.col-md-6 -->
 							
 							<div class="col-md-6 product-item wow fadeIn" data-wow-offset="10">
 								<div class="media-left">
-									<span class="icon"><i class="fa fa-arrows-v fa-3x"></i></span>
+									<span class="icon"><i class="fa fa-male fa-3x"></i></span>
 								</div><!-- /.media-left -->
 								<div class="media-body">
-									<h3 class="media-heading">Parallax Sections</h3>
-									<p>Comes with Parallax effect script so you can add Parallax effect to any section of the website.</p>
+									<h3 class="media-heading">Search</h3>
+									<p>Monks &amp; Nuns on the map.</p>
 								</div><!-- /.media-body -->
 							</div><!-- /.col-md-6 -->
 							
 							<div class="col-md-6 product-item wow fadeIn" data-wow-offset="10">
 								<div class="media-left">
-									<span class="icon"><i class="fa fa-video-camera fa-3x"></i></span>
+									<span class="icon"><i class="fa fa-sign-in fa-3x"></i></span>
 								</div><!-- /.media-left -->
 								<div class="media-body">
-									<h3 class="media-heading">YouTube &amp; HTML5 Background Video</h3>
-									<p>Choose to display either YouTube or HTML5 as background video.</p>
+									<h3 class="media-heading">One Click Login</h3>
+									<p>Login using facebook or google plus.</p>
 								</div><!-- /.media-body -->
 							</div><!-- /.col-md-6 -->
 							
@@ -261,8 +265,8 @@ include 'nav.php';
 									<span class="icon"><i class="fa fa-toggle-on fa-3x"></i></span>
 								</div><!-- /.media-left -->
 								<div class="media-body">
-									<h3 class="media-heading">Color Options</h3>
-									<p>Choose a color that suits your brand &amp; change the color of the template with just one CSS file.</p>
+									<h3 class="media-heading">Colors</h3>
+									<p>Choose a color that suits you with just one CSS file.</p>
 								</div><!-- /.media-body -->
 							</div><!-- /.col-md-6 -->
 							
