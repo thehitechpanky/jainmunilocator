@@ -28,6 +28,7 @@ if($q->rowCount() == 1) {
 	} else {
 		$img = 'na.png';
 	}
+	$sangha = $row['sangha'];
 }
 ?>
 
@@ -40,9 +41,7 @@ if($q->rowCount() == 1) {
 		
 		<title><?php echo $title; ?></title>
 		
-		<?php
-include '../stylesheets.php';
-		?>
+		<?php include '../stylesheets.php';	?>
 		
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		
@@ -72,6 +71,7 @@ include '../nav.php'
 								<input type="hidden" name="imgUname" value="<?php echo $row['uname']; ?>">
 								<input type="hidden" name="imgName" value="<?php echo $row['name']; ?>">
 								<input type="hidden" name="imgAlias" value="<?php echo $row['alias']; ?>">
+								<input type="hidden" name="imgEditor" class="editoremail">
 								<input type="file" name="fileToUpload" id="fileToUpload">
 								<input type="submit" value="Upload Image" name="submit">
 								<a href="#" id="closeupload">Close</a>
@@ -110,15 +110,19 @@ include '../nav.php'
 							<div id="suffix_here" class="inline"></div>
 							<input type="text" id="alias" name="alias" class="verySmallBox" placeholder="Alias" value="<?php echo $row['alias']; ?>" /><br /><br />
 							
-							<?php if($row['dos']=="0000-00-00") { ?>
+							<?php if($row['dos']=="0000-00-00" && $upadhi > 1) { ?>
+							Currently with<input type="text" name="sangha" value="<?php echo $sangha; ?>"><br /><br />
+							<input type="hidden" name="location" class="longBox" value="N/A">
+							<input type="hidden" name="locationlat" value="0">
+							<input type="hidden" name="locationlng" value="0">
+							<?php } if ($sangha == 0 && $row['dos']=="0000-00-00") { ?>
 							<strong>Current Location</strong><br />
-							<input type="hidden" name="oldlocation" value="<?php echo $row['location']; ?>">
-							<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>" /><br /><br />
-							<input type="hidden" id="locationlat" name="locationlat" value="<?php echo $row['lat']; ?>" >
-							<input type="hidden" id="locationlng" name="locationlng" value="<?php echo $row['lng']; ?>" >
+							<input type="text" id="location" name="location" class="longBox" value="<?php echo $row['location']; ?>"><br /><br />
+							<input type="hidden" id="locationlat" name="locationlat" value="<?php echo $row['lat']; ?>">
+							<input type="hidden" id="locationlng" name="locationlng" value="<?php echo $row['lng']; ?>">
 							<?php } ?>
 							
-							Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>" /><br /><br />
+							Website Link<input type="text" id="website" name="website" value="<?php echo $row['website']; ?>"><br /><br />
 							
 							<strong>Contact Info</strong><br />
 							Contact No.<input type="text" id="phone" name="phone" value="<?php echo $row['phone']; ?>" /><br />
@@ -137,7 +141,7 @@ include '../nav.php'
 							<div id="acharya" class="">
 								<b>Acharya Pad Details</b><br />
 								Date in YYYY-MM-DD <input type="text" id="adate" name="adate" class="smallBox" value="<?php echo $row['adate']; ?>" /><br />
-								Guru <input type="text" id="aguru" value="<?php echo getmuni($row['aguru']); ?>" list="aguruList" >
+								Guru <input type="text" id="aguru" value="<?php echo getmuni($row['aguru']); ?>" list="aguruList">
 								<datalist id="aguruList">
 								</datalist>
 								<input type="hidden" name="aguru" id="aguruHidden" value="<?php echo $row['aguru']; ?>" /><br />
@@ -247,7 +251,7 @@ include '../nav.php'
 							<strong>Chaturmas</strong><br />
 							<?php
 if($row['dos']=="0000-00-00") {
-	$latestChaturmasYear = $currentYear;
+	$latestChaturmasYear = date("Y");
 } else {	
 	$latestChaturmasYear = date('Y', strtotime($row['dos']));
 }
@@ -274,11 +278,13 @@ $q=$db->prepare("SELECT * FROM chaturmas WHERE chaturmasmuni=? AND chaturmasyear
 $q->execute(array($id,$latestChaturmasYear));
 $row2 = $q->fetch(PDO::FETCH_ASSOC);
 							?>
-							<input type="text" id="chaturmasplace" name="chaturmasplace" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>"><br />
-							<input type="hidden" id="chaturmaslat" name="chaturmaslat" value="<?php echo $row2['chaturmaslat']; ?>">
-							<input type="hidden" id="chaturmaslng" name="chaturmaslng" value="<?php echo $row2['chaturmaslng']; ?>">
-							<input type="hidden" id="chaturmasid" name="chaturmasid" value="<?php echo $row2['chaturmasid']; ?>">
-							<input type="hidden" id="latestChaturmasYear" name="latestChaturmasYear" value="<?php echo $latestChaturmasYear; ?>">							
+							<input type="hidden" id="chaturmasid1" name="chaturmasid1" value="<?php echo $row2['chaturmasid']; ?>">
+							<input type="text" id="chaturmasplace1" name="chaturmasplace1" class="longBox" value="<?php echo $row2['chaturmasplace']; ?>"><br />
+							<input type="hidden" id="chaturmaslat1" name="chaturmaslat1" value="<?php echo $row2['chaturmaslat']; ?>">
+							<input type="hidden" id="chaturmaslng1" name="chaturmaslng1" value="<?php echo $row2['chaturmaslng']; ?>">
+							<input type="hidden" id="chaturmasloc1" name="chaturmasloc1" value="<?php echo $row2['chaturmasloc']; ?>">
+							<input type="hidden" id="chaturmasstate1" name="chaturmasstate1" value="<?php echo $row2['chaturmasstate']; ?>">
+							<input type="hidden" id="latestChaturmasYear1" name="latestChaturmasYear1" value="<?php echo $latestChaturmasYear; ?>">							
 							<?php
 $year = $latestChaturmasYear;
 $i = 1;
@@ -293,9 +299,11 @@ while($year > 0) {
 		$q->execute(array($id,$year));
 		$row2 = $q->fetch(PDO::FETCH_ASSOC);
 		echo '<input type="text" id="chaturmasplace'.$i.'" name="chaturmasplace'.$i.'" class="longBox" value="'.$row2['chaturmasplace'].'"><br />
+							<input type="hidden" name="chaturmasid'.$i.'" value="'.$row2['chaturmasid'].'">
 							<input type="hidden" id="chaturmaslat'.$i.'" name="chaturmaslat'.$i.'" value="'.$row2['chaturmaslat'].'">
 							<input type="hidden" id="chaturmaslng'.$i.'" name="chaturmaslng'.$i.'" value="'.$row2['chaturmaslng'].'">
-							<input type="hidden" name="chaturmasid'.$i.'" value="'.$row2['chaturmasid'].'">';
+							<input type="hidden" id="chaturmasloc'.$i.'" name="chaturmasloc'.$i.'" value="'.$row2['chaturmasloc'].'">
+							<input type="hidden" id="chaturmasstate'.$i.'" name="chaturmasstate'.$i.'" value="'.$row2['chaturmasstate'].'">';
 	} else { $year = 0; }
 }
 							?>
@@ -312,7 +320,7 @@ while($year > 0) {
 					</div><!-- /.col-md-6 -->
 					
 					<div class="col-md-6">
-						<div class="image">
+						<div class="image registered hidden">
 							<figure>
 								<img id="picright" src="<?php echo $img; ?>" alt="<?php echo $title; ?>">
 								<figcaption>
@@ -320,11 +328,10 @@ while($year > 0) {
 								</figcaption>
 							</figure>
 						</div><div class="image">
-						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
-							<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jainmunilocator">
+						<div class="fb-page sidebar" data-href="https://www.facebook.com/jainmunilocator" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+							<blockquote cite="https://www.facebook.com/jainmunilocator" class="fb-xfbml-parse-ignore">
 								<a href="https://www.facebook.com/jainmunilocator">Jain Muni Locator</a>
-								</blockquote>
-							</div>
+							</blockquote>
 						</div>
 						</div><div class="image">
 						
