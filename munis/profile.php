@@ -27,6 +27,12 @@ if ($q->rowCount() == 1) {
 	$uname = $getinfo['uname'];
 	$sangha = $getinfo['sangha'];
 	$dos = $getinfo['dos'];
+	
+	$location=$getinfo['location'];
+	$lat=$getinfo['lat'];
+	$lng=$getinfo['lng'];
+	$locality=$getinfo['locality'];
+	
 	$website = $getinfo['website'];
 	$phone = $getinfo['phone'];
 	$email = $getinfo['email'];
@@ -76,6 +82,7 @@ if ($q->rowCount() == 1) {
 		<title><?php echo $title; ?></title>
 		
 		<?php include 'stylesheets.php'; ?>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		
 	</head>
 	
@@ -120,16 +127,44 @@ if ($q->rowCount() == 1) {
 							<tr><th colspan="2"><input type="checkbox" id="follow" name="follow">&nbsp;&nbsp;Follow</th></tr>
 							<?php if($dos=="0000-00-00") { ?>
 							<tr><td>Last known Location</td><td>
-								<div itemscope itemtype="http://schema.org/Place"><a href="../map.php"><span itemprop="address">
-									<?php if ($sangha > 0) { echo getsanghalocation($sangha); } else { echo $getinfo['location']; } ?>
-									</span></a></div>
+								<div itemscope itemtype="http://schema.org/Place">
+									<dialog id="setloc" class="set">
+										<form action="munis/setloc.php" method="post" enctype="multipart/form-data">
+											<input type="hidden" name="locid" value="<?php echo $id; ?>">
+											<input type="text" id="location" name="location" value="<?php echo $location; ?>">
+											<input type="hidden" id="lat" name="lat" value="<?php echo $lat; ?>">
+											<input type="hidden" id="lng" name="lng" value="<?php echo $lng; ?>">
+											<input type="hidden" id="locality" name="locality" value="<?php echo $locality; ?>">
+											<input type="hidden" name="loceditor" value="">
+											<input type="hidden" name="locmode" value="web">
+											<input type="submit" value="Save">
+										</form>
+									</dialog>
+									<?php
+														  echo '<a href="../map.php"><span itemprop="address">';
+														  if ($sangha > 0) {
+															  echo getsanghalocation($sangha).'</span></a>';
+														  } else {
+															  echo $getinfo['location'].'</span></a>&nbsp;
+											<a id="asetloc" href="#"><i class="material-icons">create</i></a>';
+														  }
+									?>
+								</div>
 								</td></tr>
 							<tr><td>As on (date)</td><td>
 								<?php  if ($sangha > 0) { echo getsanghatimestamp($sangha); } else { echo $getinfo['timestamp']; } ?></td></tr>
 							<?php } if ($upadhi > 3 && $dos == '0000-00-00' && $sangha > 0) { ?>
 							<tr><td>Currently with</td><td><a href="?id=<?php echo $sangha; ?>"><?php echo getmuni($sangha); ?></a></td></tr>
 							<?php } if($dos=="0000-00-00") { ?>
-							<tr><th colspan="2" align="left">Contact</th></tr>
+							<dialog id="setcontact" class="set">
+								<form action="munis/setcontact.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="contactid" value="<?php echo $id; ?>">
+									<input type="hidden" name="contacteditor" value="">
+									<input type="hidden" name="contactmode" value="web">
+									<input type="submit" value="Save">
+								</form>
+							</dialog>
+							<tr><th colspan="2" align="left">Contact&nbsp;<a id="asetcontact" href="#"><i class="material-icons">create</i></a></th></tr>
 							<?php if ($website != "#" && $website != "") { ?>
 							<tr><td><i class="fa fa-link"></i> Website</td>
 								<td><a href="<?php echo $website; ?>" target="_blank" itemprop="url"><?php echo $website; ?></a></td></tr>
@@ -170,7 +205,15 @@ if ($q->rowCount() == 1) {
 	
 	if($getinfo['upadhi']=="1") {echo
 		'<tr><td colspan="2"></td></tr>
-					<tr><th colspan="2" align="left">Acharya Pad Details</th></tr>
+		<dialog id="setacharya" class="set">
+								<form action="munis/setcontact.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="acharyaid" value="'.$id.'">
+									<input type="hidden" name="acharyaeditor" value="">
+									<input type="hidden" name="acharyamode" value="web">
+									<input type="submit" value="Save">
+								</form>
+							</dialog>
+					<tr><th colspan="2" align="left">Acharya Pad Details&nbsp;<a id="asetacharya" href="#"><i class="material-icons">create</i></a></th></tr>
 					<tr><td>Date</td><td><time datetime="'.$getinfo['adate'].'">'.$getinfo['adate'].'</time></td></tr>
 					<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'
 					<img class="smallLight" src="'.getImg($getinfo['aguru']).'" alt="'.getmuni($getinfo['aguru']).'" />
@@ -325,7 +368,7 @@ if ($q->rowCount() == 1) {
 						
 						<!-- Facebook Comments Started -->
 						<div id="fb-root"></div>
-						<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+						<div class="fb-like" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
 						<div class="fb-comments" data-href="http://jainmunilocator.org/munis.php?id=<?php echo $id; ?>" data-numposts="5"></div>
 						<!-- Facebook Comments Ended -->
 						
@@ -430,9 +473,12 @@ if ($q->rowCount() == 1) {
 	include 'contact.php';
 	include 'footer2.php';
 	include 'scripts.php';
+	include 'map/autocomplete.php';
 		?>
 		
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="munis/pic.js"></script>
+		<script type="text/javascript" src="munis/profile.js"></script>
 		<script type="text/javascript" src="munis/follow.js"></script>
 		
 	</body>
