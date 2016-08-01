@@ -26,12 +26,22 @@ if ($q->rowCount() == 1) {
 	$upadhi = $getinfo['upadhi'];
 	$uname = $getinfo['uname'];
 	$sangha = $getinfo['sangha'];
+	$birthname = $getinfo['birthname'];
+	$dob = $getinfo['dob'];
+	$father = $getinfo['father'];
+	$mother = $getinfo['mother'];
+	$spouse = $getinfo['spouse'];
+	$education = $getinfo['education'];
 	$dos = $getinfo['dos'];
 	
 	$location=$getinfo['location'];
 	$lat=$getinfo['lat'];
 	$lng=$getinfo['lng'];
 	$locality=$getinfo['locality'];
+	
+	$birthplace = $getinfo['birthplace'];
+	$birthlat = $getinfo['birthlat'];
+	$birthlng = $getinfo['birthlng'];
 	
 	$website = $getinfo['website'];
 	$phone = $getinfo['phone'];
@@ -141,7 +151,7 @@ if ($q->rowCount() == 1) {
 											<input type="hidden" id="lat" name="lat" value="<?php echo $lat; ?>">
 											<input type="hidden" id="lng" name="lng" value="<?php echo $lng; ?>">
 											<input type="hidden" id="locality" name="locality" value="<?php echo $locality; ?>">
-											<input type="hidden" name="loceditor" value="">
+											<input type="hidden" name="loceditor" class="editoremail">
 											<input type="hidden" name="locmode" value="web">
 											<input type="submit" value="Save">
 										</form>
@@ -165,7 +175,7 @@ if ($q->rowCount() == 1) {
 							<dialog id="setcontact" class="set">
 								<form action="munis/setcontact.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="contactid" value="<?php echo $id; ?>">
-									<input type="hidden" name="contacteditor" value="">
+									<input type="hidden" name="contacteditor" class="editoremail">
 									<input type="hidden" name="contactmode" value="web">
 									<input type="submit" value="Save">
 								</form>
@@ -220,7 +230,7 @@ if ($q->rowCount() == 1) {
 									Place&nbsp;<input type="text" id="acharyaplace" name="acharyaplace" value="'.$acharyaplace.'">
 									<input type="hidden" id="acharyalat" name="acharyalat" value="'.$acharyalat.'">
 									<input type="hidden" id="acharyalng" name="acharyalng" value="'.$acharyalng.'">
-									<input type="hidden" name="acharyaeditor" value="">
+									<input type="hidden" name="acharyaeditor" class="editoremail">
 									<input type="hidden" name="acharyamode" value="web">
 									<input type="submit" value="Save">
 								</form>
@@ -350,7 +360,23 @@ if ($q->rowCount() == 1) {
 	
 	echo
 		'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">History</th></tr>
+		<tr><dialog id="sethistory" class="set">
+								<form action="munis/sethistory.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="historyid" value="'.$id.'">
+									Birthname&nbsp;<input type="text" name="birthname" value="'.$birthname.'"><br />
+									Date of Birth&nbsp;<input type="text" name="dob" value="'.$dob.'"><br />
+									Birth Place&nbsp;<input type="text" id="birthplace" name="birthplace" value="'.$birthplace.'">
+									<input type="hidden" id="birthlat" name="birthlat" value="'.$birthlat.'">
+									<input type="hidden" id="birthlng" name="birthlng" value="'.$birthlng.'">
+									<input type="text" name="father" value="'.$father.'">
+									<input type="text" name="mother" value="'.$mother.'">
+									<input type="text" name="education" value="'.$education.'">
+									<input type="hidden" name="historyeditor" class="editoremail">
+									<input type="hidden" name="historymode" value="web">
+									<input type="submit" value="Save">
+								</form>
+							</dialog></tr>
+				<tr><th colspan="2" align="left">History&nbsp;<a id="asethistory" href="#"><i class="material-icons">create</i></a></th></tr>
 				<tr><td>Birthname</td><td><span itemprop="name">'.$getinfo['birthname'].'</span></td></tr>
 				<tr><td>Date of Birth</td><td><span itemprop="birthDate">'.$getinfo['dob'].'</span></td></tr>
 				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$getinfo['birthplace'].'</span></td></tr>
