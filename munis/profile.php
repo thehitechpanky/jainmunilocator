@@ -41,6 +41,12 @@ if ($q->rowCount() == 1) {
 	$youtube = $getinfo['youtube'];
 	$wikipedia = $getinfo['wikipedia'];
 	
+	$acharyadate=$getinfo['adate'];
+	$acharyaguru=$getinfo['aguru'];
+	$acharyaplace=$getinfo['aplace'];
+	$acharyalat=$getinfo['alat'];
+	$acharyalng=$getinfo['alng'];
+	
 	$upadhyayadate = $getinfo['upadhyaydate'];
 	$upadhyayaguru = $getinfo['upadhyayguru'];
 	$upadhyayaplace = $getinfo['upadhyayplace'];
@@ -205,14 +211,20 @@ if ($q->rowCount() == 1) {
 	
 	if($getinfo['upadhi']=="1") {echo
 		'<tr><td colspan="2"></td></tr>
-		<dialog id="setacharya" class="set">
-								<form action="munis/setcontact.php" method="post" enctype="multipart/form-data">
+		<tr><dialog id="setacharya" class="set">
+								<form action="munis/setpad.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="pad" value="acharya">
 									<input type="hidden" name="acharyaid" value="'.$id.'">
+									Date&nbsp;<input type="text" name="acharyadate" value="'.$acharyadate.'"><br />
+									Guru&nbsp;<input type="text" name="acharyaguru" value="'.$acharyaguru.'"><br />
+									Place&nbsp;<input type="text" id="acharyaplace" name="acharyaplace" value="'.$acharyaplace.'">
+									<input type="hidden" id="acharyalat" name="acharyalat" value="'.$acharyalat.'">
+									<input type="hidden" id="acharyalng" name="acharyalng" value="'.$acharyalng.'">
 									<input type="hidden" name="acharyaeditor" value="">
 									<input type="hidden" name="acharyamode" value="web">
 									<input type="submit" value="Save">
 								</form>
-							</dialog>
+							</dialog></tr>
 					<tr><th colspan="2" align="left">Acharya Pad Details&nbsp;<a id="asetacharya" href="#"><i class="material-icons">create</i></a></th></tr>
 					<tr><td>Date</td><td><time datetime="'.$getinfo['adate'].'">'.$getinfo['adate'].'</time></td></tr>
 					<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'
