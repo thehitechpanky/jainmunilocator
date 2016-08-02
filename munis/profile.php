@@ -65,6 +65,13 @@ if ($q->rowCount() == 1) {
 	$elakguru = $getinfo['ailakguru'];
 	$elakplace = $getinfo['ailakplace'];
 	
+	$muniname = $getinfo['muniname'];
+	$munidate = $getinfo['munidate'];
+	$muniguru = $getinfo['muniguru'];
+	$muniplace = $getinfo['muniplace'];
+	$munilat = $getinfo['munilat'];
+	$munilng = $getinfo['munilng'];
+	
 	$kdate = $getinfo['kdate'];
 	$kguru = $getinfo['kguru'];
 	$kplace = $getinfo['kplace'];
@@ -267,13 +274,27 @@ if ($q->rowCount() == 1) {
 	
 	if($getinfo['upadhi']<5) {echo
 		'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Muni Deeksha Details</th></tr>';
-							  if($getinfo['muniname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['muniname'].'</td></tr>';}
-							  echo '<tr><td>Date</td><td>'.$getinfo['munidate'].'</td></tr>
-				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['muniguru'].'">'.getmuni($getinfo['muniguru']).'
-				<img class="smallLight" src="'.getImg($getinfo['muniguru']).'" alt="'.getmuni($getinfo['muniguru']).'" />
+		<tr><dialog id="setmuni" class="set">
+								<form action="munis/setpad.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="pad" value="muni">
+									<input type="hidden" name="muniid" value="'.$id.'">
+									Date&nbsp;<input type="text" name="munidate" value="'.$munidate.'"><br />
+									Guru&nbsp;<input type="text" name="muniguru" value="'.$muniguru.'"><br />
+									Place&nbsp;<input type="text" id="muniplace" name="muniplace" value="'.$muniplace.'">
+									<input type="hidden" id="munilat" name="munilat" value="'.$munilat.'">
+									<input type="hidden" id="munilng" name="munilng" value="'.$munilng.'">
+									<input type="hidden" name="munieditor" class="editoremail">
+									<input type="hidden" name="munimode" value="web">
+									<input type="submit" value="Save">
+								</form>
+							</dialog></tr>
+				<tr><th colspan="2" align="left">Muni Deeksha Details&nbsp;<a id="asetmuni" href="#"><i class="material-icons">create</i></a></th></tr>';
+							  if($muniname!="") {echo '<tr><td>Name</td><td>'.$muniname.'</td></tr>';}
+							  echo '<tr><td>Date</td><td>'.$munidate.'</td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$muniguru.'">'.getmuni($muniguru).'
+				<img class="smallLight" src="'.getImg($muniguru).'" alt="'.getmuni($muniguru).'" />
 				</a></div></td></tr>
-				<tr><td>Place</td><td>'.$getinfo['muniplace'].'</td></tr>'
+				<tr><td>Place</td><td>'.$muniplace.'</td></tr>'
 								  ;}
 	
 	if($elakdate != '0000-00-00' || $elakguru > 0) {echo
@@ -365,27 +386,27 @@ if ($q->rowCount() == 1) {
 									<input type="hidden" name="historyid" value="'.$id.'">
 									Birthname&nbsp;<input type="text" name="birthname" value="'.$birthname.'"><br />
 									Date of Birth&nbsp;<input type="text" name="dob" value="'.$dob.'"><br />
-									Birth Place&nbsp;<input type="text" id="birthplace" name="birthplace" value="'.$birthplace.'">
+									Birth Place&nbsp;<input type="text" id="birthplace" name="birthplace" value="'.$birthplace.'"><br />
 									<input type="hidden" id="birthlat" name="birthlat" value="'.$birthlat.'">
 									<input type="hidden" id="birthlng" name="birthlng" value="'.$birthlng.'">
-									<input type="text" name="father" value="'.$father.'">
-									<input type="text" name="mother" value="'.$mother.'">
-									<input type="text" name="education" value="'.$education.'">
+									Father&nbsp;<input type="text" name="father" value="'.$father.'"><br />
+									Mother&nbsp;<input type="text" name="mother" value="'.$mother.'"><br />
+									Education&nbsp;<input type="text" name="education" value="'.$education.'"><br />
 									<input type="hidden" name="historyeditor" class="editoremail">
 									<input type="hidden" name="historymode" value="web">
 									<input type="submit" value="Save">
 								</form>
 							</dialog></tr>
 				<tr><th colspan="2" align="left">History&nbsp;<a id="asethistory" href="#"><i class="material-icons">create</i></a></th></tr>
-				<tr><td>Birthname</td><td><span itemprop="name">'.$getinfo['birthname'].'</span></td></tr>
-				<tr><td>Date of Birth</td><td><span itemprop="birthDate">'.$getinfo['dob'].'</span></td></tr>
-				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$getinfo['birthplace'].'</span></td></tr>
-				<tr><td>Father</td><td itemprop="parent">'.$getinfo['father'].'</td></tr>
-				<tr><td>Mother</td><td itemprop="parent">'.$getinfo['mother'].'</td></tr>';
+				<tr><td>Birthname</td><td><span itemprop="name">'.$birthname.'</span></td></tr>
+				<tr><td>Date of Birth</td><td><span itemprop="birthDate">'.$dob.'</span></td></tr>
+				<tr><td>Birth Place</td><td><span itemprop="birthPlace">'.$birthplace.'</span></td></tr>
+				<tr><td>Father</td><td itemprop="parent">'.$father.'</td></tr>
+				<tr><td>Mother</td><td itemprop="parent">'.$mother.'</td></tr>';
 	if ($spouse == "") {} else {
-		echo '<tr><td>Spouse</td><td>'.$getinfo['spouse'].'</td><tr>';
+		echo '<tr><td>Spouse</td><td>'.$spouse.'</td><tr>';
 	}
-	echo '<tr><td>Education</td><td>'.$getinfo['education'].'</td></tr>';
+	echo '<tr><td>Education</td><td>'.$education.'</td></tr>';
 	
 							?>							
 							<tr><td colspan="2"></td></tr>
