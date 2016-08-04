@@ -182,6 +182,13 @@ if ($q->rowCount() == 1) {
 							<dialog id="setcontact" class="set">
 								<form action="munis/setcontact.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="contactid" value="<?php echo $id; ?>">
+									<input type="text" name="website" value="<?php echo $website; ?>">
+									<input type="text" name="phone" value="<?php echo $phone; ?>">
+									<input type="text" name="email" value="<?php echo $email; ?>">
+									<input type="text" name="wikipedia" value="<?php echo $wikipedia; ?>">
+									<input type="text" name="facebook" value="<?php echo $facebook; ?>">
+									<input type="text" name="gplus" value="<?php echo $gplus; ?>">
+									<input type="text" name="youtube" value="<?php echo $youtube; ?>">
 									<input type="hidden" name="contacteditor" class="editoremail">
 									<input type="hidden" name="contactmode" value="web">
 									<input type="submit" value="Save">
