@@ -1,27 +1,81 @@
 $(document).ready(function(){
+	showPrefix($('#upadhi').val());
+	showSuffix($('#upadhi').val());
+	$('#upadhi').on('change', function() {
+		showPrefix(this.value);
+		showSuffix(this.value);
+	});
 	(function(){
-		$('a#asetloc').click(function(){
-			document.getElementById('setloc').show();
-			return false;
-		});
-		$('a#asetcontact').click(function(){
-			document.getElementById('setcontact').show();
-			return false;
-		});
-		$('a#asetacharya').click(function(){
-			document.getElementById('setacharya').show();
-			return false;
-		});
-		$('a#asetmuni').click(function(){
-			document.getElementById('setmuni').show();
-			return false;
-		});
-		$('a#asethistory').click(function(){
-			document.getElementById('sethistory').show();
-			return false;
+		showeditor('name');
+		showeditor('image');
+		showeditor('loc');
+		showeditor('contact');
+		showeditor('acharya');
+		showeditor('muni');
+		showeditor('kshullak');
+		showeditor('ganini');
+		showeditor('aryika');
+		//showeditor('kshullika);
+		showeditor('history');
+		$('a#asetimage2').click(function(){
+			if(userStatus()==='user'){
+				$('#imageeditor').val(userEmail());
+				document.getElementById('setimage').show();
+				return false;
+			}else{
+				alert('Please login to edit');
+			}
 		});
 	})();//close function
 });//close document ready
+
+function showeditor(pad){
+	$('a#aset'+pad).click(function(){
+		if(userStatus()==='user'){
+			console.log(userEmail());
+			$('#'+pad+'editor').val(userEmail());
+			document.getElementById('set'+pad).show();
+			return false;
+		}else{
+			alert('Please login to edit');
+		}
+	});
+}
+
+// Show Prefix and Suffix based on Upadhi
+function showPrefix(str) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		varprefix = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		varprefix = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	varprefix.onreadystatechange = function() {
+		if (varprefix.readyState == 4 && varprefix.status == 200) {
+			document.getElementById("prefix").innerHTML = varprefix.responseText;
+		}
+	}
+	varprefix.open("GET","munis/getPrefix.php?q="+str,true);
+	varprefix.send();
+}
+
+function showSuffix(str) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		varsuffix = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		varsuffix = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	varsuffix.onreadystatechange = function() {
+		if (varsuffix.readyState == 4 && varsuffix.status == 200) {
+			document.getElementById("suffix").innerHTML = varsuffix.responseText;
+		}
+	}
+	varsuffix.open("GET","munis/getSuffix.php?q="+str,true);
+	varsuffix.send();
+}
 
 google.maps.event.addDomListener(window,'load',function(){
 	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('location'));
@@ -32,25 +86,20 @@ google.maps.event.addDomListener(window,'load',function(){
 		var locality = extractFromAddress(place.address_components,'locality');
 		$('#locality').val(locality);
 	});
-	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('acharyaplace'));
-	google.maps.event.addListener(autocomplete,'place_changed',function(){
-		var place = this.getPlace();
-		$('#acharyalat').val(place.geometry.location.lat());
-		$('#acharyalng').val(place.geometry.location.lng());
-	});
-	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('muniplace'));
-	google.maps.event.addListener(autocomplete,'place_changed',function(){
-		var place = this.getPlace();
-		$('#munilat').val(place.geometry.location.lat());
-		$('#munilng').val(place.geometry.location.lng());
-	});
-	var autocomplete = new google.maps.places.Autocomplete(document.getElementById('birthplace'));
-	google.maps.event.addListener(autocomplete,'place_changed',function(){
-		var place = this.getPlace();
-		$('#birthlat').val(place.geometry.location.lat());
-		$('#birthlng').val(place.geometry.location.lng());
-	});
+	getLatLng('acharyaplace','#acharyalat','#acharyalng');
+	getLatLng('muniplace','#munilat','#munilng');
+	getLatLng('kshullakplace','#kshullaklat','#kshullaklng');
+	getLatLng('birthplace','#birthlat','#birthlng');
 });
+
+function getLatLng(input,lat,lng){
+	var autocomplete = new google.maps.places.Autocomplete(document.getElementById(input));
+	google.maps.event.addListener(autocomplete,'place_changed',function(){
+		var place = this.getPlace();
+		$(lat).val(place.geometry.location.lat());
+		$(lng).val(place.geometry.location.lng());
+	});
+}
 
 function extractFromAddress(components,type){
 	for(var i=0; i<components.length; i++)
