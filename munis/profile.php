@@ -25,6 +25,9 @@ if ($q->rowCount() == 1) {
 	$getinfo = $q->fetch(PDO::FETCH_ASSOC);
 	$upadhi = $getinfo['upadhi'];
 	$uname = $getinfo['uname'];
+	$title = $getinfo['title'];
+	$name = $getinfo['name'];
+	$alias = $getinfo['alias'];
 	$sangha = $getinfo['sangha'];
 	$birthname = $getinfo['birthname'];
 	$dob = $getinfo['dob'];
@@ -72,9 +75,12 @@ if ($q->rowCount() == 1) {
 	$munilat = $getinfo['munilat'];
 	$munilng = $getinfo['munilng'];
 	
-	$kdate = $getinfo['kdate'];
-	$kguru = $getinfo['kguru'];
-	$kplace = $getinfo['kplace'];
+	$kshullakname = $getinfo['kname'];
+	$kshullakdate = $getinfo['kdate'];
+	$kshullakguru = $getinfo['kguru'];
+	$kshullakplace = $getinfo['kplace'];
+	$kshullaklat = $getinfo['klat'];
+	$kshullaklng = $getinfo['klng'];
 	
 	$ganinidate = $getinfo['ganinidate'];
 	$ganiniguru = getmuni($getinfo['ganiniguru']);
@@ -86,7 +92,7 @@ if ($q->rowCount() == 1) {
 	
 	$spouse = $getinfo['spouse'];
 	
-	$title = getmuni($id);
+	$pagetitle = getmuni($id);
 	$imgName = getImgName($id);
 	
 	$img = "munis/uploads/{$imgName}.jpg";
@@ -102,7 +108,7 @@ if ($q->rowCount() == 1) {
 		
 		<?php include 'meta.php'; ?>
 		
-		<title><?php echo $title; ?></title>
+		<title><?php echo $pagetitle; ?></title>
 		
 		<?php include 'stylesheets.php'; ?>
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -135,7 +141,33 @@ if ($q->rowCount() == 1) {
 		<section id="about" class="about content-section alt-bg-light wow fadeInUp" data-wow-offset="10">
 			<div class="container" itemscope itemtype="http://schema.org/Person">
 				<div class="row">
-					<h1><center><span itemprop="name"><?php echo $title; ?></span></center></h1>
+					<dialog id="setname" class="set">
+						<form action="munis/setname.php" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="nameid" value="<?php echo $id; ?>">
+							<select id="upadhiname" name="upadhiname">
+								<option value="1" <?php if($upadhi==1) { echo "selected"; } ?>>Acharya</option>
+								<option value="2" <?php if($upadhi==2) { echo "selected"; } ?>>Elacharya</option>
+								<option value="3" <?php if($upadhi==3) { echo "selected"; } ?>>Upadhyay</option>
+								<option value="4" <?php if($upadhi==4) { echo "selected"; } ?>>Muni</option>
+								<option value="5" <?php if($upadhi==5) { echo "selected"; } ?>>Elak</option>
+								<option value="6" <?php if($upadhi==6) { echo "selected"; } ?>>Kshullak</option>
+								<option value="7" <?php if($upadhi==7) { echo "selected"; } ?>>Ganini Aryika</option>
+								<option value="8" <?php if($upadhi==8) { echo "selected"; } ?>>Aryika</option>
+								<option value="9" <?php if($upadhi==9) { echo "selected"; } ?>>Kshullika</option>
+							</select>
+							<input type="hidden" id="upadhiid" name="upadhiid" value="<?php echo $upadhi; ?>">
+							Shri 108
+							<input type="hidden" name="title" value="<?php echo $title; ?>">
+							<input type="text" name="name" value="<?php echo $name; ?>">
+							Ji Maharaj
+							<input type="text" name="alias" value="<?php echo $alias; ?>">
+							<input type="hidden" id="nameeditor" name="nameeditor">
+							<input type="hidden" name="namemode" value="web">
+							<input type="submit" value="Save">
+						</form>
+					</dialog>
+					<h1><center><span itemprop="name"><?php echo $pagetitle; ?></span></center>
+						&nbsp;<a id="asetname" href="#"><i class="material-icons">create</i></a></h1>
 					<hr>
 					<div class="col-md-6">
 						<div class="sidebar">
@@ -158,7 +190,7 @@ if ($q->rowCount() == 1) {
 											<input type="hidden" id="lat" name="lat" value="<?php echo $lat; ?>">
 											<input type="hidden" id="lng" name="lng" value="<?php echo $lng; ?>">
 											<input type="hidden" id="locality" name="locality" value="<?php echo $locality; ?>">
-											<input type="hidden" name="loceditor" class="editoremail">
+											<input type="hidden" id="loceditor" name="loceditor">
 											<input type="hidden" name="locmode" value="web">
 											<input type="submit" value="Save">
 										</form>
@@ -182,14 +214,14 @@ if ($q->rowCount() == 1) {
 							<dialog id="setcontact" class="set">
 								<form action="munis/setcontact.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="contactid" value="<?php echo $id; ?>">
-									<input type="text" name="website" value="<?php echo $website; ?>">
-									<input type="text" name="phone" value="<?php echo $phone; ?>">
-									<input type="text" name="email" value="<?php echo $email; ?>">
-									<input type="text" name="wikipedia" value="<?php echo $wikipedia; ?>">
-									<input type="text" name="facebook" value="<?php echo $facebook; ?>">
-									<input type="text" name="gplus" value="<?php echo $gplus; ?>">
-									<input type="text" name="youtube" value="<?php echo $youtube; ?>">
-									<input type="hidden" name="contacteditor" class="editoremail">
+									Website&nbsp;<input type="text" name="website" value="<?php echo $website; ?>"><br />
+									Phone&nbsp;<input type="text" name="phone" value="<?php echo $phone; ?>"><br />
+									Email&nbsp;<input type="text" name="email" value="<?php echo $email; ?>"><br />
+									Wikipedia&nbsp;<input type="text" name="wikipedia" value="<?php echo $wikipedia; ?>"><br />
+									Facebook&nbsp;<input type="text" name="facebook" value="<?php echo $facebook; ?>"><br />
+									GPlus&nbsp;<input type="text" name="gplus" value="<?php echo $gplus; ?>"><br />
+									Youtube&nbsp;<input type="text" name="youtube" value="<?php echo $youtube; ?>"><br />
+									<input type="hidden" id="contacteditor" name="contacteditor">
 									<input type="hidden" name="contactmode" value="web">
 									<input type="submit" value="Save">
 								</form>
@@ -244,17 +276,15 @@ if ($q->rowCount() == 1) {
 									Place&nbsp;<input type="text" id="acharyaplace" name="acharyaplace" value="'.$acharyaplace.'">
 									<input type="hidden" id="acharyalat" name="acharyalat" value="'.$acharyalat.'">
 									<input type="hidden" id="acharyalng" name="acharyalng" value="'.$acharyalng.'">
-									<input type="hidden" name="acharyaeditor" class="editoremail">
+									<input type="hidden" id="acharyaeditor" name="acharyaeditor">
 									<input type="hidden" name="acharyamode" value="web">
 									<input type="submit" value="Save">
 								</form>
 							</dialog></tr>
 					<tr><th colspan="2" align="left">Acharya Pad Details&nbsp;<a id="asetacharya" href="#"><i class="material-icons">create</i></a></th></tr>
-					<tr><td>Date</td><td><time datetime="'.$getinfo['adate'].'">'.$getinfo['adate'].'</time></td></tr>
-					<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['aguru'].'">'.getmuni($getinfo['aguru']).'
-					<img class="smallLight" src="'.getImg($getinfo['aguru']).'" alt="'.getmuni($getinfo['aguru']).'" />
-					</a></div></td></tr>
-					<tr><td>Place</td><td>'.$getinfo['aplace'].'</td></tr>'
+					<tr><td>Date</td><td><time datetime="'.$acharyadate.'">'.$acharyadate.'</time></td></tr>
+					<tr><td>Guru</td><td><a href="munis.php?id='.$acharyaguru.'">'.getmuni($acharyaguru).'</a></div></td></tr>
+					<tr><td>Place</td><td>'.$acharyaplace.'</td></tr>'
 		;}
 	
 	if($getinfo['ailacharyaguru']>0) {echo
@@ -285,12 +315,13 @@ if ($q->rowCount() == 1) {
 								<form action="munis/setpad.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="pad" value="muni">
 									<input type="hidden" name="muniid" value="'.$id.'">
+									Name&nbsp;<input type="text" name="muniname" value="'.$muniname.'"><br />
 									Date&nbsp;<input type="text" name="munidate" value="'.$munidate.'"><br />
 									Guru&nbsp;<input type="text" name="muniguru" value="'.$muniguru.'"><br />
 									Place&nbsp;<input type="text" id="muniplace" name="muniplace" value="'.$muniplace.'">
 									<input type="hidden" id="munilat" name="munilat" value="'.$munilat.'">
 									<input type="hidden" id="munilng" name="munilng" value="'.$munilng.'">
-									<input type="hidden" name="munieditor" class="editoremail">
+									<input type="hidden" id="munieditor" name="munieditor">
 									<input type="hidden" name="munimode" value="web">
 									<input type="submit" value="Save">
 								</form>
@@ -315,22 +346,51 @@ if ($q->rowCount() == 1) {
 				<tr><td>Place</td><td>'.$getinfo['ailakplace'].'</td></tr>'
 														;}
 	
-	if ($kdate != '0000-00-00' || $kguru > 0) {
+	if ($kshullakdate != '0000-00-00' || $kshullakguru > 0) {
 		echo
 			'<tr><td colspan="2"></td></tr>
-				<tr><th colspan="2" align="left">Kshullak Deeksha Details</th></tr>';
-		if($getinfo['kname']!="") {echo '<tr><td>Name</td><td>'.$getinfo['kname'].'</td></tr>';}
-		echo '<tr><td>Date</td><td>'.$kdate.'</td></tr>
-				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$getinfo['kguru'].'">'.getmuni($getinfo['kguru']).'
-				<img class="smallLight" src="'.getImg($getinfo['kguru']).'" alt="'.getmuni($getinfo['kguru']).'" />
+			<tr><dialog id="setkshullak" class="set">
+								<form action="munis/setpad.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="pad" value="kshullak">
+									<input type="hidden" name="kshullakid" value="'.$id.'">
+									Name&nbsp;<input type="text" name="kshullakname" value="'.$kshullakname.'"><br />
+									Date&nbsp;<input type="text" name="kshullakdate" value="'.$kshullakdate.'"><br />
+									Guru&nbsp;<input type="text" name="kshullakguru" value="'.$kshullakguru.'"><br />
+									Place&nbsp;<input type="text" id="kshullakplace" name="kshullakplace" value="'.$kshullakplace.'">
+									<input type="hidden" id="kshullaklat" name="kshullaklat" value="'.$kshullaklat.'">
+									<input type="hidden" id="kshullaklng" name="kshullaklng" value="'.$kshullaklng.'">
+									<input type="hidden" id="kshullakeditor" name="kshullakeditor">
+									<input type="hidden" name="kshullakmode" value="web">
+									<input type="submit" value="Save">
+								</form>
+							</dialog></tr>
+				<tr><th colspan="2" align="left">Kshullak Deeksha Details&nbsp;<a id="asetkshullak" href="#"><i class="material-icons">create</i></a></th></tr>';
+		if($kshullakname!="") {echo '<tr><td>Name</td><td>'.$kshullakname.'</td></tr>';}
+		echo '<tr><td>Date</td><td>'.$kshullakdate.'</td></tr>
+				<tr><td>Guru</td><td><div class="hoverImg"><a href ="munis.php?id='.$kshullakguru.'">'.getmuni($kshullakguru).'
+				<img class="smallLight" src="'.getImg($kshullakguru).'" alt="'.getmuni($kshullakguru).'" />
 				</a></div></td></tr>
-				<tr><td>Place</td><td>'.$getinfo['kplace'].'</td></tr>';
+				<tr><td>Place</td><td>'.$kshullakplace.'</td></tr>';
 	}
 	
 	if ($upadhi == 7) {
 							?>
 							<tr><td colspan="2"></td></tr>
-							<tr><th colspan="2" align="left">Ganini Aryika Pad Details</th></tr>
+							<tr><dialog id="setganini" class="set">
+								<form action="munis/setpad.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="pad" value="ganini">
+									<input type="hidden" name="ganiniid" value="<?php echo $id; ?>">
+									Date&nbsp;<input type="text" name="ganinidate" value="<?php echo $ganinidate; ?>"><br />
+									Guru&nbsp;<input type="text" name="ganiniguru" value="<?php echo $ganiniguru; ?>"><br />
+									Place&nbsp;<input type="text" id="ganiniplace" name="ganiniplace" value="<?php echo $ganiniplace; ?>">
+									<input type="hidden" id="ganinilat" name="ganinilat" value="<?php echo $ganinilat; ?>">
+									<input type="hidden" id="ganinilng" name="ganinilng" value="<?php echo $ganinilng; ?>">
+									<input type="hidden" id="ganinieditor" name="ganinieditor">
+									<input type="hidden" name="ganinimode" value="web">
+									<input type="submit" value="Save">
+								</form>
+								</dialog></tr>
+							<tr><th colspan="2" align="left">Ganini Aryika Pad Details&nbsp;<a id="asetganini" href="#"><i class="material-icons">create</i></a></th></tr>
 							<tr><td>Date</td><td><time datetime="<?php echo $ganinidate; ?>"><?php echo $ganinidate; ?></time></td></tr>
 							<tr><td>Guru</td><td><?php echo $ganiniguru; ?></td></tr>
 							<tr><td>Place</td><td><?php echo $ganiniplace; ?></td></tr>
@@ -338,7 +398,21 @@ if ($q->rowCount() == 1) {
 							<?php } if($upadhi > 6) { ?>
 							
 							<tr><td colspan="2"></td></tr>
-							<tr><th colspan="2" align="left">Aryika Deeksha Details</th></tr>
+							<tr><dialog id="setaryika" class="set">
+								<form action="munis/setpad.php" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="pad" value="aryika">
+									<input type="hidden" name="aryikaid" value="<?php echo $id; ?>">
+									Date&nbsp;<input type="text" name="aryikadate" value="<?php echo $aryikadate; ?>"><br />
+									Guru&nbsp;<input type="text" name="aryikaguru" value="<?php echo $aryikaguru; ?>"><br />
+									Place&nbsp;<input type="text" id="aryikaplace" name="aryikaplace" value="<?php echo $aryikaplace; ?>">
+									<input type="hidden" id="aryikalat" name="aryikalat" value="<?php echo $aryikalat; ?>">
+									<input type="hidden" id="aryikalng" name="aryikalng" value="<?php echo $aryikalng; ?>">
+									<input type="hidden" id="aryikaeditor" name="aryikaeditor">
+									<input type="hidden" name="aryikamode" value="web">
+									<input type="submit" value="Save">
+								</form>
+								</dialog></tr>
+							<tr><th colspan="2" align="left">Aryika Deeksha Details&nbsp;<a id="asetganini" href="#"><i class="material-icons">create</i></a></th></tr>
 							<tr><td>Date</td><td><?php echo $aryikadate; ?></td></tr>
 							<tr><td>Guru</td><td><?php echo $aryikaguru; ?></td></tr>
 							<tr><td>Place</td><td><?php echo $aryikaplace; ?></td></tr>
@@ -399,7 +473,7 @@ if ($q->rowCount() == 1) {
 									Father&nbsp;<input type="text" name="father" value="'.$father.'"><br />
 									Mother&nbsp;<input type="text" name="mother" value="'.$mother.'"><br />
 									Education&nbsp;<input type="text" name="education" value="'.$education.'"><br />
-									<input type="hidden" name="historyeditor" class="editoremail">
+									<input type="hidden" id="historyeditor" name="historyeditor">
 									<input type="hidden" name="historymode" value="web">
 									<input type="submit" value="Save">
 								</form>
@@ -415,7 +489,8 @@ if ($q->rowCount() == 1) {
 	}
 	echo '<tr><td>Education</td><td>'.$education.'</td></tr>';
 	
-							?>							
+							?>
+							<input type="hidden" id="editoremail" class="editoremail">
 							<tr><td colspan="2"></td></tr>
 							<tr><th colspan="2" align="left">Chaturmas</th></tr>
 							<?php
